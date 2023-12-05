@@ -1,0 +1,2 @@
+-m "initialisation effectué" -m "home page statique réalisé" -m "premier composants en place"
+
