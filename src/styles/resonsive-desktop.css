@@ -1,0 +1,94 @@
+/* Media query pour les écrans de bureau */
+
+@media screen and (min-width: 768px) {
+
+
+  .header-title {
+
+    margin-left: 2rem;
+  }
+
+
+  .cards-container {
+
+    display: grid;
+    grid-gap: 1rem;
+
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 => nb colonnes ; 1fr element penant 1 fraction égale de l'espace disponible. */
+
+    margin: 2rem;
+
+  }
+
+
+  .card-image {
+
+    max-width: 100%;
+
+  }
+
+
+  .card-container:hover {
+
+    background: linear-gradient(to right, #9b5a96, #703964, #a18e9a, #e2c8d7, #d1c3cb);
+
+  }
+
+
+  .card-container:hover::before {
+
+    box-shadow: 0 0 30px rgba(3, 3, 3, 0.9);
+    /* Modification de l'ombre lorsqu'on survole la carte */
+  }
+
+
+
+  .card-container:hover::before {
+    border: 3px solid rgb(225, 225, 238);
+    box-shadow: rgba(93, 12, 255, 0.25) 0px 30px 60px -12px inset, rgba(255, 255, 255, 0.3) 0px 18px 36px -18px inset;
+    /* Modification de l'ombre lorsqu'on survole la carte */
+
+  }
+
+
+  .container-user-connexion-desktop {
+
+    position: relative;
+    display: inline-flex;
+    height: 1.6rem;
+    align-items: flex-end;
+    margin-right: 12rem;
+    margin-top: 8.4rem;
+    color: #462243;
+    font-family: "Courgette";
+    font-size: auto;
+    font-weight: 800;
+    gap: 0.5rem;
+
+  }
+
+
+  .msg-user-logo {
+
+    display: inline-flex;
+  }
+
+
+}
+
+/*wide screen */
+@media screen and (min-width: 1920px) {
+
+  .cards-container {
+
+
+
+    grid-template-columns: repeat(6, 1fr);
+    /* 4 => nb colonnes ; 1fr element penant 1 fraction égale de l'espace disponible. */
+
+
+
+  }
+
+}

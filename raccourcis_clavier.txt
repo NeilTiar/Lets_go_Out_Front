@@ -1,0 +1,3 @@
+
+html split :
+ctrl + alt + shift + a => pour separer les propriétés d'une balise HTML sur plusieurs lignes 
