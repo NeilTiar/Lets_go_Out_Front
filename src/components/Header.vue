@@ -38,7 +38,7 @@
       </div>
     </div>
 
-
+    <button class="create-review-banner" v-if="!isFixed">Créer une review</button>
     <p class='title-to-menu' v-if="isFixed">{{ TitleIfTopMenu }}</p>
 
 
@@ -110,6 +110,7 @@ export default {
     updateDynamicText() {
 
       if (this.isFixed) {
+        
         this.TitleIfTopMenu = "L'ets Go Out To Paris";
 
       } else {
