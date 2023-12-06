@@ -1,6 +1,6 @@
 <template>
-  <div class="card-container">
 
+  <div class="card-container">
     <div class="card-review">
       <img :src="require(`@/assets/photos-reviews/${imageUrl}`)" :alt="generateAltText()" class="card-image" />
       <h3

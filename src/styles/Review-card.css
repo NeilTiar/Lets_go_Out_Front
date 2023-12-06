@@ -9,8 +9,9 @@
   width: 90%;
   border-radius: 2%;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
+
 
 
 .card-review {
@@ -48,7 +49,7 @@ img.card-image {
 
   writing-mode: vertical-rl; /* Cette valeur affiche le texte de haut en bas */
   font-family: 'courgette';
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   text-shadow: inset 5px 5px 7px rgba(015, 0, 0, 0.3);
   margin:0 0 1.5rem 0;
   position: absolute;

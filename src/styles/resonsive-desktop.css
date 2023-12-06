@@ -17,7 +17,8 @@
     grid-template-columns: repeat(4, 1fr);
     /* 4 => nb colonnes ; 1fr element penant 1 fraction égale de l'espace disponible. */
 
-    margin: 2rem;
+    margin: 4rem 2rem 0 2rem;  
+  
 
   }
 
@@ -31,7 +32,7 @@
 
   .card-container:hover {
 
-    background: linear-gradient(to right, #9b5a96, #703964, #a18e9a, #e2c8d7, #d1c3cb);
+    background: linear-gradient(to right, #9b5a96, #703964, #a18e9a, #d1c3cb);
 
   }
 
@@ -73,6 +74,45 @@
 
     display: inline-flex;
   }
+  
+
+  button.create-review {
+    position: absolute;
+    right: 10rem;
+    font-family: "Courgette";
+    color: white;
+    background-color: rgb(137, 120, 148);
+    border-radius: 0 0 10px 10px;
+    width: auto;
+    height: auto;
+    margin-bottom: 5rem;
+    font-size: 1.4rem;
+    box-shadow: 0px 4px 8px rgba(14, 2, 19, 0.5);
+  }
+
+  button.create-review-after-scrollY {
+    
+    position: fixed;
+    height: 2rem;
+    background-color:rgb(137, 120, 148);
+    color:white;
+    z-index: 1;
+    right: -4.2rem;
+    top:8rem;
+    font-family: "Courgette";
+    border-radius: 0 0 15px 15px;
+    vertical-align: top;
+    font-size: 1.3rem;
+
+    transform: rotate(7deg);
+    -ms-transform: rotate(90deg);/* IE 9 */
+    -moz-transform: rotate(90deg);/* Firefox */
+    -webkit-transform: rotate(90deg);/* Safari and Chrome */
+    -o-transform: rotate(90deg);/* Opera */
+    
+
+
+  }
 
 
 }
@@ -83,7 +123,7 @@
   .cards-container {
 
 
-
+    
     grid-template-columns: repeat(6, 1fr);
     /* 4 => nb colonnes ; 1fr element penant 1 fraction égale de l'espace disponible. */
 

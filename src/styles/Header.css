@@ -1,7 +1,5 @@
-
-
 .dark-theme-container {
-    
+
   display: flex;
   align-items: center;
   height: 100%;
@@ -12,7 +10,8 @@
 
 }
 
-img.moon, img.sun {
+img.moon,
+img.sun {
 
   height: 100%;
 }
@@ -43,8 +42,21 @@ img.moon, img.sun {
   position: absolute;
   top: 0;
   position: relative;
-  height:2.5rem;
+  height: 2.5rem;
   width: 100%;
+
+}
+
+.create-review-banner {
+
+  background-color: rgb(137, 120, 148);
+  font-family: "Kalam", sans-serif;
+  border-radius: 15px;
+  color: #ffffff;
+  height: 80%;
+  width: 40%;
+  font-size: 1.2rem;
+  text-shadow: 7px 7px 3px rgba(015, 0, 0, 0.3);
 
 }
 
@@ -56,23 +68,21 @@ img.moon, img.sun {
   align-items: center;
   width: 100%;
   background-color: #f0f0f0;
-  height:3.5rem;
-  
-  
+  height: 3.5rem;
 }
 
 
 li {
 
   position: relative;
-  width:auto;
+  width: auto;
   transition: transform 0.5s;
 }
 
 
 li:hover {
 
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 
 .right-buttons {
@@ -87,14 +97,14 @@ li:hover {
 
 .buttons {
 
- 
+
   width: 1.2rem;
   height: 1.2rem;
-  
+
 }
 
 .container-right-button {
-  
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -102,7 +112,7 @@ li:hover {
 }
 
 .container-left-button {
-  
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -113,8 +123,8 @@ li:hover {
 .left-buttons {
 
   display: flex;
-  gap:2.5rem;
-  margin-left:0.5rem;
+  gap: 2.5rem;
+  margin-left: 0.5rem;
 }
 
 
@@ -145,12 +155,13 @@ li:hover {
 
   display: flex;
   font-family: 'Courgette';
-  
+
   font-style: italic;
   font-size: clamp(1.8rem, 3vw + 1.3rem, 4rem);
   color: azure;
   margin-right: 1rem;
-  margin-bottom: 3.5rem;;
+  margin-bottom: 3.5rem;
+  ;
   padding: 1rem;
   text-shadow: 1px 1px white, -1px -1px #444
 }
@@ -158,12 +169,14 @@ li:hover {
 
 
 .theme-banner {
-    
+
   display: flex;
   align-items: center;
   position: relative;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
+
+
 
 
 
@@ -279,16 +292,16 @@ a.loisir-link:hover {
 
 .container-user-connexion-mobile {
 
-  position:absolute;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  top:55px;
-  right:5px;
-  color:white;
+  top: 55px;
+  right: 5px;
+  color: white;
   font-family: 'Courgette';
   font-weight: 800;
-  }
+}
 
 
 .container-logo-title {
@@ -316,7 +329,7 @@ img.user-logo {
 .msg-user-logo {
 
 
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
 }
