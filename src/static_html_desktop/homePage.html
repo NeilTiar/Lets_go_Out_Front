@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static_html_desktop/static_desktop_css/homePage.css" />
+    <title>Ma Page HTML</title>
+
+    <!--ci dessous permet l'utilisation de la font 'courgette' (google font)-->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courgette&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat&family=Courgette&family=Hedvig+Letters+Sans&family=Pacifico&family=Vina+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat&family=Courgette&family=Hedvig+Letters+Sans&family=Pacifico&family=Shizuru&family=Vina+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kalam&family=Shizuru&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Contenu de la page -->
+    <header>
+      <div class="header-container">
+        <div class="header">
+          <div class="container-logo-title">
+            <!-- <img class=" logo" src="" alt="logo">-->
+            <h1 class="header-title">L'ets go out to Paris</h1>
+          </div>
+       
+        </div>
+      </div>
+    </header>
+
+    <nav class="theme-banner">
+      <ul @mouseover="startHover" @mouseout="endHover">
+        <li><a class="theme-link culture-link" href="#Culture">Culture</a></li>
+        <li>
+          <a class="theme-link food-and-drink-link" href="#FoodAndDrink"
+            >Food & Drink</a
+          >
+        </li>
+        <li><a class="theme-link loisir-link" href="#Loisir">Loisir</a></li>
+      </ul>
+
+         <div class="user-connexion">
+            <img class="user-logo" src="../assets/user.png" alt="user" />
+            <div class="msg-user-logo">Bonjour, Neil</div>
+          </div>
+          
+    </nav>
+
+    <main>
+      <button class="create-review-button">Créer une review</button>
+
+      <!-- Contenu principal de la page -->
+      <section>
+        <h2>Section 1</h2>
+        <!-- Ajoutez ici le contenu de la première section -->
+      </section>
+
+      <section>
+        <h2>Section 2</h2>
+        <!-- Ajoutez ici le contenu de la deuxième section -->
+      </section>
+    </main>
+
+    <aside>
+      <!-- Ajoutez ici des éléments supplémentaires liés au contenu principal -->
+    </aside>
+
+    <footer>
+      <!-- Pied de page -->
+      <p>&copy; 2023 Ma Page HTML. Tous droits réservés.</p>
+    </footer>
+  </body>
+</html>
