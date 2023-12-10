@@ -3,11 +3,11 @@
     <button @click="toggle" :class="{ 'dark-theme-container': true, 'light-mode': isActive, 'dark-mode': !isActive }">
 
       <template v-if="isActive">
-        <span class="light-mode-tag">Light Mode</span>
+        <span class="light-mode-tag">Light Theme</span>
       </template>
 
       <template v-if="!isActive">
-        <span class="dark-mode-tag">Dark Mode</span>
+        <span class="dark-mode-tag">Dark Theme</span>
       </template>
 
 
