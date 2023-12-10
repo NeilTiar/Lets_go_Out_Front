@@ -1,5 +1,5 @@
 <template>
-  <div class="Footer">
+  <footer class="Footer">
 
 
     <div class="contact-follow">
@@ -32,7 +32,7 @@
     </div>
 
 
-  </div>
+  </footer>
 </template>
   
 <script>
