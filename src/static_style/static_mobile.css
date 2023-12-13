@@ -4,13 +4,12 @@
 
     /*reset config*/
     body {
+
         width: 100vw;
         height: 100vh;
         margin: 0;
         padding: 0;
         overflow-y: none;
-
-
     }
 
     body::-webkit-scrollbar {
@@ -39,6 +38,23 @@
 
         font-family: 'courgette', cursive;
     }
+
+
+  
+
+  .title-description {
+
+    font-size: 0.8rem;
+    font-family: "Courgette",cursive;
+    color:white;
+    font-style: italic;
+    text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+    margin:0;
+    padding:0;
+  }
+
+  
+
 
     .top-main {
 
@@ -70,9 +86,11 @@
 
     .user-connexion-mobile {
 
+        position:relative;
+        top:1.7rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
         font-family: "Courgette", cursive;
         color: #ffffff;
@@ -172,14 +190,10 @@
 
         display: flex;
         font-family: 'Courgette';
-
         font-style: italic;
-        font-size: clamp(1.8rem, 3vw + 1.3rem, 4rem);
+        font-size: clamp(1.6rem, 3vw + 1.2rem, 3.4rem);
         color: azure;
-
-        margin-bottom: 3.5rem;
-        ;
-        padding: 1rem;
+        margin:0;
         text-shadow: 1px 1px white, -1px -1px #444
     }
 
@@ -198,7 +212,7 @@
         color: white;
         font-family: "Courgette";
         border-radius: 15px;
-        border:none;
+        border: none;
     }
 
 
@@ -260,8 +274,9 @@
 
 
     .container-logo-title {
-
-        display: flex;
+        position:relative;
+        bottom:1.3rem;
+        margin-left:0.5rem;
         align-items: center;
 
     }
@@ -307,35 +322,55 @@
         display: none;
     }
 
-    /*////////////////////////////////////  mobile-Main  ////////////////////////////////////////*/
+    /*////////////////////////////////////  mobile-Main-review  ////////////////////////////////////////*/
 
 
 
 
     .cards-container {
 
-        margin-top: 2rem;
+        margin: 2rem 0 2rem 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-
-
-
     }
+
 
     .card-review {
 
         width: 80%;
         margin: 0.3rem;
-
+        background: #8a7788;
+        border-radius: 12px;
     }
 
+
+    .card-image {
+        object-fit: cover;
+        position: relative;
+        height: 12rem;
+        width: 100%;
+        border-radius: 12px 12px 0 0;
+
+    }
 
     .description {
 
         font-family: "Courgette", cursive;
     }
+
+      .card-info {
+
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
+    font-family: "Courgette",cursive;
+    color:white;
+    font-size: 1.1rem;
+    text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+
+  }
 
     .theme-container {
 
@@ -347,7 +382,7 @@
 
     .review-theme {
 
-        z-index: 1;
+        font-family: "Courgette";
         position: absolute;
         writing-mode: vertical-rl;
         color: #706679;
@@ -357,11 +392,91 @@
     }
 
     .mention-legale {
-
+        
         position: relative;
         bottom: 5rem;
     }
 
+    .contact-follow {
+
+        height: 100%;
+    }
+
+    /*/////////////////////////////////// mobile-home-page /////////////////////////////////////*/
+
+
+    .home_title-description-container {
+        font-family: "Courgette", cursive;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: url(../assets/lgopHomePagePicture.jpg);
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        overflow-y: none;
+    }
+
+
+    .home_title-description {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: min-content;
+        width: 60%;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+
+    }
+
+    .home-title {
+        font-size: 2.4rem;
+        text-align: center;
+    }
+
+    .home-description {
+        text-align: center;
+        font-size: 1.3rem;
+    }
+
+    .home-banner {
+        position: absolute;
+        top: 5rem;
+        width: 100%;
+        top: 1.4rem;
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .home-link {
+        font-size: 1.2rem;
+        color: white;
+        text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+        font-weight: 600;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto;
+
+    }
+
+    .right-link {
+        margin-right: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .left-link {
+        margin-left: 1rem;
+
+    }
+
+    .registration {
+
+        margin-bottom: 0.6rem;
+    }
 
     /* ///////////////////////////////////  mobile-Footer  //////////////////////////////////////*/
 
@@ -403,7 +518,7 @@
     .mail {
 
         position: relative;
-        bottom: 1.5rem;
+       
         font-family: 'Courgette', cursive;
         display: flex;
         flex-direction: column;
@@ -486,10 +601,59 @@
 
         position: relative;
         font-size: 0.7rem;
-        color: white;
-        bottom: 0.1rem;
+        color: rgb(255, 255, 255);
+        bottom: -1.2rem;
         left: 2.1rem;
+       
+        width:8rem;
     }
 
+
+}
+
+@media screen and (max-width:280px) {
+
+    .home-title {
+
+        font-size: 1.7rem;
+    }
+
+    .home-description {
+
+        font-size: 1.1rem;
+    }
+
+    .reviews-acces {
+        font-size: 0.7rem;
+    }
+
+    .registration {
+
+        font-size: 0.7rem;
+    }
+
+    .connexion {
+
+        font-size: 0.7rem;
+    }
+
+    .email {
+        font-size: 0.8rem;
+    }
+
+    .mention-legale {
+
+    width: 6rem;
+
+
+        font-size: 0.5rem;
+    }
+    
+     .container-logo-title {
+
+     position:relative;
+     bottom:0.4rem
+
+     }
 
 }

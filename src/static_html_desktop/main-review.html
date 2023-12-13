@@ -1,54 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static_style/static_desktop.css" />
     <link rel="stylesheet" href="../static_style/static_mobile.css" />
    
    
-   <title>Ma Page HTML</title>
+   <title>L'ets go out to Paris -  Découvrez les Meilleurs Endroits de Paris</title>
+    <meta name="description" content="LGOP vous propose des annonces mêlant loisirs, culture, et food & drink pour assurer le succès de votre prochaine sortie à Paris. Découvrez les trésors cachés de la Ville Lumière avec notre plateforme unique." />
+ 
 
-    <!--ci dessous permet l'utilisation de la font 'courgette' (google font)-->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Courgette&divsplay=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat&family=Courgette&family=Hedvig+Letters+Sans&family=Pacifico&family=Vina+Sans&divsplay=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat&family=Courgette&family=Hedvig+Letters+Sans&family=Pacifico&family=Shizuru&family=Vina+Sans&divsplay=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kalam&family=Shizuru&divsplay=swap"
-      rel="stylesheet"
-    />
+    <!--ci dessous permet l'utilisation de différentes Font ( via google font)-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Courgette&family=Anton&family=Caveat&family=Hedvig+Letters+Sans&family=Pacifico&family=Vina+Sans&family=Kalam&family=Shizuru&divsplay=swap"
+  rel="stylesheet"
+/>
   </head>
   <body>
-    <!-- Contenu de la page -->
+   
     <header>
-
-
 
       <div class="header-container">
         <div class="header">
           <div class="container-logo-title">
-            <!-- <img class=" logo" src="" alt="logo">-->
+          
             <h1 class="header-title">L'ets go out to Paris</h1>
+            <h2 class="title-description"> Explorez et partagez les meilleurs endroits de Paris</h2>
           </div>
           <div class="user-connexion-mobile">
             <img class="user-logo" src="../assets/user.png" alt="user" />
@@ -59,7 +39,7 @@
     </header>
 
     <nav class="theme-banner">
-      <ul @mouseover="startHover" @mouseout="endHover">
+      <ul>
         <li><a class="theme-link culture-link" href="#Culture">Culture</a></li>
         <li>
           <a class="theme-link food-and-drink-link" href="#FoodAndDrink"
@@ -116,17 +96,18 @@
       </div>
     </div>
 
-    <main>
+ 
+    
       <div class="container-create-button-desktop">
         <button class="create-review-button-desktop">Créer une review</button>
       </div>
 
 
 
-      <div class="cards-container">
+      <main class="cards-container">
 
 
-        <div class="card-review">
+        <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -143,9 +124,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
 
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -162,9 +143,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
         
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -181,9 +162,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
 
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -200,8 +181,84 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
 
+
+             <section class="card-review">
+          <div class="theme-container">
+            <h3 class="review-theme">Culture</h3>
+
+            <img
+              src="../assets/photos-reviews/ballade-lumineuse.jpg"
+              alt="photo-lieux-parisien-exterieur-nuit-lumiere-chemin-boiser"
+              class="card-image"
+            />
+          </div>
+
+          <div class="card-details">
+            <div class="card-info">
+              <p class="detail place-name">Ballades Enchantées Salvador Dali</p>
+              <p class="detail arrondivssement">12 eme</p>
+            </div>
+          </div>
+        </section>
+
+   <section class="card-review">
+          <div class="theme-container">
+            <h3 class="review-theme">Culture</h3>
+
+            <img
+              src="../assets/photos-reviews/ballade-lumineuse.jpg"
+              alt="photo-lieux-parisien-exterieur-nuit-lumiere-chemin-boiser"
+              class="card-image"
+            />
+          </div>
+
+          <div class="card-details">
+            <div class="card-info">
+              <p class="detail place-name">Ballades Enchantées Salvador Dali</p>
+              <p class="detail arrondivssement">12 eme</p>
+            </div>
+          </div>
+        </section>
+        
+   <section class="card-review">
+          <div class="theme-container">
+            <h3 class="review-theme">Culture</h3>
+
+            <img
+              src="../assets/photos-reviews/ballade-lumineuse.jpg"
+              alt="photo-lieux-parisien-exterieur-nuit-lumiere-chemin-boiser"
+              class="card-image"
+            />
+          </div>
+
+          <div class="card-details">
+            <div class="card-info">
+              <p class="detail place-name">Ballades Enchantées Salvador Dali</p>
+              <p class="detail arrondivssement">12 eme</p>
+            </div>
+          </div>
+        </section>
+
+   <section class="card-review">
+          <div class="theme-container">
+            <h3 class="review-theme">Culture</h3>
+
+            <img
+              src="../assets/photos-reviews/ballade-lumineuse.jpg"
+              alt="photo-lieux-parisien-exterieur-nuit-lumiere-chemin-boiser"
+              class="card-image"
+            />
+          </div>
+
+          <div class="card-details">
+            <div class="card-info">
+              <p class="detail place-name">Ballades Enchantées Salvador Dali</p>
+              <p class="detail arrondivssement">12 eme</p>
+            </div>
+          </div>
+        </section>
 
              <div class="card-review">
           <div class="theme-container">
@@ -222,7 +279,7 @@
           </div>
         </div>
 
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -239,9 +296,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
         
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -258,9 +315,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
 
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -277,7 +334,7 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
 
              <div class="card-review">
           <div class="theme-container">
@@ -298,7 +355,7 @@
           </div>
         </div>
 
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -315,9 +372,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
         
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -334,9 +391,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
 
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -353,9 +410,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
 
-             <div class="card-review">
+             <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -372,9 +429,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
 
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -391,9 +448,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
         
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -410,9 +467,9 @@
               <p class="detail arrondivssement">12 eme</p>
             </div>
           </div>
-        </div>
+        </section>
 
-   <div class="card-review">
+   <section class="card-review">
           <div class="theme-container">
             <h3 class="review-theme">Culture</h3>
 
@@ -423,98 +480,15 @@
             />
           </div>
 
-          <div class="card-details">
+          <section class="card-details">
             <div class="card-info">
               <p class="detail place-name">Ballades Enchantées Salvador Dali</p>
               <p class="detail arrondivssement">12 eme</p>
             </div>
-          </div>
-        </div>
-
-             <div class="card-review">
-          <div class="theme-container">
-            <h3 class="review-theme">Culture</h3>
-
-            <img
-              src="../assets/photos-reviews/ballade-lumineuse.jpg"
-              alt="photo-lieux-parisien-exterieur-nuit-lumiere-chemin-boiser"
-              class="card-image"
-            />
-          </div>
-
-          <div class="card-details">
-            <div class="card-info">
-              <p class="detail place-name">Ballades Enchantées Salvador Dali</p>
-              <p class="detail arrondivssement">12 eme</p>
-            </div>
-          </div>
-        </div>
-
-   <div class="card-review">
-          <div class="theme-container">
-            <h3 class="review-theme">Culture</h3>
-
-            <img
-              src="../assets/photos-reviews/ballade-lumineuse.jpg"
-              alt="photo-lieux-parisien-exterieur-nuit-lumiere-chemin-boiser"
-              class="card-image"
-            />
-          </div>
-
-          <div class="card-details">
-            <div class="card-info">
-              <p class="detail place-name">Ballades Enchantées Salvador Dali</p>
-              <p class="detail arrondivssement">12 eme</p>
-            </div>
-          </div>
-        </div>
-        
-   <div class="card-review">
-          <div class="theme-container">
-            <h3 class="review-theme">Culture</h3>
-
-            <img
-              src="../assets/photos-reviews/ballade-lumineuse.jpg"
-              alt="photo-lieux-parisien-exterieur-nuit-lumiere-chemin-boiser"
-              class="card-image"
-            />
-          </div>
-
-          <div class="card-details">
-            <div class="card-info">
-              <p class="detail place-name">Ballades Enchantées Salvador Dali</p>
-              <p class="detail arrondivssement">12 eme</p>
-            </div>
-          </div>
-        </div>
-
-   <div class="card-review">
-          <div class="theme-container">
-            <h3 class="review-theme">Culture</h3>
-
-            <img
-              src="../assets/photos-reviews/ballade-lumineuse.jpg"
-              alt="photo-lieux-parisien-exterieur-nuit-lumiere-chemin-boiser"
-              class="card-image"
-            />
-          </div>
-
-          <div class="card-details">
-            <div class="card-info">
-              <p class="detail place-name">Ballades Enchantées Salvador Dali</p>
-              <p class="detail arrondivssement">12 eme</p>
-            </div>
-          </div>
-        </div>
-        
-        
-        </div>
-    
-
-
-
-
-
+          </section>
+        </section>
+    </main>
+</div>
       </div>
     </main>
 
