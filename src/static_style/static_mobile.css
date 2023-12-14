@@ -40,20 +40,20 @@
     }
 
 
-  
 
-  .title-description {
 
-    font-size: 0.8rem;
-    font-family: "Courgette",cursive;
-    color:white;
-    font-style: italic;
-    text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
-    margin:0;
-    padding:0;
-  }
+    .title-description {
 
-  
+        font-size: 0.8rem;
+        font-family: "Courgette", cursive;
+        color: white;
+        font-style: italic;
+        text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+        margin: 0;
+        padding: 0;
+    }
+
+
 
 
     .top-main {
@@ -86,8 +86,8 @@
 
     .user-connexion-mobile {
 
-        position:relative;
-        top:1.7rem;
+        position: relative;
+        top: 1.7rem;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -193,7 +193,7 @@
         font-style: italic;
         font-size: clamp(1.6rem, 3vw + 1.2rem, 3.4rem);
         color: azure;
-        margin:0;
+        margin: 0;
         text-shadow: 1px 1px white, -1px -1px #444
     }
 
@@ -274,9 +274,9 @@
 
 
     .container-logo-title {
-        position:relative;
-        bottom:1.3rem;
-        margin-left:0.5rem;
+        position: relative;
+        bottom: 1.3rem;
+        margin-left: 0.5rem;
         align-items: center;
 
     }
@@ -355,22 +355,26 @@
 
     }
 
+
+
     .description {
 
         font-family: "Courgette", cursive;
     }
 
-      .card-info {
 
-    display: flex;
-    flex-direction: column;
-    margin-left: 0.5rem;
-    font-family: "Courgette",cursive;
-    color:white;
-    font-size: 1.1rem;
-    text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+    .card-info {
 
-  }
+        display: flex;
+        flex-direction: column;
+        margin-left: 0.5rem;
+        font-family: "Courgette", cursive;
+        color: white;
+        font-size: 1.1rem;
+        text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+
+    }
+
 
     .theme-container {
 
@@ -392,7 +396,7 @@
     }
 
     .mention-legale {
-        
+
         position: relative;
         bottom: 5rem;
     }
@@ -478,6 +482,63 @@
         margin-bottom: 0.6rem;
     }
 
+     .left-arrow {
+
+    margin-left: 0.5rem;
+     transform: rotate(180deg);
+    width: 2rem;
+  }
+
+ 
+  .right-arrow {
+
+    margin-right: 0.5rem;
+    width: 2rem;
+  }
+
+
+  .arrows-pictures {
+    opacity:0.73;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    bottom: 30%;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .circular-marker-container {
+
+    position: absolute;
+    display:flex;
+    z-index: 1;
+    width: 9rem;
+    height: 1rem;
+    left:30%;
+    bottom: 1rem;
+    opacity: 0.8;
+    
+  }
+  
+  .circular {
+
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #ffffff;
+    border-radius: 45%;
+    margin:0.5rem;
+  }
+
+  .circular-marker3 {
+
+    position:relative;
+    bottom:0.2rem;
+     width: 0.7rem;
+    height: 0.7rem;
+    border: rgb(255, 254, 253) 2px solid;
+     background-color:rgb(170, 76, 76) ;
+  }
+    
     /* ///////////////////////////////////  mobile-Footer  //////////////////////////////////////*/
 
     footer {
@@ -518,7 +579,7 @@
     .mail {
 
         position: relative;
-       
+
         font-family: 'Courgette', cursive;
         display: flex;
         flex-direction: column;
@@ -604,8 +665,8 @@
         color: rgb(255, 255, 255);
         bottom: -1.2rem;
         left: 2.1rem;
-       
-        width:8rem;
+
+        width: 8rem;
     }
 
 
@@ -643,17 +704,16 @@
 
     .mention-legale {
 
-    width: 6rem;
+        width: 6rem;
 
 
         font-size: 0.5rem;
     }
-    
-     .container-logo-title {
 
-     position:relative;
-     bottom:0.4rem
+    .container-logo-title {
 
-     }
+        position: relative;
+        bottom: 0.4rem
+    }
 
 }
