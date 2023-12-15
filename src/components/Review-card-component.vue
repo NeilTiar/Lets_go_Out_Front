@@ -14,7 +14,7 @@
 
       <div class="card-info">
 
-        <p class="detail place-name"> {{ placeName }}</p>
+        <h2 class="detail place-name"> {{ placeName }}</h2>
         <p class="detail arrondissement">{{ arrondissement }} eme</p>
       </div>
 

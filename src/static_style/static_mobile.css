@@ -54,6 +54,23 @@
     }
 
 
+    .header-title-admin {
+
+        color: rgb(30, 165, 124);
+        font-family: "Courgette", cursive;
+        font-weight: bolder;
+        font-size: 2rem;
+        margin: 2.7rem 0 0 0;
+        text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+
+    }
+
+    .title-description {
+
+        font-size: 1rem;
+        text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+    }
+
 
 
     .top-main {
@@ -325,6 +342,25 @@
     /*////////////////////////////////////  mobile-Main-review  ////////////////////////////////////////*/
 
 
+    .button-admin-link {
+
+    display: block;
+    border:none;
+    position: relative;
+    background-color: rgb(171, 211, 196);
+    font-family: "Kalam", sans-serif;
+    border-radius: 15px 15px 15px 15px;
+    color: #ffffff;
+    height: 2rem;
+    width: max-content;
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 9px rgba(015, 0, 0, 0.3);
+    box-shadow: 2px 2px 12px rgb(59, 54, 70);
+    left: 1rem;
+    top:1rem;
+   
+  }
+   
 
 
     .cards-container {
@@ -341,7 +377,7 @@
 
         width: 80%;
         margin: 0.3rem;
-        background: #8a7788;
+        background-color: #cbc3d1;
         border-radius: 12px;
     }
 
@@ -482,63 +518,217 @@
         margin-bottom: 0.6rem;
     }
 
-     .left-arrow {
 
-    margin-left: 0.5rem;
-     transform: rotate(180deg);
-    width: 2rem;
+    .left-arrow {
+
+        margin-left: 0.5rem;
+        transform: rotate(180deg);
+        width: 2rem;
+    }
+
+
+    .right-arrow {
+
+        margin-right: 0.5rem;
+        width: 2rem;
+    }
+
+
+    .arrows-pictures {
+        opacity: 0.73;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        bottom: 30%;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .circular-marker-container {
+
+        position: absolute;
+        display: flex;
+        z-index: 1;
+        width: 9rem;
+        height: 1rem;
+        left: 30%;
+        bottom: 1rem;
+        opacity: 0.8;
+
+    }
+
+    .circular {
+
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: #ffffff;
+        border-radius: 45%;
+        margin: 0.5rem;
+    }
+
+    .circular-marker {
+
+        position: relative;
+        bottom: 0.2rem;
+        width: 0.7rem;
+        height: 0.7rem;
+        border: rgb(255, 254, 253) 2px solid;
+        background-color: rgb(170, 76, 76);
+    }
+
+
+
+    /*//////////////////////////////////// mobile -- admin-activation //////////////////////////////*/
+
+
+
+
+
+
+    .access-modified-reviews-activation {
+
+        background-color: #a0809d;
+        font-family: "courgette", cursive;
+        color: white;
+        text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+        border-radius: 15px;
+        border: none;
+        box-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+        position: relative;
+        left: 1.7rem;
+    }
+
+    .admin-pictures-container {
+
+
+        object-fit: cover;
+        max-width: 100%;
+        max-height: 100%;
+        top: 1rem;
+        left: 1rem;
+        border-radius: 15px;
+        margin-left: 8rem;
+    }
+
+
+
+    .admin-card-pictures {
+
+        object-fit: cover;
+        width: 100%;
+        height: 12rem;
+        margin: auto;
+        position: relative;
+        border-radius: 15px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .admin-card-button {
+
+        background-color: #a0809d;
+        color: white;
+        border-radius: 15px;
+        border: none;
+        box-shadow: 2px 2px 7px rgb(46, 44, 44);
+    }
+
+
+    .admin-activation-card-container {
+
+        position: relative;
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        height: 27rem;
+        width: 90%;
+        margin: 1.5rem 0 0 0;
+        background-color: #cbc3d1;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        margin: auto;
+
+
+    }
+
+    .descriptions-with-buttons {
+        display: flex;
+        justify-content: space-between;
+        
+    }
+
+    .container-admin-card-buttons {
+
+        display: flex;
+        flex-direction: column;
+        align-items: end;  
+        margin-top:0.7rem;
+        border: none;
+        gap: 1rem;
+        
+
+    }
+
+    .activate,
+    .delete,
+    .agree {
+
+        margin: 0 0.5rem 0 0.5rem;
+        font-size: 1.1rem;
+        
+    }
+
+
+    .card-admin-descriptions {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        position: relative;
+        top: 2.5rem;
+        left: 1rem;
+        font-family: "Courgette", cursive;
+        color: white;
+        text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+    }
+
+    .admin-card-theme {
+
+        color: #eb4e4e;
+    }
+
+    .user-connexion {
+        display: none;
+    }
+
+    .admin-cards-container {
+
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+  .top-admin-banner {
+   display:flex;
+    height: 2rem;
+     margin: 0.6rem 0 1.5rem 0;
   }
 
- 
-  .right-arrow {
-
-    margin-right: 0.5rem;
-    width: 2rem;
+  .admin-indication {
+  color:#706679;
+  font-family: "Courgette",cursive;
+  margin-left: 6rem;
   }
 
 
-  .arrows-pictures {
-    opacity:0.73;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    bottom: 30%;
-    position: absolute;
-    z-index: 1;
-  }
+    .top-admin-card {
 
-  .circular-marker-container {
+        min-width: 80%;
+    }
 
-    position: absolute;
-    display:flex;
-    z-index: 1;
-    width: 9rem;
-    height: 1rem;
-    left:30%;
-    bottom: 1rem;
-    opacity: 0.8;
-    
-  }
-  
-  .circular {
+    h2 {
 
-    width: 0.5rem;
-    height: 0.5rem;
-    background-color: #ffffff;
-    border-radius: 45%;
-    margin:0.5rem;
-  }
+        margin: 0.5rem;
+    }
 
-  .circular-marker3 {
-
-    position:relative;
-    bottom:0.2rem;
-     width: 0.7rem;
-    height: 0.7rem;
-    border: rgb(255, 254, 253) 2px solid;
-     background-color:rgb(170, 76, 76) ;
-  }
-    
     /* ///////////////////////////////////  mobile-Footer  //////////////////////////////////////*/
 
     footer {
@@ -712,8 +902,20 @@
 
     .container-logo-title {
 
+
         position: relative;
         bottom: 0.4rem
     }
+
+}
+
+@media screen and (max-width:467px) {
+
+.top-admin-banner {
+
+    height:6rem;
+}
+
+
 
 }
