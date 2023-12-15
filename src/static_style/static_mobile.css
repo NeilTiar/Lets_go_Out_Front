@@ -53,6 +53,7 @@
         padding: 0;
     }
 
+
     .header-title-admin {
 
         color: rgb(30, 165, 124);
@@ -69,6 +70,7 @@
         font-size: 1rem;
         text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
     }
+
 
 
     .top-main {
@@ -516,6 +518,7 @@
         margin-bottom: 0.6rem;
     }
 
+
     .left-arrow {
 
         margin-left: 0.5rem;
@@ -899,6 +902,7 @@
 
     .container-logo-title {
 
+
         position: relative;
         bottom: 0.4rem
     }
@@ -911,6 +915,7 @@
 
     height:6rem;
 }
+
 
 
 }

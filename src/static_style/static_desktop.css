@@ -160,6 +160,7 @@ body {
     font-size: 1.2rem;
     font-family: "Courgette", cursive;
     color: white;
+
     text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
     margin: 0;
     padding: 0;
@@ -339,6 +340,7 @@ body {
   }
 
 
+
   .admin-activation-card-container {
 
     border-radius: 15px;
@@ -347,6 +349,7 @@ body {
     background-color: #cbc3d1;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     
+
   }
 
 
@@ -407,9 +410,11 @@ body {
   .left-arrow {
 
     margin-left: 0.5rem;
+
     transform: rotate(180deg);
     width: 2rem;
   }
+
 
 
   .right-arrow {
@@ -420,6 +425,7 @@ body {
 
   .arrows-pictures {
     opacity: 0.73;
+
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -431,6 +437,7 @@ body {
   .circular-marker-container {
 
     position: absolute;
+
     display: flex;
     z-index: 1;
     width: 9rem;
@@ -442,12 +449,14 @@ body {
   }
 
 
+
   .circular {
 
     width: 0.5rem;
     height: 0.5rem;
     background-color: #ffffff;
     border-radius: 45%;
+
     margin: 0.5rem;
   }
 
@@ -460,6 +469,7 @@ body {
     height: 0.7rem;
     border: rgb(255, 255, 255) 2px solid;
     background-color: rgb(170, 76, 76);
+
   }
 
   /*//////////////////////////  home-page  ////////////////////////////////////////////////////////*/
