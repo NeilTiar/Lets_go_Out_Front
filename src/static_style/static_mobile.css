@@ -340,6 +340,25 @@
     /*////////////////////////////////////  mobile-Main-review  ////////////////////////////////////////*/
 
 
+    .button-admin-link {
+
+    display: block;
+    border:none;
+    position: relative;
+    background-color: rgb(171, 211, 196);
+    font-family: "Kalam", sans-serif;
+    border-radius: 15px 15px 15px 15px;
+    color: #ffffff;
+    height: 2rem;
+    width: max-content;
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 9px rgba(015, 0, 0, 0.3);
+    box-shadow: 2px 2px 12px rgb(59, 54, 70);
+    left: 1rem;
+    top:1rem;
+   
+  }
+   
 
 
     .cards-container {
@@ -638,10 +657,8 @@
 
         display: flex;
         flex-direction: column;
-        align-items: end;
-        height:100%;
-        width: max-content;
-        margin-top:2rem;
+        align-items: end;  
+        margin-top:0.7rem;
         border: none;
         gap: 1rem;
         
@@ -652,8 +669,9 @@
     .delete,
     .agree {
 
-        margin: 0 2rem 0 2rem;
-        font-size: 1.4rem;
+        margin: 0 0.5rem 0 0.5rem;
+        font-size: 1.1rem;
+        
     }
 
 
