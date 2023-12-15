@@ -55,7 +55,7 @@ body {
   .button-admin-link {
 
     display: block;
-    border:none;
+    border: none;
     position: relative;
     background-color: rgb(110, 172, 138);
     font-family: "Kalam", sans-serif;
@@ -67,7 +67,7 @@ body {
     text-shadow: 2px 2px 9px rgba(015, 0, 0, 0.3);
     box-shadow: 2px 2px 12px rgb(59, 54, 70);
     left: 1rem;
-   
+
   }
 
   .create-review-button-desktop {
@@ -82,7 +82,7 @@ body {
     width: auto;
     font-size: 1.2rem;
     text-shadow: 7px 7px 3px rgba(015, 0, 0, 0.3);
-     box-shadow: 2px 2px 12px rgb(59, 54, 70);
+    box-shadow: 2px 2px 12px rgb(59, 54, 70);
     right: 13rem;
     top: 10.5rem;
   }
@@ -135,15 +135,15 @@ body {
   }
 
   .top-admin-banner {
-   display:flex;
+    display: flex;
     height: 2rem;
-    
+
   }
 
   .admin-indication {
-  color:#706679;
-  font-family: "Courgette",cursive;
-  margin-left: 6rem;
+    color: #706679;
+    font-family: "Courgette", cursive;
+    margin-left: 6rem;
   }
 
 
@@ -384,8 +384,8 @@ body {
   }
 
   .detail {
-      color: #56485e;
-   
+    color: #56485e;
+
     margin: 0.5rem 0 0.5rem 0;
   }
 
@@ -518,14 +518,13 @@ body {
   /* /////////////////////////////  "main"-- admin-activation & modification page /////////////////////////////////*/
 
   .admin-cards-container {
-  
+
     flex: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     place-content: center;
-    margin:2rem 1rem 0 1rem;
-    gap:3rem
-    
+    margin: 2rem 1rem 0 1rem;
+    gap: 3rem
   }
 
 
@@ -540,33 +539,33 @@ body {
   }
 
   .pictures-container {
-   
-   position:relative;
-   width: 100%;
-   
-   
+
+    position: relative;
+    width: 100%;
+
+
   }
 
-  .descriptions-with-buttons{
+  .descriptions-with-buttons {
     display: flex;
     justify-content: space-between;
   }
-  
+
 
   .container-admin-card-buttons {
-    
-    
+
+
     display: flex;
     flex-direction: column;
-    left:37rem;
+    left: 37rem;
     width: max-content;
     height: 10rem;
-    gap:1rem;
-    margin-top:1.5rem;
-    
+    gap: 1rem;
+    margin-top: 1.5rem;
+
 
   }
-  
+
   .container-admin-card-buttons-modify {
 
     display: flex;
@@ -574,13 +573,13 @@ body {
     align-items: center;
     justify-content: center;
     width: 20%;
-    gap:1rem
+    gap: 1rem
   }
 
   .admin-card-pictures {
-  
+
     object-fit: cover;
-    width: 100% ;
+    width: 100%;
     height: 13rem;
     border-radius: 15px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
@@ -588,26 +587,26 @@ body {
 
   .top-admin-card {
 
-   
+
     width: 100%;
-    
+
     position: relative;
-    
+
   }
 
-  
+
 
   .admin-card-button {
 
     background-color: #9c7a99;
     color: #ffffff;
     border: none;
-    height:2rem;
+    height: 2rem;
     border-radius: 15px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     text-shadow: 3px 4px 3px rgba(0, 0, 0, 0.3);
     margin-right: 0.5rem;
-   
+
     font-size: 1.2rem;
   }
 
@@ -615,7 +614,8 @@ body {
 
     z-index: 1;
     position: relative;
-    margin-top: 5rem;;
+    margin-top: 5rem;
+    ;
     left: 1rem;
     border-radius: 15px;
     height: 9rem;
@@ -649,25 +649,166 @@ body {
   }
 
   .agree {
-    
+
     height: 2rem;
     font-size: 1rem;
     font-weight: bolder;
-    
+
   }
 
   .accept-modify {
 
-     height: 6rem;
+    height: 6rem;
     font-size: 1rem;
     font-weight: bolder;
     text-align: start;
   }
 
+  /* ///////////////////////////// Desktop-login-page ////////////////////////////////////////*/
+
+
+  main.main-container {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content:center;
+    flex: 1;
+    width: 100%;
+    height: 65%;
+    
+  }
+
+
+
+  .login-card {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2.5rem;
+    border-radius: 30px;
+    border: 2px solid black;
+    width: 80%;
+    height: 85%;
+    box-shadow: 2px 4px 13px #8f7b8d ;
+    border: none;
+  }
+
+  .left-side-card,
+  .right-side-card {
+
+    position: relative;
+    flex-direction: column;
+    border-radius: 4%;
+    width: 45%;
+    height: 90%;
+
+  }
+
+  .left-side-card {
+
+    display:flex;
+    justify-content: center;
+  }
+
+
+
+    .right-side-card {
+
+    border-left: 1px solid rgb(190, 185, 194);
+    display:flex;
+    justify-content: center;
+
+   
+  }
+
+
+  .login-input {
+    
+    display: flex;
+    font-family: "Courgette",cursive;
+    font-size: 1.2rem;
+    width: 50%;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    box-shadow: 2px 6px 15px rgb(0 0 0 / 45%) ;
+    border: none;
+  }
+
+  .login-input:focus {
+
+    outline-color: #96d6ab;
+    
+   }
+
+
+
+  .login-validation {
+
+    width: 40%;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    border:none;
+    background-color:#af94ad;
+    font-family: "Courgette",cursive;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(015, 0, 0, 0.5);
+    box-shadow: 2px 6px 15px rgb(0 0 0 / 45%) ;
+    margin :2.5rem 0 0 2rem;
+
+  }
+
+  .password-input {
+
+    margin-bottom: 5rem;
+  }
+   
+  .lost-password {
+
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+     text-shadow: 2px 9px 7px rgba(015, 0, 0, 0.5);
+
+  }
+
+  .title-connexion {
+
+    font-family: "Courgette",cursive;
+    font-size:1.5rem;
+    color: #5f315b;
+    text-shadow: 2px 15px 7px rgba(015, 0, 0, 0.5);
+  }
+
+  .signup-right-side {
+
+    font-family: "Courgette",cursive;
+    font-size:1.4rem;
+    color: #5f315b;
+    text-shadow: 2px 3px 7px rgba(015, 0, 0, 0.5);
+    margin: 1.3rem 0 4.9rem 2.5rem;
+
+  }
+
+  .signup-description-texte {
+
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    
+  }
+
+  .recaptcha-protection {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:#8a7788;
+    position: absolute;
+    right:0
+  }
+
   /* ////////////////////////// Desktop-Footer //////////////////////////////////////////////////*/
 
   Footer {
-
 
     bottom: 0;
     margin-top: 0.8rem;
