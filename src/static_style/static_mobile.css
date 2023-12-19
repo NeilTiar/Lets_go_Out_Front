@@ -1,16 +1,7 @@
 /* Mobile Css - under 768px */
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1367px) {
 
-    /*reset config*/
-    body {
-
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        overflow-y: none;
-    }
 
     body::-webkit-scrollbar {
         width: 0;
@@ -330,7 +321,7 @@
     .mobile-top-main {
         display: flex;
         justify-content: space-between;
-        width: 100%
+
     }
 
     .dark-theme-container {
@@ -343,23 +334,23 @@
 
     .button-admin-link {
 
-    display: block;
-    border:none;
-    position: relative;
-    background-color: rgb(171, 211, 196);
-    font-family: "Kalam", sans-serif;
-    border-radius: 15px 15px 15px 15px;
-    color: #ffffff;
-    height: 2rem;
-    width: max-content;
-    font-size: 1.2rem;
-    text-shadow: 2px 2px 9px rgba(015, 0, 0, 0.3);
-    box-shadow: 2px 2px 12px rgb(59, 54, 70);
-    left: 1rem;
-    top:1rem;
-   
-  }
-   
+        display: block;
+        border: none;
+        position: relative;
+        background-color: rgb(171, 211, 196);
+        font-family: "Kalam", sans-serif;
+        border-radius: 15px 15px 15px 15px;
+        color: #ffffff;
+        height: 2rem;
+        width: max-content;
+        font-size: 1.2rem;
+        text-shadow: 2px 2px 9px rgba(015, 0, 0, 0.3);
+        box-shadow: 2px 2px 12px rgb(59, 54, 70);
+        left: 1rem;
+        top: 1rem;
+
+    }
+
 
 
     .cards-container {
@@ -437,6 +428,7 @@
     }
 
     .contact-follow {
+
 
         height: 100%;
     }
@@ -652,18 +644,18 @@
     .descriptions-with-buttons {
         display: flex;
         justify-content: space-between;
-        
+
     }
 
     .container-admin-card-buttons {
 
         display: flex;
         flex-direction: column;
-        align-items: end;  
-        margin-top:0.7rem;
+        align-items: end;
+        margin-top: 0.7rem;
         border: none;
         gap: 1rem;
-        
+
 
     }
 
@@ -673,7 +665,7 @@
 
         margin: 0 0.5rem 0 0.5rem;
         font-size: 1.1rem;
-        
+
     }
 
 
@@ -705,17 +697,17 @@
         gap: 1.5rem;
     }
 
-  .top-admin-banner {
-   display:flex;
-    height: 2rem;
-     margin: 0.6rem 0 1.5rem 0;
-  }
+    .top-admin-banner {
+        display: flex;
+        height: 2rem;
+        margin: 0.6rem 0 1.5rem 0;
+    }
 
-  .admin-indication {
-  color:#706679;
-  font-family: "Courgette",cursive;
-  margin-left: 6rem;
-  }
+    .admin-indication {
+        color: #706679;
+        font-family: "Courgette", cursive;
+        margin-left: 6rem;
+    }
 
 
     .top-admin-card {
@@ -726,6 +718,148 @@
     h2 {
 
         margin: 0.5rem;
+    }
+
+
+    /* /////////////////////////////////// mobile-login /////////////////////////////////////////*/
+
+    .left-side-card,
+    .right-side-card {
+
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        flex-direction: column;
+        border-radius: 4%;
+        width: 90%;
+        height: max-content;
+
+
+    }
+
+    .left-side-card {
+
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+
+    }
+
+
+
+    .right-side-card {
+
+
+        display: flex;
+        justify-content: center;
+
+
+    }
+
+    .login-card {
+
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 1rem auto 2rem auto;
+
+
+    }
+
+    .login-input {
+
+        display: flex;
+        font-family: "Courgette", cursive;
+        font-size: 1.2rem;
+        width: 50%;
+        border-radius: 15px;
+        margin-bottom: 1rem;
+        box-shadow: 2px 6px 15px rgb(0 0 0 / 45%);
+        border: none;
+        text-align: center;
+    }
+
+    .login-input:focus {
+
+        outline-color: #96d6ab;
+
+    }
+
+    .login-validation {
+
+        width: 60%;
+        border-radius: 15px;
+        font-size: 1.2rem;
+        border: none;
+        background-color: #af94ad;
+        font-family: "Courgette", cursive;
+        color: white;
+        text-shadow: 2px 2px 2px rgba(015, 0, 0, 0.5);
+        box-shadow: 2px 6px 15px rgb(0 0 0 / 45%);
+        margin: 1.5rem 0 1.5rem 2rem;
+
+    }
+
+    .password-input {
+
+        margin-bottom: 2rem;
+    }
+
+    .lost-password {
+
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 9px 7px rgba(015, 0, 0, 0.5);
+
+    }
+
+    .title-connexion {
+
+        font-family: "Courgette", cursive;
+        font-size: 1.5rem;
+        color: #5f315b;
+        text-shadow: 2px 15px 7px rgba(015, 0, 0, 0.5);
+    }
+
+    .recaptcha-protection {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: #8a7788;
+        margin-left: 10rem;
+        width: max-content;
+    }
+
+
+    .signup-right-side {
+
+        font-family: "Courgette", cursive;
+        font-size: 1.4rem;
+        color: #5f315b;
+        text-shadow: 2px 3px 7px rgba(015, 0, 0, 0.5);
+        width: 100%;
+        margin: 1.3rem 0 4.9rem 1.5rem;
+
+    }
+
+    .question,
+    .signup-description-texte {
+        margin: 1rem 0 1rem 0;
+    }
+
+    .main-container {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        flex: 1;
+
+    }
+
+    section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     /* ///////////////////////////////////  mobile-Footer  //////////////////////////////////////*/
@@ -768,7 +902,6 @@
     .mail {
 
         position: relative;
-
         font-family: 'Courgette', cursive;
         display: flex;
         flex-direction: column;
@@ -777,8 +910,8 @@
         justify-content: flex-end;
         align-items: flex-end;
         margin-right: 0.5rem;
-
     }
+
 
     .email {
 
@@ -820,6 +953,8 @@
         display: inline-flex;
         justify-content: space-between;
 
+
+
     }
 
     .social-network {
@@ -854,19 +989,33 @@
         color: rgb(255, 255, 255);
         bottom: -1.2rem;
         left: 2.1rem;
-
         width: 8rem;
     }
 
 
+
+
 }
 
-@media screen and (max-width:280px) {
+/*//////////  galaxy-fold /////////////////////*/
+
+@media screen and (min-width:20px) and (max-width:281px) {
+
+
+
+    body {
+
+        width: min-content;
+        overflow-x: hidden;
+    }
+
 
     .home-title {
 
         font-size: 1.7rem;
+
     }
+
 
     .home-description {
 
@@ -874,6 +1023,7 @@
     }
 
     .reviews-acces {
+
         font-size: 0.7rem;
     }
 
@@ -893,10 +1043,8 @@
 
     .mention-legale {
 
-        width: 6rem;
-
-
-        font-size: 0.5rem;
+        width: 100%;
+        font-size: 0.7rem;
     }
 
     .container-logo-title {
@@ -906,13 +1054,73 @@
         bottom: 0.4rem
     }
 
+    .header-container {
+        width: 100vw;
+    }
+
+    .question,
+    .signup-description-texte {
+        margin: 1rem 0 1rem 0;
+        font-size: 1rem;
+        height: 4rem;
+
+    }
+
+    .recaptcha-protection {
+
+        margin: 0;
+    }
+
+    .mention-legale {
+        width: 5rem;
+    }
+
+
+    .left-side-card {
+
+
+        margin-bottom: 1.5rem;
+
+    }
+
 }
 
 @media screen and (max-width:467px) {
 
-.top-admin-banner {
+    .top-admin-banner {
 
-    height:6rem;
+        height: 6rem;
+
+    }
+
+
 }
 
-}
+/* ////////////////////////////////////// handle responsive height tablet  /////////////////////////////////////////////////*/
+
+@media screen and (min-width:800px) and (max-width:1025px) {
+
+
+    .title-connexion,
+    .login-input,
+    .lost-password,
+    .login-validation,
+    .signup-right-side {
+
+        font-size: 2rem;
+          
+    }
+
+    .mobile-top-main {
+        height: 3rem;
+        
+    }
+
+    .buttons {
+      height: 2rem;
+      width: 2rem;
+    }
+
+    }
+
+   

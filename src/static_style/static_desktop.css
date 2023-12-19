@@ -1,17 +1,21 @@
 /*reset config*/
 body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh; 
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  position: relative;
+    display: flex;
+  flex-direction: column;
+  
 }
 
 
 
 /*/////////////////////////////////////  Desktop CSS - above 1281px  ////////////////////////////////////*/
 
-@media screen and (min-width: 1281px) {
+@media screen and (min-width: 1400px) {
 
 
   /* ////////////////////////////////////// global-Header ////////////////////////////////////////////////////*/
@@ -690,9 +694,10 @@ body {
     box-sizing: border-box;
     display: flex;
     justify-content:center;
-    flex: 1;
+    align-items: center;
+    flex: 0.5;
     width: 100%;
-    height: 65%;
+    
     
   }
 
@@ -707,7 +712,7 @@ body {
     border-radius: 30px;
     border: 2px solid black;
     width: 80%;
-    height: 85%;
+    height: 50lvh;
     box-shadow: 2px 4px 13px #8f7b8d ;
     border: none;
   }
@@ -727,6 +732,7 @@ body {
 
     display:flex;
     justify-content: center;
+    
   }
 
 
@@ -743,9 +749,10 @@ body {
 
   .login-input {
     
+    text-align:center;
     display: flex;
     font-family: "Courgette",cursive;
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     width: 50%;
     border-radius: 15px;
     margin-bottom: 1rem;
@@ -763,9 +770,9 @@ body {
 
   .login-validation {
 
-    width: 40%;
+    width: 30%;
     border-radius: 15px;
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     border:none;
     background-color:#af94ad;
     font-family: "Courgette",cursive;
@@ -783,7 +790,7 @@ body {
    
   .lost-password {
 
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     margin-bottom: 1rem;
      text-shadow: 2px 9px 7px rgba(015, 0, 0, 0.5);
 
@@ -792,7 +799,7 @@ body {
   .title-connexion {
 
     font-family: "Courgette",cursive;
-    font-size:1.5rem;
+    font-size:2rem;
     color: #5f315b;
     text-shadow: 2px 15px 7px rgba(015, 0, 0, 0.5);
   }
@@ -800,7 +807,7 @@ body {
   .signup-right-side {
 
     font-family: "Courgette",cursive;
-    font-size:1.4rem;
+    font-size:2.4rem;
     color: #5f315b;
     text-shadow: 2px 3px 7px rgba(015, 0, 0, 0.5);
     margin: 1.3rem 0 4.9rem 2.5rem;
@@ -827,7 +834,7 @@ body {
 
   Footer {
 
-
+    position: absolute;
     bottom: 0;
     margin-top: 0.8rem;
     width: 100%;
@@ -920,7 +927,7 @@ body {
 
   .contact-follow {
 
-
+  
     width: 100%;
     height: 100%;
     display: inline-flex;
@@ -963,6 +970,13 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     flex: 1;
+  }
+
+  .login-card {
+
+  
+    width: 80%;
+   
   }
 
 }
