@@ -345,7 +345,7 @@
         width: max-content;
         font-size: 1.2rem;
         text-shadow: 2px 2px 9px rgba(015, 0, 0, 0.3);
-        box-shadow: 2px 2px 12px rgb(59, 54, 70);
+        box-shadow: 4px 4px 9px rgb(120, 113, 134);
         left: 1rem;
         top: 1rem;
 
@@ -365,10 +365,14 @@
 
     .card-review {
 
+        display: flex;
+        flex-direction: column;
         width: 80%;
         margin: 0.3rem;
         background-color: #cbc3d1;
         border-radius: 12px;
+        box-shadow: 4px 4px 9px rgb(120, 113, 134);
+        margin-bottom: 1rem;
     }
 
 
@@ -564,7 +568,7 @@
         width: 0.7rem;
         height: 0.7rem;
         border: rgb(255, 254, 253) 2px solid;
-        background-color: rgb(170, 76, 76);
+       
     }
 
 
@@ -990,6 +994,7 @@
         bottom: -1.2rem;
         left: 2.1rem;
         width: 8rem;
+        margin:0;
     }
 
 
