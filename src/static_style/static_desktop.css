@@ -719,19 +719,20 @@ body {
   .left-side-card,
   .right-side-card {
 
-    position: relative;
+    display: flex;
+    justify-content: center;
     flex-direction: column;
     border-radius: 4%;
     max-width: 45%;
-    max-height: 90%;
+    height: 90%;
 
 
   }
 
   .left-side-card {
 
-    display: flex;
-    justify-content: center;
+    position: relative;
+
     width: 50%;
     gap: 0.4em;
     padding: 0 2rem 0 2rem;
@@ -741,14 +742,14 @@ body {
   }
 
   .question {
+
+    font-family: "Courgette", cursive;
     margin: 0;
   }
 
   .right-side-card {
 
     border-left: 1px solid rgb(190, 185, 194);
-    display: flex;
-    justify-content: center;
     padding-left: 2rem;
 
 
@@ -770,7 +771,8 @@ body {
 
   .login-input:focus {
 
-    outline-color: #96d6ab;
+    outline-color: #3a063b;
+    background-color: #e4dfe7;
 
   }
 
@@ -825,15 +827,15 @@ body {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-style: italic;
     font-size: 1.3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 13rem;
 
   }
 
   .recaptcha-protection {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: #8a7788;
-    position: absolute;
-    right: 0;
+    margin: 5rem 0 0 2rem;
+
     padding-right: 1rem;
   }
 
@@ -1003,8 +1005,8 @@ body {
   .login-card {
 
     border-radius: 15px;
-    width: 80%;
-    height: 60%;
+
+    flex: 1;
   }
 
 }
