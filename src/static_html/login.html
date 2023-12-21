@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static_style/static_desktop.css" />
     <link rel="stylesheet" href="../static_style/static_mobile.css" />
-   
-   
-   <title>L'ets go out to Paris -  Découvrez les Meilleurs Endroits de Paris</title>
-    <meta name="description" content="LGOP vous propose des annonces mêlant loisirs, culture, et food & drink pour assurer le succès de votre prochaine sortie à Paris. Découvrez les trésors cachés de la Ville Lumière avec notre plateforme unique." />
- 
+
+    <title>
+      L'ets go out to Paris - Découvrez les Meilleurs Endroits de Paris
+    </title>
+
+    <meta
+      name="description"
+      content="LGOP vous propose des annonces mêlant loisirs, culture, et food & drink pour assurer le succès de votre prochaine sortie à Paris. Découvrez les trésors cachés de la Ville Lumière avec notre plateforme unique."
+    />
 
     <!--ci dessous permet l'utilisation de différentes Font ( via google font)-->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Courgette&family=Anton&family=Caveat&family=Hedvig+Letters+Sans&family=Pacifico&family=Vina+Sans&family=Kalam&family=Shizuru&divsplay=swap"
-  rel="stylesheet"
-/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courgette&family=Anton&family=Caveat&family=Hedvig+Letters+Sans&family=Pacifico&family=Vina+Sans&family=Kalam&family=Shizuru&divsplay=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-   
-    <header>
 
+  <body>
+    <header>
       <div class="header-container">
         <div class="header">
           <div class="container-logo-title">
-          
-            <h1 class="header-title">L'ets go out to Paris</h1>
-            <h2 class="title-description"> Explorez et partagez les meilleurs endroits de Paris</h2>
+            <a href="../static_html/main-review.html">
+              <h1 class="header-title">Let's go out to Paris</h1>
+            </a>
+            <h2 class="title-description">
+              Explorez et partagez les meilleurs endroits de Paris
+            </h2>
           </div>
           <div class="user-connexion-mobile">
             <img class="user-logo" src="../assets/user.png" alt="user" />
@@ -49,11 +54,6 @@
         </li>
         <li><a class="theme-link loisir-link" href="#Loisir">Loisir</a></li>
       </ul>
-
-      <div class="user-connexion">
-        <img class="user-logo" src="../assets/user.png" alt="user" />
-        <div class="msg-user-logo">Bonjour, Neil</div>
-      </div>
 
       <div class="dark-theme-container">
         <button class="dark-theme">Dark Theme</button>
@@ -77,10 +77,6 @@
         </div>
       </div>
 
-      <div class="container-create-button-mobile">
-        <button class="create-review-button-mobile">Créer une review</button>
-      </div>
-
       <div class="container-right-button">
         <div class="right-buttons">
           <img
@@ -97,23 +93,55 @@
       </div>
     </div>
 
-  
-      <div class="container-button-admin">
-        <button class="button-admin-link" onclick="window.location.href=`../static_html_desktop/admin-activation.html`" class="create-review-button-desktop">Page admin</button>
-      </div>
+   <main class="main-container">
+      <section class="login-card">
+        <div class="left-side-card">
+          <p class="title-connexion">se connecter</p>
 
-    
-      <div class="container-create-button-desktop">
-        <button class="create-review-button-desktop">créer votre review </button>
-      </div>
+          <form action="" class="connexion"></form>
+
+          <input
+            class="login-input email-input"
+            type="text"
+            name="email_utilisateur"
+            placeholder="email"
+          />
+          <input
+            class="login-input password-input"
+            type="password"
+            name="mot_de_passe"
+            placeholder="mot de passe"
+          />
+          <a href="" class="lost-password">mot de passe perdu ?</a>
+
+          <button class="login-validation" type="submit">Se connecter</button>
+
+        </div>
 
 
-
-      <main >
-
-      </main>
+        <div class="right-side-card">
         
-    <footer >
+          <p class="signup-right-side question">
+            Vous n’avez pas encore votre compte let’s go out ?
+          </p>
+
+          <div class="signup-description-container">
+            <p class="signup-right-side signup-description-texte">
+              " inscrivez vous dès maintenant, Afin de créer vos propres reviews
+              Et enrichir votre liste coup de cœur "
+            </p>
+ 
+            <button class="login-validation">créer votre compte</button>
+
+            <p class="recaptcha-protection">protection par reCaptcha</p>
+          </div>
+          
+        </div>
+         </main>
+      </section>
+   
+
+    <footer>
       <div class="contact-follow">
         <div class="social-network">
           <h3 class="follow-title">suivez-nous :</h3>
