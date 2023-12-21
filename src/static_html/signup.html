@@ -24,7 +24,7 @@
     />
   </head>
 
-  <body>
+ 
     <header>
       <div class="header-container">
         <div class="header">
@@ -44,14 +44,17 @@
       </div>
     </header>
 
+
     <nav class="theme-banner">
-  
+    
 
       <div class="dark-theme-container">
         <button class="dark-theme">Dark Theme</button>
         <div class="moon-button"></div>
       </div>
     </nav>
+
+
 
     <div class="mobile-top-main">
       <div class="container-left-button">
@@ -84,48 +87,125 @@
         </div>
       </div>
     </div>
-
+    <h2 class="title-signup">inscription ,creer votre compte</h2>
+    <h3 class="signin-link">Vous avez deja un compte <a  alt="lien vers la page de connection" href="../static_html/login.html">Connectez vous .</a></h3>
    <main class="main-container">
       <section class="login-card">
-        <div class="left-side-card">
-          <p class="title-connexion">se connecter</p>
 
-          <form action="" class="connexion"></form>
+  
+        <div class="left-side-card">
+          
+
+          <h3 class="signup-form-tag">Mes informations de connexion</h3>
+
+          <form action="" class="signup-form"></form>
+        
 
           <input
-            class="login-input email-input"
+            class="signup-input email-input"
             type="text"
             name="email_utilisateur"
             placeholder="email"
           />
           <input
-            class="login-input password-input"
+            class="signup-input password-input"
             type="password"
             name="mot_de_passe"
             placeholder="mot de passe"
           />
-          <a href="" class="lost-password">mot de passe perdu ?</a>
 
-          <button class="login-validation" type="submit">Se connecter</button>
+           <input
+            class="signup-input password-confirmation-input"
+            type="password"
+            name="confirmation"
+            placeholder="confirmez mot de passe"
+          />
+        
+          <h3 class="signup-form-tag">Mes informations personelles</h3>
+
+
+          <input
+            class="signup-input gender-input"
+            type="text"
+            name="email_utilisateur"
+            placeholder="Mlle"
+          />
+
+          <div class="input-container">
+
+          <input
+            class="signup-input first-name-input"
+            type="text"
+            name="first-name"
+            placeholder="Nom"
+          />
+
+           <input
+            class="signup-input last-name-input"
+            type="text"
+            name="last-name"
+            placeholder="Prenom"
+          />
+
+          </div>
+
+            <input
+            class="signup-input phone-input"
+            type="number"
+            name="phone"
+            placeholder="Numéro de téléphone"
+          />
+       
+         
 
         </div>
 
 
         <div class="right-side-card">
+
+        <h3 class="signup-form-tag">Mon Adresse</h3>
+
+         <input
+            class="signup-input country-input"
+            type="text"
+            name="country"
+            placeholder="Pays"
+          />
+       
+
+        <input
+            class="signup-input adress-input"
+            type="text"
+            name="Adress"
+            placeholder="Adresse"
+          />
+       
+       
+          <div class="input-container">
+
+          <input
+            class="signup-input city-input"
+            type="text"
+            name="city"
+            placeholder="Ville"
+          />
+
+           <input
+            class="signup-input last-name-input"
+            type="number"
+            name="district-code"
+            placeholder="Code-postal"
+          />
+
+          
+
+          </div>
+       
         
-          <p class="signup-right-side question">
-            Vous n’avez pas encore votre compte let’s go out ?
-          </p>
+         
+            <button class="signup-validation">Valider</button>
 
-          <div class="signup-description-container">
-            <p class="signup-right-side signup-description-texte">
-              " inscrivez vous dès maintenant, Afin de créer vos propres reviews
-              Et enrichir votre liste coup de cœur "
-            </p>
- 
-            <button class="login-validation" onclick="window.location.href='../static_html/signup.html'">créer votre compte</button>
-
-            <p class="recaptcha-protection">protection par reCaptcha</p>
+            <p class="signup-recaptcha-protection">protection par reCaptcha</p>
           </div>
           
         </div>
@@ -175,5 +255,5 @@
         </div>
       </div>
     </footer>
-  </body>
+
 </html>
