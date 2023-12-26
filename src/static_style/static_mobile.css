@@ -187,9 +187,7 @@
     .header {
 
         display: flex;
-  
         align-items: center;
-
         top: 0;
         height: 7.5rem;
         margin-bottom: 0.5rem;

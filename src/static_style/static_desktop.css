@@ -992,6 +992,90 @@ body {
      height:100%;
    }
   
+ /*/////////////////////////// destktop-details-review ///////////////////////////////////////////////*/
+ 
+ .details-card-container {
+
+  height: 100%
+ }
+
+ .red-heart {
+  height:2.5rem;
+  margin-bottom: 0.7rem;
+ }
+
+ .heart-tag {
+  font-family: "Courgette",cursive;
+  font-size: 1.6rem;
+  color:#534552
+ }
+
+.first-header-part {
+
+  font-family: "Courgette",cursive;
+  margin-left: 0.5rem;
+  color:#6d4a6a;
+  font-size: 1.2rem;
+}
+
+
+ .second-header-part {
+
+  display:flex;
+  align-items: end;
+  gap:1rem;
+  margin-right: 0.5rem;
+ 
+  
+  
+   }
+
+   .main-picture {
+
+    height: 100%;
+    width: 100%;
+  
+   }
+
+   .main-picture-container {
+
+     object-fit: cover; 
+     width: 150%;
+   }
+   
+
+   .pictures {
+
+    height:100%;
+    width: 100%;
+    object-fit: cover; 
+   }
+
+   .right-pictures-container {
+
+    display:grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes de largeur égale */
+    gap:0.5rem;
+    
+   }
+
+   .pictures-container {
+    
+    display: flex;
+    gap:0.5rem;
+   }
+
+  .header-detail-review {
+
+    display: flex;
+    justify-content: space-between;
+  }
+ 
+  .card-detail-review {
+
+    margin-top:3.5rem;
+  }
+
 
 
   /* ////////////////////////// Desktop-Footer //////////////////////////////////////////////////*/
