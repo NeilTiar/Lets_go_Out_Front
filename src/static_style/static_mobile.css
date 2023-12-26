@@ -9,13 +9,10 @@
 
     body {
         
-      
         position:relative;
         margin:0;
         padding:0;
         
-        
-
     }
 
 
@@ -869,6 +866,25 @@
 
         margin: 1rem 0 1rem 0;
     }
+
+      #gender-select {
+    outline: #3a063b;
+    border-radius: 15px;
+    width: 5rem;
+    height:1.8rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  #gender-tag {
+    font-family: "Courgette",cursive;
+    color: #5f315b;
+    margin-bottom: 1.2rem;
+  }
+
+  select {
+    font-family: "Courgette", cursive;
+  }
 
     .main-container {
           
