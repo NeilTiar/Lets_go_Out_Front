@@ -752,10 +752,11 @@ body {
   .left-side-card {
 
     position: relative;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     gap: 0.4em;
     width: 50%;
-    padding: 5rem 2rem 0 0;
+    padding: 1rem 2rem 0 0;
   }
 
   .question {
@@ -821,6 +822,9 @@ body {
 
   .title-connexion {
 
+    position: relative;
+    right : 5rem;
+    bottom:2rem;
     font-family: "Courgette", cursive;
     font-size: clamp(0.8rem, 1.5rem, 2rem);
     color: #5f315b;
@@ -871,11 +875,33 @@ body {
     font-size: 0.9rem;;
   }
 
+  #gender-select {
+    outline: #3a063b;
+    border-radius: 15px;
+    width: 5rem;
+    height:1.8rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  #gender-tag {
+    font-family: "Courgette",cursive;
+    color: #5f315b;
+    margin-bottom: 1.2rem;
+  }
+
+  select {
+    font-family: "Courgette", cursive;
+  }
+
+
+
   /* /////////////////////////// desktop-signup-page /////////////////////////////////////////////*/
 
   .input-container {
     gap:1rem;
     display: flex;
+    font-family: "Courgette", cursive;
   }
 
   .signup-input {
@@ -909,9 +935,12 @@ body {
   }
 
   .password-confirmation-input {
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.5rem;
 
   }
+ 
+
+  
 
   .signup-validation {
 
@@ -926,7 +955,7 @@ body {
     color: white;
     text-shadow: 2px 2px 2px rgba(015, 0, 0, 0.5);
     box-shadow: 2px 6px 15px rgb(0 0 0 / 45%);
-    margin: 7rem 0 1rem 0;
+    margin: 14rem 0 1rem 0;
 
   }
 
@@ -943,6 +972,26 @@ body {
     text-align: end;
 
   }
+
+
+  /*///////////////////////////// desktop message-404 ////////////////////////////////////////////*/
+
+   .message-404 {
+
+   font-size: 7rem;
+   font-family: "Courgette",cursive;
+   
+   } 
+
+   .container-404 {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     height:100%;
+   }
+  
 
 
   /* ////////////////////////// Desktop-Footer //////////////////////////////////////////////////*/
