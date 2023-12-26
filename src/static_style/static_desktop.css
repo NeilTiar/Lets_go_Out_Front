@@ -752,7 +752,8 @@ body {
   .left-side-card {
 
     position: relative;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     gap: 0.4em;
     width: 50%;
     padding: 5rem 2rem 0 0;
@@ -821,6 +822,9 @@ body {
 
   .title-connexion {
 
+    position: relative;
+    right : 5rem;
+    bottom:2rem;
     font-family: "Courgette", cursive;
     font-size: clamp(0.8rem, 1.5rem, 2rem);
     color: #5f315b;
