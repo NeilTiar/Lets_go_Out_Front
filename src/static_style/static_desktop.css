@@ -996,26 +996,47 @@ body {
  
  .details-card-container {
 
-  height: 100%
+  height: max-content;
+  background-color: #faf7ff;
  }
 
  .red-heart {
+
   height:2.5rem;
   margin-bottom: 0.7rem;
  }
 
  .heart-tag {
+
   font-family: "Courgette",cursive;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   color:#534552
  }
 
 .first-header-part {
 
-  font-family: "Courgette",cursive;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
   margin-left: 0.5rem;
   color:#6d4a6a;
   font-size: 1.2rem;
+}
+
+.place {
+
+font-family: "Courgette", sans-serif;
+font-size: 3.6rem;         
+margin: 1rem 1rem;    
+color:rgb(97, 143, 165) ;
+text-shadow: 7px 8px 0px #aea9c5;   
+                       
+}
+
+.address {
+  font-family: 'Rubik', sans-serif;
+  margin-left: 1.5rem;
+  text-shadow: 1px 1.2px 0px #aea9c5; 
+  color: rgb(8, 51, 49);
+  font-size: 1.6rem;
 }
 
 
@@ -1024,11 +1045,8 @@ body {
   display:flex;
   align-items: end;
   gap:1rem;
-  margin-right: 0.5rem;
- 
-  
-  
-   }
+  margin-right: 3.5rem;
+ }
 
    .main-picture {
 
@@ -1041,6 +1059,7 @@ body {
 
      object-fit: cover; 
      width: 150%;
+     
    }
    
 
@@ -1069,6 +1088,8 @@ body {
 
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2rem;
+    
   }
  
   .card-detail-review {
@@ -1076,7 +1097,26 @@ body {
     margin-top:3.5rem;
   }
 
+  .description-container {
 
+    margin: 3.5rem auto 1.5rem 2.5rem;
+    height:max-content;
+    width: 80%;
+    border-radius: 19px;
+font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+    font-size: 1.5rem;
+    color:rgb(0, 0, 0);
+  
+  }
+
+  .author-tag {
+    margin: 1.5rem 0 4.5rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    font-family: 'Writing Signature', sans-serif;
+    font-size: 2.2rem;
+  }
 
   /* ////////////////////////// Desktop-Footer //////////////////////////////////////////////////*/
 
@@ -1090,7 +1130,7 @@ body {
     flex-direction: column;
     background-color: rgb(137, 120, 148);
     box-shadow: rgb(0 0 0 / 50%) 0px -6px 16px -6px;
-
+   
   }
 
 
@@ -1174,20 +1214,23 @@ body {
   }
 
   .contact-follow {
-
-
-    width: 100%;
     height: 100%;
     display: inline-flex;
     justify-content: space-between;
+  
 
   }
 
   .social-network {
+    
     display: inline-flex;
     border-radius: 20px;
     margin-left: 0.5rem;
+    margin-top: 2rem;
     width: 12rem;
+    height: 40%;
+    gap:1rem;
+    align-items: center;
   }
 
   .social-img {
