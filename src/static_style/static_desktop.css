@@ -25,17 +25,17 @@ body {
 
     display: flex;
     justify-content: flex-end;
-      position: absolute;
+    position: absolute;
     right: 200px;
-        
+
   }
 
 
   .msg-user-logo {
 
-    margin: 0;
+    margin: auto 0 auto 0;
     font-family: "Courgette";
-    color:#5f315b;
+    color: #5f315b;
     text-shadow: 7px 7px 3px rgba(015, 0, 0, 0.3);
   }
 
@@ -171,12 +171,11 @@ body {
 
 
   .theme-banner {
-    display:inline-flex;
-   
-     
-     height:2rem;
+    display: inline-flex;
+    align-items: center;
+    height: 2rem;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-   
+
   }
 
 
@@ -188,7 +187,7 @@ body {
     gap: 2rem;
     font-family: 'Anton', sans-serif;
     font-size: clamp(0.6rem, 1.5vw + 0.4rem, 1.6rem);
-    margin: 0 0 0 4rem;
+    margin: 0 0 0 1rem;
     animation: fillText 2s ease-out forwards;
     opacity: 1;
 
@@ -553,8 +552,9 @@ body {
   .pictures-container {
 
 
+    margin: 0 auto 0 1.5rem;
     position: relative;
-    width: 100%;
+    width: 80%;
 
 
   }
@@ -681,34 +681,34 @@ body {
     text-align: start;
   }
 
-   .admin-connexion {
+  .admin-connexion {
 
     display: inline-flex;
     position: relative;
-    right:6rem;
-    top:2rem;
+    right: 6rem;
+    top: 2rem;
     align-items: center;
 
-   }
+  }
 
-   .msg-admin-logo {
+  .msg-admin-logo {
 
-     
+
 
     margin: 0;
     font-family: "Courgette";
     color: white;
     text-shadow: 7px 7px 3px rgba(015, 0, 0, 0.3);
-   }
+  }
 
 
-   
+
 
   /* ///////////////////////////// Desktop-login-page ////////////////////////////////////////*/
 
 
   main.main-container {
-    
+
     position: relative;
     display: flex;
     margin: 0;
@@ -735,7 +735,7 @@ body {
     height: 40rem;
     box-shadow: 2px 4px 13px #8f7b8d;
     margin: 2rem;
-    padding:1rem;
+    padding: 1rem;
   }
 
   .left-side-card,
@@ -745,7 +745,7 @@ body {
     justify-content: center;
     flex-direction: column;
     border-radius: 4%;
-    
+
 
   }
 
@@ -823,14 +823,14 @@ body {
   .title-connexion {
 
     position: relative;
-    right : 5rem;
-    bottom:2rem;
+    right: 5rem;
+    bottom: 2rem;
     font-family: "Courgette", cursive;
     font-size: clamp(0.8rem, 1.5rem, 2rem);
     color: #5f315b;
     text-shadow: 5px 7px 9px rgba(015, 0, 0, 0.5);
     margin: 0;
-   padding: 0;
+    padding: 0;
   }
 
   .signup-right-side {
@@ -871,21 +871,22 @@ body {
 
   .signin-link {
 
-    margin-left:2rem;
-    font-size: 0.9rem;;
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    ;
   }
 
   #gender-select {
     outline: #3a063b;
     border-radius: 15px;
     width: 5rem;
-    height:1.8rem;
+    height: 1.8rem;
     font-size: 1rem;
     margin-bottom: 1rem;
   }
 
   #gender-tag {
-    font-family: "Courgette",cursive;
+    font-family: "Courgette", cursive;
     color: #5f315b;
     margin-bottom: 1.2rem;
   }
@@ -899,7 +900,7 @@ body {
   /* /////////////////////////// desktop-signup-page /////////////////////////////////////////////*/
 
   .input-container {
-    gap:1rem;
+    gap: 1rem;
     display: flex;
     font-family: "Courgette", cursive;
   }
@@ -938,9 +939,9 @@ body {
     margin-bottom: 2.5rem;
 
   }
- 
 
-  
+
+
 
   .signup-validation {
 
@@ -976,23 +977,169 @@ body {
 
   /*///////////////////////////// desktop message-404 ////////////////////////////////////////////*/
 
-   .message-404 {
+  .message-404 {
 
-   font-size: 7rem;
-   font-family: "Courgette",cursive;
-   
-   } 
+    margin: 0 auto 0 auto;
+    font-family: "Courgette", cursive;
+    text-align: center;
 
-   .container-404 {
+  }
+
+  .container-404 {
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-     height:100%;
-   }
-  
+    height: 100%;
+    text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
+    0px 4px 10px rgba(125, 83, 179, 0.644); 
+     font-size: clamp(1rem, 3rem,  5rem );
+  }
 
+  /*/////////////////////////// destktop-details-review ///////////////////////////////////////////////*/
+
+  .details-card-container {
+    margin-top: 1.5rem;
+    height: max-content;
+    background-color: #faf7ff;
+  }
+
+  .red-heart {
+
+    height: 1.7rem;
+    margin-bottom: 0.4rem;
+
+  }
+
+  .heart-tag {
+
+    text-align: center;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 1rem;
+    color: #20071e;
+  }
+
+  .first-header-part {
+
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    margin-left: 0.5rem;
+    color: #6d4a6a;
+    font-size: 1.2rem;
+  }
+
+  .place {
+    margin: 0;
+    font-family: "Courgette", sans-serif;
+    font-size: 3.6rem;
+    color: #744970;
+    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+      0px -4px 10px rgba(255, 255, 255, 0.3);
+
+  }
+
+  .address {
+    font-family: "Courgette", cursive;
+    text-shadow: 1px 1.2px 0px #aea9c5;
+    color: rgb(35, 30, 41);
+    font-size: 1.4rem;
+    font-weight: 100;
+  }
+
+
+  .second-header-part {
+
+    display: flex;
+    align-items: end;
+    gap: 0.5rem;
+    margin-right: 1rem;
+
+  }
+
+  .main-picture {
+
+    border-radius: 20px 0 0 20px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .main-picture-container {
+
+    object-fit: cover;
+    width: 150%;
+
+  }
+
+
+  .pictures {
+
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .picture3 {
+    border-radius: 0 20px 0 0;
+  }
+
+  .picture5 {
+    border-radius: 0 0 20px 0;
+  }
+
+  .right-pictures-container {
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Deux colonnes de largeur égale */
+    gap: 0.5rem;
+
+  }
+
+  .pictures-container {
+
+    display: flex;
+    gap: 0.5rem;
+    width: 80%;
+    margin: 0 auto 0 auto;
+  }
+
+  .header-detail-review {
+
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto 0 auto;
+
+  }
+
+  .card-detail-review {
+
+    display: flex;
+    flex-direction: column;
+    margin: 3.5rem auto 0 auto;
+  }
+
+  .description-container {
+
+    margin: 4.5rem auto 0 auto;
+    height: max-content;
+    width: 80%;
+    border-radius: 19px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 1.5rem;
+    color: rgb(0, 0, 0);
+
+  }
+
+  .author-tag {
+    margin: 1.5rem 0 4.5rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    font-family: 'Writing Signature', sans-serif;
+    font-size: 2.2rem;
+  }
 
   /* ////////////////////////// Desktop-Footer //////////////////////////////////////////////////*/
 
@@ -1090,20 +1237,23 @@ body {
   }
 
   .contact-follow {
-
-
-    width: 100%;
     height: 100%;
     display: inline-flex;
     justify-content: space-between;
 
+
   }
 
   .social-network {
+
     display: inline-flex;
     border-radius: 20px;
     margin-left: 0.5rem;
+    margin-top: 2rem;
     width: 12rem;
+    height: 40%;
+    gap: 1rem;
+    align-items: center;
   }
 
   .social-img {
@@ -1132,10 +1282,11 @@ body {
   .mention-legale {
 
     color: white;
-    margin: 0;
+    margin: 1.5rem 0 0 0;
   }
 
 }
+
 /* ////////////////////////////handle other specific format (large screen ) ////////////////////////////////*/
 
 @media screen and (min-width: 1925px) {
@@ -1147,15 +1298,15 @@ body {
   }
 
   .login-card {
-   
-   
+
+
     border-radius: 15px;
     width: 60%;
-    
+
     flex: 1;
   }
 
- 
+
 }
 
 @media screen and (max-width: 1617px) {
@@ -1166,6 +1317,6 @@ body {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  
+
 
 }
