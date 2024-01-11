@@ -534,8 +534,9 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     place-content: center;
-    margin: 2rem 1rem 0 1rem;
-    gap: 3rem
+    margin: 2rem auto 0 auto;
+    gap: 3rem;
+    width: 95%;
   }
 
 
@@ -549,16 +550,7 @@ body {
 
   }
 
-  .pictures-container {
-
-
-    margin: 0 auto 0 1.5rem;
-    position: relative;
-    width: 80%;
-
-
-  }
-
+  
   .descriptions-with-buttons {
     display: flex;
     justify-content: space-between;
@@ -574,7 +566,7 @@ body {
     width: max-content;
     height: 10rem;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin: 2.5rem 0.5rem 0 0;
 
 
   }
@@ -595,19 +587,15 @@ body {
 
     object-fit: cover;
     width: 100%;
-
-    height: 13rem;
+    height: 15rem;
     border-radius: 15px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   }
 
   .top-admin-card {
 
-
     width: 100%;
-
-    position: relative;
-
+    
   }
 
 
@@ -1101,7 +1089,8 @@ body {
     display: flex;
     gap: 0.5rem;
     width: 80%;
-    margin: 0 auto 0 auto;
+    margin: 0 auto;
+   
   }
 
   .header-detail-review {
@@ -1142,7 +1131,7 @@ body {
   }
 
 
-  /* //////////////////////////Desktop-create-review ////////////////////////////////////////////*/
+  /* ////////////////////////// Desktop-create-review ////////////////////////////////////////////*/
 
   .container-button-add-picture {
 
@@ -1163,7 +1152,7 @@ body {
 
  .main-review-info {
   width: 80%;
-  margin: 0 auto;
+  margin: 2rem auto;
   gap:0.5rem;
  }
 
@@ -1180,12 +1169,13 @@ body {
  .title-create-review {
 
   font-family: "Courgette",cursive;
-  margin-left: 0.5rem;
+  margin: 0 0 4rem 0.5rem;
   color:#8d6289;
   text-shadow: 7px 7px 10px rgba(015, 0, 0, 0.3);
  }
 
  .container-create-description {
+
   font-family: "Courgette",cursive;
   font-size: 1.1rem;
   width: 80%;
@@ -1218,10 +1208,41 @@ margin-left: 0.5rem;
  }
  
  .button-validation {
+  
   font-size: 1.1rem;
   font-family: "Courgette",cursive;
  }
 
+ .container-input {
+
+
+  display:flex;
+  flex-direction: column;
+  gap:0.5rem;
+  margin-bottom: 1rem;
+  width: 25%;
+ }
+
+ .create-input {
+ 
+  border:1px solid rgb(118, 106, 128);
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-family: "Courgette",cursive;
+  text-align: center;
+ }
+
+ 
+ #review-theme {
+
+   font-size: 1.2rem;
+   font-family: "Courgette",cursive;
+ }
+
+ .container-input {
+
+  
+ }
   /* ////////////////////////// Desktop-Footer //////////////////////////////////////////////////*/
 
   Footer {

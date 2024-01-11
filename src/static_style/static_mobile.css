@@ -662,7 +662,7 @@
         display: flex;
         flex-direction: column;
         align-items: end;
-        margin-top: 0.7rem;
+        margin : 1rem 1rem 0 0;
         border: none;
         gap: 1rem;
 
@@ -684,7 +684,7 @@
         flex-direction: column;
         justify-content: flex-start;
         position: relative;
-        top: 2.5rem;
+        top: 4rem;
         left: 1rem;
         font-family: "Courgette", cursive;
         color: white;
@@ -705,6 +705,7 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        
     }
 
     .top-admin-banner {
@@ -1100,8 +1101,8 @@
 
     display: flex;
     gap: 0.5rem;
-    width: 80%;
-    margin: 0 auto 0 auto;
+    width: 100%;
+
   }
 
   .right-pictures-container {
@@ -1169,6 +1170,7 @@
   }
 
   .add-picture-button {
+
     border-radius: 3px;
     border: none;
     
@@ -1176,6 +1178,7 @@
     background: #ffffff;
     outline: #cbc3d1 0.5px solid;
   }
+
 
  .main-review-info {
 
@@ -1185,9 +1188,12 @@
   margin-bottom: 1rem;
  }
 
+
+
  .select-theme {
   margin: 1rem 0 1rem 0;
  }
+
 
  #theme-select {
   border-radius: 15px;
@@ -1204,6 +1210,7 @@
   text-shadow: 7px 7px 10px rgba(015, 0, 0, 0.3);
  }
 
+
  .container-create-description {
 
     width: 80%;
@@ -1217,15 +1224,19 @@
     border: #8a7788 0.5px solid;
  }
 
+
+
  .container-button-validation {
     margin-top: 1rem;
     display: flex;
     justify-content: center;
 
  } 
+
+
  .button-validation {
  
- font-size: 1.3rem;
+ font-size: 1.6rem;
  border-radius: 15px;
  border:none;
  color:#ffffff;
@@ -1237,21 +1248,34 @@
     border-radius: 15px;
     border: #8a7788 1px solid;
     margin:0.2rem;
+    font-size: 1.2rem;
+    width: 95%;
  }
+
+ .container-input {
+
+    width: 20rem;
+ }
+
+ .main-picture-container {
+  width: 80%;
+  margin: 0 auto;
+ }
+
 
     /* ///////////////////////////////////  mobile-Footer  /////////////////////////////////////////*/
 
     footer {
-
-
 
         display: flex;
         flex-direction: column;
         height: 8rem;
         background-color: rgb(137, 120, 148);
         box-shadow: rgb(0 0 0 / 50%) 0px -6px 16px -6px;
-        margin-top: 1rem;
+        margin-top: 2.5rem;
     }
+
+
 
     .container-button {
         width: 100%;
@@ -1472,6 +1496,15 @@
     .mail {
         margin: 0;
     }
+
+     .container-input {
+    
+    width: 15rem;
+ }
+
+ .create-input {
+    font-size: 0.9rem;
+ }
     
 
 }
