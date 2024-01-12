@@ -1088,10 +1088,21 @@ body {
 
     display: flex;
     gap: 0.5rem;
+    width: 80%;
+    margin: 0 auto;
+   
+   
+  }
+
+    .admin-pictures-container {
+
+    display: flex;
+    gap: 0.5rem;
     width: 100%;
    
    
   }
+
 
   .header-detail-review {
 
