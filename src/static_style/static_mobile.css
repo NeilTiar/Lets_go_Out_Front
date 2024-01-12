@@ -2,6 +2,7 @@
 
 @media screen and (max-width: 1367px) {
 
+   
 
     body::-webkit-scrollbar {
         width: 0;
@@ -661,7 +662,7 @@
         display: flex;
         flex-direction: column;
         align-items: end;
-        margin-top: 0.7rem;
+        margin : 1rem 1rem 0 0;
         border: none;
         gap: 1rem;
 
@@ -683,7 +684,7 @@
         flex-direction: column;
         justify-content: flex-start;
         position: relative;
-        top: 2.5rem;
+        top: 4rem;
         left: 1rem;
         font-family: "Courgette", cursive;
         color: white;
@@ -704,6 +705,7 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        
     }
 
     .top-admin-banner {
@@ -934,8 +936,7 @@
     font-family: "Courgette",cursive;
     text-shadow: 4px 9px 12px rgba(5, 65, 37, 0.5);
     color: #5f315b;
-   	
-text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
+    text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
 
     }
 
@@ -1002,6 +1003,7 @@ text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
     margin-top: 1.5rem;
     height: max-content;
     background-color: #faf7ff;
+    height:100%;
   }
 
   .red-heart {
@@ -1099,8 +1101,8 @@ text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
 
     display: flex;
     gap: 0.5rem;
-    width: 80%;
-    margin: 0 auto 0 auto;
+    width: 100%;
+
   }
 
   .right-pictures-container {
@@ -1111,7 +1113,7 @@ text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
   
 
   .main-picture {
-    border-radius: 0;
+    border-radius: 9px;
     height: 15rem;
   }
 
@@ -1157,21 +1159,123 @@ text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
     font-family: 'Writing Signature', sans-serif;
     font-size: 2.2rem;
   }
+    /* ////////////////////////// Mobile-create-review ////////////////////////////////////////////*/
+
+  .container-button-add-picture {
+
+    position:relative;
+    bottom: 2rem;
+    left:0.5rem;
+    z-index: 2;
+  }
+
+  .add-picture-button {
+
+    border-radius: 3px;
+    border: none;
+    
+    color: #3c3141;
+    background: #ffffff;
+    outline: #cbc3d1 0.5px solid;
+  }
+
+
+ .main-review-info {
+
+  width: 80%;
+  margin: 0 auto;
+  gap:0.5rem;
+  margin-bottom: 1rem;
+ }
+
+
+
+ .select-theme {
+  margin: 1rem 0 1rem 0;
+ }
+
+
+ #theme-select {
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.1rem;
+ }
+
+ .title-create-review {
+
+  font-family: "Courgette",cursive;
+  font-size: 2rem;
+  margin-left: 0.5rem;
+  color:#8d6289;
+  text-shadow: 7px 7px 10px rgba(015, 0, 0, 0.3);
+ }
+
+
+ .container-create-description {
+
+    width: 80%;
+    margin: 1rem auto ;
+ }
+
+ #review-description {
+    width: 100%;
+    height:8rem;
+    border-radius: 12px;
+    border: #8a7788 0.5px solid;
+ }
+
+
+
+ .container-button-validation {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+
+ } 
+
+
+ .button-validation {
+ 
+ font-size: 1.6rem;
+ border-radius: 15px;
+ border:none;
+ color:#ffffff;
+ background-color:#8a7788;
+
+ }
+ 
+ .create-input {
+    border-radius: 15px;
+    border: #8a7788 1px solid;
+    margin:0.2rem;
+    font-size: 1.2rem;
+    width: 95%;
+ }
+
+ .container-input {
+
+    width: 20rem;
+ }
+
+ .main-picture-container {
+  width: 80%;
+  margin: 0 auto;
+ }
 
 
     /* ///////////////////////////////////  mobile-Footer  /////////////////////////////////////////*/
 
     footer {
 
-
-
         display: flex;
         flex-direction: column;
         height: 8rem;
         background-color: rgb(137, 120, 148);
         box-shadow: rgb(0 0 0 / 50%) 0px -6px 16px -6px;
-
+        margin-top: 2.5rem;
     }
+
+
 
     .container-button {
         width: 100%;
@@ -1392,6 +1496,15 @@ text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
     .mail {
         margin: 0;
     }
+
+     .container-input {
+    
+    width: 15rem;
+ }
+
+ .create-input {
+    font-size: 0.9rem;
+ }
     
 
 }
@@ -1431,5 +1544,6 @@ text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
         height: 2rem;
         width: 2rem;
     }
+
 
 }
