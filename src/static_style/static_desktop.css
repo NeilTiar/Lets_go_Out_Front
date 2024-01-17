@@ -1279,8 +1279,8 @@ body {
   }
 
   .container-text-user {
-    
-   
+
+
     padding: 1rem;
     height: 4rem;
     width: max-content;
@@ -1301,7 +1301,7 @@ body {
 
   .container-bubble-user {
 
-  
+
     margin: 4rem 0 0 auto;
     padding-right: 3rem;
 
@@ -1341,7 +1341,7 @@ body {
   }
 
   .speaker-indicator {
-    
+
     font-size: 1.6rem;
     font-family: "Courgette", cursive;
   }
@@ -1417,8 +1417,21 @@ body {
   }
 
   .messages-container {
-    flex:1;
+    flex: 1;
     overflow: auto;
+  }
+
+  .tag-chat-room-desktop {
+
+    font-family: "Courgette", cursive;
+    font-size: 2rem;
+    color: transparent;
+    background: linear-gradient(45deg, rgb(124, 194, 179) , rgb(124, 83, 136) );
+    -webkit-background-clip: text;
+    background-clip: text;
+
+
+
   }
 
   /* ////////////////////////// Desktop-Footer //////////////////////////////////////////////////*/
@@ -1569,7 +1582,7 @@ body {
 
 }
 
-/* ////////////////////////////handle other specific format (large screen ) ////////////////////////////////*/
+/* //////////////////////////// handle other specific format (large screen ) ////////////////////////////////*/
 
 @media screen and (min-width: 1925px) {
 

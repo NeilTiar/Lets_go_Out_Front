@@ -1399,11 +1399,20 @@
    .messages-container {
         
         flex:1;
-      
-       
-  
     }
 
+     .tag-chat-room-mobile {
+
+    font-family: "Courgette", cursive;
+    font-size: 2rem;
+    color: transparent;
+    background: linear-gradient(45deg, rgb(124, 194, 179) , rgb(124, 83, 136) );
+    -webkit-background-clip: text;
+    background-clip: text;
+
+
+
+  }
 
     /* ///////////////////////////////////  mobile-Footer  /////////////////////////////////////////*/
 
