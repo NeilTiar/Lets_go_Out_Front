@@ -550,7 +550,7 @@ body {
 
   }
 
-  
+
   .descriptions-with-buttons {
     display: flex;
     justify-content: space-between;
@@ -595,7 +595,7 @@ body {
   .top-admin-card {
 
     width: 100%;
-    
+
   }
 
 
@@ -980,9 +980,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
-    text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
-    0px 4px 10px rgba(125, 83, 179, 0.644); 
-     font-size: clamp(1rem, 3rem,  5rem );
+    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+      0px 4px 10px rgba(125, 83, 179, 0.644);
+    font-size: clamp(1rem, 3rem, 5rem);
   }
 
   /*/////////////////////////// destktop-details-review ///////////////////////////////////////////////*/
@@ -1090,17 +1090,17 @@ body {
     gap: 0.5rem;
     width: 80%;
     margin: 0 auto;
-   
-   
+
+
   }
 
-    .admin-pictures-container {
+  .admin-pictures-container {
 
     display: flex;
     gap: 0.5rem;
     width: 100%;
-   
-   
+
+
   }
 
 
@@ -1146,114 +1146,281 @@ body {
 
   .container-button-add-picture {
 
-    position:relative;
+    position: relative;
     bottom: 2rem;
-    left:0.5rem;
+    left: 0.5rem;
     z-index: 2;
   }
 
   .add-picture-button {
     border-radius: 3px;
     border: none;
-    
+
     color: #3c3141;
     background: #ffffff;
     outline: #cbc3d1 0.5px solid;
   }
 
- .main-review-info {
-  width: 80%;
-  margin: 2rem auto;
-  gap:0.5rem;
- }
+  .main-review-info {
+    width: 80%;
+    margin: 2rem auto;
+    gap: 0.5rem;
+  }
 
- .select-theme {
-  margin: 1rem 0 1rem 0;
- }
+  .select-theme {
+    margin: 1rem 0 1rem 0;
+  }
 
- #theme-select {
-  border-radius: 15px;
-  text-align: center;
-  font-size: 1.1rem;
- }
+  #theme-select {
+    border-radius: 15px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
 
- .title-create-review {
+  .title-create-review {
 
-  font-family: "Courgette",cursive;
-  margin: 0 0 4rem 0.5rem;
-  color:#8d6289;
-  text-shadow: 7px 7px 10px rgba(015, 0, 0, 0.3);
- }
+    font-family: "Courgette", cursive;
+    margin: 0 0 4rem 0.5rem;
+    color: #8d6289;
+    text-shadow: 7px 7px 10px rgba(015, 0, 0, 0.3);
+  }
 
- .container-create-description {
+  .container-create-description {
 
-  font-family: "Courgette",cursive;
-  font-size: 1.1rem;
-  width: 80%;
-  margin: 1rem auto ;
-  height:10rem;
- }
+    font-family: "Courgette", cursive;
+    font-size: 1.1rem;
+    width: 80%;
+    margin: 1rem auto;
+    height: 10rem;
+  }
 
- #review-description {
-  height:100%;
-  width:100%;
-  font-size: 1.1rem;
-  border-radius: 15px;
-  border:0.5px solid rgb(49, 35, 58);
- 
- }
+  #review-description {
+    height: 100%;
+    width: 100%;
+    font-size: 1.1rem;
+    border-radius: 15px;
+    border: 0.5px solid rgb(49, 35, 58);
 
- .review-and-button-only {
+  }
 
-  display: flex;
-  height:10rem;
- }
+  .review-and-button-only {
 
- .container-button-validation {
+    display: flex;
+    height: 10rem;
+  }
 
-display: flex;
-align-items: center;
-margin-left: 0.5rem;
+  .container-button-validation {
+
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
 
 
- }
- 
- .button-validation {
+  }
+
+  .button-validation {
+
+    font-size: 1.1rem;
+    font-family: "Courgette", cursive;
+  }
+
+  .container-input {
+
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    width: 25%;
+  }
+
+  .create-input {
+
+    border: 1px solid rgb(118, 106, 128);
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-family: "Courgette", cursive;
+    text-align: center;
+  }
+
+
+  #review-theme {
+
+    font-size: 1.2rem;
+    font-family: "Courgette", cursive;
+  }
+
+  /* ////////////////////////// Chat-Room /////////////////////////////////////////////////////////*/
+
+
+  .tag-chat-room {
+
+    font-family: "Courgette", cursive;
+    background: linear-gradient(to right, rgb(180, 202, 228), rgb(162, 230, 227));
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .container-text-admin {
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(162, 230, 227);
+    border-radius: 15px;
+    width: 30%;
+    height: max-content;
+    color: rgb(142, 130, 163);
+    font-size: 1.6rem;
+    font-family: "Courgette", cursive;
+    padding: 1rem;
+
+  }
+
+  .container-text-user {
+    
+   
+    padding: 1rem;
+    height: 4rem;
+    width: max-content;
+    border-radius: 15px;
+    font-size: 1.6rem;
+    font-family: "Courgette", cursive;
+    background-color: rgb(162, 230, 227);
+    text-align: justify;
+    color: rgb(142, 130, 163);
+    margin-left: auto;
+  }
+
+  .container-bubble-admin {
+
+    margin: 3rem 0 0 3rem;
+
+  }
+
+  .container-bubble-user {
+
   
-  font-size: 1.1rem;
-  font-family: "Courgette",cursive;
- }
+    margin: 4rem 0 0 auto;
+    padding-right: 3rem;
 
- .container-input {
+  }
+
+  .indicator-left {
+
+    width: 0;
+    height: 0;
+    transform: rotate(10deg);
+    border-left: 2rem solid rgb(162, 230, 227);
+    border-bottom: 2.5rem solid rgb(254, 254, 255);
+    margin-left: 2rem;
+    position: relative;
+    top: -0.3rem;
 
 
-  display:flex;
-  flex-direction: column;
-  gap:0.5rem;
-  margin-bottom: 1rem;
-  width: 25%;
- }
+  }
 
- .create-input {
- 
-  border:1px solid rgb(118, 106, 128);
-  border-radius: 15px;
-  font-size: 1.1rem;
-  font-family: "Courgette",cursive;
-  text-align: center;
- }
+  .indicator-right {
 
- 
- #review-theme {
+    width: 0;
+    height: 0;
+    transform: rotate(7deg);
+    border-right: 2rem solid rgb(162, 230, 227);
+    border-bottom: 2.5rem solid rgb(254, 254, 255);
+    margin-left: 96%;
+    position: relative;
+    top: -0.1rem;
+  }
 
-   font-size: 1.2rem;
-   font-family: "Courgette",cursive;
- }
+  .user-speaker-indicator {
 
- .container-input {
+    display: flex;
+    justify-content: end;
+    margin: 0.7rem 1.5rem 0 0;
+  }
 
-  
- }
+  .speaker-indicator {
+    
+    font-size: 1.6rem;
+    font-family: "Courgette", cursive;
+  }
+
+
+
+  .input-form {
+
+    display: inline-flex
+  }
+
+  main {
+
+    flex-direction: column;
+    display: flex;
+    flex: 1
+  }
+
+
+
+
+  #input-chat {
+    margin: 0 auto 0 auto;
+    width: 80vw;
+    height: 2rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-family: "Courgette", cursive;
+  }
+
+  .input-with-submit {
+
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  #chat-button-submit {
+    font-family: "Courgette", cursive;
+    font-size: 1.3rem;
+    color: white;
+    background-color: #744970;
+    margin-left: 1rem;
+    border-radius: 25px;
+  }
+
+  .display-chat-message {
+
+    border: 5px solid red;
+    flex: 1;
+  }
+
+
+  .messages-container {
+
+    flex: 1;
+
+
+  }
+
+
+  main {
+    overflow: auto;
+    flex: 1;
+
+  }
+
+
+  .container-input-chat {
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+  }
+
+  .messages-container {
+    flex:1;
+    overflow: auto;
+  }
+
   /* ////////////////////////// Desktop-Footer //////////////////////////////////////////////////*/
 
   Footer {
@@ -1266,7 +1433,7 @@ margin-left: 0.5rem;
     flex-direction: column;
     background-color: rgb(137, 120, 148);
     box-shadow: rgb(0 0 0 / 50%) 0px -6px 16px -6px;
-  
+
 
   }
 
@@ -1399,6 +1566,7 @@ margin-left: 0.5rem;
     margin: 1.5rem 0 0 0;
   }
 
+
 }
 
 /* ////////////////////////////handle other specific format (large screen ) ////////////////////////////////*/
@@ -1420,6 +1588,46 @@ margin-left: 0.5rem;
     flex: 1;
   }
 
+  .input-form {
+
+    display: inline-flex
+  }
+
+  main {
+
+    height: 100%;
+  }
+
+
+
+
+
+  #input-chat {
+    margin: 0 auto 0 auto;
+    width: 80vw;
+    height: 2rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-family: "Courgette", cursive;
+
+  }
+
+  .input-with-submit {
+
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  #chat-button-submit {
+    font-family: "Courgette", cursive;
+    font-size: 1.3rem;
+    color: white;
+    background-color: #744970;
+    margin-left: 1rem;
+    border-radius: 25px;
+  }
+
+
 
 }
 
@@ -1431,6 +1639,49 @@ margin-left: 0.5rem;
     grid-template-columns: repeat(4, 1fr);
   }
 
+  .input-form {
+
+    display: inline-flex
+  }
+
+  main {
+
+    height: 100%;
+
+  }
+
+  .container-input-chat {
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+  }
+
+
+  #input-chat {
+
+    margin: 0 auto 0 auto;
+    width: 100%;
+    height: 2rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-family: "Courgette", cursive;
+  }
+
+  .input-with-submit {
+
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  #chat-button-submit {
+    font-family: "Courgette", cursive;
+    font-size: 1.3rem;
+    color: white;
+    background-color: #744970;
+    margin-left: 1rem;
+    border-radius: 25px;
+  }
 
 
 }
