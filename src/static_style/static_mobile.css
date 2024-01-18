@@ -2,18 +2,20 @@
 
 @media screen and (max-width: 1367px) {
 
-   
+
 
     body::-webkit-scrollbar {
         width: 0;
+         
     }
 
     body {
-        
-        position:relative;
-        margin:0;
-        padding:0;
-        
+
+        height: 100vh;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        display: flex;
     }
 
 
@@ -195,6 +197,9 @@
         background: url('../assets/paris.jpg') center center no-repeat;
         background-size: cover;
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        justify-content: space-evenly;
+
     }
 
 
@@ -662,7 +667,7 @@
         display: flex;
         flex-direction: column;
         align-items: end;
-        margin : 1rem 1rem 0 0;
+        margin: 1rem 1rem 0 0;
         border: none;
         gap: 1rem;
 
@@ -705,7 +710,7 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        
+
     }
 
     .top-admin-banner {
@@ -760,10 +765,10 @@
 
     .right-side-card {
 
-       
+
         display: flex;
         justify-content: center;
-        border:none;
+        border: none;
 
     }
 
@@ -775,8 +780,8 @@
         margin: 0;
         padding: 0;
         box-shadow: none;
-        
-       
+
+
     }
 
     .login-input {
@@ -822,18 +827,18 @@
 
         font-size: 1.2rem;
         margin-bottom: 1rem;
-        
+
 
     }
 
     .title-connexion {
 
-     
+
         font-family: "Courgette", cursive;
         font-size: 1.5rem;
         color: #5f315b;
-       text-shadow: 4px 9px 12px rgba(5, 65, 37, 0.5);
-       margin-bottom: 2rem;
+        text-shadow: 4px 9px 12px rgba(5, 65, 37, 0.5);
+        margin-bottom: 2rem;
 
     }
 
@@ -867,35 +872,33 @@
         margin: 1rem 0 1rem 0;
     }
 
-      #gender-select {
-    outline: #3a063b;
-    border-radius: 15px;
-    width: 5rem;
-    height:1.8rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
+    #gender-select {
+        outline: #3a063b;
+        border-radius: 15px;
+        width: 5rem;
+        height: 1.8rem;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
 
-  #gender-tag {
-    font-family: "Courgette",cursive;
-    color: #5f315b;
-    margin-bottom: 1.2rem;
-  }
+    #gender-tag {
+        font-family: "Courgette", cursive;
+        color: #5f315b;
+        margin-bottom: 1.2rem;
+    }
 
-  select {
-    font-family: "Courgette", cursive;
-  }
+    select {
+        font-family: "Courgette", cursive;
+    }
 
     .main-container {
-          
-        position: relative;  
+
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        
-        flex:1
-      
 
+        flex: 1
     }
 
     section {
@@ -932,17 +935,17 @@
 
 
     .signup-form-tag {
-    padding-bottom: 1.5rem;
-    font-family: "Courgette",cursive;
-    text-shadow: 4px 9px 12px rgba(5, 65, 37, 0.5);
-    color: #5f315b;
-    text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
+        padding-bottom: 1.5rem;
+        font-family: "Courgette", cursive;
+        text-shadow: 4px 9px 12px rgba(5, 65, 37, 0.5);
+        color: #5f315b;
+        text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7);
 
     }
 
     .password-confirmation-input {
         margin-bottom: 3.5rem;
-       
+
     }
 
     .signup-validation {
@@ -957,12 +960,11 @@
         text-shadow: 2px 2px 2px rgba(015, 0, 0, 0.5);
         box-shadow: 2px 6px 15px rgb(0 0 0 / 45%);
         margin: 1.5rem auto
-
     }
 
     .title-signup {
-        color:#5f315b;
-        font-family: "Courgette",cursive;
+        color: #5f315b;
+        font-family: "Courgette", cursive;
 
         display: flex;
         justify-content: flex-start;
@@ -975,293 +977,442 @@
     }
 
 
-      /*///////////////////////////// desktop message-404 ////////////////////////////////////////////*/
+    /*///////////////////////////// desktop message-404 ////////////////////////////////////////////*/
 
-   .message-404 {
+    .message-404 {
 
-   font-size: 4rem;
-   font-family: "Courgette",cursive;
-    font-size: clamp(2rem, 2rem,  3rem );
-   } 
+        font-size: 4rem;
+        font-family: "Courgette", cursive;
+        font-size: clamp(2rem, 2rem, 3rem);
+    }
 
-   .container-404 {
+    .container-404 {
 
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height:100%;
-     text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
-    0px 4px 10px rgba(125, 83, 179, 0.644); 
-   
-   }
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+            0px 4px 10px rgba(125, 83, 179, 0.644);
 
-     /*/////////////////////////// destktop-details-review ///////////////////////////////////////////////*/
+    }
 
-  .details-card-container {
-    margin-top: 1.5rem;
-    height: max-content;
-    background-color: #faf7ff;
-    height:100%;
-  }
+    /*/////////////////////////// destktop-details-review ///////////////////////////////////////////////*/
 
-  .red-heart {
+    .details-card-container {
+        margin-top: 1.5rem;
+        height: max-content;
+        background-color: #faf7ff;
+        height: 100%;
+    }
 
-    height: 1.7rem;
-    margin-bottom: 0.4rem;
+    .red-heart {
 
-  }
+        height: 1.7rem;
+        margin-bottom: 0.4rem;
 
-  .heart-tag {
+    }
 
-    text-align: center;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-    font-size: 1rem;
-    color: #20071e;
-  }
+    .heart-tag {
 
-  .first-header-part {
+        text-align: center;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+        font-size: 1rem;
+        color: #20071e;
+    }
 
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-    margin-left: 0.5rem;
-    color: #6d4a6a;
-    font-size: 1.2rem;
-  }
+    .first-header-part {
 
-  .place {
-    margin: 0;
-    font-family: "Courgette", sans-serif;
-    font-size: 3.6rem;
-    color: #744970;
-    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
-      0px -4px 10px rgba(255, 255, 255, 0.3);
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+        margin-left: 0.5rem;
+        color: #6d4a6a;
+        font-size: 1.2rem;
+    }
 
-  }
+    .place {
+        margin: 0;
+        font-family: "Courgette", sans-serif;
+        font-size: 3.6rem;
+        color: #744970;
+        text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+            0px -4px 10px rgba(255, 255, 255, 0.3);
 
-  .address {
-    font-family: "Courgette", cursive;
-    text-shadow: 1px 1.2px 0px #aea9c5;
-    color: rgb(35, 30, 41);
-    font-size: 1.4rem;
-    font-weight: 100;
-  }
+    }
 
-
-  .second-header-part {
-
-    display: flex;
-    align-items: end;
-    gap: 0.5rem;
-    margin-right: 1rem;
-
-  }
-
-  .main-picture {
-
-    border-radius: 20px 0 0 20px;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-
-  .main-picture-container {
-
-    object-fit: cover;
-    width: 150%;
-
-  }
+    .address {
+        font-family: "Courgette", cursive;
+        text-shadow: 1px 1.2px 0px #aea9c5;
+        color: rgb(35, 30, 41);
+        font-size: 1.4rem;
+        font-weight: 100;
+    }
 
 
-  .pictures {
+    .second-header-part {
 
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
+        display: flex;
+        align-items: end;
+        gap: 0.5rem;
+        margin-right: 1rem;
 
-  .picture3 {
-    border-radius: 0 20px 0 0;
-  }
+    }
 
-  .picture5 {
-    border-radius: 0 0 20px 0;
-  }
+    .main-picture {
 
-  .right-pictures-container {
+        border-radius: 20px 0 0 20px;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
 
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* Deux colonnes de largeur égale */
-    gap: 0.5rem;
+    .main-picture-container {
 
-  }
+        object-fit: cover;
+        width: 150%;
 
-  .pictures-container {
+    }
 
-    display: flex;
-    gap: 0.5rem;
-    width: 100%;
 
-  }
+    .pictures {
 
-  .right-pictures-container {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
 
-    display: none;
-  }
+    .picture3 {
+        border-radius: 0 20px 0 0;
+    }
+
+    .picture5 {
+        border-radius: 0 0 20px 0;
+    }
+
+    .right-pictures-container {
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* Deux colonnes de largeur égale */
+        gap: 0.5rem;
+
+    }
+
+    .pictures-container {
+
+        display: flex;
+        gap: 0.5rem;
+        width: 100%;
+
+    }
+
+    .right-pictures-container {
+
+        display: none;
+    }
+
+
+
+    .main-picture {
+        border-radius: 9px;
+        height: 15rem;
+    }
+
+    .header-detail-review {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 80%;
+        margin: 0 auto 1rem auto;
+    }
+
+    .second-header-part {
+
+        display: flex;
+        justify-content: end;
+    }
+
+    .card-detail-review {
+
+        display: flex;
+        flex-direction: column;
+        margin: 1.5rem auto 0 auto;
+    }
+
+    .description-container {
+
+        margin: 3rem auto 0 auto;
+        height: max-content;
+        width: 80%;
+        border-radius: 19px;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+        font-size: 1.5rem;
+        color: rgb(0, 0, 0);
+
+    }
+
+    .author-tag {
+        margin: 1.5rem 0 4.5rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        font-family: 'Writing Signature', sans-serif;
+        font-size: 2.2rem;
+    }
+
+    /* ////////////////////////// Mobile-create-review ////////////////////////////////////////////*/
+
+    .container-button-add-picture {
+
+        position: relative;
+        bottom: 2rem;
+        left: 0.5rem;
+        z-index: 2;
+    }
+
+    .add-picture-button {
+
+        border-radius: 3px;
+        border: none;
+
+        color: #3c3141;
+        background: #ffffff;
+        outline: #cbc3d1 0.5px solid;
+    }
+
+
+    .main-review-info {
+
+        width: 80%;
+        margin: 0 auto;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+
+
+    .select-theme {
+        margin: 1rem 0 1rem 0;
+    }
+
+
+    #theme-select {
+        border-radius: 15px;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    .title-create-review {
+
+        font-family: "Courgette", cursive;
+        font-size: 2rem;
+        margin-left: 0.5rem;
+        color: #8d6289;
+        text-shadow: 7px 7px 10px rgba(015, 0, 0, 0.3);
+    }
+
+
+    .container-create-description {
+
+        width: 80%;
+        margin: 1rem auto;
+    }
+
+    #review-description {
+        width: 100%;
+        height: 8rem;
+        border-radius: 12px;
+        border: #8a7788 0.5px solid;
+    }
+
+
+
+    .container-button-validation {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+
+    }
+
+
+    .button-validation {
+
+        font-size: 1.6rem;
+        border-radius: 15px;
+        border: none;
+        color: #ffffff;
+        background-color: #8a7788;
+
+    }
+
+    .create-input {
+        border-radius: 15px;
+        border: #8a7788 1px solid;
+        margin: 0.2rem;
+        font-size: 1.2rem;
+        width: 95%;
+    }
+
+    .container-input {
+
+        width: 20rem;
+    }
+
+    .main-picture-container {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .container-input-chat {
+       
+        margin-bottom:1rem;
+    }
+
+
+    /* ///////////////////////////////////  mobile-Chat-room /////////////////////////////////////////*/
+
+    .tag-chat-room {
+
+        font-family: "Courgette", cursive;
+        background: linear-gradient(to right, rgb(180, 202, 228), rgb(162, 230, 227));
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .container-text-admin {
+
+        
+        padding: 1.7rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(162, 230, 227);
+        border-radius: 15px;
+        color: rgb(142, 130, 163);
+        font-size: 1.2rem;
+        font-family: "Courgette", cursive;
+
+    }
+
+
+    .container-text-user {
+
+       width: 70vw;
+       padding: 1.7rem;
+        border-radius: 15px;
+        font-size: 1.2rem;
+        font-family: "Courgette", cursive;
+        background-color: rgb(162, 230, 227);
+        text-align: justify;
+        color: rgb(142, 130, 163);
+        margin-left: auto;
+    }
+
+
+    .container-bubble-admin {
+
+        margin: 0.5rem 0 0 3rem;
+        padding: 1rem;
+        flex:1;
+    }
+
+
+    .container-bubble-user {
+
+        
+        margin: 0.5rem 0 0.5rem auto;
+        padding-right: 3rem;
+        flex:1;
+    }
+
+
+    .indicator-left {
+
+        width: 0;
+        height: 0;
+        transform: rotate(10deg);
+        border-left: 2rem solid rgb(162, 230, 227);
+        border-bottom: 2.5rem solid rgb(254, 254, 255);
+        margin-left: 2rem;
+        position: relative;
+        top: -0.3rem;
+    }
+
+
+    .indicator-right {
+
+        display: flex;
+        justify-content: end;
+        width: 75%;
+        height: 0;
+        transform: rotate(0deg);
+        border-right: 2rem solid rgb(162, 230, 227);
+        border-bottom: 2.5rem solid rgb(254, 254, 255);
+        margin-right: 80%;
+        position: relative;
+        top: -0.3rem;
+    }
+
+    .user-speaker-indicator {
+
+        margin: 1rem 0 0 76%;
+    }
+
+    .speaker-indicator {
+
+        font-family: "Courgette", cursive;
+    }
+
+    .display-chat-message {
+        
+        flex-direction: column;
+        border: 5px solid red;
+        flex: 1;
+        overflow: auto;
+    
+    }
+
+    .input-form {
+        width: 100%;
+    }
 
   
 
-  .main-picture {
-    border-radius: 9px;
-    height: 15rem;
-  }
-
-  .header-detail-review {
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 80%;
-    margin: 0 auto 1rem auto;
-  }
-
-  .second-header-part {
-
-   display: flex;
-   justify-content: end;
-  }
-
-  .card-detail-review {
-
-    display: flex;
-    flex-direction: column;
-    margin: 1.5rem auto 0 auto;
-  }
-
-  .description-container {
-
-    margin: 3rem auto 0 auto;
-    height: max-content;
-    width: 80%;
-    border-radius: 19px;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-    font-size: 1.5rem;
-    color: rgb(0, 0, 0);
-
-  }
-
-  .author-tag {
-    margin: 1.5rem 0 4.5rem 0;
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    font-family: 'Writing Signature', sans-serif;
-    font-size: 2.2rem;
-  }
-    /* ////////////////////////// Mobile-create-review ////////////////////////////////////////////*/
-
-  .container-button-add-picture {
-
-    position:relative;
-    bottom: 2rem;
-    left:0.5rem;
-    z-index: 2;
-  }
-
-  .add-picture-button {
-
-    border-radius: 3px;
-    border: none;
     
-    color: #3c3141;
-    background: #ffffff;
-    outline: #cbc3d1 0.5px solid;
+    .main-chat-container {
+
+        display:flex;
+        
+    }
+
+    main {
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        flex:1;
+        
+    }
+
+   .messages-container {
+        
+        flex:1;
+    }
+
+     .tag-chat-room-mobile {
+
+    font-family: "Courgette", cursive;
+    font-size: 2rem;
+    color: transparent;
+    background: linear-gradient(45deg, rgb(124, 194, 179) , rgb(124, 83, 136) );
+    -webkit-background-clip: text;
+    background-clip: text;
+
+
+
   }
-
-
- .main-review-info {
-
-  width: 80%;
-  margin: 0 auto;
-  gap:0.5rem;
-  margin-bottom: 1rem;
- }
-
-
-
- .select-theme {
-  margin: 1rem 0 1rem 0;
- }
-
-
- #theme-select {
-  border-radius: 15px;
-  text-align: center;
-  font-size: 1.1rem;
- }
-
- .title-create-review {
-
-  font-family: "Courgette",cursive;
-  font-size: 2rem;
-  margin-left: 0.5rem;
-  color:#8d6289;
-  text-shadow: 7px 7px 10px rgba(015, 0, 0, 0.3);
- }
-
-
- .container-create-description {
-
-    width: 80%;
-    margin: 1rem auto ;
- }
-
- #review-description {
-    width: 100%;
-    height:8rem;
-    border-radius: 12px;
-    border: #8a7788 0.5px solid;
- }
-
-
-
- .container-button-validation {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-
- } 
-
-
- .button-validation {
- 
- font-size: 1.6rem;
- border-radius: 15px;
- border:none;
- color:#ffffff;
- background-color:#8a7788;
-
- }
- 
- .create-input {
-    border-radius: 15px;
-    border: #8a7788 1px solid;
-    margin:0.2rem;
-    font-size: 1.2rem;
-    width: 95%;
- }
-
- .container-input {
-
-    width: 20rem;
- }
-
- .main-picture-container {
-  width: 80%;
-  margin: 0 auto;
- }
-
 
     /* ///////////////////////////////////  mobile-Footer  /////////////////////////////////////////*/
 
@@ -1368,7 +1519,7 @@
 
     .social-img {
         display: inline-flex;
-        height:40%;
+        height: 40%;
 
     }
 
@@ -1401,6 +1552,7 @@
 
 
 
+
 }
 
 /*//////////  galaxy-fold /////////////////////*/
@@ -1410,9 +1562,10 @@
 
 
     body {
-      width: 100vw;
-      height: 100lvh;
-        
+    
+        width: 100vw;
+        height: 100vh;
+        display: flex;
         overflow-x: hidden;
     }
 
@@ -1491,21 +1644,25 @@
 
     }
 
-   
+
 
     .mail {
         margin: 0;
     }
 
-     .container-input {
-    
-    width: 15rem;
- }
+    .container-input {
 
- .create-input {
-    font-size: 0.9rem;
- }
-    
+        width: 15rem;
+    }
+
+    .create-input {
+        font-size: 0.9rem;
+    }
+
+    .indicator-right {
+        width: 60%;
+    }
+
 
 }
 
@@ -1516,6 +1673,8 @@
         height: 6rem;
 
     }
+
+
 
 
 }
@@ -1544,5 +1703,26 @@
         height: 2rem;
         width: 2rem;
     }
+
+
+}
+
+
+@media screen and (min-width:470px) and (max-width:1366px) {
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .user-connexion-mobile {
+        margin-right: 1rem;
+
+    }
+
+    .indicator-right {
+        width: 75%;
+    }
+
 
 }
