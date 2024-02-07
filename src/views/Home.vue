@@ -9,24 +9,40 @@
 
 
 
-    <ReviewCard v-for="(review, index) in dataReviews" :key="index" :theme="review.theme"
-      :arrondissement="review.arrondissement" :placeName="review.placeName" :imageUrl="review.imageUrl" />
+    <ReviewCard v-for="review in displayReviews(reviews)" :key="review.id" :theme="review.theme"
+      :arrondissement="review.district_num" :placeName="review.place_name" :imageUrl="review.secure_url" />
 
     <button v-show="showButton" v-if="!isDesktop" class="create-review-mobile">Créer une
       nouvelle review</button>
 
+
+
   </main>
 
+<div class="pagination">
 
+<vue-awesome-paginate
+v-model="currentPage"
+:total-items ="totalImages"
+:items-per-page="itemsPerPage"
+:max-page-shown="pagesShown"
+@page-clicked="handlePageChange"
+:container-class="pagination-container"
+>
+</vue-awesome-paginate>
+
+</div>
 
   <Footer />
 </template>
   
 <script>
+
 import { dataReviews } from '../assets/data/static-data-reviews.js';
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue'
 import ReviewCard from '../components/Review-card-component.vue';
+
 
 
 
@@ -37,8 +53,10 @@ export default {
     Header,
     Footer,
     ReviewCard,
+   
 
   },
+
   data() {
     return {
 
@@ -49,7 +67,16 @@ export default {
       hideButton: false,
       actualPostionY: window.scrollY,
       buttonOpacity: 0,
+      reviews: [],
+      currentPage :1,
+      itemsPerPage:12,
+      totalReviews:0,
+      pagesShown:1
+
+
     }
+
+  
   },
 
   mounted() {
@@ -67,7 +94,7 @@ export default {
       this.hideButton = true;
     }, 4000);
 
-
+     this.fetchData();
 
   },
 
@@ -83,6 +110,20 @@ export default {
 
 
   methods: {
+
+    displayReviews() {
+    
+    const stratIndex = (this.currentPage * this.itemsPerPage ) - this.itemsPerPage
+    const endIndex = stratIndex + this.itemsPerPage
+     return this.reviews.slice(stratIndex,endIndex)
+
+    },
+
+    handlePageChange(data) {
+   
+    this.currentPage = data.currentPage
+
+    },
 
     handleResize() {
       // Met à jour isDesktop lors de changements de taille d'écran
@@ -109,12 +150,26 @@ export default {
         }, 5000);
 
       }
-    }
-  }
+    },
 
+  async fetchData() {
+      try {
+         const response = await fetch(`http://localhost:5001/review/home`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
 
+        const data = await response.json();
+        this.reviews = data;
+        this.totalReviews = data.length;
+        this.pagesShown = Math.ceil(this.totalReviews / this.itemsPerPage )
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    },
+  },
 
-};
+  };
 </script>
 
 
@@ -133,7 +188,11 @@ body {
 
 }
 
+.pagination {
+display:flex;
+justify-content: center;
 
+}
 
 .main-container {
 

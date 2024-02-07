@@ -91,12 +91,14 @@ button {
 
 
 .right-position {
+
   display: inline-flex;
   justify-content: flex-end;
 }
 
 
 .sun {
+
   width: 1.7rem;
   max-height: 70%;
   border: 2.6px solid rgb(137, 120, 148);
@@ -105,7 +107,7 @@ button {
 }
 
 .moon {
-
+ 
   max-height: 70%;
   width: 1.7rem;
   border: 2px solid white;
@@ -116,21 +118,20 @@ button {
 .sun-moon-container {
 
   height: 100%;
-  width: 7rem;
-  transform: translateX(calc(+100% - 100px));
-  transition: transform 0.4s ease-in-out;
+  width: 2rem; 
 
 }
 
 .moved-right {
 
-  transform: translateX(45px);
-
+transition: transform 2s ease; 
+  transform: translateX(85px);
 }
 
 .moved-left {
 
-  transform: translateX(calc(50% - 100px));
+  transition: transform 2s ease; 
+  transform: translateX(calc(0% - 85px));
 }
 
 .light-mode-tag {
@@ -147,9 +148,15 @@ button {
   font-family: "Courgette";
   font-weight: 800;
   position: absolute;
-  margin-right: 5px;
-
-
+  margin-right: 5px
 }
+
+
+.dark-theme-container{
+  
+  width: 8rem;
+}
+
+
 </style>
 

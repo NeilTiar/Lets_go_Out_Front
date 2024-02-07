@@ -3,16 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development vue-cli-service serve --open --host localhost",
-    "serve": "vue-cli-service serve",
+    "dev": "cross-env NODE_ENV=development vue-cli-service serve --open --host localhost --port 8080",
+    "serve": "vue-cli-service serve --port 8080",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+
+
   "dependencies": {
     "core-js": "^3.8.3",
     "latest": "^0.2.0",
     "nodemon": "^3.0.2",
+    "sharp": "^0.33.2",
     "vite": "^5.0.0",
+    "vue-awesome-paginate": "^1.1.46",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
@@ -21,8 +25,11 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "compression-webpack-plugin": "^11.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "image-minimizer-webpack-plugin": "^4.0.0",
+    "image-webpack-loader": "^8.1.0",
     "vue-loader": "^17.3.1",
     "vue-template-compiler": "^2.7.15",
     "webpack": "^5.89.0",
@@ -48,4 +55,7 @@
     "not dead",
     "not ie 11"
   ]
+ 
+
+
 }
