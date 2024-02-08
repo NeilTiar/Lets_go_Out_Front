@@ -3,7 +3,7 @@
     <!-- Votre contenu à paginer -->
 
     <vue-awesome-paginate
-      :total="totalItems"
+      :total="totalReviews"
       :limit="itemsPerPage"
       v-model="currentPage"
       @page-change="handlePageChange"
@@ -45,7 +45,7 @@ export default {
   },
   computed: {
 
-    totalItems() {
+    totalReviews() {
       return this.reviews.length; // Nombre total de commentaires
     },
 

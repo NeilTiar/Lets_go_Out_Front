@@ -22,12 +22,13 @@
 <div class="pagination">
 
 <vue-awesome-paginate
+
 v-model="currentPage"
-:total-items ="totalImages"
+:total-items ="totalItems"
 :items-per-page="itemsPerPage"
 :max-page-shown="pagesShown"
-@page-clicked="handlePageChange"
-:container-class="pagination-container"
+:on-click="handlePageChange"
+
 >
 </vue-awesome-paginate>
 
@@ -69,17 +70,19 @@ export default {
       buttonOpacity: 0,
       reviews: [],
       currentPage :1,
-      itemsPerPage:12,
-      totalReviews:0,
-      pagesShown:1
-
-
+      itemsPerPage:18,
+      totalItems:0,
+      pagesShown:1,
+      pagination:{},
+     
     }
 
   
   },
 
   mounted() {
+
+   
 
     window.addEventListener('scroll', this.handleScroll);
 
@@ -95,6 +98,8 @@ export default {
     }, 4000);
 
      this.fetchData();
+
+     
 
   },
 
@@ -119,11 +124,24 @@ export default {
 
     },
 
-    handlePageChange(data) {
-   
-    this.currentPage = data.currentPage
+    handlePageChange() {
 
+    console.log("from handlePageChange, ")
+    console.log("Current Page:", this.currentPage);
+    
+    this.scrollToTop();
     },
+
+
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth', // Pour un défilement en douceur, si pris en charge
+      })
+
+      console.log("From scrollToTop()")
+    },
+
 
     handleResize() {
       // Met à jour isDesktop lors de changements de taille d'écran
@@ -152,6 +170,9 @@ export default {
       }
     },
 
+
+
+
   async fetchData() {
       try {
          const response = await fetch(`http://localhost:5001/review/home`);
@@ -161,8 +182,8 @@ export default {
 
         const data = await response.json();
         this.reviews = data;
-        this.totalReviews = data.length;
-        this.pagesShown = Math.ceil(this.totalReviews / this.itemsPerPage )
+        this.totalItems = data.length;
+        this.pagesShown = Math.ceil(this.totalItems / this.itemsPerPage )
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -224,4 +245,6 @@ justify-content: center;
   font-weight:400;
    
 }
+
+
 </style>../assets/data/static-data-reviews.js
