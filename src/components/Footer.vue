@@ -30,6 +30,9 @@
       </div>
 
     </div>
+       <p class="mention-legale">
+            &copy; 2023 L'ets go out to Paris. Tous droits réservés.
+          </p>
 
 
   </footer>

@@ -2,7 +2,7 @@
 
   <div class="card-container">
     <div class="card-review">
-      <img :src="require(`@/assets/photos-reviews/${imageUrl}`)" :alt="generateAltText()" class="card-image" />
+      <img :src="imageUrl" :alt="generateAltText()" class="card-image" />
       <h3
         :class="[{ 'culture': this.theme === 'Culture', 'loisir': this.theme === 'Loisir', 'food-drink': this.theme === 'Food&drink' }, 'card-theme']">
 
@@ -54,6 +54,8 @@ export default {
 
   methods: {
 
+    
+
     generateAltText() {
       return `Description de l'image ${this.placeName}`;
     },
@@ -67,6 +69,8 @@ export default {
       this.mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
       this.mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
     },
+
+    
     
   },
 };
