@@ -1,11 +1,12 @@
 <template>
-  <div class="header-container">
+  <div class="header-container" :class="{ 'desktop-style': isDesktop, 'mobile-style': !isDesktop }">
 
     <div class="header">
 
       <div class="container-logo-title">
         <!-- <img class=" logo" src="" alt="logo">-->
         <h1 class="header-title">L'ets go out to Paris</h1>
+        <h2 class="title-description"> Explorez et partagez les meilleurs endroits de la ville lumière</h2>
       </div>
       <div v-bind:class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
         @mouseover="startHover" @mouseout="endHover">
@@ -93,6 +94,11 @@ export default {
     window.removeEventListener('resize', this.handleResize);
   },
 
+
+
+
+
+
   methods: {
 
     handleToggle() {
@@ -110,7 +116,7 @@ export default {
     updateDynamicText() {
 
       if (this.isFixed) {
-        
+
         this.TitleIfTopMenu = "L'ets Go Out To Paris";
 
       } else {

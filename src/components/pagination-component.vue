@@ -1,78 +1,162 @@
+<!-- eslint-disable no-undef -->
+<!-- Pagination.vue -->
+
 <template>
-  <div>
-    <!-- Votre contenu à paginer -->
+  <div class="pagination">
 
-    <vue-awesome-paginate
-      :total="totalReviews"
-      :limit="itemsPerPage"
-      v-model="currentPage"
-      @page-change="handlePageChange"
-    ></vue-awesome-paginate>
+    <vue-awesome-paginate v-model="currentPage" :total-items="totalItems" :reviews="reviews"
+      :items-per-page="itemsPerPage" :max-page-shown="pagesShown" :on-click="changePage">
+    </vue-awesome-paginate>
 
-    <!-- Affichage des commentaires de la page actuelle -->
-    <div v-for="review in displayedReviews" :key="review.id">
-      {{ totalPages }}
-      <!-- Affichez d'autres propriétés du commentaire selon vos besoins -->
-    </div>
+
   </div>
 </template>
 
+<Home />
 <script>
-
-import VueAwesomePaginate from 'vue-awesome-paginate';
 
 
 export default {
-  components: {
-    VueAwesomePaginate,
-  },
+
+
+
+
   props: {
     reviews: {
       type: Array,
-      required: true,
-    },
-       itemsPerPage: {
-      type: Number,
-      default: 10,
+      default: () => [],
     },
   },
-  data() {
 
+
+  data() {
     return {
       currentPage: 1,
-     
+      itemsPerPage: 18,
+      pagesShown: 1,
+
     };
   },
+
+
+  mounted() {
+
+  },
+
+
   computed: {
 
-    totalReviews() {
+
+    totalItems() {
       return this.reviews.length; // Nombre total de commentaires
     },
 
-      totalPages() {
+    totalPages() {
       return Math.ceil(this.reviews.length / this.itemsPerPage);
     },
-    displayedReviews() {
-      // Calcul des commentaires à afficher sur la page actuelle
-      const start = (this.currentPage - 1) * this.itemsPerPage;
-      const end = start + this.itemsPerPage;
-      return this.reviews.slice(start, end);
-    },
+
+
   },
+
   methods: {
-    handlePageChange(page) {
-      // Fonction appelée lorsqu'une page est changée
-      this.currentPage = page;
+
+
+
+    changePage(newPage) {
+
+      this.$emit('page-changed', newPage);
+
+    },
+
+
+
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth', // Pour un défilement en douceur, si pris en charge
+      })
+
     },
   },
-  mounted() {
-    // Appeler fetchData si besoin
-  },
-};
+
+  /*handlePaginationClick(newPage) {
+       // Assurez-vous que newPage et newPage.target sont définis
+       if (newPage && newPage.target) {
+         // Accéder à l'index du bouton de pagination
+         const pageIndex = newPage.target.dataset.index;
+ 
+         // Vérifier si pageIndex est une chaîne non vide
+         if (pageIndex.trim() !== "") {
+           // Convertir la valeur en nombre
+           this.currentPage = parseInt(pageIndex, 10);
+ 
+           // Appeler la fonction scrollToTop ou toute autre logique de mise à jour de la vue
+           this.scrollToTop();
+ 
+           console.log("Index de la page depuis le bouton de pagination :", pageIndex);
+         } else {
+           console.warn("L'index du bouton de pagination est une chaîne vide.");
+         }
+       } else {
+         console.warn("L'événement de pagination ou son élément cible est indéfini.");
+       }
+     },*/
+}
+
+
+
 </script>
 
-<style scoped>
+<style >
+.pagination {
+  margin: 3.5rem;
+}
 
+.pagination .pagination-container {
+  border-radius: 22px;
+  overflow: hidden;
+}
 
-/* Ajoutez des styles spécifiques au composant si nécessaire */
-</style>
+.pagination .paginate-buttons {
+
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  background-color: rgb(124, 108, 136);
+  ;
+  border: none;
+  color: #f3f8f7;
+  border-inline: 0.5px solid #1abc9c;
+  font-size: 1.3rem;
+  font-family: "courgette", cursive;
+}
+
+.pagination .active-page {
+  background-color: #1abc9c;
+  color: #2c3e50;
+}
+
+.pagination .paginate-buttons:hover {
+  background-color: #574288;
+}
+
+.pagination .active-page:hover {
+  background-color: #1abc9c;
+}
+
+.pagination .back-button {
+  border-inline-start: none;
+}
+
+.pagination .next-button {
+  border-inline-end: none;
+}
+
+.pagination .back-button svg {
+  transform: rotate(180deg);
+}
+
+.pagination .back-button:active,
+.pagination .next-button:active {
+  background-color: #3a1131;
+}</style>

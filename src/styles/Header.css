@@ -19,7 +19,7 @@ img.sun {
 
 
 .sun-moon-container {
- 
+
   width: max-content;
 }
 
@@ -162,17 +162,30 @@ li:hover {
 
   display: flex;
   font-family: 'Courgette';
-
   font-style: italic;
   font-size: clamp(1.8rem, 3vw + 1.3rem, 4rem);
   color: azure;
-  margin-right: 1rem;
-  margin-bottom: 3.5rem;
-  ;
-  padding: 1rem;
+  margin: 0 1rem 0 0;
   text-shadow: 1px 1px white, -1px -1px #444
 }
 
+
+.container-logo-title {
+  display: flex;
+  font-family: 'Courgette';
+  flex-direction: column;
+  text-shadow: 1px 1px white, 4px -1px #444;
+  font-size: 0.8rem;
+
+
+}
+
+.title-description {
+  margin: 0;
+  color: white;
+  width: 100%;
+  margin-left: 4.5rem;
+}
 
 
 .theme-banner {
@@ -338,5 +351,30 @@ img.user-logo {
 
   display: flex;
   flex-direction: row;
+
+}
+
+
+@media screen and (max-width:391px) {
+
+  .container-logo-title {
+    display: flex;
+    align-items: start;
+    font-size: clamp(0.5rem, 0.6rem, 0.8rem);
+    margin-left: 0.8rem;
+  }
+
+  .title-description {
+
+    margin-left: 0.2rem;
+    width: 50%;
+    color:#c6d3cf;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 0.5rem;
+  }
+
+  .card-theme {
+    
+  }
 
 }

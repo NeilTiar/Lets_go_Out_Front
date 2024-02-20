@@ -69,6 +69,8 @@ export default {
       this.mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
       this.mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
     },
+
+    
     
   },
 };
