@@ -80,6 +80,24 @@ p.detail {
   font-size: 1.5rem;
 }
 
+@media screen and (max-width: 412px ) {
+
+  .card-container{
+
+    margin:2rem 0 0 1.6rem;
+  }
+
+  .card-theme {
+
+    height: 14rem;
+  }
+
+  .top-main{
+
+   
+  }
+}
+
 /*gestion dynamique des couleurs pour le theme */
 
 /*:root {

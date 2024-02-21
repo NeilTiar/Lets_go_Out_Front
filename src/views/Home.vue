@@ -7,20 +7,27 @@
 
   <main class="cards-container">
 
+ 
+
+  
+
     <ReviewCard v-for="review in displayReviews(reviews)" :key="review.id" :theme="review.theme"
       :arrondissement="review.district_num" :placeName="review.place_name" :imageUrl="review.secure_url" />
-
+   
     <button v-show="showButton" v-if="!isDesktop" class="create-review-mobile">Créer une
       nouvelle review</button>
-
   </main>
 
 
-
-  <Pagination v-model="currentPage" :total-items="totalItems" :items-per-page="itemsPerPage" :max-page-shown="pagesShown"
+  <Pagination  v-model="currentPage" v-if="isDesktop" :total-items="totalItems" :items-per-page="itemsPerPage" :max-page-shown="pagesShown"
     @page-changed="handlePageChange" :reviews="reviews">
     
   </Pagination>
+
+   <PaginationMobileComponent v-if="!isDesktop" v-model="currentPage" :total-items="totalItems" :items-per-page="itemsPerPage" :max-page-shown="pagesShown"
+    @mobile-page-changed="handlePageChange" :reviews="reviews" >
+     
+   </PaginationMobileComponent>
 
 
   <Footer />
@@ -33,6 +40,7 @@ import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue'
 import ReviewCard from '../components/Review-card-component.vue';
 import Pagination from '../components/pagination-component.vue';
+import PaginationMobileComponent from '../components/pagination-mobile-component.vue';
 
 
 
@@ -40,10 +48,12 @@ export default {
 
   name: 'view-Home',
   components: {
+
     Header,
     Footer,
     ReviewCard,
-    Pagination
+    Pagination,
+    PaginationMobileComponent
   },
 
   data() {
@@ -114,6 +124,8 @@ export default {
   methods: {
 
 
+    
+ 
 
     displayReviews(reviews) {
 
@@ -255,4 +267,6 @@ body {
   font-weight: 400;
 
 }
+
+
 </style>
