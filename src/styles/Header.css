@@ -60,8 +60,8 @@ img.sun {
   font-family: "Kalam", sans-serif;
   border-radius: 15px;
   color: #ffffff;
-  height: 80%;
-  width: 40%;
+  height: max-content;
+  width: max-content;
   font-size: 1.2rem;
   text-shadow: 7px 7px 3px rgba(015, 0, 0, 0.3);
 
@@ -373,8 +373,64 @@ img.user-logo {
     margin-top: 0.5rem;
   }
 
-  .card-theme {
-    
-  }
+}
+
+@media screen and (max-width:300px) {
+
+body{
+  width: 100vw;
+}
+
+.create-review-banner {
+  font-size: 0.8rem;
+  
+}
+
+.top-main {
+  display: flex;
+  align-items: center;
+}
+
+.search-button{
+  margin-right: 1rem;
+}
+
+.moon-button {
+
+  margin-left: 1rem;
+}
+
+.container-logo-title  {
+  width: 100vw;
+}
+
+footer.Footer{
+
+  width: 100vw;
+}
+
+.social-img {
+  width: max-content;
+}
+
+.mail {
+  font-size: 0.7rem;
+  margin-right: 2rem;
+}
+
+.mention-legale{
+  
+ font-size: 0.5rem;
+}
+
+.social-network {
+ 
+  width: max-content;
+}
+
+img.card-image {
+  width: 3rem;
+}
+
 
 }

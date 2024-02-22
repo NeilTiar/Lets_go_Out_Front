@@ -30,7 +30,7 @@ img.card-image {
 
   border-radius: 10px 10px 10px 10px;
   object-fit: cover;
-  width: 140rem;
+  width: 90vw;
   height: 20vh;
   box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.3);
   position: relative;
