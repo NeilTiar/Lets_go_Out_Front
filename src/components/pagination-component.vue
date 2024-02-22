@@ -60,8 +60,6 @@ export default {
 
   methods: {
 
-
-
     changePage(newPage) {
 
       this.$emit('page-changed', newPage);
