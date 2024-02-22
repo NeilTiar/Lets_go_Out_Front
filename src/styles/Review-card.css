@@ -30,7 +30,7 @@ img.card-image {
 
   border-radius: 10px 10px 10px 10px;
   object-fit: cover;
-  width: 90vw;
+  width: 140rem;
   height: 20vh;
   box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.3);
   position: relative;
@@ -78,24 +78,6 @@ p.detail {
 
 .arrondissement {
   font-size: 1.5rem;
-}
-
-@media screen and (max-width: 412px ) {
-
-  .card-container{
-
-    margin:2rem 0 0 1.6rem;
-  }
-
-  .card-theme {
-
-    height: 14rem;
-  }
-
-  .top-main{
-
-   
-  }
 }
 
 /*gestion dynamique des couleurs pour le theme */
