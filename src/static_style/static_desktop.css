@@ -317,10 +317,11 @@ body {
     display: grid;
     justify-items: center;
     margin: 4rem 0 3rem 0;
+    align-items: end;
     grid-template-columns: repeat(5, 1fr);
     margin: 6rem 2rem 4rem 2rem;
     grid-gap: 1rem;
-    flex: 1;
+   
   }
 
   .theme-container {
@@ -547,6 +548,7 @@ body {
     width: 25rem;
     margin: 1.5rem 0 0 0;
     border: 1px #5f315b solid;
+    
 
   }
 

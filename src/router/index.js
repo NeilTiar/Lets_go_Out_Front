@@ -1,11 +1,18 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
+import MainReviews from '../views/Main-Reviews.vue';
+import Home from '../views/Home-page.vue'
 
 const routes = [
   {
+    path: '/main',
+    name: 'Main-Reviews',
+    component: MainReviews,
+  },
+  
+   {
     path: '/',
-    name: 'view-Home',
+    name: 'Home-page',
     component: Home,
   },
   // Ajoutez d'autres routes ici

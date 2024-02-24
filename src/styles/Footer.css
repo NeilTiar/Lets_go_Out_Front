@@ -7,8 +7,8 @@
   flex-direction: column;
   flex: 1;
   height: 8rem;
-  background-color: rgb(137, 120, 148);
-  box-shadow: rgb(0 0 0 / 50%) 0px -6px 16px -6px;
+  background-color: rgb(208, 208, 219);
+  box-shadow: rgba(101, 101, 104, 0.5) 0px -6px 15px -6px;
 }
 
 .container-button {

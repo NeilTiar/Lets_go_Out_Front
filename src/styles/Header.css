@@ -42,7 +42,7 @@ img.sun {
 
 .top-main {
 
-
+  margin-bottom: 3.7rem;
   z-index: 1;
   display: inline-flex;
   justify-content: space-between;
@@ -149,11 +149,11 @@ li:hover {
   display: flex;
   justify-content: space-between;
   top: 0;
-  height: 7.5rem;
+  height: 10rem;
   margin-bottom: 0.5rem;
-  background: url('../assets/paris.jpg') center center no-repeat;
+  background: url('../assets/paris2.jpg') center center no-repeat;
   background-size: cover;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+
 }
 
 
@@ -172,6 +172,7 @@ li:hover {
 
 .container-logo-title {
   display: flex;
+  margin-top: 1rem;
   font-family: 'Courgette';
   flex-direction: column;
   text-shadow: 1px 1px white, 4px -1px #444;
@@ -181,6 +182,7 @@ li:hover {
 }
 
 .title-description {
+
   margin: 0;
   color: white;
   width: 100%;
@@ -193,8 +195,14 @@ li:hover {
   display: flex;
   align-items: center;
   position: relative;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+ 
+ 
 }
+
+.theme-link {
+ font-family:"Montserra";
+  
+} 
 
 
 
@@ -355,6 +363,7 @@ img.user-logo {
 }
 
 
+
 @media screen and (max-width:391px) {
 
   .container-logo-title {
@@ -373,6 +382,8 @@ img.user-logo {
     margin-top: 0.5rem;
   }
 
+ 
+
 }
 
 @media screen and (max-width:300px) {
@@ -387,6 +398,9 @@ body{
 }
 
 .top-main {
+
+
+  margin-bottom: 12rem;
   display: flex;
   align-items: center;
 }

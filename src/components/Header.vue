@@ -5,7 +5,7 @@
 
       <div class="container-logo-title">
         <!-- <img class=" logo" src="" alt="logo">-->
-        <h1 class="header-title">L'ets go out to Paris</h1>
+        <h1 class="header-title">Let's go out in Paris</h1>
         <h2 v-if="isDesktop" class="title-description"> Explorez et partagez les meilleurs endroits de la ville lumière</h2>
         <h2 v-if="!isDesktop" class="title-description"> les meilleurs endroits de la ville lumière</h2>
       </div>
@@ -17,13 +17,12 @@
     </div>
   </div>
 
-
   <div v-if="isDesktop" class="top-desktop-menu">
     <nav class="theme-banner">
       <ul @mouseover="startHover" @mouseout="endHover">
         <li><a class="theme-link culture-link" href="#Culture">Culture</a></li>
         <li><a class="theme-link  food-and-drink-link" href="#FoodAndDrink">Food & Drink</a></li>
-        <li><a class="theme-link  loisir-link" href="#Loisir">Loisir</a></li>
+        <li><a class="theme-link  loisir-link" href="#Loisir">Loisirs</a></li>
       </ul>
 
       <darkThemeComponent @click="handleToggle" />
@@ -118,7 +117,7 @@ export default {
 
       if (this.isFixed) {
 
-        this.TitleIfTopMenu = "L'ets Go Out To Paris";
+        this.TitleIfTopMenu = "L'ets Go Out in Paris";
 
       } else {
         this.TitleIfTopMenu = "";
