@@ -1,15 +1,12 @@
 <template>
   <Header />
 
-  <button v-if="isDesktop" class="create-review">créer une review</button>
+ 
 
   <button v-if="isScrolledY" class="create-review-after-scrollY">créer une review</button>
 
   <main class="cards-container">
 
- 
-
-  
 
     <ReviewCard v-for="review in displayReviews(reviews)" :key="review.id" :theme="review.theme"
       :arrondissement="review.district_num" :placeName="review.place_name" :imageUrl="review.secure_url" />

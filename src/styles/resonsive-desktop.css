@@ -58,8 +58,8 @@ background :#afe2e2;
     display: inline-flex;
     height: 1.6rem;
     align-items: flex-end;
-    margin-right: 12rem;
-    margin-top: 11rem;
+    margin-right: 3rem;
+    margin-top: 13rem;
     color: #462243;
     font-family: "Courgette";
     font-size: auto;
@@ -77,7 +77,7 @@ background :#afe2e2;
 
   button.create-review {
 
-    position: absolute;
+   
     right: 10rem;
     color: rgb(68, 50, 71);
     background-color: rgb(210, 203, 218);

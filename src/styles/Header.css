@@ -7,7 +7,7 @@
   position: relative;
   right: 0rem;
   top: -3.7px;
-
+ 
 }
 
 img.moon,
@@ -192,20 +192,24 @@ li:hover {
 
 .theme-banner {
 
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   position: relative;
- 
+  width:100%;
  
 }
 
 .theme-link {
- font-family:"Montserra";
-  
+ font-family: "Exo 2", sans-serif;
+  color:#3aafad;
 } 
 
 
+.create-link {
 
+
+}
 
 
 ul {
@@ -222,6 +226,13 @@ ul {
 
 }
 
+.link-create-review {
+  display: flex;
+  gap:0.6rem;
+  align-items: center;
+  margin-left: 5rem;
+}
+
 @keyframes textShine {
   0% {
     background-position: 0% 50%;
@@ -231,7 +242,6 @@ ul {
     background-position: 100% 50%;
   }
 }
-
 
 
 a {
@@ -293,6 +303,12 @@ a.loisir-link:hover {
   animation: textShine 2s ease-in-out infinite alternate;
 
 
+}
+
+.logo-camera {
+  
+  height:2.5rem;
+  width: 2.5rem;
 }
 
 

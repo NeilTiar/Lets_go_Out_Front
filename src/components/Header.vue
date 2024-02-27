@@ -6,13 +6,17 @@
       <div class="container-logo-title">
         <!-- <img class=" logo" src="" alt="logo">-->
         <h1 class="header-title">Let's go out in Paris</h1>
-        <h2 v-if="isDesktop" class="title-description"> Explorez et partagez les meilleurs endroits de la ville lumière</h2>
+        <h2 v-if="isDesktop" class="title-description"> Explorez et partagez les meilleurs endroits de la ville lumière
+        </h2>
         <h2 v-if="!isDesktop" class="title-description"> les meilleurs endroits de la ville lumière</h2>
       </div>
       <div v-bind:class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
         @mouseover="startHover" @mouseout="endHover">
         <img class="user-logo" src="../assets/user.png" alt="user">
         <div class="msg-user-logo">Bonjour, Neil</div>
+        <div class="dark-button-container">
+          <darkThemeComponent v-if="isDesktop" @click="handleToggle" />
+        </div>
       </div>
     </div>
   </div>
@@ -23,9 +27,17 @@
         <li><a class="theme-link culture-link" href="#Culture">Culture</a></li>
         <li><a class="theme-link  food-and-drink-link" href="#FoodAndDrink">Food & Drink</a></li>
         <li><a class="theme-link  loisir-link" href="#Loisir">Loisirs</a></li>
+        <div class="container-create-review-link">
+          <li class="link-create-review"><a class="theme-link  create-link" href="#create">Creer une review </a>
+            <div class="logo-container">
+              <img class="logo-camera" src="../assets/black-camera.png" alt="logo-camera">
+            </div>
+          </li>
+
+        </div>
       </ul>
 
-      <darkThemeComponent @click="handleToggle" />
+
     </nav>
   </div>
 
