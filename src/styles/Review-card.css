@@ -2,18 +2,18 @@
 
   margin: auto;
   display: flex;
-  margin-top: 0.7rem;
   flex-direction: column;
-  background-color: rgb(124, 108, 136);
+
+background: rgb(255,255,255);
+
   border-radius: 9px;
   width: 90%;
   height :max-content;
   border-radius: 2%;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 1rem;
+  min-height: 24rem;
   
 }
-
 
 
 .card-review {
@@ -32,53 +32,67 @@ img.card-image {
   object-fit: cover;
   width: 140rem;
   height: 20vh;
-  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.3);
+  
   position: relative;
   justify-content: center;
 
 }
 
 .card-details {
-  
-  font-family: 'Pacifico', sans-serif;
+
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: bold;
   display: flex;
   color: white;
   margin: 0.5rem 0 0 0.7rem;
+  
+
 }
 
 
 .card-theme {
-
- 
+  
+  height: max-content;
   writing-mode: vertical-rl; /* Cette valeur affiche le texte de haut en bas */
-  font-family: 'courgette';
+  font-family:'Times New Roman', Times, serif; 
   font-size: 1.8rem;
-  text-shadow: inset 5px 5px 7px rgba(015, 0, 0, 0.3);
   margin:0 0 1.5rem 0;
   position: absolute;
   top:0.4rem;
-  left:-2.1rem;
-  color: rgb(137, 120, 148);
-  font-weight: 800;
+  left:-1.8rem;
+  color:#3aafad;
   justify-content: flex-end;
+
 }
+
 
 .card-info {
-
   
-  font-size: 1rem;
+  padding-left:0.3rem;
   margin-bottom: 1rem;
+  color:rgb(0, 0, 0);
 }
 
-p.detail {
+.place-name {
 
-  text-shadow: 4px 4px 3px rgba(015, 0, 0, 0.3);
-  margin: 0;
+  font-size: 1.6rem;
+  margin-right:0.3rem;
+  font-weight: lighter;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+ 
 }
 
 .arrondissement {
-  font-size: 1.5rem;
+ 
+  font-size: 1.4rem;
+  font-weight: 200;
+  font-style: italic;
+  margin: 0;
+  color:rgb(128, 128, 128);
+  
 }
+
+
 
 /*gestion dynamique des couleurs pour le theme */
 
@@ -88,3 +102,10 @@ p.detail {
   --color-food-drink: 
 }*/
 
+@media screen and (max-width : 500px){
+
+.card-container{
+
+  margin-right: 0.6rem;
+}
+}

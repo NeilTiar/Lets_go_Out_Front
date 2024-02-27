@@ -63,9 +63,7 @@ button {
 
 .button-container {
 
-  position: absolute;
-  right: 10px;
-  align-items: center;
+ margin-left: 0.8rem;
 }
 
 

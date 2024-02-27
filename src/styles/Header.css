@@ -7,7 +7,7 @@
   position: relative;
   right: 0rem;
   top: -3.7px;
-
+ 
 }
 
 img.moon,
@@ -42,7 +42,7 @@ img.sun {
 
 .top-main {
 
-
+  margin-bottom: 3.7rem;
   z-index: 1;
   display: inline-flex;
   justify-content: space-between;
@@ -149,11 +149,11 @@ li:hover {
   display: flex;
   justify-content: space-between;
   top: 0;
-  height: 7.5rem;
+  height: 10rem;
   margin-bottom: 0.5rem;
-  background: url('../assets/paris.jpg') center center no-repeat;
+  background: url('../assets/paris2.jpg') center center no-repeat;
   background-size: cover;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+
 }
 
 
@@ -172,6 +172,7 @@ li:hover {
 
 .container-logo-title {
   display: flex;
+  margin-top: 1rem;
   font-family: 'Courgette';
   flex-direction: column;
   text-shadow: 1px 1px white, 4px -1px #444;
@@ -181,6 +182,7 @@ li:hover {
 }
 
 .title-description {
+
   margin: 0;
   color: white;
   width: 100%;
@@ -190,14 +192,24 @@ li:hover {
 
 .theme-banner {
 
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   position: relative;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  width:100%;
+ 
 }
 
+.theme-link {
+ font-family: "Exo 2", sans-serif;
+  color:#3aafad;
+} 
 
 
+.create-link {
+
+
+}
 
 
 ul {
@@ -214,6 +226,13 @@ ul {
 
 }
 
+.link-create-review {
+  display: flex;
+  gap:0.6rem;
+  align-items: center;
+  margin-left: 5rem;
+}
+
 @keyframes textShine {
   0% {
     background-position: 0% 50%;
@@ -223,7 +242,6 @@ ul {
     background-position: 100% 50%;
   }
 }
-
 
 
 a {
@@ -285,6 +303,12 @@ a.loisir-link:hover {
   animation: textShine 2s ease-in-out infinite alternate;
 
 
+}
+
+.logo-camera {
+  
+  height:2.5rem;
+  width: 2.5rem;
 }
 
 
@@ -355,6 +379,7 @@ img.user-logo {
 }
 
 
+
 @media screen and (max-width:391px) {
 
   .container-logo-title {
@@ -373,6 +398,8 @@ img.user-logo {
     margin-top: 0.5rem;
   }
 
+ 
+
 }
 
 @media screen and (max-width:300px) {
@@ -387,6 +414,9 @@ body{
 }
 
 .top-main {
+
+
+  margin-bottom: 12rem;
   display: flex;
   align-items: center;
 }

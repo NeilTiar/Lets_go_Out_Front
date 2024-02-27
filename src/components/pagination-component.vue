@@ -120,22 +120,22 @@ export default {
   width: 44px;
   height: 44px;
   cursor: pointer;
-  background-color: rgb(124, 108, 136);
-  ;
+  background-color:#e7f4fc;
+  border-radius: 8px;
   border: none;
-  color: #f3f8f7;
-  border-inline: 0.5px solid #1abc9c;
+  color: #000000;
+ 
   font-size: 1.3rem;
-  font-family: "courgette", cursive;
+  font-family:'Times New Roman', Times, serif;
 }
 
 .pagination .active-page {
-  background-color: #1abc9c;
+  background-color:#5cd4c6;;
   color: #2c3e50;
 }
 
 .pagination .paginate-buttons:hover {
-  background-color: #574288;
+  background-color: #ede3f3;
 }
 
 .pagination .active-page:hover {
