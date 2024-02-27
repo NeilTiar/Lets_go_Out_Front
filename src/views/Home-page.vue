@@ -11,8 +11,8 @@
 
             <div class="right-link">
 
-                <a href="../static_html/signup.html" class="home-link registration">Inscription</a>
-                <a href="../static_html/login.html" class="home-link connexion">S'identifier</a>
+                <a href="signup" class="home-link registration">Inscription</a>
+                <a href="login" class="home-link connexion">S'identifier</a>
             </div>
         </div>
 
@@ -30,9 +30,7 @@
 
             <article>
                 <p class="home-description">
-
-                    Explorez la Ville Lumière grace à votre 
-                    plateforme interactive qui vous permet de découvrir la vie parisienne d'une manière captivante.
+                    Explorez la Ville Lumière grace à votre plateforme interactive qui vous propose de préparez vos prochaines sorties plus simplement.
                 </p>
             </article>
 
@@ -89,6 +87,9 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 2rem;
+    height: 4rem;
+    border-radius: 0  0 9px  6px ;
 
 }
 
@@ -112,8 +113,9 @@ export default {
 
 
 .home-title-description {
-    position: relative;
 
+    position: relative;
+    margin-top: 5rem;
     font-family: 'Times New Roman', Times, serif;
     color: rgb(255, 255, 255);
     font-weight: bold;
@@ -145,7 +147,7 @@ article {
 
     justify-content: start;
     align-items: center;
-    margin-left: 1rem;
+    margin: 8rem 0  0 1rem;
     width: 40%;
     color :#010703;
     font-size: 2.3rem;
@@ -187,7 +189,7 @@ header {
 .right-link {
 
     display: flex;
-    gap: 1rem;
+    gap: 3rem;
     margin-right: 1rem;
     
 }
@@ -195,7 +197,6 @@ header {
 
 
 .container-home-background-img {
-
 
     justify-content: end;
     border-radius: 15px 0 0 15px;
@@ -210,7 +211,8 @@ header {
 }
 
 .home-background-img {
-
+   
+    margin-top: 6rem;
     position: absolute;
     border-radius: 25px 0 0 25px;
     width: 65%;
