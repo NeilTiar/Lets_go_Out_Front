@@ -79,7 +79,7 @@ export default {
     /* Rend le texte transparent */
     display: inline-block;
     font-size: 3.2rem;
-    margin-left: 2rem;
+    margin-left: 4rem;
 
 }
 
