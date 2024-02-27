@@ -32,7 +32,6 @@ img.card-image {
   object-fit: cover;
   width: 140rem;
   height: 20vh;
-  
   position: relative;
   justify-content: center;
 
@@ -54,7 +53,7 @@ img.card-image {
   
   height: max-content;
   writing-mode: vertical-rl; /* Cette valeur affiche le texte de haut en bas */
-  font-family:'Times New Roman', Times, serif; 
+  font-family: "Exo 2", sans-serif;
   font-size: 1.8rem;
   margin:0 0 1.5rem 0;
   position: absolute;

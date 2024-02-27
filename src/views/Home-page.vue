@@ -5,89 +5,154 @@
 
     <div class="main">
 
-        <div class="home-banner">
-            <div class="home-link left-link">
-                <a href="main" class="home-link reviews-acces">àcceder aux reviews</a>
-            </div>
+        <div class="top-title-login-connexion">
+
+            <h1 class="title">Let's go out in paris</h1>
+
             <div class="right-link">
-                <a href="../static_html/signup.html" class="home-link registration">inscription</a>
-                <a href="../static_html/login.html" class="home-link connexion">connection</a>
+
+                <a href="../static_html/signup.html" class="home-link registration">Inscription</a>
+                <a href="../static_html/login.html" class="home-link connexion">S'identifier</a>
             </div>
         </div>
 
 
-        <div class="home_title-description-container">
 
+        <div class="container-home-background-img">
 
+            <img class="home-background-img" src="../assets/lgopHomePagePicture.jpg"
+                alt="par une journée ensoleillée ,des cyclistes circule sur un pont avec la tour efeil en arriere plan">
 
-
-
-            <div class="home_title-description">
-
-                <header>
-                    <p class="bienvenu">bienvenu sur </p>
-                    <h1 class="home-title"> Let's Go Out in Paris</h1>
-                </header>
-
-                <article>
-                    <p class="home-description">
-                        Explorez la Ville Lumière comme jamais auparavant avec notre
-                        plateforme interactive qui vous révèle les trésors cachés et les
-                        joyaux de Paris. "Let's Go Out in Paris" vous offre une expérience
-                        unique pour découvrir la vie parisienne d'une manière captivante.
-                    </p>
-
-                </article>
-            </div>
         </div>
+
+        <div class="home-title-description">
+
+
+            <article>
+                <p class="home-description">
+
+                    Explorez la Ville Lumière grace à votre 
+                    plateforme interactive qui vous permet de découvrir la vie parisienne d'une manière captivante.
+                </p>
+            </article>
+
+
+
+        </div>
+
+
+ 
+
     </div>
+
+<div class="access-reviews"><a href="main" class="home-link reviews-acces">àcceder aux reviews</a></div>
+
+
+   
 </template>
 
 <script>
+
+
 export default {
+
     name: 'HomeView', // or 'HomeContainer'
     // other component options
 };
 </script>
 
-<style>
+<style scoped>
+
+.access-reviews{
+    margin: 12rem 0 0 11rem ;
+    height: max-content
+}
 
 
-.main {
+.title {
 
-    background-image: url(../assets/lgopHomePagePicture.jpg);
+    font-family: "Courgette", cursive;
+    background: linear-gradient(to right, rgb(174, 218, 202), rgb(62, 24, 112));
+    -webkit-background-clip: text;
+    /* Safari and older versions of Chrome, Edge, and Opera */
+    color: transparent;
+    /* Rend le texte transparent */
+    display: inline-block;
+    font-size: 3.2rem;
+    margin-left: 2rem;
+
+}
+
+
+.top-title-login-connexion {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+.home-background-img {
+    position: absolute;
     background-size: cover;
+    background-position: center 8rem;
+    background-repeat: no-repeat;
+    height: 85vh;
+    z-index: -2
 }
 
 .home_title-description-container {
 
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%
+
 }
 
 
+.home-title-description {
+    position: relative;
 
-.home_title-description {
-
-    font-family: "Courgette", cursive;
-    height: 100vh;
-    width: 60%;
+    font-family: 'Times New Roman', Times, serif;
     color: rgb(255, 255, 255);
     font-weight: bold;
-    text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+    text-shadow: 1px 0.5px 0.6px rgb(193, 187, 204);
+    z-index: 1;
+
 }
 
+
+
 .home-title {
-    font-size: 5rem;
-    text-align: center;
+
+    font-size: 2.5rem;
+    font-family: "Courgette", cursive;
+    color: rgb(29, 138, 120);
+    margin: 0;
+    padding: 0;
 }
 
 .home-description {
+
+    margin-top: 4rem;
+    width: 80%;
     text-align: center;
-    font-size: 2rem;
+
+}
+
+article {
+
+    justify-content: start;
+    align-items: center;
+    margin-left: 1rem;
+    width: 40%;
+    color :#010703;
+    font-size: 2.3rem;
+    font-weight: 350;
+    display: inline-block;
+    font-family: "Poiret One", sans-serif;
+
 }
 
 .home-banner {
@@ -95,15 +160,17 @@ export default {
     display: flex;
     justify-content: space-between;
     z-index: 1;
+    height: 2rem;
 
 }
 
 .home-link {
+
     font-size: 1.8rem;
-    color: white;
-    text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
+    color: rgba(22, 182, 168, 0.534);
+    font-family: "Exo 2", sans-serif;
     font-weight: 600;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto
+   
 }
 
 header {
@@ -112,18 +179,43 @@ header {
 }
 
 .bienvenu {
+
     text-align: center;
     font-size: 3rem;
 }
 
 .right-link {
+
     display: flex;
     gap: 1rem;
     margin-right: 1rem;
+    
 }
 
-.reviews-acces {
 
-    margin-left: 1rem;
+
+.container-home-background-img {
+
+
+    justify-content: end;
+    border-radius: 15px 0 0 15px;
+    margin-top: 3rem;
+
+
+}
+
+.container-home-background-img ::before {
+    background-image: url('../assets/lgopHomePagePicture.jpg');
+
+}
+
+.home-background-img {
+
+    position: absolute;
+    border-radius: 25px 0 0 25px;
+    width: 65%;
+    height: 65%;
+    right: 0;
+    z-index: -2;
 }
 </style>
