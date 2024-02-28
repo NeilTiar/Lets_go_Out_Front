@@ -6,6 +6,7 @@ import SignupPageVue from '@/views/Signup-page.vue';
 import LoginPageVue from '@/views/Login-page.vue';
 
 const routes = [
+  
   {
     path: '/main',
     name: 'Main-Reviews',
