@@ -206,11 +206,6 @@ li:hover {
 } 
 
 
-.create-link {
-
-
-}
-
 
 ul {
 
@@ -463,4 +458,13 @@ img.card-image {
 }
 
 
+}
+
+@media screen and (max-width: 1300px ) {
+
+  ul {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+  }
 }
