@@ -1,7 +1,7 @@
 <template>
   <Header />
 
- 
+ <div class="container-main-reviews">
 
   <button v-if="isScrolledY" class="create-review-after-scrollY">créer une review</button>
 
@@ -26,6 +26,7 @@
      
    </PaginationMobileComponent>
 
+</div>
 
   <Footer />
 </template>
@@ -244,7 +245,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0;
-
+  margin: 0;
 }
 
 .create-review-mobile {
@@ -262,7 +263,6 @@ body {
   text-shadow: 4px 4px 3px rgba(015, 0, 0, 0.3);
   border-radius: 25px;
   font-weight: 400;
-
 }
 
 

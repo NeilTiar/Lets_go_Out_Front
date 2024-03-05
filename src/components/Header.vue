@@ -1,11 +1,13 @@
 <template>
-  <div class="header-container" :class="{ 'desktop-style': isDesktop, 'mobile-style': !isDesktop }">
+  <div class="header-container" :class="{ 'desktop-style': isDesktop, 'mobile-style': !isDesktop }" @scroll-up="handleScroll">
 
     <div class="header">
 
       <div class="container-logo-title">
         <!-- <img class=" logo" src="" alt="logo">-->
-        <h1 class="header-title">Let's go out in Paris</h1>
+        <h1 >
+        <a class="header-title" href="/">Let's go out in Paris</a>
+        </h1>
         <h2 v-if="isDesktop" class="title-description"> Explorez et partagez les meilleurs endroits de la ville lumière
         </h2>
         <h2 v-if="!isDesktop" class="title-description"> les meilleurs endroits de la ville lumière</h2>
@@ -87,6 +89,8 @@ export default {
       isClassPresent: false,
       TitleIfTopMenu: "",
       isDesktop: window.innerWidth > 768,
+      previousScrollY : 0,
+      isScrollingUpX : false,
     };
 
   },
@@ -99,6 +103,8 @@ export default {
     window.addEventListener('resize', this.handleResize);
 
   },
+
+
   beforeUnmount() {
 
     window.removeEventListener('scroll', this.handleScroll);
@@ -113,27 +119,32 @@ export default {
 
   methods: {
 
+
     handleToggle() {
       this.isActive = !this.isActive;
 
     },
 
+
     handleScroll() {
+      
       const title = document.querySelector('h1');
       const titleBounding = title.getBoundingClientRect();
       this.isFixed = titleBounding.bottom <= 0;
       this.updateDynamicText();
+      
     },
 
     updateDynamicText() {
-
-      if (this.isFixed) {
-
+  
+      if (this.isFixed ) {
         this.TitleIfTopMenu = "L'ets Go Out in Paris";
 
       } else {
         this.TitleIfTopMenu = "";
       }
+
+     
     },
 
     handleResize() {
@@ -151,4 +162,5 @@ export default {
 
 <style scoped>
 @import url('../styles/Header.css');
+
 </style>

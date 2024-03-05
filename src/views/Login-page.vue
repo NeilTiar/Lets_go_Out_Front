@@ -1,4 +1,7 @@
 <template>
+
+<body>
+    
     <h1 class="title">Let's go out in paris</h1>
 
     <div class="container-login">
@@ -45,11 +48,12 @@
 
         </section>
 
-
-
     </div>
 
     <Footer />
+
+    </body>
+
 </template>
 
 
@@ -65,6 +69,7 @@ export default {
         return {
             email: "",
             password: "",
+            pseudo: "",
             errorMessage: null,
             connectionMessage: null,
         };
@@ -113,8 +118,8 @@ export default {
                         this.$router.push('/main');
                     }, 1500);
                     // Traitement de la réponse si nécessaire
-
-
+                    return responseData
+                    
 
                 } else {
 
@@ -144,6 +149,10 @@ export default {
 </script>
 
 <style scoped>
+
+
+
+
 .title {
 
     font-family: "Courgette", cursive;
@@ -162,19 +171,16 @@ export default {
 
     display: flex;
     border: 1px solid black;
-    height: 63vh;
+    height: max-content;
     max-width: 80%;
-    margin: 1.7rem auto 4rem auto;
+    margin: auto;
     border-radius: 15px;
     background-color: rgb(249, 254, 255);
+    margin-bottom: auto;
 }
 
 
-Footer {
 
-    display: flex;
-    flex: 1;
-}
 
 
 
@@ -192,6 +198,7 @@ Footer {
 
     display: flex;
     flex-direction: column;
+    padding-left: 1rem;
     align-items: center;
     justify-content: center;
     width: 65%;
@@ -258,6 +265,7 @@ Footer {
     justify-content: center;
     align-items: center;
     font-size: 1.3rem;
+    padding: 0 2rem ;
 }
 
 .proposal-registration {
@@ -302,17 +310,31 @@ Footer {
     color: rgb(44, 233, 160);
 }
 
+.button-container {
+    margin-bottom: 2rem;
+}
+
+
+
 @media screen and (max-width : 500px) {
 
+
+
+html {
+    background-color: aqua;
+}
+
     .container-login {
+     
         height: max-content;
         flex-direction: column;
         border: none;
     }
 
-    .form-connection {
+    .signup-link {
 
-        width: 100vw;
+margin-bottom: 2rem;
+      
     }
 
     .connection {
@@ -325,12 +347,13 @@ Footer {
     }
 
     .title {
-
-        margin: 0 auto 0 2rem;
+        
+        margin: 0 auto 2rem 2rem;
     }
 
     .title-connection {
         height: max-content;
+        margin-bottom: 2rem;
     }
 
     .link-to-signup {
@@ -339,7 +362,8 @@ Footer {
     }
 
     .proposal-registration {
-
+ 
+        margin-bottom: 2rem;
         width: 90vw;
         font-size: 1.1rem;
     }
@@ -360,19 +384,21 @@ Footer {
         font-size: 1.5rem;
     }
 
-    #username {
-        margin-bottom: 1.5rem;
+    #username,
+    #password {
+        margin: 0.3rem 0;
+    }
+
+    #username{
+        margin-bottom: 1rem;
     }
 
     .button-container {
 
         display: flex;
         justify-content: center;
-    }
+        margin-bottom: 4rem;
 
-    .send-form-button {
-
-        margin: 2rem 0;
     }
 
 }
