@@ -100,6 +100,10 @@ export default {
       this.hideButton = true;
     }, 4000);
 
+    const pseudo = this.$store.state.pseudo;
+
+    console.log("pseudo transmit via store page Main-review: ",pseudo )
+
   },
 
   computed: {

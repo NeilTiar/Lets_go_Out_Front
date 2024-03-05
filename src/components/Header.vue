@@ -15,7 +15,7 @@
       <div v-bind:class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
         @mouseover="startHover" @mouseout="endHover">
         <img class="user-logo" src="../assets/user.png" alt="user">
-        <div class="msg-user-logo">Bonjour, Neil</div>
+        <div class="msg-user-logo">Bonjour, {{pseudo}}</div>
         <div class="dark-button-container">
           <darkThemeComponent v-if="isDesktop" @click="handleToggle" />
         </div>
@@ -71,6 +71,8 @@
 
 import darkThemeComponent from '@/components/dark-theme-component.vue';
 
+// eslint-disable-next-line no-unused-vars
+import store from '../store/store'
 
 export default {
 
@@ -91,13 +93,16 @@ export default {
       isDesktop: window.innerWidth > 768,
       previousScrollY : 0,
       isScrollingUpX : false,
+      pseudo : this.$store.state.pseudo || "visitor"
+      
     };
 
   },
 
 
   mounted() {
-
+   
+    
     window.addEventListener('scroll', this.handleScroll);
 
     window.addEventListener('resize', this.handleResize);

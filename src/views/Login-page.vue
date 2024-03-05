@@ -1,66 +1,65 @@
 <template>
+    <body>
 
-<body>
-    
-    <h1 class="title">Let's go out in paris</h1>
+        <h1 class="title">Let's go out in paris</h1>
 
-    <div class="container-login">
+        <div class="container-login">
 
-        <section class="connection">
+            <section class="connection">
 
-            <div class="title-connection">
-                <h2>Se connecter :</h2>
-            </div>
-
-            <div v-if="errorMessage" class="error-message">
-                {{ errorMessage }}
-            </div>
-
-            <div v-if="connectionMessage" class="connection-message">
-                {{ connectionMessage }}
-            </div>
-
-
-
-            <form class="form-connection" @submit.prevent="submitForm">
-
-                <label class="label-login" for="username">Identifiant:</label>
-                <input class="input-login" type="text" id="username" v-model="email" required>
-
-                <label class="label-login" for="password">Mot de passe:</label>
-                <input class="input-login" type="password" id="password" v-model="password" required>
-
-                <a href="forgoten-password" class="forgoten-password">mot de passe oublié</a>
-
-                <div class="button-container">
-                    <button class="send-form-button" type="submit">Connexion</button>
+                <div class="title-connection">
+                    <h2>Se connecter :</h2>
                 </div>
-            </form>
+
+                <div v-if="errorMessage" class="error-message">
+                    {{ errorMessage }}
+                </div>
+
+                <div v-if="connectionMessage" class="connection-message">
+                    {{ connectionMessage }}
+                </div>
 
 
-        </section>
 
-        <section class="signup-link">
-            <p class="question">Vous n’avez pas encore votre compte let’s go out ?</p>
-            <p class="proposal-registration">inscrivez vous dès maintenant,Afin de créer vos propres reviews et alimenter
-                votre liste coup de cœur dés maintenant</p>
-            <a href="signup" class="link-to-signup">créer votre compte</a>
+                <form class="form-connection" @submit.prevent="submitForm">
 
-        </section>
+                    <label class="label-login" for="username">Identifiant:</label>
+                    <input class="input-login" type="text" id="username" v-model="email" required>
 
-    </div>
+                    <label class="label-login" for="password">Mot de passe:</label>
+                    <input class="input-login" type="password" id="password" v-model="password" required>
 
-    <Footer />
+                    <a href="forgoten-password" class="forgoten-password">mot de passe oublié</a>
+
+                    <div class="button-container">
+                        <button class="send-form-button" type="submit">Connexion</button>
+                    </div>
+                </form>
+
+
+            </section>
+
+            <section class="signup-link">
+                <p class="question">Vous n’avez pas encore votre compte let’s go out ?</p>
+                <p class="proposal-registration">inscrivez vous dès maintenant,Afin de créer vos propres reviews et
+                    alimenter
+                    votre liste coup de cœur dés maintenant</p>
+                <a href="signup" class="link-to-signup">créer votre compte</a>
+
+            </section>
+
+        </div>
+
+        <Footer />
 
     </body>
-
 </template>
 
 
 <script>
 
 import Footer from '../components/Footer.vue';
-
+import store from '../store/store'
 
 export default {
 
@@ -102,7 +101,8 @@ export default {
                     body: JSON.stringify({
 
                         email: this.email,
-                        password: this.password
+                        password: this.password,
+                        
                     }),
 
                 })
@@ -112,6 +112,16 @@ export default {
                 if (response.ok) {
 
                     const responseData = await response.json();
+
+                    console.log("responsData : ", responseData)
+
+                   const newPseudo = responseData.pseudo;
+
+                    await store.dispatch('updatePseudo', newPseudo);
+
+                    // Vous pouvez également accéder au pseudo mis à jour directement à partir du store
+                    console.log('Pseudo mis à jour :', store.state.pseudo);
+
                     this.connectionMessage = responseData.message[1]
                     console.log('message de success :', responseData.message[1]);
                     setTimeout(() => {
@@ -119,7 +129,7 @@ export default {
                     }, 1500);
                     // Traitement de la réponse si nécessaire
                     return responseData
-                    
+
 
                 } else {
 
@@ -149,10 +159,6 @@ export default {
 </script>
 
 <style scoped>
-
-
-
-
 .title {
 
     font-family: "Courgette", cursive;
@@ -265,7 +271,7 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 1.3rem;
-    padding: 0 2rem ;
+    padding: 0 2rem;
 }
 
 .proposal-registration {
@@ -320,12 +326,12 @@ export default {
 
 
 
-html {
-    background-color: aqua;
-}
+    html {
+        background-color: aqua;
+    }
 
     .container-login {
-     
+
         height: max-content;
         flex-direction: column;
         border: none;
@@ -333,8 +339,8 @@ html {
 
     .signup-link {
 
-margin-bottom: 2rem;
-      
+        margin-bottom: 2rem;
+
     }
 
     .connection {
@@ -347,7 +353,7 @@ margin-bottom: 2rem;
     }
 
     .title {
-        
+
         margin: 0 auto 2rem 2rem;
     }
 
@@ -362,7 +368,7 @@ margin-bottom: 2rem;
     }
 
     .proposal-registration {
- 
+
         margin-bottom: 2rem;
         width: 90vw;
         font-size: 1.1rem;
@@ -378,7 +384,7 @@ margin-bottom: 2rem;
     }
 
     .question {
-        
+
         width: 90vw;
         margin: 1rem 0 0 2rem;
         font-size: 1.5rem;
@@ -389,7 +395,7 @@ margin-bottom: 2rem;
         margin: 0.3rem 0;
     }
 
-    #username{
+    #username {
         margin-bottom: 1rem;
     }
 
