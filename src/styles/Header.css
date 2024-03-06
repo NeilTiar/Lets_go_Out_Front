@@ -7,7 +7,7 @@
   position: relative;
   right: 0rem;
   top: -3.7px;
- 
+
 }
 
 img.moon,
@@ -56,14 +56,17 @@ img.sun {
 
 .create-review-banner {
 
-  background-color: rgb(137, 120, 148);
+  margin-top: 0.5rem;
+  background-color: rgb(36, 255, 200);
   font-family: "Kalam", sans-serif;
-  border-radius: 15px;
+  border-radius: 9px;
   color: #ffffff;
   height: max-content;
   width: max-content;
   font-size: 1.2rem;
-  text-shadow: 7px 7px 3px rgba(015, 0, 0, 0.3);
+  font-weight: 600;
+  border: none;
+
 
 }
 
@@ -185,7 +188,7 @@ li:hover {
   margin: 0;
   color: white;
   width: 100%;
- 
+
 }
 
 
@@ -195,14 +198,14 @@ li:hover {
   display: flex;
   align-items: center;
   position: relative;
-  width:100%;
- 
+  width: 100%;
+
 }
 
 .theme-link {
- font-family: "Exo 2", sans-serif;
-  color:#3aafad;
-} 
+  font-family: "Exo 2", sans-serif;
+  color: #3aafad;
+}
 
 
 
@@ -222,7 +225,7 @@ ul {
 
 .link-create-review {
   display: flex;
-  gap:0.6rem;
+  gap: 0.6rem;
   align-items: center;
   margin-left: 5rem;
 }
@@ -300,8 +303,8 @@ a.loisir-link:hover {
 }
 
 .logo-camera {
-  
-  height:2.5rem;
+
+  height: 2.5rem;
   width: 2.5rem;
 }
 
@@ -330,7 +333,7 @@ a.loisir-link:hover {
 
 .container-user-connexion-mobile {
 
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -341,7 +344,7 @@ a.loisir-link:hover {
   font-weight: 800;
   margin-bottom: 0.3rem;
   background-color: rgba(0, 5, 0, 0.5);
-  height:50%;
+  height: 50%;
   margin: auto 0 1rem 0;
   border-radius: 25px;
 }
@@ -351,7 +354,7 @@ a.loisir-link:hover {
 
   display: flex;
   margin: 0.2rem 0 0 1rem;
-  
+
 }
 
 .img-logo-title {
@@ -387,90 +390,88 @@ img.user-logo {
     align-items: flex-start;
     font-size: clamp(0.5rem, 0.6rem, 0.8rem);
     margin-left: 0.8rem;
-    
+
   }
 
   .title-description {
 
     margin-left: 0.2rem;
     width: 50%;
-    color:#c6d3cf;
+    color: #c6d3cf;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-top: 0.5rem;
   }
 
- 
+
 
 }
 
 @media screen and (max-width:300px) {
 
-body{
-  width: 100vw;
+  body {
+    width: 100vw;
+  }
+
+  .create-review-banner {
+    font-size: 0.8rem;
+
+  }
+
+  .top-main {
+
+
+    margin-bottom: 12rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-button {
+    margin-right: 1rem;
+  }
+
+  .moon-button {
+
+    margin-left: 1rem;
+  }
+
+  .container-logo-title {
+    width: 100vw;
+  }
+
+  footer.Footer {
+
+    width: 100vw;
+  }
+
+  .social-img {
+
+    width: max-content;
+  }
+
+  .mail {
+
+    font-size: 0.7rem;
+    margin-right: 2rem;
+  }
+
+  .mention-legale {
+
+    font-size: 0.5rem;
+  }
+
+  .social-network {
+
+    width: max-content;
+  }
+
+  img.card-image {
+
+    width: 3rem;
+  }
 }
 
-.create-review-banner {
-  font-size: 0.8rem;
-  
-}
 
-.top-main {
-
-
-  margin-bottom: 12rem;
-  display: flex;
-  align-items: center;
-}
-
-.search-button{
-  margin-right: 1rem;
-}
-
-.moon-button {
-
-  margin-left: 1rem;
-}
-
-.container-logo-title  {
-  width: 100vw;
- 
-
-}
-
-footer.Footer{
-
-  width: 100vw;
-}
-
-.social-img {
-  width: max-content;
-}
-
-.mail {
-  font-size: 0.7rem;
-  margin-right: 2rem;
-}
-
-.mention-legale{
-  
- font-size: 0.5rem;
-}
-
-.social-network {
- 
-  width: max-content;
-}
-
-img.card-image {
-  width: 3rem;
-}
-
-
-
-
-}
-
-@media screen and (max-width: 1300px ) {
+@media screen and (max-width: 1300px) {
 
   ul {
     display: flex;

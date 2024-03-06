@@ -1,21 +1,24 @@
 <template>
-  <div class="header-container" :class="{ 'desktop-style': isDesktop, 'mobile-style': !isDesktop }" @scroll-up="handleScroll">
+
+  <div class="header-container" :class="{ 'desktop-style': isDesktop, 'mobile-style': !isDesktop }"
+    @scroll-up="handleScroll">
 
     <div class="header">
 
       <div class="container-logo-title">
         <!-- <img class=" logo" src="" alt="logo">-->
-        <h1 >
-        <a class="header-title" href="/">Let's go out in Paris</a>
+        <h1>
+          <a class="header-title" href="/">Let's go out in Paris</a>
         </h1>
         <h2 v-if="isDesktop" class="title-description"> Explorez et partagez les meilleurs endroits de la ville lumière
         </h2>
         <h2 v-if="!isDesktop" class="title-description"> les meilleurs endroits de la ville lumière</h2>
       </div>
-      <div v-bind:class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
+      <div
+        v-bind:class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
         @mouseover="startHover" @mouseout="endHover">
         <img class="user-logo" src="../assets/user.png" alt="user">
-        <div class="msg-user-logo">Bonjour, {{pseudo}}</div>
+        <div class="msg-user-logo">Bonjour, {{ pseudo }}</div>
         <div class="dark-button-container">
           <darkThemeComponent v-if="isDesktop" @click="handleToggle" />
         </div>
@@ -44,28 +47,33 @@
   </div>
 
 
-  <div v-if="!isDesktop" :class="[{ 'fixed-container': isFixed }, 'top-main']">
+  <div class="top-menu" v-if="!isDesktop" :class="[{ 'fixed-container': isFixed ,'dark-top-menu': isDarkMode }, 'top-main']">
 
     <div class="container-left-button ">
-      <div class="left-buttons">
+      <div :class = "[{'dark-button': isDarkMode }, 'left-buttons']">
         <img src="../assets/filter.png" alt="button-filter" class="buttons filter-button">
         <img src="../assets/search.png" alt="input-search" class="buttons search-button">
       </div>
     </div>
 
     <button class="create-review-banner" v-if="!isFixed">Créer une review</button>
-    <p class='title-to-menu' v-if="isFixed">{{ TitleIfTopMenu }}</p>
+    <p :class="[{'dark-title': isDarkMode}, 'title-to-menu']" v-if="isFixed">{{ TitleIfTopMenu }}</p>
 
 
     <div class="container-right-button">
-      <div class="right-buttons">
-        <img src="../assets/dark-moon.png" alt="moon-button" class="buttons moon-button">
+      <div :class = "[{'dark-button': isDarkMode }, 'right-buttons']">
+           
+
+        <img src="../assets/dark-moon.png" alt="moon-button" class="buttons moon-button  =" @click="isDarkmodeActive"
+          v-if="isDarkmodeActive"
+          :class="{ 'darkTheme': isDarkMode, 'lightTheme': !isDarkMode, 'buttons': true, 'moon-button': true }" />
+
         <img src="../assets/menu.png" alt="menu-button" class="buttons menu-button">
       </div>
     </div>
   </div>
 </template>
-  
+
 <script>
 
 
@@ -91,18 +99,23 @@ export default {
       isClassPresent: false,
       TitleIfTopMenu: "",
       isDesktop: window.innerWidth > 768,
-      previousScrollY : 0,
-      isScrollingUpX : false,
-      pseudo : this.$store.state.pseudo || "visitor"
+      previousScrollY: 0,
+      isScrollingUpX: false,
+      pseudo: this.$store.state.pseudo || "visitor",
+      isDarkMode: false,
       
+
+
+
     };
 
   },
 
 
   mounted() {
-   
-    
+
+    console.log(this.isDarkMode)
+
     window.addEventListener('scroll', this.handleScroll);
 
     window.addEventListener('resize', this.handleResize);
@@ -124,6 +137,24 @@ export default {
 
   methods: {
 
+    isDarkmodeActive() {
+
+      this.isDarkMode = !this.isDarkMode
+      this.darkTheme = !this.darkTheme
+      document.body.style.transition = 'background-color 0.5s ease';
+
+      // Changez la couleur du fond du body
+      document.body.style.backgroundColor = this.isDarkMode ? '#222' : '';
+
+      
+      // Assurez-vous de réinitialiser la transition après la transition terminée pour éviter de l'appliquer à d'autres changements non souhaités
+      setTimeout(() => {
+        document.body.style.transition = '';
+      }, 500);
+      console.log("from func :", this.isDarkMode)
+
+    },
+
 
     handleToggle() {
       this.isActive = !this.isActive;
@@ -132,24 +163,24 @@ export default {
 
 
     handleScroll() {
-      
+
       const title = document.querySelector('h1');
       const titleBounding = title.getBoundingClientRect();
       this.isFixed = titleBounding.bottom <= 0;
       this.updateDynamicText();
-      
+
     },
 
     updateDynamicText() {
-  
-      if (this.isFixed ) {
+
+      if (this.isFixed) {
         this.TitleIfTopMenu = "L'ets Go Out in Paris";
 
       } else {
         this.TitleIfTopMenu = "";
       }
 
-     
+
     },
 
     handleResize() {
@@ -162,10 +193,26 @@ export default {
 };
 
 </script>
-  
+
 
 
 <style scoped>
-@import url('../styles/Header.css');
 
+
+
+.dark-button {
+
+  filter: invert(100%);
+}
+
+.dark-top-menu {
+  background-color: rgb(36, 33, 33);
+}
+
+.dark-title {
+  color: white;
+}
+
+
+@import url('../styles/Header.css');
 </style>
