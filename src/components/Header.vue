@@ -50,8 +50,8 @@
   <div class="top-menu" v-if="!isDesktop" :class="[{ 'fixed-container': isFixed ,'dark-top-menu': isDarkMode }, 'top-main']">
 
     <div class="container-left-button ">
-      <div :class = "[{'dark-button': isDarkMode }, 'left-buttons']">
-        <img src="../assets/filter.png" alt="button-filter" class="buttons filter-button">
+      <div :class = "[{'dark-button': isDarkMode }, 'left-buttons']" >
+        <img src="../assets/filter.png" alt="button-filter" class="buttons filter-button" >
         <img src="../assets/search.png" alt="input-search" class="buttons search-button">
       </div>
     </div>
@@ -64,7 +64,7 @@
       <div :class = "[{'dark-button': isDarkMode }, 'right-buttons']">
            
 
-        <img src="../assets/dark-moon.png" alt="moon-button" class="buttons moon-button  =" @click="isDarkmodeActive"
+        <img src="../assets/dark-moon.png" alt="moon-button" class="buttons moon-button" @click="isDarkmodeActive"
           v-if="isDarkmodeActive"
           :class="{ 'darkTheme': isDarkMode, 'lightTheme': !isDarkMode, 'buttons': true, 'moon-button': true }" />
 

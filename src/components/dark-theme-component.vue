@@ -1,6 +1,6 @@
 <template>
   <div class="button-container">
-    <button @click="toggle" :class="{ 'dark-theme-container': true, 'light-mode': isActive, 'dark-mode': !isActive }">
+    <button @click="() => {toggle(); isDarkModeOn()}" :class="{ 'dark-theme-container': true, 'light-mode': isActive, 'dark-mode': !isActive }">
 
       <template v-if="isActive">
         <span class="light-mode-tag">Light Theme</span>
@@ -42,7 +42,10 @@ export default {
       // Alterne l'état de déplacement du boutton dark mode
     },
 
+   isDarkModeOn() {
 
+    this.$store.dispatch('isDarkmodeActive')
+   }
 
   },
 
@@ -122,13 +125,13 @@ button {
 
 .moved-right {
 
-transition: transform 2s ease; 
+transition: transform 0.6s ease; 
   transform: translateX(85px);
 }
 
 .moved-left {
 
-  transition: transform 2s ease; 
+  transition: transform 0.6s ease; 
   transform: translateX(calc(0% - 85px));
 }
 
