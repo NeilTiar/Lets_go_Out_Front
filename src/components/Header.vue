@@ -54,10 +54,12 @@
         <img src="../assets/filter.png" alt="button-filter" class="buttons filter-button" >
         <img src="../assets/search.png" alt="input-search" class="buttons search-button">
       </div>
+
+       <button class="create-review-banner" v-if="!isFixed">Créer une review</button>
+    <p :class="[{'dark-title': isDarkMode}, 'title-to-menu']" v-if="isFixed">{{ TitleIfTopMenu }}</p>
     </div>
 
-    <button class="create-review-banner" v-if="!isFixed">Créer une review</button>
-    <p :class="[{'dark-title': isDarkMode}, 'title-to-menu']" v-if="isFixed">{{ TitleIfTopMenu }}</p>
+   
 
 
     <div class="container-right-button">
@@ -103,10 +105,7 @@ export default {
       isScrollingUpX: false,
       pseudo: this.$store.state.pseudo || "visitor",
       isDarkMode: false,
-      
-
-
-
+    
     };
 
   },

@@ -194,7 +194,6 @@ li:hover {
 
 .theme-banner {
 
-  margin-top: 2rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -223,10 +222,11 @@ ul {
 
 }
 
-.link-create-review {
+li.link-create-review {
+
+  margin: 0.4rem;
   display: flex;
   gap: 0.6rem;
-  align-items: center;
   margin-left: 5rem;
 }
 
@@ -328,7 +328,6 @@ a.loisir-link:hover {
   text-align: center;
 
 }
-
 
 
 .container-user-connexion-mobile {

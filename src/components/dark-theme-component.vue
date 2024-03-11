@@ -3,14 +3,12 @@
     <button @click="() => {toggle(); isDarkModeOn()}" :class="{ 'dark-theme-container': true, 'light-mode': isActive, 'dark-mode': !isActive }">
 
       <template v-if="isActive">
-        <span class="light-mode-tag">Light Theme</span>
+        <span class="light-mode-tag">Theme clair</span>
       </template>
 
       <template v-if="!isActive">
-        <span class="dark-mode-tag">Dark Theme</span>
+        <span class="dark-mode-tag">Theme Sombre</span>
       </template>
-
-
 
       <div :class="{ 'sun-moon-container': true, 'moved-right': isActive, 'moved-left': !isActive }">
         <img v-if="isActive" src="../assets/sun.png" alt="Sun" class="sun " />
@@ -71,12 +69,12 @@ button {
 
 
 .dark-mode {
-
+  
+   
   display: flex;
   justify-content: flex-end;
   background: rgb(137, 120, 148);
   color: aliceblue;
-  width: auto;
   height: auto;
 }
 
@@ -100,7 +98,7 @@ button {
 
 .sun {
 
-  width: 1.7rem;
+  width: 1.8rem;
   max-height: 70%;
   border: 2.6px solid rgb(137, 120, 148);
   border-radius: 50%;
@@ -126,18 +124,21 @@ button {
 .moved-right {
 
 transition: transform 0.6s ease; 
-  transform: translateX(85px);
+  transform: translateX(92px);
+  width:45%
 }
 
 .moved-left {
 
   transition: transform 0.6s ease; 
-  transform: translateX(calc(0% - 85px));
+  transform: translateX(-100px);
+  width:45%
 }
 
 .light-mode-tag {
 
   font-family: "Courgette";
+  font-size: 1rem;
   font-weight: 800;
   position: absolute;
   left: 13px;
@@ -146,6 +147,7 @@ transition: transform 0.6s ease;
 
 .dark-mode-tag {
 
+  font-size: 1rem;
   font-family: "Courgette";
   font-weight: 800;
   position: absolute;
@@ -155,7 +157,8 @@ transition: transform 0.6s ease;
 
 .dark-theme-container{
   
-  width: 8rem;
+  width: 10rem;
+  z-index: 2;
 }
 
 

@@ -54,6 +54,11 @@ export default createStore({
             }
 
 
+            document.querySelector('.logo-camera').style.filter = this.isDarkMode ? 'invert(100%)' : '';
+            document.querySelector('.msg-user-logo').style.filter = this.isDarkMode ? 'invert(100%)' : '';
+            console.log(document.querySelector('.logo-camera'))
+
+
             // Assurez-vous de réinitialiser la transition après la transition terminée pour éviter de l'appliquer à d'autres changements non souhaités
             setTimeout(() => {
                 document.body.style.transition = '';
