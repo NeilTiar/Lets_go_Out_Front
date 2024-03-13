@@ -186,10 +186,6 @@ export default {
 }
 
 
-
-
-
-
 .form-connection {
 
     display: flex;
@@ -318,6 +314,13 @@ export default {
 
 .button-container {
     margin-bottom: 2rem;
+}
+
+.error-message, 
+.success-message {
+
+display: flex;
+flex-direction: column;
 }
 
 

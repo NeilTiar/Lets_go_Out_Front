@@ -28,43 +28,46 @@
 
   <div v-if="isDesktop" class="top-desktop-menu">
     <nav class="theme-banner">
-      <ul @mouseover="startHover" @mouseout="endHover">
-        <li><a class="theme-link culture-link" href="#Culture">Culture</a></li>
-        <li><a class="theme-link  food-and-drink-link" href="#FoodAndDrink">Food & Drink</a></li>
-        <li><a class="theme-link  loisir-link" href="#Loisir">Loisirs</a></li>
-        <div class="container-create-review-link">
-          <li class="link-create-review"><a class="theme-link  create-link" href="#create">Creer une review </a>
-            <div class="logo-container">
-              <img class="logo-camera" src="../assets/black-camera.png" alt="logo-camera">
-            </div>
-          </li>
 
-        </div>
+      <ul class="themes" @mouseover="startHover" @mouseout="endHover">
+        <li class="theme-link"><a class="theme-link culture-link" href="#Culture">Culture</a></li>
+        <li class="theme-link"><a class="theme-link  food-and-drink-link" href="#FoodAndDrink">Food & Drink</a></li>
+        <li class="theme-link"><a class="theme-link  loisir-link" href="#Loisir">Loisirs</a></li>
       </ul>
+
+      <div class="container-create-review-link">
+        <li class="link-create-review"><a class="create-link" href="#create">Creer une review </a>
+          <div class="logo-container">
+            <img class="logo-camera" src="../assets/black-camera.png" alt="logo-camera">
+          </div>
+        </li>
+
+      </div>
 
 
     </nav>
   </div>
 
 
-  <div class="top-menu" v-if="!isDesktop" :class="[{ 'fixed-container': isFixed ,'dark-top-menu': isDarkMode }, 'top-main']">
+  <div class="top-menu" v-if="!isDesktop"
+    :class="[{ 'fixed-container': isFixed, 'dark-top-menu': isDarkMode }, 'top-main']">
 
     <div class="container-left-button ">
-      <div :class = "[{'dark-button': isDarkMode }, 'left-buttons']" >
-        <img src="../assets/filter.png" alt="button-filter" class="buttons filter-button" >
+      <div :class="[{ 'dark-button': isDarkMode }, 'left-buttons']">
+        <img src="../assets/filter.png" alt="button-filter" class="buttons filter-button">
         <img src="../assets/search.png" alt="input-search" class="buttons search-button">
       </div>
 
-       <button class="create-review-banner" v-if="!isFixed">Créer une review</button>
-    <p :class="[{'dark-title': isDarkMode}, 'title-to-menu']" v-if="isFixed">{{ TitleIfTopMenu }}</p>
+      <button class="create-review-banner" v-if="!isFixed">Créer une review</button>
+      <p :class="[{ 'dark-title': isDarkMode }, 'title-to-menu']" v-if="isFixed">{{ TitleIfTopMenu }}</p>
     </div>
 
-   
+
 
 
     <div class="container-right-button">
-      <div :class = "[{'dark-button': isDarkMode }, 'right-buttons']">
-           
+      <div :class="[{ 'dark-button': isDarkMode }, 'right-buttons']">
+
 
         <img src="../assets/dark-moon.png" alt="moon-button" class="buttons moon-button" @click="isDarkmodeActive"
           v-if="isDarkmodeActive"
@@ -103,9 +106,8 @@ export default {
       isDesktop: window.innerWidth > 768,
       previousScrollY: 0,
       isScrollingUpX: false,
-      pseudo: this.$store.state.pseudo || "visitor",
+      pseudo:this.$store.state.pseudo,
       isDarkMode: false,
-    
     };
 
   },
@@ -113,7 +115,6 @@ export default {
 
   mounted() {
 
-    console.log(this.isDarkMode)
 
     window.addEventListener('scroll', this.handleScroll);
 
@@ -145,7 +146,7 @@ export default {
       // Changez la couleur du fond du body
       document.body.style.backgroundColor = this.isDarkMode ? '#222' : '';
 
-      
+
       // Assurez-vous de réinitialiser la transition après la transition terminée pour éviter de l'appliquer à d'autres changements non souhaités
       setTimeout(() => {
         document.body.style.transition = '';
@@ -196,9 +197,6 @@ export default {
 
 
 <style scoped>
-
-
-
 .dark-button {
 
   filter: invert(100%);

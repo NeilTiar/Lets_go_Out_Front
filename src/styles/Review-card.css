@@ -1,3 +1,7 @@
+
+
+
+
 .card-container {
 
   margin: auto;
@@ -88,6 +92,20 @@ img.card-image {
   
 }
 
+.dark-mode-class {
+
+  background-color: rgb(85, 59, 92);
+}
+
+.dark-card-info {
+
+  color: aliceblue;
+}
+
+.dark-arrondissement {
+
+  color:aliceblue
+}
 
 
 /*gestion dynamique des couleurs pour le theme */

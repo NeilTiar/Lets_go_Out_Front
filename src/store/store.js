@@ -1,11 +1,13 @@
 import { createStore } from 'vuex';
-
+import store from '@/store/store';
 export default createStore({
 
 
     state: {
 
-        pseudo: '', // Initialise le pseudo à une valeur par défaut
+        isDarkMode: false,
+        pseudo: 'visitor', // Initialise le pseudo à une valeur par défaut
+        store: store
     },
 
 
@@ -14,6 +16,20 @@ export default createStore({
         setPseudo(state, pseudo) {
             state.pseudo = pseudo;
         },
+
+        setIsDarkMode(state, isDarkMode) {
+
+            console.log("toggleDarkMode is called");
+            state.isDarkMode = isDarkMode;
+
+        },
+
+        toggleDarkMode(state) {
+            console.log("toggleDarkMode is called");
+            state.isDarkMode = !state.isDarkMode;
+        },
+
+
     },
 
 
@@ -22,6 +38,11 @@ export default createStore({
 
         updatePseudo({ commit }, pseudo) {
             commit('setPseudo', pseudo);
+        },
+
+        setIsDarkMode({ commit }, isDarkMode) {
+            console.log("toggleDarkMode is called");
+            commit('setIsDarkMode', isDarkMode);
         },
 
 
@@ -39,18 +60,18 @@ export default createStore({
 
             // Changez la couleur de fond de la card-container
 
-
-
             if ((cardInfo.length > 0 && cardContainer)) {
-                Array.from(cardInfo).map(card => {
+
+              /*  Array.from(cardInfo).map(card => {
                     card.style.color = this.isDarkMode ? '#caded6' : '';
 
-                    Array.from(cardContainer).map(card => {
-                        card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
+                     Array.from(cardContainer).map(card => {
+                         card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
+ 
+                     })
 
-                    })
+                })*/
 
-                })
             }
 
 

@@ -41,7 +41,7 @@ export default {
     },
 
    isDarkModeOn() {
-
+    this.$store.dispatch("setIsDarkMode", !this.$store.state.isDarkMode);
     this.$store.dispatch('isDarkmodeActive')
    }
 

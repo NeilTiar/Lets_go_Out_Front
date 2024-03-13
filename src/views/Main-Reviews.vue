@@ -1,7 +1,7 @@
 <template>
   <Header />
 
- <div class="container-main-reviews">
+ <div class="container-main-reviews" :class="{ 'dark-body': isDarkMode }">
 
   <button v-if="isScrolledY" class="create-review-after-scrollY">créer une review</button>
 
@@ -107,6 +107,12 @@ export default {
   },
 
   computed: {
+
+
+     isDarkMode() {
+      return this.$store.state.isDarkMode;
+      
+    },
 
     currentIndex() {
       // Trouvez l'index de l'élément courant
