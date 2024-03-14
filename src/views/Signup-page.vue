@@ -13,7 +13,7 @@
         <input class="signup-input password-input" type="password" v-model="password" required
             placeholder="mot de passe" />
 
-            <input class="signup-input password-input" type="password" v-model="passwordConfirmation" required
+        <input class="signup-input password-input" type="password" v-model="passwordConfirmation" required
             placeholder="confirmation du mdp" />
 
 
@@ -67,16 +67,19 @@
 
             <p class="signup-recaptcha-protection">protection par reCaptcha</p>
         </div>
-  <div v-if="errorMessage" class="error-message">
-                <ul>
-                    <li v-for="(error, index) in errorMessage" :key="index">{{ error }}</li>
-                </ul>
-            </div>
+        <div v-if="errorMessage" class="error-message">
+            <ul>
+                <li v-for="(error, index) in errorMessage" :key="index">{{ error }}</li>
+            </ul>
+        </div>
 
-            <div v-if="successMessage" class="success-message" >
-            
+        <div v-if="successMessage" class="success-message">
+
             <p>{{ successMessage }}</p>
-            </div>
+        </div>
+
+       <vueRecaptcha></vueRecaptcha>
+
 
     </form>
 </template>
@@ -84,8 +87,16 @@
 
 <script>
 
+import  vueRecaptcha  from '../components/Recaptcha-component.vue';
+
 
 export default {
+
+    name: 'Signup-page',
+    components: {
+
+        vueRecaptcha
+    },
 
     data() {
 
@@ -104,8 +115,10 @@ export default {
             city: "",
             postal_code: "",
             errorMessage: [],
-            successMessage:"",
+            successMessage: "",
+            recaptchaToken: null
         }
+
     },
 
     mounted() {
@@ -145,7 +158,7 @@ export default {
                         street_name: this.street_name,
                         city: this.city,
                         postal_code: this.postal_code,
-                        
+
                     }),
 
 
@@ -156,7 +169,7 @@ export default {
 
                     const responseData = await response.json();
                     this.successMessage = responseData.successMessage;
-                    console.log("success, you've been registred",this.successMessage );
+                    console.log("success, you've been registred", this.successMessage);
                     this.errorMessage = [];
                 } else {
 
@@ -166,7 +179,7 @@ export default {
                         const errorData = await response.json();
                         this.errorMessage = errorData.msgError || [];
                         console.log('Erreur côté serveur :', this.errorMessage);
-                        
+
                     }
 
 

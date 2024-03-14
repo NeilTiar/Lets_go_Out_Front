@@ -15,7 +15,9 @@
     "sharp": "^0.33.2",
     "vite": "^5.0.0",
     "vue-awesome-paginate": "^1.1.46",
+    "vue-recaptcha": "^3.0.0-alpha.6",
     "vue-router": "^4.2.5",
+    "vue3-recaptcha2": "^1.8.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
