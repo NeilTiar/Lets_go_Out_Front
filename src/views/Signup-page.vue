@@ -63,22 +63,27 @@
             </div>
 
 
-            <button class="signup-validation">Valider</button>
-
             <p class="signup-recaptcha-protection">protection par reCaptcha</p>
         </div>
         <div v-if="errorMessage" class="error-message">
             <ul>
-                <li v-for="(error, index) in errorMessage" :key="index">{{ error }}</li>
+                <li v-for="(msgError, index) in errorMessage" :key="index">{{ msgError }}</li>
             </ul>
         </div>
+
 
         <div v-if="successMessage" class="success-message">
 
             <p>{{ successMessage }}</p>
         </div>
 
-       <vueRecaptcha></vueRecaptcha>
+
+        <div v-if="captchaVerified">captcha Validé !</div>
+        <div class="missed-captcha-msg" v-if="captchaMissed">Veullez remplir le captcha</div>
+
+
+
+        <recaptchaComponent @captcha-verification="handleCaptchaVerification"></recaptchaComponent>
 
 
     </form>
@@ -87,7 +92,9 @@
 
 <script>
 
-import  vueRecaptcha  from '../components/Recaptcha-component.vue';
+
+import recaptchaComponent from '../components/Recaptcha-component.vue';
+
 
 
 export default {
@@ -95,7 +102,8 @@ export default {
     name: 'Signup-page',
     components: {
 
-        vueRecaptcha
+        recaptchaComponent,
+
     },
 
     data() {
@@ -114,9 +122,11 @@ export default {
             street_name: "",
             city: "",
             postal_code: "",
-            errorMessage: [],
+            errorMessage: "",
             successMessage: "",
-            recaptchaToken: null
+            recaptchaToken: null,
+            captchaVerified: "", // Initialisation de la variable
+            captchaMissed: "",
         }
 
     },
@@ -131,12 +141,39 @@ export default {
 
     methods: {
 
+
+        handleCaptchaVerification() {
+
+            console.log("handleCaptchaVerified")
+
+            this.captchaVerified = true;
+            this.captchaMissed = null;
+            // Met à jour la variable captchaVerified en fonction de l'événement émis par le composant Captcha
+            console.log("captachVerified : ", this.captchaVerified)
+        },
+
         async submitForm() {
 
 
-            console.log("this.firstname: ", this.phone)
+            // Vérifie si le captcha est validé
+            if (!this.captchaVerified) {
+
+                // Affiche un message d'erreur ou effectue une action appropriée
+                this.captchaMissed = "Veuillez remplir le captcha avant de soumettre le formulaire.";
+                console.log(this.captchaMissed)
+                return this.captchaMissed; // Arrête l'exécution de la méthode si le captcha n'est pas validé
+            }
+
+
+            const isCaptchaVerified = this.handleCaptchaVerification(this.captchaVerified)
+
+            console.log("valeur du captcha depuis submitForm(): ", isCaptchaVerified)
+
+
 
             try {
+                console.log("")
+
                 const response = await fetch('http://localhost:5001/user/signup', {
 
                     method: 'POST',
@@ -160,26 +197,26 @@ export default {
                         postal_code: this.postal_code,
 
                     }),
-
-
                 })
 
 
-                if (response.ok) {
+                if (response.ok && this.captchaVerified) {
+
+                    console.log("this.SubmitForm if")
 
                     const responseData = await response.json();
                     this.successMessage = responseData.successMessage;
                     console.log("success, you've been registred", this.successMessage);
-                    this.errorMessage = [];
+
                 } else {
 
-                    if (response.status === 400 && !this.successMessage) {
+                    if (!response.ok) {
 
-
+                        console.log("this.SubmitForm else ")
                         const errorData = await response.json();
-                        this.errorMessage = errorData.msgError || [];
-                        console.log('Erreur côté serveur :', this.errorMessage);
-
+                        this.errorMessage = errorData.msgError.slice(0,3) || [];
+                        console.log('msg d Erreur trasmise depuis le  serveur :', this.errorMessage);
+                        console.log('msg d Erreur xxxxxxxxxxxxxxx:',);
                     }
 
 
@@ -196,7 +233,6 @@ export default {
         }
     },
 
-
 };
 
 
@@ -205,5 +241,11 @@ export default {
 <style scoped>
 body {
     background-color: black;
+}
+
+.missed-captcha-msg {
+    color: red;
+    font-size: 1.3rem;
+
 }
 </style>
