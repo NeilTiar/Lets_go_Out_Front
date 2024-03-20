@@ -1,7 +1,7 @@
 <template>
   <div>
     <VueRecaptcha ref="recaptcha" :sitekey="recaptchaSiteKey" @verify="onRecaptchaVerify"></VueRecaptcha>
-    <button @click="submitForm">Submit</button>
+    <button class="signup-submit-button" @click="submitForm">Submit</button>
     
   </div>
 
@@ -29,6 +29,8 @@ export default {
     
  // Appel pour récupérer la clé depuis le backend
   await this.fetchRecaptchaSiteKey()
+
+ 
    
     //console.log("test get site key captcha from api,() process.env ):", await this.fetchRecaptchaSiteKey());
     
@@ -39,7 +41,7 @@ export default {
 
     async fetchRecaptchaSiteKey() {
       try {
-        const response = await fetch('http://localhost:5001/user/sitekey', {
+        const response = await fetch('http://localhost:5001/user/siteKey', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -49,7 +51,7 @@ export default {
         const data = await response.json();
         this.recaptchaSiteKey = data.siteKey;
         console.log("from func :", data)
-        return this.recaptchaSiteKey
+       
       } catch (error) {
         console.error('Erreur lors de la récupération de la clé reCAPTCHA:', error);
       }
@@ -103,3 +105,19 @@ export default {
   }
 };
 </script>
+
+<style>
+
+.signup-submit-button {
+height:3.3rem;
+width:65%;
+background-color: rgb(171, 146, 202);
+border-radius: 15px;
+font-size: 1.5rem;
+display: flex;
+align-items: center;
+justify-content: center;
+margin:1.5rem auto;
+}
+
+</style>

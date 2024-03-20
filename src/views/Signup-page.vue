@@ -1,8 +1,14 @@
 <template>
 
-    <div class="test">Test from signup Vue</div>
+       <h1 class="title">Let's go out in paris</h1>
+
+       <h2 class="signup-title">creation de votre compte </h2>
 
     <form action="" class="signup-form" @submit.prevent="submitForm">
+
+    <div class="fields-container">
+
+        <h3 class="signup-form-tag">informations relative a votre compte</h3>
 
 
         <input class="signup-input email-input" type="text" v-model="email" required placeholder="email" />
@@ -20,9 +26,11 @@
         <h3 class="signup-form-tag">Mes informations personelles</h3>
 
 
-        <label id="gender-tag" for="gender-select">Precisez votre genre :</label>
-        <select id="gender-select" v-model="gender" required title="select a gender">
+      
+        <select id="gender-select" plac v-model="gender" required title="select a gender">
 
+
+            <option value="" disabled selected>Genre</option>
             <option value="M">M</option>
             <option value="Mme">Mme</option>
             <option value="Mlle">Mlle</option>
@@ -81,12 +89,15 @@
         <div v-if="captchaVerified">captcha Validé !</div>
         <div class="missed-captcha-msg" v-if="captchaMissed">Veullez remplir le captcha</div>
 
+    </div>
 
 
-        <recaptchaComponent @captcha-verification="handleCaptchaVerification"></recaptchaComponent>
-
+<div class="captcha-container">
+        <recaptchaComponent class="recaptcha-component" @captcha-verification="handleCaptchaVerification"></recaptchaComponent>
+</div>
 
     </form>
+    <Footer></Footer>
 </template>
 
 
@@ -94,7 +105,7 @@
 
 
 import recaptchaComponent from '../components/Recaptcha-component.vue';
-
+import Footer from '@/components/Footer.vue';
 
 
 export default {
@@ -103,7 +114,7 @@ export default {
     components: {
 
         recaptchaComponent,
-
+        Footer
     },
 
     data() {
@@ -128,7 +139,6 @@ export default {
             captchaVerified: "", // Initialisation de la variable
             captchaMissed: "",
         }
-
     },
 
     mounted() {
@@ -214,7 +224,7 @@ export default {
 
                         console.log("this.SubmitForm else ")
                         const errorData = await response.json();
-                        this.errorMessage = errorData.msgError.slice(0,3) || [];
+                        this.errorMessage = errorData.msgError.slice(0, 3) || [];
                         console.log('msg d Erreur trasmise depuis le  serveur :', this.errorMessage);
                         console.log('msg d Erreur xxxxxxxxxxxxxxx:',);
                     }
@@ -236,12 +246,14 @@ export default {
 };
 
 
+
 </script>
 
 <style scoped>
-body {
-    background-color: black;
-}
+
+@import '../styles/signup-style.scss';
+
+
 
 .missed-captcha-msg {
     color: red;
