@@ -38,11 +38,6 @@
 
 
         </div>
-
-
-
-
-
     </div>
 
     <div class="access-reviews"><a href="main" class="home-link reviews-acces">àcceder aux reviews</a></div>
@@ -56,9 +51,13 @@ export default {
     name: 'HomeView', // or 'HomeContainer'
     // other component options
 };
+
 </script>
 
+
 <style scoped>
+
+
 @media screen and (min-width:600px) {
 
     .access-reviews {
@@ -205,7 +204,7 @@ export default {
 
     .container-home-background-img {
 
-        justify-content: end;
+        justify-content: flex-end;
         border-radius: 15px 0 0 15px;
         margin-top: 3rem;
 
@@ -281,7 +280,7 @@ export default {
 
     .home-background-img {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         margin-top: 2rem;
         width: 95vw;
         height: 35vh;
@@ -292,7 +291,7 @@ export default {
     .container-img {
 
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
 
     }
 

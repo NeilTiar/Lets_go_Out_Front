@@ -5,7 +5,6 @@
   bottom: 0;
   display: flex;
   flex-direction: column;
-  flex: 1;
   height: 8rem;
   background-color: rgb(208, 208, 219);
   box-shadow: rgba(101, 101, 104, 0.5) 0px -6px 15px -6px;
@@ -19,6 +18,11 @@
 
 }
 
+body{
+   
+    height:100vh;
+    background-color: rgb(255, 255, 255);
+}
 
 .button-create {
 
@@ -110,7 +114,7 @@
 .mention-legale {
 
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 0.3rem 0.4rem 0 0;
   color:aliceblue;
  

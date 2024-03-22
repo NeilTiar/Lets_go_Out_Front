@@ -1,6 +1,6 @@
 <template>
 
-  <div class="card-container">
+  <div class="card-container " :class="{ 'dark-mode-class': isDarkMode }">
     <div class="card-review">
       <img :src="imageUrl" :alt="generateAltText()" class="card-image" />
       <h3
@@ -10,12 +10,12 @@
       </h3>
     </div>
 
-    <div class="card-details">
+    <div class="card-details" >
 
-      <div class="card-info">
+      <div class="card-info" :class="{ 'dark-card-info': isDarkMode }">
 
         <h2 class="detail place-name"> {{ placeName }}</h2>
-        <p class="detail arrondissement">{{ arrondissement }} eme</p>
+        <p class="detail arrondissement" :class="{ 'dark-arrondissement': isDarkMode }">{{ arrondissement }} eme</p>
       </div>
 
     </div>
@@ -30,10 +30,25 @@ export default {
     return {
       mouseX: 0,
       mouseY: 0,
-      
+
     };
   },
+
+  mounted() {
+
+    
+  },
+
+
   computed: {
+
+     isDarkMode() {
+      return this.$store.state.isDarkMode;
+      
+    },
+
+ 
+
     carteStyle() {
       const rotateX = this.mouseY * 30;
       const rotateY = this.mouseX * 30;
@@ -45,16 +60,33 @@ export default {
   },
 
   props: {
+
     theme: String,
     arrondissement: String,
     placeName: String,
     imageUrl: String,
   },
 
+  watch : {
+
+    isDarkMode(newVal) {
+     console.log("test ",this.$store.state.isDarkMode, newVal)
+    
+    }
+  },
+
 
   methods: {
 
-    
+
+    isDarkmodeActive() {
+      
+
+      console.log("test depuis un composant pour acceder a l'etat de isDarkmode depuuis le store :",this.$store.state.isDarkMode)
+      // Access and update the state from the Vuex store
+      this.$store.commit('toggleDarkMode');
+      // Your other dark mode logic here
+    },
 
     generateAltText() {
       return `Description de l'image ${this.placeName}`;
@@ -70,8 +102,8 @@ export default {
       this.mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
     },
 
-    
-    
+
+
   },
 };
 
@@ -80,5 +112,4 @@ export default {
 
 <style scoped>
 @import url('../styles/Review-card.css');
-
 </style>

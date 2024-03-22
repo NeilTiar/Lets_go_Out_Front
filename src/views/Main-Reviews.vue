@@ -1,7 +1,7 @@
 <template>
   <Header />
 
- 
+ <div class="container-main-reviews" :class="{ 'dark-body': isDarkMode }">
 
   <button v-if="isScrolledY" class="create-review-after-scrollY">créer une review</button>
 
@@ -26,6 +26,7 @@
      
    </PaginationMobileComponent>
 
+</div>
 
   <Footer />
 </template>
@@ -99,9 +100,19 @@ export default {
       this.hideButton = true;
     }, 4000);
 
+    const pseudo = this.$store.state.pseudo;
+
+    console.log("pseudo transmit via store page Main-review: ",pseudo )
+
   },
 
   computed: {
+
+
+     isDarkMode() {
+      return this.$store.state.isDarkMode;
+      
+    },
 
     currentIndex() {
       // Trouvez l'index de l'élément courant
@@ -244,7 +255,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0;
-
+  margin: 0;
 }
 
 .create-review-mobile {
@@ -262,7 +273,6 @@ body {
   text-shadow: 4px 4px 3px rgba(015, 0, 0, 0.3);
   border-radius: 25px;
   font-weight: 400;
-
 }
 
 

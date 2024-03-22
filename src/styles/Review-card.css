@@ -1,17 +1,19 @@
+
+
+
+
 .card-container {
 
   margin: auto;
   display: flex;
   flex-direction: column;
-
-background: rgb(255,255,255);
-
+  background: rgb(255,255,255);
   border-radius: 9px;
   width: 90%;
-  height :max-content;
+  height :25rem;
   border-radius: 2%;
   margin-bottom: 1rem;
-  min-height: 24rem;
+  
   
 }
 
@@ -31,7 +33,7 @@ img.card-image {
   border-radius: 10px 10px 10px 10px;
   object-fit: cover;
   width: 140rem;
-  height: 20vh;
+  height: 25vh;
   position: relative;
   justify-content: center;
 
@@ -45,7 +47,6 @@ img.card-image {
   color: white;
   margin: 0.5rem 0 0 0.7rem;
   
-
 }
 
 
@@ -91,6 +92,20 @@ img.card-image {
   
 }
 
+.dark-mode-class {
+
+  background-color: rgb(85, 59, 92);
+}
+
+.dark-card-info {
+
+  color: aliceblue;
+}
+
+.dark-arrondissement {
+
+  color:aliceblue
+}
 
 
 /*gestion dynamique des couleurs pour le theme */
@@ -106,5 +121,9 @@ img.card-image {
 .card-container{
 
   margin-right: 0.6rem;
+  height: max-content;
+
 }
+
+
 }
