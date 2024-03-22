@@ -50,7 +50,7 @@ export default {
 
         const data = await response.json();
         this.recaptchaSiteKey = data.siteKey;
-        console.log("from func :", data)
+        console.log("from func :", data )
        
       } catch (error) {
         console.error('Erreur lors de la récupération de la clé reCAPTCHA:', error);
