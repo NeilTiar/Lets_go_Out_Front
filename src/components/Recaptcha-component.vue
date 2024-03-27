@@ -41,7 +41,7 @@ export default {
 
     async fetchRecaptchaSiteKey() {
       try {
-        const response = await fetch('http://localhost:5001/user/siteKey', {
+        const response = await fetch('http://192.168.1.168:5001/user/siteKey', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'

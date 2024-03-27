@@ -48,8 +48,9 @@ module.exports = {
       return args;
     });
   },
+
   devServer: {
-    port:8080,
+   
     open: true, // Ouvrir automatiquement le navigateur
     hot: true, // Activer le rechargement à chaud,
   },

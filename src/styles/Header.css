@@ -75,9 +75,11 @@ img.sun {
 
   position: fixed;
   align-items: center;
+  display: flex;
+  justify-content: space-around;
   width: 100vw;
   height: 3.5rem;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 
 
@@ -168,7 +170,7 @@ img.sun {
   font-style: italic;
   font-size: clamp(1.8rem, 3vw + 1.3rem, 4rem);
   color: azure;
-  margin: 0 1rem 0 0;
+  margin: auto;
   text-shadow: 1px 1px white, -1px -1px #444
 }
 
@@ -435,10 +437,10 @@ img.user-logo {
 
   .top-main {
 
-
     margin-bottom: 12rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
   .search-button {
@@ -482,7 +484,7 @@ img.user-logo {
 
   img.card-image {
 
-    width: 3rem;
+  width: 100vw;
   }
 }
 
