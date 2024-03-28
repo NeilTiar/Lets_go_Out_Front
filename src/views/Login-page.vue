@@ -93,7 +93,7 @@ export default {
 
             try {
                 // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
-                const response = await fetch(`http://localhost:5001/user/login`, {
+                const response = await fetch(`http://192.168.1.168:5001/user/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

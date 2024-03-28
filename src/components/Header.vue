@@ -58,11 +58,11 @@
         <img src="../assets/search.png" alt="input-search" class="buttons search-button">
       </div>
 
-      <button class="create-review-banner" v-if="!isFixed">Créer une review</button>
-      <p :class="[{ 'dark-title': isDarkMode }, 'title-to-menu']" v-if="isFixed">{{ TitleIfTopMenu }}</p>
+      
     </div>
+    <p :class="[{ 'dark-title': isDarkMode }, 'title-to-menu']" v-if="isFixed">{{ TitleIfTopMenu }}</p>
 
-
+    <button class="create-review-banner" v-if="!isFixed">Créer une review</button>
 
 
     <div class="container-right-button">
@@ -106,7 +106,7 @@ export default {
       isDesktop: window.innerWidth > 768,
       previousScrollY: 0,
       isScrollingUpX: false,
-      pseudo:this.$store.state.pseudo,
+      pseudo: this.$store.state.pseudo,
       isDarkMode: false,
     };
 
