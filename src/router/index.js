@@ -4,6 +4,7 @@ import MainReviews from '../views/Main-Reviews.vue';
 import Home from '../views/Home-page.vue'
 import SignupPageVue from '@/views/Signup-page.vue';
 import LoginPageVue from '@/views/Login-page.vue';
+import ReviewDetailsComponent from '@/views/Review-Details.vue';
 
 const routes = [
   
@@ -30,6 +31,13 @@ const routes = [
     name: 'Login-page',
     component: LoginPageVue,
   },
+
+{
+  path: '/review-details',
+  name: 'Review-details',
+  component: ReviewDetailsComponent,
+  props: true // Indique que les paramètres seront transmis comme props au composant
+}
   // Ajoutez d'autres routes ici
 ];
 

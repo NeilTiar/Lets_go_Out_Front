@@ -8,7 +8,7 @@
   <main class="cards-container">
 
 
-    <ReviewCard v-for="review in displayReviews(reviews)" :key="review.id" :theme="review.theme"
+    <ReviewCard   v-for="review in displayReviews(reviews)" @click="testClick(review)" :key="review.id" :theme="review.theme"
       :arrondissement="review.district_num" :placeName="review.place_name" :imageUrl="review.secure_url" />
    
     <button v-show="showButton" v-if="!isDesktop" class="create-review-mobile">Créer une
@@ -71,13 +71,16 @@ export default {
       totalItems: 0,
       pagesShown: 1,
       pagination: {},
-
+      currentId : null,
+      
     }
   },
 
 
 
-  mounted() {
+   mounted() {
+
+   
 
     this.displayReviews(this.reviews)
 
@@ -132,6 +135,12 @@ export default {
   methods: {
 
 
+    testClick(currentReview) {
+      
+       this.$store.commit('setSelectedReview', currentReview);
+      console.log("review was clicked !!!",currentReview.data)
+       this.$router.push({ name: 'Review-details' });
+  },
     
  
 

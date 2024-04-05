@@ -7,11 +7,22 @@ export default createStore({
 
         isDarkMode: false,
         pseudo: 'visitor', // Initialise le pseudo à une valeur par défaut
-        store: store
+        store: store,
+        selectedReview: null,
     },
 
 
     mutations: {
+
+
+        setSelectedReview(state, review) {
+            state.selectedReview = review;
+
+               // Stockage des données dans localStorage
+            localStorage.setItem('selectedReview', JSON.stringify(review));
+        },
+
+        
 
         setPseudo(state, pseudo) {
             state.pseudo = pseudo;
@@ -62,15 +73,15 @@ export default createStore({
 
             if ((cardInfo.length > 0 && cardContainer)) {
 
-              /*  Array.from(cardInfo).map(card => {
-                    card.style.color = this.isDarkMode ? '#caded6' : '';
-
-                     Array.from(cardContainer).map(card => {
-                         card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
- 
-                     })
-
-                })*/
+                /*  Array.from(cardInfo).map(card => {
+                      card.style.color = this.isDarkMode ? '#caded6' : '';
+  
+                       Array.from(cardContainer).map(card => {
+                           card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
+   
+                       })
+  
+                  })*/
 
             }
 
@@ -89,5 +100,7 @@ export default createStore({
         },
 
     },
+
+    
 
 });
