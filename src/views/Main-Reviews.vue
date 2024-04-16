@@ -1,36 +1,38 @@
 <template>
   <Header />
 
- <div class="container-main-reviews" :class="{ 'dark-body': isDarkMode }">
+  <div class="container-main-reviews" :class="{ 'dark-body': isDarkMode }">
 
-  <button v-if="isScrolledY" class="create-review-after-scrollY">créer une review</button>
+    <button v-if="isScrolledY" class="create-review-after-scrollY">créer une review</button>
 
-  <main class="cards-container">
-
-
-    <ReviewCard   v-for="review in displayReviews(reviews)" @click="testClick(review)" :key="review.id" :theme="review.theme"
-      :arrondissement="review.district_num" :placeName="review.place_name" :imageUrl="review.secure_url" />
-   
-    <button v-show="showButton" v-if="!isDesktop" class="create-review-mobile">Créer une
-      nouvelle review</button>
-  </main>
+    <main class="cards-container">
 
 
-  <Pagination  v-model="currentPage" v-if="isDesktop" :total-items="totalItems" :items-per-page="itemsPerPage" :max-page-shown="pagesShown"
-    @page-changed="handlePageChange" :reviews="reviews">
-    
-  </Pagination>
+      <ReviewCard v-for="review in displayReviews(reviews)" @click="getDetailsReviewOnClick(review)" :key="review.id"
+        :theme="review.theme" :arrondissement="review.district_num" :placeName="review.place_name"
+        :imageUrl="review.secure_url" />
 
-   <PaginationMobileComponent v-if="!isDesktop" v-model="currentPage" :total-items="totalItems" :items-per-page="itemsPerPage" :max-page-shown="pagesShown"
-    @mobile-page-changed="handlePageChange" :reviews="reviews" >
-     
-   </PaginationMobileComponent>
+      <button v-show="showButton" v-if="!isDesktop" class="create-review-mobile">Créer une
+        nouvelle review</button>
+    </main>
 
-</div>
+
+    <Pagination v-model="currentPage" v-if="isDesktop" :total-items="totalItems" :items-per-page="itemsPerPage"
+      :max-page-shown="pagesShown" @page-changed="handlePageChange" :reviews="reviews">
+
+    </Pagination>
+
+    <PaginationMobileComponent v-if="!isDesktop" v-model="currentPage" :total-items="totalItems"
+      :items-per-page="itemsPerPage" :max-page-shown="pagesShown" @mobile-page-changed="handlePageChange"
+      :reviews="reviews">
+
+    </PaginationMobileComponent>
+
+  </div>
 
   <Footer />
 </template>
-  
+
 <script>
 
 import { dataReviews } from '../assets/data/static-data-reviews.js';
@@ -71,22 +73,17 @@ export default {
       totalItems: 0,
       pagesShown: 1,
       pagination: {},
-      currentId : null,
-      
+      currentId: null,
+
     }
   },
 
 
 
-   mounted() {
+  mounted() {
 
-   
 
-    this.displayReviews(this.reviews)
-
-    this.fetchData(this.reviews)
-
-    console.log("totalItems ", this.totalItems)
+    this.fetchData()
 
     // les fonctions indiquées dans la section mounted d'un composant Vue sont automatiquement appelées lorsque le composant est monté dans le DOM
 
@@ -105,16 +102,16 @@ export default {
 
     const pseudo = this.$store.state.pseudo;
 
-    console.log("pseudo transmit via store page Main-review: ",pseudo )
+    console.log("pseudo transmit via store page Main-review: ", pseudo)
 
   },
 
   computed: {
 
 
-     isDarkMode() {
+    isDarkMode() {
       return this.$store.state.isDarkMode;
-      
+
     },
 
     currentIndex() {
@@ -135,14 +132,14 @@ export default {
   methods: {
 
 
-    testClick(currentReview) {
-      
-       this.$store.commit('setSelectedReview', currentReview);
-      console.log("review was clicked !!!",currentReview.data)
-       this.$router.push({ name: 'Review-details' });
-  },
-    
- 
+    getDetailsReviewOnClick(currentReview) {
+
+      this.$store.commit('setSelectedReview', currentReview);
+      console.log("review was clicked !!!", currentReview.data)
+      this.$router.push({ name: 'Review-details' });
+    },
+
+
 
     displayReviews(reviews) {
 
@@ -157,16 +154,52 @@ export default {
 
     async fetchData() {
 
+
+
       try { //perte de temps enorme ( une aprés midi ) a cause de l'url qui indiqué localhost 
-        const response = await fetch(`http://192.168.1.168:5001/review/home`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+
+        if (this.$store.state.initialReviews.length === 0) {
+
+          const response = await fetch(`http://192.168.1.168:5001/review/home`);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          this.reviews = data;
+          this.totalItems = data.length;
+          this.pagesShown = Math.ceil(this.totalItems / this.itemsPerPage);
+          this.$store.commit('setInitialReviews', data);
+
+        } else {
+
+          /*  détail sur la methode employé pour concerver les meme reviews qu'au premier chargement ,meme si visite autre pages que main-reviews:
+          
+              this.reviews etant le point d'acces pour afficher les annonces, (voir composant ReviewCard plus haut)
+              l'idée est de copier this.reviews dans une propiété du store "initialReviews" ,celle ci alimentée au chargement de la page (l'ors du fetch)
+              si initialeReviews est non vide ,elle vas alimenter this.reviews 
+              pour afficher les meme annonces qu'au premier chargement car le fait de les stocker dans le store permet une immutabilité
+              les annonces s'affichent donc dans le bonne ordre.
+            */
+
+
+
+          this.reviews = JSON.parse(JSON.stringify(this.$store.state.initialReviews));
+
+          /*
+          L'utilisation de JSON.parse(JSON.stringify(...)) est une technique courante pour créer une copie profonde (deep copy) d'un objet en JavaScript.
+           Voici comment cela fonctionne :
+          
+          JSON.stringify() convertit l'objet JavaScript en une chaîne JSON.
+          JSON.parse() convertit la chaîne JSON en un nouvel objet JavaScript.
+          Cette approche est utilisée pour contourner le fait que JSON.stringify() ne peut pas sérialiser
+           les objets qui contiennent des références circulaires (lorsque des objets se référencent mutuellement).
+          
+          Dans le contexte de Vuex, cela peut être utile lorsque vous stockez des données complexes dans l'état de Vuex 
+          et que vous devez effectuer des opérations d'écriture sans modifier l'état Vuex d'origine. Par exemple,
+           si vous avez besoin de copier les données initiales de votre magasin Vuex pour les modifier localement dans 
+           un composant sans altérer les données originales du magasin, cette technique est utile.    */
+
         }
-        const data = await response.json();
-        this.reviews = data;
-        this.totalItems = data.length;
-        this.pagesShown = Math.ceil(this.totalItems / this.itemsPerPage);
-        return data
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -192,7 +225,7 @@ export default {
 
     },
 
-    
+
     scrollToTop() {
       window.scrollTo({
         top: 0,
@@ -232,7 +265,7 @@ export default {
 };
 
 </script>
- 
+
 <style scoped>
 /* config reset */
 
@@ -283,6 +316,4 @@ body {
   border-radius: 25px;
   font-weight: 400;
 }
-
-
 </style>

@@ -3,6 +3,7 @@
     <div class="currentReview" v-if="currentReview">
         <p class="theme">{{ currentReview.theme }}</p>
         <h1 class="title">{{ currentReview.place_name }}</h1>
+        <p class="adress">{{ currentReview.adress_place }}</p>
         <swiper swiper :rewind="true" :navigation="true" class="mySwiper">
             <swiper-slide v-for="(photoUrl, index) in pictures" :key="index">
                 <img :src="photoUrl.secure_url" :alt="generateAltText()">
@@ -62,12 +63,12 @@ export default {
 
         // Récupération des données depuis localStorage lors de la création du store
         const selectedReviewFromStorage = localStorage.getItem('selectedReview');
+
         if (selectedReviewFromStorage) {
             this.$store.commit('setSelectedReview', JSON.parse(selectedReviewFromStorage));
         }
 
         this.imageUrl = this.currentReview.secure_url;
-
 
         // Convertir la chaîne JSON en objet JavaScript !!! (perte de temps , convertion a faire non soupconné) 
         const reviewObject = JSON.parse(selectedReviewFromStorage);

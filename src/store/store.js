@@ -1,7 +1,9 @@
 import { createStore } from 'vuex';
 import store from '@/store/store';
-export default createStore({
 
+
+
+export default createStore({
 
     state: {
 
@@ -9,6 +11,7 @@ export default createStore({
         pseudo: 'visitor', // Initialise le pseudo à une valeur par défaut
         store: store,
         selectedReview: null,
+        initialReviews: [],
     },
 
 
@@ -18,15 +21,28 @@ export default createStore({
         setSelectedReview(state, review) {
             state.selectedReview = review;
 
-               // Stockage des données dans localStorage
+            // Stockage des données dans localStorage
             localStorage.setItem('selectedReview', JSON.stringify(review));
         },
 
-        
+        setReviews(state, reviews) {
+
+            state.reviews = reviews;
+
+
+        },
+
+        setInitialReviews(state, reviews) {
+            state.initialReviews = reviews;
+        },
+
+
+
 
         setPseudo(state, pseudo) {
             state.pseudo = pseudo;
         },
+        
 
         setIsDarkMode(state, isDarkMode) {
 
@@ -101,6 +117,6 @@ export default createStore({
 
     },
 
-    
+
 
 });
