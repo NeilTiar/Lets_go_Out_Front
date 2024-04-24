@@ -1,10 +1,17 @@
 <template>
-  <div>
-    <VueRecaptcha ref="recaptcha" :sitekey="recaptchaSiteKey" @verify="onRecaptchaVerify"></VueRecaptcha>
-    <button class="signup-submit-button" @click="submitForm">Submit</button>
-    
-  </div>
-
+    <div>
+        <VueRecaptcha
+            ref="recaptcha"
+            :sitekey="recaptchaSiteKey"
+            @verify="onRecaptchaVerify"
+        />
+        <button
+            class="signup-submit-button"
+            @click="submitForm"
+        >
+            Submit
+        </button>
+    </div>
 </template>
 
 <script>

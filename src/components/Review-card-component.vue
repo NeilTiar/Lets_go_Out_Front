@@ -1,30 +1,49 @@
 <template>
+    <div
+        class="card-container "
+        :class="{ 'dark-mode-class': isDarkMode }"
+    >
+        <div class="card-review">
+            <img
+                :src="imageUrl"
+                :alt="generateAltText()"
+                class="card-image"
+            >
+            <h3
+                :class="[{ 'culture': theme === 'Culture', 'loisir': theme === 'Loisir', 'food-drink': theme === 'Food&drink' }, 'card-theme']"
+            >
+                {{ theme }}
+            </h3>
+        </div>
 
-  <div class="card-container " :class="{ 'dark-mode-class': isDarkMode }">
-    <div class="card-review">
-      <img :src="imageUrl" :alt="generateAltText()" class="card-image" />
-      <h3
-        :class="[{ 'culture': this.theme === 'Culture', 'loisir': this.theme === 'Loisir', 'food-drink': this.theme === 'Food&drink' }, 'card-theme']">
-
-        {{ this.theme }}
-      </h3>
+        <div class="card-details">
+            <div
+                class="card-info"
+                :class="{ 'dark-card-info': isDarkMode }"
+            >
+                <h2 class="detail place-name"> {{ placeName }}</h2>
+                <p
+                    class="detail arrondissement"
+                    :class="{ 'dark-arrondissement': isDarkMode }"
+                >
+                    {{ arrondissement }} eme
+                </p>
+            </div>
+        </div>
     </div>
-
-    <div class="card-details" >
-
-      <div class="card-info" :class="{ 'dark-card-info': isDarkMode }">
-
-        <h2 class="detail place-name"> {{ placeName }}</h2>
-        <p class="detail arrondissement" :class="{ 'dark-arrondissement': isDarkMode }">{{ arrondissement }} eme</p>
-      </div>
-
-    </div>
-  </div>
 </template>
 
 <script>
 
 export default {
+
+  props: {
+
+    theme: String,
+    arrondissement: String,
+    placeName: String,
+    imageUrl: String,
+  },
 
   data() {
     return {
@@ -32,11 +51,6 @@ export default {
       mouseY: 0,
 
     };
-  },
-
-  mounted() {
-
-    
   },
 
 
@@ -59,20 +73,17 @@ export default {
     },
   },
 
-  props: {
-
-    theme: String,
-    arrondissement: String,
-    placeName: String,
-    imageUrl: String,
-  },
-
   watch : {
 
     isDarkMode(newVal) {
      console.log("test ",this.$store.state.isDarkMode, newVal)
     
     }
+  },
+
+  mounted() {
+
+    
   },
 
 

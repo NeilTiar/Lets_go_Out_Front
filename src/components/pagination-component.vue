@@ -2,14 +2,16 @@
 <!-- Pagination.vue -->
 
 <template>
-  <div class="pagination">
-
-    <vue-awesome-paginate v-model="currentPage" :total-items="totalItems" :reviews="reviews"
-      :items-per-page="itemsPerPage" :max-page-shown="pagesShown" :on-click="changePage">
-    </vue-awesome-paginate>
-
-
-  </div>
+    <div class="pagination">
+        <vue-awesome-paginate
+            v-model="currentPage"
+            :total-items="totalItems"
+            :reviews="reviews"
+            :items-per-page="itemsPerPage"
+            :max-page-shown="pagesShown"
+            :on-click="changePage"
+        />
+    </div>
 </template>
 
 <Home />
@@ -39,11 +41,6 @@ export default {
   },
 
 
-  mounted() {
-
-  },
-
-
   computed: {
 
 
@@ -55,6 +52,11 @@ export default {
       return Math.ceil(this.reviews.length / this.itemsPerPage);
     },
 
+
+  },
+
+
+  mounted() {
 
   },
 
@@ -105,7 +107,7 @@ export default {
 
 </script>
 
-<style >
+<style>
 .pagination {
   margin: 3.5rem;
 }
@@ -120,17 +122,18 @@ export default {
   width: 44px;
   height: 44px;
   cursor: pointer;
-  background-color:#e7f4fc;
+  background-color: #e7f4fc;
   border-radius: 8px;
   border: none;
   color: #000000;
- 
+
   font-size: 1.3rem;
-  font-family:'Times New Roman', Times, serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .pagination .active-page {
-  background-color:#5cd4c6;;
+  background-color: #5cd4c6;
+  ;
   color: #2c3e50;
 }
 
@@ -157,4 +160,5 @@ export default {
 .pagination .back-button:active,
 .pagination .next-button:active {
   background-color: #3a1131;
-}</style>
+}
+</style>

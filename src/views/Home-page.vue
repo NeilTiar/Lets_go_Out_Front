@@ -4,15 +4,18 @@
     </title>
 
     <div class="main">
-
         <div class="top-title-login-connexion">
-
             <h1 class="title">Let's go out in paris</h1>
 
             <div class="right-link">
-
-                <a href="signup" class="home-link registration">Inscription</a>
-                <a href="login" class="home-link connexion">S'identifier</a>
+                <a
+                    href="signup"
+                    class="home-link registration"
+                >Inscription</a>
+                <a
+                    href="login"
+                    class="home-link connexion"
+                >S'identifier</a>
             </div>
         </div>
 
@@ -20,11 +23,12 @@
 
 
         <div class="container-home-background-img">
-
-
             <div class="container-img">
-                <img class="home-background-img" src="../assets/lgopHomePagePicture.jpg"
-                    alt="par une journée ensoleillée ,des cyclistes circule sur un pont avec la tour efeil en arriere plan">
+                <img
+                    class="home-background-img"
+                    src="../assets/lgopHomePagePicture.jpg"
+                    alt="par une journée ensoleillée ,des cyclistes circule sur un pont avec la tour efeil en arriere plan"
+                >
             </div>
             <div class="home-title-description">
                 <article>
@@ -33,14 +37,16 @@
                         prochaines sorties plus simplement.
                     </p>
                 </article>
-
             </div>
-
-
         </div>
     </div>
 
-    <div class="access-reviews"><a href="main" class="home-link reviews-acces">àcceder aux reviews</a></div>
+    <div class="access-reviews">
+        <a
+            href="main"
+            class="home-link reviews-acces"
+        >àcceder aux reviews</a>
+    </div>
 </template>
 
 <script>

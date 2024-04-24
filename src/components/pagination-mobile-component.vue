@@ -1,25 +1,36 @@
 <template>
+    <!-- Emplacement pour le bouton de page précédente -->
 
+    <div class="mobile-pagination-container">
+        <div class="prev">
+            <button
+                class="prevButton"
+                @click="handlePrevPage"
+            >
+                <img
+                    class="arrow-prev-img"
+                    src="../assets/arrow.png"
+                    alt="black arrow for next page"
+                >
+            </button>
+        </div>  
+        <!-- Emplacement pour le numéro de la page courante -->
 
-        <!-- Emplacement pour le bouton de page précédente -->
-
-        <div class="mobile-pagination-container">
-
-            <div class="prev">
-                <button class="prevButton" @click="handlePrevPage"><img class="arrow-prev-img" src="../assets/arrow.png" alt="black arrow for next page"></button>
-               
-            </div>  
-            <!-- Emplacement pour le numéro de la page courante -->
-
-              <p class="num-page-mobile">page n° : {{ currentPage }}/ {{ pagesShown + 1 }}</p>
-            <!-- Emplacement pour le bouton de page suivante -->
-            <div class="next">
-                <button class="nextButton"  @click="handleNextPage"><img class="arrow-next-img" src="../assets/arrow.png" alt="black arrow for next page"></button>
-            </div>
-
+        <p class="num-page-mobile">page n° : {{ currentPage }}/ {{ pagesShown + 1 }}</p>
+        <!-- Emplacement pour le bouton de page suivante -->
+        <div class="next">
+            <button
+                class="nextButton"
+                @click="handleNextPage"
+            >
+                <img
+                    class="arrow-next-img"
+                    src="../assets/arrow.png"
+                    alt="black arrow for next page"
+                >
+            </button>
         </div>
-     
-   
+    </div>
 </template>
 
 <script>
@@ -127,8 +138,6 @@ font-size: 2rem;
     width: 1rem;
    transform:  rotate(180deg);
 }
-
-
 
 </style>
 

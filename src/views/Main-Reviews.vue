@@ -1,56 +1,82 @@
 <template>
-  <Header />
+    <HeaderComponent />
 
-  <div class="container-main-reviews" :class="{ 'dark-body': isDarkMode }">
+    <div
+        class="container-main-reviews"
+        :class="{ 'dark-body': isDarkMode }"
+    >
+        <button
+            v-if="isScrolledY"
+            class="create-review-after-scrollY"
+        >
+            créer une review
+        </button>
 
-    <button v-if="isScrolledY" class="create-review-after-scrollY">créer une review</button>
+        <main class="cards-container">
+            <ReviewCard
+                v-for="review in displayReviews(reviews)"
+                :key="review.id"
+                :theme="review.theme"
+                :arrondissement="review.district_num"
+                :place-name="review.place_name"
+                :image-url="review.secure_url"
+                @click="getDetailsReviewOnClick(review)"
+            />
 
-    <main class="cards-container">
+            <button
+                v-show="showButton"
+                v-if="!isDesktop"
+                class="create-review-mobile"
+            >
+                Créer une
+                nouvelle review
+            </button>
+        </main>
 
 
-      <ReviewCard v-for="review in displayReviews(reviews)" @click="getDetailsReviewOnClick(review)" :key="review.id"
-        :theme="review.theme" :arrondissement="review.district_num" :placeName="review.place_name"
-        :imageUrl="review.secure_url" />
+        <Pagination
+            v-if="isDesktop"
+            v-model="currentPage"
+            :total-items="totalItems"
+            :items-per-page="itemsPerPage"
+            :max-page-shown="pagesShown"
+            :reviews="reviews"
+            @page-changed="handlePageChange"
+        />
 
-      <button v-show="showButton" v-if="!isDesktop" class="create-review-mobile">Créer une
-        nouvelle review</button>
-    </main>
+        <PaginationMobileComponent
+            v-if="!isDesktop"
+            v-model="currentPage"
+            :total-items="totalItems"
+            :items-per-page="itemsPerPage"
+            :max-page-shown="pagesShown"
+            :reviews="reviews"
+            @mobile-page-changed="handlePageChange"
+        />
+    </div>
 
-
-    <Pagination v-model="currentPage" v-if="isDesktop" :total-items="totalItems" :items-per-page="itemsPerPage"
-      :max-page-shown="pagesShown" @page-changed="handlePageChange" :reviews="reviews">
-
-    </Pagination>
-
-    <PaginationMobileComponent v-if="!isDesktop" v-model="currentPage" :total-items="totalItems"
-      :items-per-page="itemsPerPage" :max-page-shown="pagesShown" @mobile-page-changed="handlePageChange"
-      :reviews="reviews">
-
-    </PaginationMobileComponent>
-
-  </div>
-
-  <Footer />
+    <FooterComponent />
 </template>
 
 <script>
 
 import { dataReviews } from '../assets/data/static-data-reviews.js';
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue'
+import HeaderComponent from '@/components/Header-component.vue';
+import FooterComponent from '@/components/Footer-component.vue';
 import ReviewCard from '../components/Review-card-component.vue';
 import Pagination from '../components/pagination-component.vue';
 import PaginationMobileComponent from '../components/pagination-mobile-component.vue';
 
 
 
+
 export default {
 
-  name: 'view-Home',
+  name: 'ViewHome',
   components: {
 
-    Header,
-    Footer,
+    HeaderComponent,
+    FooterComponent,
     ReviewCard,
     Pagination,
     PaginationMobileComponent
@@ -76,6 +102,20 @@ export default {
       currentId: null,
 
     }
+  },
+
+  computed: {
+
+
+    isDarkMode() {
+      return this.$store.state.isDarkMode;
+
+    },
+
+    currentIndex() {
+      // Trouvez l'index de l'élément courant
+      return (this.currentPage - 1);
+    },
   },
 
 
@@ -104,20 +144,6 @@ export default {
 
     console.log("pseudo transmit via store page Main-review: ", pseudo)
 
-  },
-
-  computed: {
-
-
-    isDarkMode() {
-      return this.$store.state.isDarkMode;
-
-    },
-
-    currentIndex() {
-      // Trouvez l'index de l'élément courant
-      return (this.currentPage - 1);
-    },
   },
 
 

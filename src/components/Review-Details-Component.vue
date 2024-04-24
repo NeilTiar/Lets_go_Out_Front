@@ -1,14 +1,27 @@
 <template>
-
-    <div class="currentReview" v-if="currentReview">
+    <div
+        v-if="currentReview"
+        class="currentReview"
+    >
         <p class="theme">{{ currentReview.theme }}</p>
         <h1 class="title">{{ currentReview.place_name }}</h1>
         <p class="adress">{{ currentReview.adress_place }}</p>
-        <swiper swiper :rewind="true" :navigation="true" class="mySwiper">
-            <swiper-slide v-for="(photoUrl, index) in pictures" :key="index">
-                <img :src="photoUrl.secure_url" :alt="generateAltText()">
-            </swiper-slide>
-        </swiper>
+        <Swiper
+            swiper
+            :rewind="true"
+            :navigation="true"
+            class="mySwiper"
+        >
+            <SwiperSlide
+                v-for="(photoUrl, index) in pictures"
+                :key="index"
+            >
+                <img
+                    :src="photoUrl.secure_url"
+                    :alt="generateAltText()"
+                >
+            </SwiperSlide>
+        </Swiper>
         <p class="review">{{ currentReview.review }}</p>
         <p class="author">{{ currentReview.creator_name }}</p>
     </div>
@@ -29,6 +42,14 @@ export default {
     components: {
         Swiper,
         SwiperSlide,
+
+    },
+
+    props: {
+
+        theme: String,
+        arrondissement: String,
+        placeName: String,
 
     },
 
@@ -55,6 +76,30 @@ export default {
 
         };
 
+    },
+
+
+    computed: {
+
+        currentReview() {
+            return this.$store.state.selectedReview; // Utilisez une propriété calculée pour récupérer les détails de l'annonce
+        },
+
+        isDarkMode() {
+            return this.$store.state.isDarkMode;
+
+        },
+
+
+    },
+
+
+    watch: {
+
+        isDarkMode(newVal) {
+            console.log("test ", this.$store.state.isDarkMode, newVal)
+
+        }
     },
 
 
@@ -93,38 +138,6 @@ export default {
 
 
 
-    },
-
-
-    computed: {
-
-        currentReview() {
-            return this.$store.state.selectedReview; // Utilisez une propriété calculée pour récupérer les détails de l'annonce
-        },
-
-        isDarkMode() {
-            return this.$store.state.isDarkMode;
-
-        },
-
-
-    },
-
-    props: {
-
-        theme: String,
-        arrondissement: String,
-        placeName: String,
-
-    },
-
-
-    watch: {
-
-        isDarkMode(newVal) {
-            console.log("test ", this.$store.state.isDarkMode, newVal)
-
-        }
     },
 
 
