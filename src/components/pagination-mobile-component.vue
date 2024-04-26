@@ -30,6 +30,7 @@
                 >
             </button>
         </div>
+        <div class="ts" />
     </div>
 </template>
 
@@ -39,7 +40,7 @@
 
 export default {
 
-     
+    emits: ['mobile-page-changed'],
 
     data() {
         return {

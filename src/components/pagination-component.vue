@@ -20,15 +20,15 @@
 
 export default {
 
-
-
-
+ 
   props: {
     reviews: {
       type: Array,
       default: () => [],
     },
   },
+
+   emits: ['page-changed'],
 
 
   data() {

@@ -75,7 +75,6 @@ export default {
             review_id: null,
 
         };
-
     },
 
 
@@ -89,8 +88,6 @@ export default {
             return this.$store.state.isDarkMode;
 
         },
-
-
     },
 
 
@@ -115,7 +112,7 @@ export default {
 
         this.imageUrl = this.currentReview.secure_url;
 
-        // Convertir la chaîne JSON en objet JavaScript !!! (perte de temps , convertion a faire non soupconné) 
+        // Convertir la chaîne JSON en objet JavaScript !!! ( perte de temps , convertion à faire non soupconné ) 
         const reviewObject = JSON.parse(selectedReviewFromStorage);
 
         /* JSON.parse() est utilisé pour convertir une chaîne JSON en un objet JavaScrip, et ceux afin d'exploiter les données coté front.
@@ -129,7 +126,7 @@ export default {
 
         // const reviewId = selectedReviewFromStorage;
 
-        console.log(`reviewId from mounted :`, reviewId); // Ceci affichera 785 dans la console
+        // test console.log(`reviewId from mounted :`, reviewId);  Ceci affichera 785 dans la console
 
         this.fetchPictures();
 

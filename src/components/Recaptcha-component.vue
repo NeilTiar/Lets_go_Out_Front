@@ -20,9 +20,14 @@ import VueRecaptcha from 'vue3-recaptcha2';
 
 
 export default {
+
+ 
+
   components: {
     VueRecaptcha
   },
+  
+  emits: ['captcha-verification'],
 
   data() {
     return {
