@@ -1,6 +1,6 @@
 import { createStore } from 'vuex';
 import store from '@/store/store';
-
+import { useRoute } from 'vue-router';
 
 
 export default createStore({
@@ -89,23 +89,26 @@ export default createStore({
 
             if ((cardInfo.length > 0 && cardContainer)) {
 
-                /*  Array.from(cardInfo).map(card => {
+                  Array.from(cardInfo).map(card => {
                       card.style.color = this.isDarkMode ? '#caded6' : '';
   
                        Array.from(cardContainer).map(card => {
+                        
                            card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
    
                        })
   
-                  })*/
+                  })
 
             }
 
+            const route = useRoute();
 
+            if (route !== '/review-details' && route !== undefined && route !== null){
             document.querySelector('.logo-camera').style.filter = this.isDarkMode ? 'invert(100%)' : '';
             document.querySelector('.msg-user-logo').style.filter = this.isDarkMode ? 'invert(100%)' : '';
             console.log(document.querySelector('.logo-camera'))
-
+            }
 
             // Assurez-vous de réinitialiser la transition après la transition terminée pour éviter de l'appliquer à d'autres changements non souhaités
             setTimeout(() => {

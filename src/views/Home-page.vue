@@ -82,8 +82,9 @@ export default {
         color: transparent;
         /* Rend le texte transparent */
         display: inline-block;
-        font-size: 3.2rem;
-        margin-left: 4rem;
+        font-size: 5.2rem;
+        margin-left: 3rem;
+        padding-right: 1rem;
 
     }
 
@@ -175,10 +176,11 @@ export default {
 
     .home-link {
 
-        font-size: 1.8rem;
-        color: rgba(25, 199, 161, 0.534);
+        font-size: 2.3rem;
+        color: rgba(4, 250, 147, 0.836);
         font-family: "Exo 2", sans-serif;
-        font-weight: 600;
+        font-weight: 800;
+        text-shadow: none;
 
     }
 

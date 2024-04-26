@@ -51,14 +51,17 @@
         v-if="isDesktop"
         class="top-desktop-menu"
     >
-        <nav class="theme-banner">
+        <nav 
+            v-if="$route.path !=='/review-details'" 
+            class="theme-banner"
+        >
             <ul
                 class="themes"
                 @mouseover="startHover"
                 @mouseout="endHover"
             >
                 <li class="theme-link">
-                    <a
+                    <a 
                         class="theme-link culture-link"
                         href="#Culture"
                     >Culture</a>

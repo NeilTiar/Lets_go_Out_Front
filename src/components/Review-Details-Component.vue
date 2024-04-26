@@ -1,30 +1,63 @@
 <template>
     <div
-        v-if="currentReview"
+        v-if="currentReview" 
         class="currentReview"
     >
         <p class="theme">{{ currentReview.theme }}</p>
         <h1 class="title">{{ currentReview.place_name }}</h1>
-        <p class="adress">{{ currentReview.adress_place }}</p>
+        <p
+            class="adress"
+            :class="{ 'dark-mode-adress': isDarkMode }"
+        >
+            {{ currentReview.adress_place }}
+        </p> 
+
         <Swiper
+            v-if="!isDesktop"
             swiper
             :rewind="true"
             :navigation="true"
             class="mySwiper"
         >
             <SwiperSlide
+                
                 v-for="(photoUrl, index) in pictures"
                 :key="index"
             >
-                <img
+                <img 
+                    v-if="!isDesktop"
                     :src="photoUrl.secure_url"
                     :alt="generateAltText()"
                 >
             </SwiperSlide>
         </Swiper>
-        <p class="review">{{ currentReview.review }}</p>
-        <p class="author">{{ currentReview.creator_name }}</p>
+
+       
+        <div 
+            v-for="(photoUrl, index) in pictures"
+            :key="index"
+            class="container-desktop-pictures"
+        >
+            <img 
+                v-if="isDesktop" 
+                class="desktop-pictures"
+                :src="photoUrl.secure_url"
+                :alt="generateAltText()"
+            > 
+        </div>
     </div>
+    <p
+        class="review"
+        :class="{ 'dark-mode-review': isDarkMode }"
+    >
+        {{ currentReview.review }}
+    </p>
+    <p
+        class="author"
+        :class="{ 'dark-mode-author': isDarkMode }"
+    >
+        {{ currentReview.creator_name }}
+    </p>
 </template>
 
 <script>
@@ -73,7 +106,7 @@ export default {
             imageUrl: null,
             pictures: [],
             review_id: null,
-
+            isDesktop: window.innerWidth > 768,
         };
     },
 
@@ -193,12 +226,12 @@ export default {
 </script>
 
 <style scoped>
+
 .currentReview {
 
     display: flex;
     flex-direction: column;
     width: 80vw;
-    height:100vh;
     gap: 0.8rem;
     margin: auto;
 }
@@ -222,7 +255,7 @@ body {
 .swiper {
     width: 100%;
     height: 100%;
-     border-radius: 15px;
+    border-radius: 15px;
 }
 
 .swiper-slide {
@@ -237,16 +270,24 @@ body {
    
 }
 
-.swiper-slide img {
+.swiper-slide  {
     display: block;
+    width: 80%;
+    height: 110%;
+    object-fit:scale-down;
+    
+}
+
+img {
     width: 100%;
-    height: 100%;
-    object-fit:cover;
-    border-radius: 15px;
+    height:40rem;
 }
 
 .review {
-    font-size: 1.8rem;
+    
+    width: 80%;
+    margin:2rem auto;
+    font-size: 1.5rem;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -254,6 +295,62 @@ body {
     font-size: 1.2rem;
     font-family:Arial, Helvetica, sans-serif;
     font-style: italic;
+}
+
+.theme {
+    font-size: 2.6rem;
+    font-family: "Exo 2", sans-serif;
+    margin:5rem 0 0 0;
+    font-weight: 600;
+    color: #3aafad;
+}
+
+
+.desktop-pictures-container{
+
+    border:1px solid black;
+    height:35rem;
+    border-radius: 25px;
+    
+}
+
+.desktop-pictures {
+    border-radius: 25px;
+}
+
+.title {
+
+    margin-left: 0;
+}
+
+.author {
+
+    text-align: right;
+    margin:0 12rem 5rem 0;
+    font-size: 1.4rem;
+}
+
+.dark-mode-adress,
+.dark-mode-review,
+.dark-mode-author {
+    color:#fff;
+}
+
+@media screen and (min-width: 2000px) {
+    
+.swiper-slide  {
+    border-radius: 25px;
+    width: 60%;
+}
+
+.img {
+    object-fit:fill;
+}
+
+.desktop-pictures {
+    width: 80%;
+    margin: auto;
+}
 }
 
 
