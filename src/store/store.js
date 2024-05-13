@@ -21,7 +21,7 @@ export default createStore({
         setSelectedReview(state, review) {
             state.selectedReview = review;
 
-            // Stockage des données dans localStorage
+            // Stockage des données dans localStorage pour concerver l'ordre des reviews
             localStorage.setItem('selectedReview', JSON.stringify(review));
         },
 

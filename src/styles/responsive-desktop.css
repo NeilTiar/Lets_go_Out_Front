@@ -53,17 +53,15 @@ background :#afe2e2;
 
   .container-user-connexion-desktop {
 
-    position: relative;
-    display: inline-flex;
+    display: flex;
     height: 3rem;
-    align-items: center;
-    margin-right: 3rem;
-    margin-top: 10.7rem;
     color: #462243;
     font-family: "Courgette";
     font-size: auto;
     font-weight: 800;
     gap: 0.5rem;
+    justify-content: space-between;
+
 
   }
 

@@ -298,6 +298,7 @@ img {
 }
 
 .theme {
+    
     font-size: 2.6rem;
     font-family: "Exo 2", sans-serif;
     margin:5rem 0 0 0;

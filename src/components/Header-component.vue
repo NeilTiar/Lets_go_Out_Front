@@ -26,24 +26,42 @@
                     les meilleurs endroits de la ville lumière
                 </h2>
             </div>
-            <div
-                :class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
-                @mouseover="startHover"
-                @mouseout="endHover"
+        </div>
+    </div>
+
+    <div class="container-user-dark-theme">
+        <div class="container-logo-pseudo">
+            <img
+                class="user-logo"
+                src="../assets/user.png"
+                alt="user"
             >
-                <img
-                    class="user-logo"
-                    src="../assets/user.png"
-                    alt="user"
-                >
-                <div class="msg-user-logo">Bonjour, {{ pseudo }}</div>
-                <div class="dark-button-container">
-                    <darkThemeComponent
-                        v-if="isDesktop"
-                        @click="handleToggle"
-                    />
-                </div>
+            <div
+                :class="{ 'msg-user-log': !isDarkMode,'dark-mode-user-logo': isDarkMode}"
+            >
+                Bonjour, {{ pseudo }}
             </div>
+        </div>
+        <div class="dark-button-container">
+            <darkThemeComponent
+                v-if="isDesktop"
+                @click="handleToggle"
+            />
+        </div>
+    </div>
+
+    <div
+        v-if="$route.path === '/review-details'"
+        :class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
+        @mouseover="startHover"
+        @mouseout="endHover"
+    >
+        <div
+            v-if="$route.path === '/review-details'"
+            class="return-button"
+            @click="handleReturnButton"
+        >
+            retour vers reviews
         </div>
     </div>
 
@@ -88,6 +106,7 @@
                     >Creer une review </a>
                     <div class="logo-container">
                         <img
+                            :class="{'dark-logo-camera': isDarkMode }"
                             class="logo-camera"
                             src="../assets/black-camera.png"
                             alt="logo-camera"
@@ -161,6 +180,7 @@ import darkThemeComponent from '@/components/dark-theme-component.vue';
 
 // eslint-disable-next-line no-unused-vars
 import store from '../store/store'
+import { mapState } from 'vuex';
 
 export default {
 
@@ -182,11 +202,15 @@ export default {
       previousScrollY: 0,
       isScrollingUpX: false,
       pseudo: this.$store.state.pseudo,
-      isDarkMode: false,
     };
 
   },
 
+    computed: {
+    ...mapState(['isDarkMode']),
+    // Autres computed properties
+  },
+   
 
   mounted() {
 
@@ -194,6 +218,8 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
 
     window.addEventListener('resize', this.handleResize);
+
+  
 
   },
 
@@ -211,24 +237,12 @@ export default {
 
 
   methods: {
-
-    isDarkmodeActive() {
-
-      this.isDarkMode = !this.isDarkMode
-      this.darkTheme = !this.darkTheme
-      document.body.style.transition = 'background-color 0.5s ease';
-
-      // Changez la couleur du fond du body
-      document.body.style.backgroundColor = this.isDarkMode ? '#222' : '';
-
-
-      // Assurez-vous de réinitialiser la transition après la transition terminée pour éviter de l'appliquer à d'autres changements non souhaités
-      setTimeout(() => {
-        document.body.style.transition = '';
-      }, 500);
-      console.log("from func :", this.isDarkMode)
-
+    
+    handleReturnButton() {
+       window.history.go(-1);
+     console.log("from return button on click")
     },
+     
 
 
     handleToggle() {
@@ -272,6 +286,7 @@ export default {
 
 
 <style scoped>
+
 .dark-button {
 
   filter: invert(100%);
@@ -285,6 +300,58 @@ export default {
   color: white;
 }
 
+.dark-mode-user-logo {
+     
+    color:aliceblue;
+}
+
+.return-button {
+
+    display:flex;
+    background-color: aquamarine;
+    width: 14rem;
+    height: 2.6rem;
+    border-radius: 25px;
+    align-items: center;
+    justify-content: center;
+    color:rgb(109, 140, 155);
+    font-size: 1.4rem;  
+}
+
+.container-user-connexion-desktop {
+    
+    margin: 2rem 0 0 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem ;
+    
+}
+
+.container-user-dark-theme {
+
+    display: flex;
+    padding-right: 2rem;
+    align-items: center;
+    gap:1rem;
+    justify-content: flex-end;
+    
+}
+
+.container-logo-pseudo {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-user-connexion-desktop2 {
+
+    background-color: aquamarine;
+    height:2rem;
+    width:100%;
+}
 
 @import url('../styles/Header.css');
+
+
 </style>

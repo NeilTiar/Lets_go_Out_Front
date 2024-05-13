@@ -342,4 +342,10 @@ body {
   border-radius: 25px;
   font-weight: 400;
 }
+
+.header {
+
+width: 100vw;
+}
+
 </style>
