@@ -1,67 +1,105 @@
 <template>
     <body>
-
         <h1 class="title">Let's go out in paris</h1>
 
         <div class="container-login">
-
             <section class="connection">
-
                 <div class="title-connection">
                     <h2>Se connecter :</h2>
                 </div>
 
-                <div v-if="errorMessage" class="error-message">
+                <div
+                    v-if="errorMessage"
+                    class="error-message"
+                >
                     {{ errorMessage }}
                 </div>
 
-                <div v-if="connectionMessage" class="connection-message">
+                <div
+                    v-if="connectionMessage"
+                    class="connection-message"
+                >
                     {{ connectionMessage }}
                 </div>
 
 
 
-                <form class="form-connection" @submit.prevent="submitForm">
+                <form
+                    class="form-connection"
+                    @submit.prevent="submitForm"
+                >
+                    <label
+                        class="label-login"
+                        for="username"
+                    >Identifiant:</label>
+                    <input
+                        id="username"
+                        v-model="email"
+                        class="input-login"
+                        type="text"
+                        required
+                    >
 
-                    <label class="label-login" for="username">Identifiant:</label>
-                    <input class="input-login" type="text" id="username" v-model="email" required>
+                    <label
+                        class="label-login"
+                        for="password"
+                    >Mot de passe:</label>
+                    <input
+                        id="password"
+                        v-model="password"
+                        class="input-login"
+                        type="password"
+                        required
+                    >
 
-                    <label class="label-login" for="password">Mot de passe:</label>
-                    <input class="input-login" type="password" id="password" v-model="password" required>
-
-                    <a href="forgoten-password" class="forgoten-password">mot de passe oublié</a>
+                    <a
+                        href="forgoten-password"
+                        class="forgoten-password"
+                    >mot de passe oublié</a>
 
                     <div class="button-container">
-                        <button class="send-form-button" type="submit">Connexion</button>
+                        <button
+                            class="send-form-button"
+                            type="submit"
+                        >
+                            Connexion
+                        </button>
                     </div>
                 </form>
-
-
             </section>
 
             <section class="signup-link">
                 <p class="question">Vous n’avez pas encore votre compte let’s go out ?</p>
-                <p class="proposal-registration">inscrivez vous dès maintenant,Afin de créer vos propres reviews et
+                <p class="proposal-registration">
+                    inscrivez vous dès maintenant,Afin de créer vos propres reviews et
                     alimenter
-                    votre liste coup de cœur dés maintenant</p>
-                <a href="signup" class="link-to-signup">créer votre compte</a>
-
+                    votre liste coup de cœur dés maintenant
+                </p>
+                <a
+                    href="signup"
+                    class="link-to-signup"
+                >créer votre compte</a>
             </section>
-
         </div>
 
-        <Footer />
-
+        <FooterComponent />
     </body>
 </template>
 
 
 <script>
 
-import Footer from '../components/Footer.vue';
+import FooterComponent from '@/components/Footer-component.vue';
 import store from '../store/store'
 
 export default {
+
+    name: "SignupPage",
+    components: {
+
+        FooterComponent
+
+    },
 
     data() {
 
@@ -72,13 +110,6 @@ export default {
             errorMessage: null,
             connectionMessage: null,
         };
-    },
-
-    name: "Signup-page",
-    components: {
-
-        Footer
-
     },
 
 

@@ -1,4 +1,13 @@
 {
+  
+  "eslint.enable" : true,
+  "eslint.validate" : [
+   "javascript",
+   "html",
+
+  ],
+
+
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
@@ -16,4 +25,6 @@
       "scripthost"
     ]
   }
+
+  
 }

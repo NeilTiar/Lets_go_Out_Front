@@ -1,27 +1,40 @@
 <template>
-  <div class="button-container">
-    <button @click="() => {toggle(); isDarkModeOn()}" :class="{ 'dark-theme-container': true, 'light-mode': isActive, 'dark-mode': !isActive }">
+    <div class="button-container">
+        <button
+            :class="{ 'dark-theme-container': true, 'light-mode': isActive, 'dark-mode': !isActive }"
+            @click="() => { toggle(); isDarkModeOn() }"
+        >
+            <template v-if="isActive">
+                <span class="light-mode-tag">Theme clair</span>
+            </template>
 
-      <template v-if="isActive">
-        <span class="light-mode-tag">Theme clair</span>
-      </template>
+            <template v-if="!isActive">
+                <span class="dark-mode-tag">Theme Sombre</span>
+            </template>
 
-      <template v-if="!isActive">
-        <span class="dark-mode-tag">Theme Sombre</span>
-      </template>
-
-      <div :class="{ 'sun-moon-container': true, 'moved-right': isActive, 'moved-left': !isActive }">
-        <img v-if="isActive" src="../assets/sun.png" alt="Sun" class="sun " />
-        <img v-if="!isActive" src="../assets/moon.png" alt="Moon" class="moon " />
-      </div>
-
-    </button>
-  </div>
+            <div :class="{ 'sun-moon-container': true, 'moved-right': isActive, 'moved-left': !isActive }">
+                <img
+                    v-if="isActive"
+                    src="../assets/sun.png"
+                    alt="Sun"
+                    class="sun "
+                >
+                <img
+                    v-if="!isActive"
+                    src="../assets/moon.png"
+                    alt="Moon"
+                    class="moon "
+                >
+            </div>
+        </button>
+    </div>
 </template>
 
 <script>
 
 export default {
+
+  emits: ['toggle'],
 
   data() {
 
@@ -40,10 +53,10 @@ export default {
       // Alterne l'état de déplacement du boutton dark mode
     },
 
-   isDarkModeOn() {
-    this.$store.dispatch("setIsDarkMode", !this.$store.state.isDarkMode);
-    this.$store.dispatch('isDarkmodeActive')
-   }
+    isDarkModeOn() {
+      this.$store.dispatch("setIsDarkMode", !this.$store.state.isDarkMode);
+      this.$store.dispatch('isDarkmodeActive')
+    }
 
   },
 
@@ -51,7 +64,6 @@ export default {
 </script>
 
 <style scoped>
-
 button {
 
   display: flex;
@@ -64,13 +76,13 @@ button {
 
 .button-container {
 
- margin-left: 0.8rem;
+  margin-left: 0.8rem;
 }
 
 
 .dark-mode {
-  
-   
+
+
   display: flex;
   justify-content: flex-end;
   background: rgb(137, 120, 148);
@@ -106,7 +118,7 @@ button {
 }
 
 .moon {
- 
+
   max-height: 70%;
   width: 1.7rem;
   border: 2px solid white;
@@ -117,22 +129,22 @@ button {
 .sun-moon-container {
 
   height: 100%;
-  width: 2rem; 
+  width: 2rem;
 
 }
 
 .moved-right {
 
-transition: transform 0.6s ease; 
+  transition: transform 0.6s ease;
   transform: translateX(92px);
-  width:45%
+  width: 45%
 }
 
 .moved-left {
 
-  transition: transform 0.6s ease; 
+  transition: transform 0.6s ease;
   transform: translateX(-100px);
-  width:45%
+  width: 45%
 }
 
 .light-mode-tag {
@@ -155,12 +167,9 @@ transition: transform 0.6s ease;
 }
 
 
-.dark-theme-container{
-  
+.dark-theme-container {
+
   width: 10rem;
   z-index: 2;
 }
-
-
 </style>
-

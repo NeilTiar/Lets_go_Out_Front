@@ -4,15 +4,18 @@
     </title>
 
     <div class="main">
-
         <div class="top-title-login-connexion">
-
             <h1 class="title">Let's go out in paris</h1>
 
             <div class="right-link">
-
-                <a href="signup" class="home-link registration">Inscription</a>
-                <a href="login" class="home-link connexion">S'identifier</a>
+                <a
+                    href="signup"
+                    class="home-link registration"
+                >Inscription</a>
+                <a
+                    href="login"
+                    class="home-link connexion"
+                >S'identifier</a>
             </div>
         </div>
 
@@ -20,11 +23,12 @@
 
 
         <div class="container-home-background-img">
-
-
             <div class="container-img">
-                <img class="home-background-img" src="../assets/lgopHomePagePicture.jpg"
-                    alt="par une journée ensoleillée ,des cyclistes circule sur un pont avec la tour efeil en arriere plan">
+                <img
+                    class="home-background-img"
+                    src="../assets/lgopHomePagePicture.jpg"
+                    alt="par une journée ensoleillée ,des cyclistes circule sur un pont avec la tour efeil en arriere plan"
+                >
             </div>
             <div class="home-title-description">
                 <article>
@@ -33,14 +37,16 @@
                         prochaines sorties plus simplement.
                     </p>
                 </article>
-
             </div>
-
-
         </div>
     </div>
 
-    <div class="access-reviews"><a href="main" class="home-link reviews-acces">àcceder aux reviews</a></div>
+    <div class="access-reviews">
+        <a
+            href="main"
+            class="home-link reviews-acces"
+        >àcceder aux reviews</a>
+    </div>
 </template>
 
 <script>
@@ -76,8 +82,9 @@ export default {
         color: transparent;
         /* Rend le texte transparent */
         display: inline-block;
-        font-size: 3.2rem;
-        margin-left: 4rem;
+        font-size: 5.2rem;
+        margin-left: 3rem;
+        padding-right: 1rem;
 
     }
 
@@ -169,10 +176,11 @@ export default {
 
     .home-link {
 
-        font-size: 1.8rem;
-        color: rgba(25, 199, 161, 0.534);
+        font-size: 2.3rem;
+        color: rgba(4, 250, 147, 0.836);
         font-family: "Exo 2", sans-serif;
-        font-weight: 600;
+        font-weight: 800;
+        text-shadow: none;
 
     }
 
