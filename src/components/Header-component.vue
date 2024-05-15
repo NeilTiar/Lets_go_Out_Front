@@ -70,7 +70,7 @@
         class="top-desktop-menu"
     >
         <nav 
-            v-if="$route.path !=='/review-details'" 
+            v-if="shouldDisplayBannerTheme" 
             class="theme-banner"
         >
             <ul
@@ -102,7 +102,7 @@
                 <li class="link-create-review">
                     <a
                         class="create-link"
-                        href="#create"
+                        @click="navigateToCreateReview"
                     >Creer une review </a>
                     <div class="logo-container">
                         <img
@@ -209,6 +209,11 @@ export default {
     computed: {
     ...mapState(['isDarkMode']),
     // Autres computed properties
+
+     shouldDisplayBannerTheme() {
+      const excludedPaths = ['/review-details', '/create-review']; // Liste des chemins à exclure
+      return !excludedPaths.includes(this.$route.path);
+    }
   },
    
 
@@ -242,9 +247,14 @@ export default {
        window.history.go(-1);
      console.log("from return button on click")
     },
+
+            navigateToCreateReview() {
+      // Utiliser router.push() pour naviguer vers une autre page
+      this.$router.push('/create-review')
+      console.log("ok from crer une review")
+    },
+
      
-
-
     handleToggle() {
       this.isActive = !this.isActive;
 
