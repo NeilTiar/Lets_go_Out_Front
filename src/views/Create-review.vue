@@ -1,7 +1,7 @@
 <template>
     <HeaderComponent />
 
-   
+
     <h2 class="title">Créer votre nouvelle review :</h2>
 
     <div class="container-create-review-form">
@@ -10,7 +10,7 @@
             @submit.prevent="submitForm"
         >
             <div class="select-theme">
-                <select 
+                <select
                     v-model="formData.selectedTheme"
                     class="theme-select"
                 >
@@ -31,48 +31,84 @@
             <input
                 v-model="formData.placeName"
                 class="input-place"
-                type="text" 
+                type="text"
                 placeholder="Nom du lieux ou de l'établissement"
             >
 
             <input
                 v-model="formData.address"
                 class="input-address"
-                type="text" 
+                type="text"
                 placeholder="Adresse du lieux ou de l'établissement"
             >
 
             <input
                 v-model="formData.district"
                 class="input-district"
-                type="number" 
+                type="number"
                 placeholder="numero de l'arrondissement"
             >
 
-            <input
-                class="input-main-picture"
-                type="file" 
-                @change="onFileLoad"
-            >
-        </form>
-    </div>  
+            <div class="container-pictures">
+                <div class="container-main-picture">
+                    <input
+                        ref="fileInput"
+                        class="input-main-picture"
+                        type="file"
+                        accept="image/*"
+                        @change="onFileLoad" 
+                    >
 
-    <div
-        class="displayIMG"
-    >
-        <img
-            :src="imageURL"
-            alt="uploaded"
-        >
+
+                    <button
+                        class="button-main-picture"
+                        @click="triggerFileInput"
+                    >
+                        photo principal
+                    </button>
+
+                    <img
+                        v-if="imageURL"
+                        :src="imageURL"
+                        alt="uploaded"
+                    >
+                </div>
+
+                <div class="container-main-picture">
+                    <input
+                        ref="fileInputSecond"
+                        class="input-main-picture"
+                        type="file"
+                        accept="image/*"
+                        @change="onFileLoadSecond" 
+                    >
+
+
+                    <button
+                        class="button-seconde-picture"
+                        @click="triggerFileInputSecond"
+                    >
+                        photo secondaire
+                    </button>
+
+                    <img
+                        v-if="secondPicture"
+                        :src="secondPicture"
+                        alt="uploaded"
+                    >
+                </div>
+            </div>
+        </form>
     </div>
+
 
     <button
         class="submit-form"
         @click="submitForm"
     >
         Enregistrer votre Review
-    </button> 
-  
+    </button>
+
 
     <FooterComponent />
 </template>
@@ -101,20 +137,23 @@ export default {
 
     return {
 
-    formData: {
- 
-     selectedTheme: "",
-     placeName: "",
-     district: "",
-     address: "",
-     mainPicture:"",
+      formData: {
 
+        selectedTheme: "",
+        placeName: "",
+        district: "",
+        address: "",
+       
+      },
 
-    },
-
-    isDesktop: window.innerWidth > 768,
-    selectedTheme: "",
-    imageURL:"",
+      isDesktop: window.innerWidth > 768,
+      selectedTheme: "",
+      imageURL: "",
+      mainPicture: "",
+      secondPicture: "",
+      thirdPicture:"",
+      fourthPicture:"",
+      fifthPicture:"",
 
     }
   },
@@ -139,35 +178,54 @@ export default {
 
   methods: {
 
-    onFileLoad(event){
-    
+    onFileLoad(event) {
+    // Vérifiez si l'événement est vide
+    if (!event.target.files[0]) {
+        return; // Sortez de la fonction si aucun fichier n'est sélectionné
+    }
+
+    // Si un fichier est sélectionné, procédez avec la création de l'URL de l'objet
     const file = event.target.files[0];
     this.imageURL = URL.createObjectURL(file);
+},
 
+ onFileLoadSecond(event) {
+        if (!event.target.files[0]) {
+            return;
+        }
+        const file = event.target.files[0];
+        this.secondPicture = URL.createObjectURL(file);
+    },
 
+       triggerFileInput() {
+      this.$refs.fileInput.click();
+    },
+
+     triggerFileInputSecond() {
+        this.$refs.fileInputSecond.click();
     },
 
 
- submitForm() {
+    submitForm() {
       // Effectuez ici toute action que vous souhaitez effectuer lorsque le formulaire est soumis
       // Vous pouvez accéder aux données du formulaire via this.formData
       console.log('Données du formulaire :', this.formData);
-      
+
       // Réinitialiser les données du formulaire après la soumission si nécessaire
-     // Réinitialiser toutes les propriétés du formulaire, object assign permet de reinitialiser en un seul temps 
-     /*   
-     c'est l'equivalent des lignes ci dessous :
-          this.formData.district = '';
-          this.formData.address = '';
-          this.formData.placeName = '';  etc.....*/
+      // Réinitialiser toutes les propriétés du formulaire, object assign permet de reinitialiser en un seul temps 
+      /*   
+      c'est l'equivalent des lignes ci dessous :
+           this.formData.district = '';
+           this.formData.address = '';
+           this.formData.placeName = '';  etc.....*/
 
 
-  Object.assign(this.formData, {
-    district: '',
-    address: '',
-    placeName: '',
-    selectedTheme: '',
-  });
+      Object.assign(this.formData, {
+        district: '',
+        address: '',
+        placeName: '',
+        selectedTheme: '',
+      });
     }
 
 
@@ -233,7 +291,7 @@ body {
   width: 100vw;
 }
 
-.container-create-review-form{
+.container-create-review-form {
   display: flex;
   flex-direction: column;
   margin-left: 5rem;
@@ -243,7 +301,7 @@ body {
 .input-district,
 .input-address {
   width: 30%;
-  height:1.5rem;
+  height: 1.5rem;
   border-radius: 25px;
   margin-top: 0.7rem;
   font-size: 1.1rem;
@@ -251,7 +309,7 @@ body {
 
 .theme-select {
   width: 15%;
-  height:1.9rem;
+  height: 1.9rem;
   border-radius: 25px;
   margin-top: 0.5rem;
   font-size: 1rem;
@@ -263,16 +321,43 @@ body {
   flex-direction: column;
 }
 
-.displayIMG {
-
-  width: 25%;
-  height:14rem;
-  background-color: aqua;
+.container-main-picture {
+  position:relative;
+ /* display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;*/
+  width: 50%;
+  height: 27rem;
+  border: 1px solid black;
+  
+ 
 }
 
 img {
+  
   object-fit: cover;
   width: 100%;
   height: 100%;
+ 
+}
+
+.input-main-picture {
+  display: none ;
+
+}
+
+.button-main-picture{
+ height:1.7rem;
+ position: absolute;
+ bottom :1rem;
+ right: 1rem;
+ border-radius: 25px;
+}
+
+.container-pictures {
+  display: inline-flex;
+  margin-top: 2rem;
+  background-color: aqua;
+  width: 95%;
 }
 </style>
