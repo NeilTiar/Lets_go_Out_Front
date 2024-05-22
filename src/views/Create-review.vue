@@ -56,51 +56,166 @@
                         class="input-main-picture"
                         type="file"
                         accept="image/*"
-                        @change="onFileLoad" 
+                        @change="onFileLoad"
                     >
 
+                    <img
+                        src="../assets/abstract continuous line art camera.png"
+                        alt="logo-camera"
+                        class="camera-logo"
+                    >
 
                     <button
                         class="button-main-picture"
                         @click="triggerFileInput"
                     >
-                        photo principal
+                        ajouter une photo principale
                     </button>
 
                     <img
                         v-if="imageURL"
                         :src="imageURL"
+                        class="main-picture"
                         alt="uploaded"
                     >
                 </div>
+                <div class="container-gallery">
+                    <div class="container-top-pictures">
+                        <div class="container-picture2 pictures-container">
+                            <input
+                                ref="fileInputSecond"
+                                class="input-main-picture"
+                                type="file"
+                                accept="image/*"
+                                @change="onFileLoadSecond"
+                            >
 
-                <div class="container-main-picture">
-                    <input
-                        ref="fileInputSecond"
-                        class="input-main-picture"
-                        type="file"
-                        accept="image/*"
-                        @change="onFileLoadSecond" 
-                    >
+                            <img
+                                src="../assets/abstract continuous line art camera.png"
+                                alt="logo-camera"
+                                class="camera-logo"
+                            >
+
+                            <button
+                                class="button-gallery"
+                                @click="triggerFileInputSecond"
+                            >
+                                ajouter une photo
+                            </button>
+
+                            <img
+                                v-if="secondPicture"
+                                :src="secondPicture"
+                                alt="uploaded"
+                            >
+                        </div>
+                        <div class="container-picture3 pictures-container">
+                            <input
+                                ref="fileInputSecond"
+                                class="input-main-picture"
+                                type="file"
+                                accept="image/*"
+                                @change="onFileLoadSecond"
+                            >
+
+                            <img
+                                src="../assets/abstract continuous line art camera.png"
+                                alt="logo-camera"
+                                class="camera-logo"
+                            >
+
+                            <button
+                                class="button-gallery"
+                                @click="triggerFileInputSecond"
+                            >
+                                ajouter une photo
+                            </button>
+
+                            <img
+                                v-if="secondPicture"
+                                :src="secondPicture"
+                                class="picture3"
+                                alt="uploaded"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="container-bottom-pictures">
+                        <div class="container-picture4 pictures-container">
+                            <input
+                                ref="fileInputSecond"
+                                class="input-main-picture"
+                                type="file"
+                                accept="image/*"
+                                @change="onFileLoadSecond"
+                            >
 
 
-                    <button
-                        class="button-seconde-picture"
-                        @click="triggerFileInputSecond"
-                    >
-                        photo secondaire
-                    </button>
+                            <img
+                                src="../assets/abstract continuous line art camera.png"
+                                alt="logo-camera"
+                                class="camera-logo"
+                            >
 
-                    <img
-                        v-if="secondPicture"
-                        :src="secondPicture"
-                        alt="uploaded"
-                    >
+                            <button
+                                class="button-gallery"
+                                @click="triggerFileInputSecond"
+                            >
+                                ajouter une photo
+                            </button>
+
+                            <img
+                                v-if="secondPicture"
+                                :src="secondPicture"
+                                alt="uploaded"
+                            >
+                        </div>
+                        <div class="container-picture5 pictures-container">
+                            <input
+                                ref="fileInputSecond"
+                                class="input-main-picture"
+                                type="file"
+                                accept="image/*"
+                                @change="onFileLoadSecond"
+                            >
+
+                            <img
+                                src="../assets/abstract continuous line art camera.png"
+                                alt="logo-camera"
+                                class="camera-logo"
+                            >
+
+                            <button
+                                class="button-gallery"
+                                @click="triggerFileInputSecond"
+                            >
+                                ajouter une photo
+                            </button>
+
+                            <img
+                                v-if="secondPicture"
+                                class="picture5"
+                                :src="secondPicture"
+                                alt="uploaded"
+                            >
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
 
+
+    <div class="container-text">
+        <textarea
+            v-model="textDescription"
+            class="text"
+            cols="30"
+            rows="10"
+            placeholder="Votre description ici...."
+            @input="logTextDescription"
+        />
+    </div>
 
     <button
         class="submit-form"
@@ -143,7 +258,7 @@ export default {
         placeName: "",
         district: "",
         address: "",
-       
+
       },
 
       isDesktop: window.innerWidth > 768,
@@ -151,9 +266,10 @@ export default {
       imageURL: "",
       mainPicture: "",
       secondPicture: "",
-      thirdPicture:"",
-      fourthPicture:"",
-      fifthPicture:"",
+      thirdPicture: "",
+      fourthPicture: "",
+      fifthPicture: "",
+      textDescription: "",
 
     }
   },
@@ -178,31 +294,54 @@ export default {
 
   methods: {
 
-    onFileLoad(event) {
-    // Vérifiez si l'événement est vide
-    if (!event.target.files[0]) {
-        return; // Sortez de la fonction si aucun fichier n'est sélectionné
-    }
+    onTextLoad(event) {
+      const file = event.target.files[0];
+      if (!file) {
+        return; // Exit if no file is selected
+      }
 
-    // Si un fichier est sélectionné, procédez avec la création de l'URL de l'objet
-    const file = event.target.files[0];
-    this.imageURL = URL.createObjectURL(file);
-},
+      const reader = new FileReader();
 
- onFileLoadSecond(event) {
-        if (!event.target.files[0]) {
-            return;
-        }
-        const file = event.target.files[0];
-        this.secondPicture = URL.createObjectURL(file);
+      reader.onload = (e) => {
+        this.textDescription = e.target.result;
+        console.log("File content: ", this.textDescription); // Log the file content
+      };
+
+      reader.readAsText(file);
+      
+    },
+    
+
+    //test loading textDescription property
+       logTextDescription() {
+      console.log(this.textDescription); // Log the textDescription whenever it changes
     },
 
-       triggerFileInput() {
+    onFileLoad(event) {
+      // Vérifiez si l'événement est vide
+      if (!event.target.files[0]) {
+        return; // Sortez de la fonction si aucun fichier n'est sélectionné
+      }
+
+      // Si un fichier est sélectionné, procédez avec la création de l'URL de l'objet
+      const file = event.target.files[0];
+      this.imageURL = URL.createObjectURL(file);
+    },
+
+    onFileLoadSecond(event) {
+      if (!event.target.files[0]) {
+        return;
+      }
+      const file = event.target.files[0];
+      this.secondPicture = URL.createObjectURL(file);
+    },
+
+    triggerFileInput() {
       this.$refs.fileInput.click();
     },
 
-     triggerFileInputSecond() {
-        this.$refs.fileInputSecond.click();
+    triggerFileInputSecond() {
+      this.$refs.fileInputSecond.click();
     },
 
 
@@ -322,42 +461,178 @@ body {
 }
 
 .container-main-picture {
-  position:relative;
- /* display: flex;
+  position: relative;
+  /* display: flex;
   justify-content: flex-end;
   align-items: flex-end;*/
-  width: 50%;
+  width: 80%;
   height: 27rem;
   border: 1px solid black;
-  
- 
+  border-radius: 25px;
+
 }
 
 img {
-  
+
   object-fit: cover;
   width: 100%;
   height: 100%;
- 
+
+}
+
+.main-picture {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.picture2 {
+  border-top-right-radius: 25px;
+}
+
+.picture3 {
+  border-top-right-radius: 25px;
+}
+
+.picture3 {
+  border-top-right-radius: 25px;
+}
+
+.picture5 {
+  border-bottom-right-radius: 25px;
 }
 
 .input-main-picture {
-  display: none ;
+  display: none;
 
 }
 
-.button-main-picture{
- height:1.7rem;
- position: absolute;
- bottom :1rem;
- right: 1rem;
- border-radius: 25px;
+.button-main-picture {
+  height: 1.7rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 25px;
+  z-index: 2;
+  font-family: "Courgette";
+  font-size: 1.3rem;
+}
+
+.button-gallery {
+  position: absolute;
+  height: 1.7rem;
+  border-radius: 25px;
+  z-index: 2;
+  margin: 0 1rem 1rem 0;
+  font-family: "Courgette";
+  font-size: 1.3rem;
+
+
 }
 
 .container-pictures {
   display: inline-flex;
   margin-top: 2rem;
-  background-color: aqua;
   width: 95%;
+  border-radius: 25px;
+}
+
+.container-gallery {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container-picture2 {
+  box-sizing: border-box;
+  flex: 1;
+  width: 50%;
+  border: 1px solid black;
+}
+
+.container-picture3 {
+
+  width: 50%;
+  box-sizing: border-box;
+  flex: 1;
+  border-top-right-radius: 25px;
+  border: 1px solid black;
+}
+
+.container-picture4 {
+  border: 1px solid black;
+  width: 50%;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.container-picture5 {
+  border: 1px solid black;
+  width: 50%;
+  box-sizing: border-box;
+  flex: 1;
+  border-bottom-right-radius: 25px;
+}
+
+
+.container-top-pictures {
+  display: flex;
+  width: 100%;
+  height: 50%;
+}
+
+.container-bottom-pictures {
+
+  display: flex;
+  width: 100%;
+  height: 50%
+}
+
+.pictures-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.camera-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 80%;
+  width: 80%;
+}
+
+.container-text {
+ 
+  margin-top: 2rem;
+  display:flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.text {
+  width: 70%;
+  height:15rem;
+  border-radius: 15px;
+  border:1.5px solid black;
+  font-size: 1.2rem;
+}
+
+.submit-form {
+margin: 2rem 0 0 12rem;
+font-size: 1.2rem;
+border-radius: 25px;
+background-color: rgb(27, 238, 143);
+font-family: "Courgette";
+height: 3rem;
+
 }
 </style>
