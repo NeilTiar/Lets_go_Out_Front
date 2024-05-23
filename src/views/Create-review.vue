@@ -49,14 +49,17 @@
                 placeholder="numero de l'arrondissement"
             >
 
-            <div class="container-pictures">
+            <div
+                v-if="isDesktop"
+                class="container-pictures"
+            >
                 <div class="container-main-picture">
                     <input
                         ref="fileInput"
                         class="input-main-picture"
                         type="file"
                         accept="image/*"
-                        @change="onFileLoad"
+                        @change="onFileLoad($event,'mainPicture')"
                     >
 
                     <img
@@ -73,8 +76,8 @@
                     </button>
 
                     <img
-                        v-if="imageURL"
-                        :src="imageURL"
+                        v-if="formData.temporary.mainPicture"
+                        :src="formData.temporary.mainPicture"
                         class="main-picture"
                         alt="uploaded"
                     >
@@ -87,7 +90,7 @@
                                 class="input-main-picture"
                                 type="file"
                                 accept="image/*"
-                                @change="onFileLoadSecond"
+                                @change="onFileLoad($event ,'secondPicture')"
                             >
 
                             <img
@@ -104,18 +107,18 @@
                             </button>
 
                             <img
-                                v-if="secondPicture"
-                                :src="secondPicture"
+                                v-if="formData.temporary.secondPicture"
+                                :src="formData.temporary.secondPicture"
                                 alt="uploaded"
                             >
                         </div>
                         <div class="container-picture3 pictures-container">
                             <input
-                                ref="fileInputSecond"
+                                ref="fileInputThird"
                                 class="input-main-picture"
                                 type="file"
                                 accept="image/*"
-                                @change="onFileLoadSecond"
+                                @change="onFileLoad($event,'thirdPicture')"
                             >
 
                             <img
@@ -126,14 +129,14 @@
 
                             <button
                                 class="button-gallery"
-                                @click="triggerFileInputSecond"
+                                @click="triggerFileInputThird"
                             >
                                 ajouter une photo
                             </button>
 
                             <img
-                                v-if="secondPicture"
-                                :src="secondPicture"
+                                v-if="formData.temporary.thirdPicture"
+                                :src="formData.temporary.thirdPicture"
                                 class="picture3"
                                 alt="uploaded"
                             >
@@ -143,11 +146,11 @@
                     <div class="container-bottom-pictures">
                         <div class="container-picture4 pictures-container">
                             <input
-                                ref="fileInputSecond"
+                                ref="fileInputFourth"
                                 class="input-main-picture"
                                 type="file"
                                 accept="image/*"
-                                @change="onFileLoadSecond"
+                                @change="onFileLoad($event,'fourthPicture')"
                             >
 
 
@@ -159,24 +162,24 @@
 
                             <button
                                 class="button-gallery"
-                                @click="triggerFileInputSecond"
+                                @click="triggerFileInputFourth"
                             >
                                 ajouter une photo
                             </button>
 
                             <img
-                                v-if="secondPicture"
-                                :src="secondPicture"
+                                v-if="formData.temporary.fourthPicture"
+                                :src="formData.temporary.fourthPicture"
                                 alt="uploaded"
                             >
                         </div>
                         <div class="container-picture5 pictures-container">
                             <input
-                                ref="fileInputSecond"
+                                ref="fileInputFifth"
                                 class="input-main-picture"
                                 type="file"
                                 accept="image/*"
-                                @change="onFileLoadSecond"
+                                @change="onFileLoad($event,'fifthPicture')"
                             >
 
                             <img
@@ -187,15 +190,15 @@
 
                             <button
                                 class="button-gallery"
-                                @click="triggerFileInputSecond"
+                                @click="triggerFileInputFifth"
                             >
                                 ajouter une photo
                             </button>
 
                             <img
-                                v-if="secondPicture"
+                                v-if="formData.temporary.fifthPicture"
                                 class="picture5"
-                                :src="secondPicture"
+                                :src="formData.temporary.fifthPicture"
                                 alt="uploaded"
                             >
                         </div>
@@ -208,7 +211,7 @@
 
     <div class="container-text">
         <textarea
-            v-model="textDescription"
+            v-model="formData.textDescription"
             class="text"
             cols="30"
             rows="10"
@@ -258,19 +261,31 @@ export default {
         placeName: "",
         district: "",
         address: "",
+        textDescription: "",
 
+//temporary pour stocker les images temporaire avant enregistrement ( url creer au format blob avec create URL)
+
+       temporary: {
+        mainPicture: "",
+        secondPicture: "",
+        thirdPicture: "",
+        fourthPicture: "",
+        fifthPicture: "",
+       },
+
+// les props ci dessous pour stocker les urls qui seront transmit à l'api via fetch pour stockage sur serveurs Cloudinary
+
+        mainPicture: "",
+        secondPicture: "",
+        thirdPicture: "",
+        fourthPicture: "",
+        fifthPicture: "",
+        
       },
 
       isDesktop: window.innerWidth > 768,
-      selectedTheme: "",
-      imageURL: "",
-      mainPicture: "",
-      secondPicture: "",
-      thirdPicture: "",
-      fourthPicture: "",
-      fifthPicture: "",
-      textDescription: "",
-
+      imageURL:"",
+    
     }
   },
 
@@ -317,24 +332,31 @@ export default {
       console.log(this.textDescription); // Log the textDescription whenever it changes
     },
 
-    onFileLoad(event) {
-      // Vérifiez si l'événement est vide
-      if (!event.target.files[0]) {
-        return; // Sortez de la fonction si aucun fichier n'est sélectionné
-      }
 
-      // Si un fichier est sélectionné, procédez avec la création de l'URL de l'objet
-      const file = event.target.files[0];
-      this.imageURL = URL.createObjectURL(file);
-    },
 
-    onFileLoadSecond(event) {
-      if (!event.target.files[0]) {
+ onFileLoad(event ,pictureField ) {
+
+console.log(event, "formdata.",pictureField)
+
+
+      if (!event.target.files || event.target.files.length === 0) {
         return;
       }
       const file = event.target.files[0];
-      this.secondPicture = URL.createObjectURL(file);
+      const currentImageUrl = URL.createObjectURL(file);
+
+         // Assurez-vous que l'objet temporary existe avant d'ajouter la valeur
+    if (!this.formData.temporary) {
+        this.$set(this.formData, 'temporary', {});
+    }
+
+      this.formData.temporary[pictureField]= currentImageUrl;
+
+
+
+      
     },
+
 
     triggerFileInput() {
       this.$refs.fileInput.click();
@@ -344,11 +366,25 @@ export default {
       this.$refs.fileInputSecond.click();
     },
 
+       triggerFileInputThird() {
+      this.$refs.fileInputThird.click();
+    },
+    
+         triggerFileInputFourth() {
+      this.$refs.fileInputFourth.click();
+    },
+
+         triggerFileInputFifth() {
+      this.$refs.fileInputFifth.click();
+    },
+    
+
+
 
     submitForm() {
       // Effectuez ici toute action que vous souhaitez effectuer lorsque le formulaire est soumis
       // Vous pouvez accéder aux données du formulaire via this.formData
-      console.log('Données du formulaire :', this.formData);
+      console.log('Données du formulaire :', JSON.stringify(this.formData));
 
       // Réinitialiser les données du formulaire après la soumission si nécessaire
       // Réinitialiser toutes les propriétés du formulaire, object assign permet de reinitialiser en un seul temps 
@@ -358,13 +394,17 @@ export default {
            this.formData.address = '';
            this.formData.placeName = '';  etc.....*/
 
-
-      Object.assign(this.formData, {
+       // ci dessou a activer apres validation du formulaire pour effacer la derniere review creer dans la memoire du client , ainsi si il creer une nouvelle review pendant la session courante ,les donné renseigner pour creer  la precedente review n'apparaisset pas .
+      /*Object.assign(this.formData, {
         district: '',
         address: '',
         placeName: '',
         selectedTheme: '',
-      });
+      });*/
+
+
+
+
     }
 
 
@@ -468,8 +508,8 @@ body {
   width: 80%;
   height: 27rem;
   border: 1px solid black;
-  border-radius: 25px;
-
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
 }
 
 img {
