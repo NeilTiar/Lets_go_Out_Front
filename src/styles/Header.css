@@ -232,7 +232,8 @@ img.sun {
 }
 
 li.link-create-review {
-
+ 
+  cursor: pointer;
   margin: 0.4rem;
   display: flex;
   align-items: center;

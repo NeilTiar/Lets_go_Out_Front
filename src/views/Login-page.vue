@@ -133,7 +133,7 @@ export default {
 
                         email: this.email,
                         password: this.password,
-                        
+
                     }),
 
                 })
@@ -144,48 +144,55 @@ export default {
 
                     const responseData = await response.json();
 
-                    console.log("responsData : ", responseData)
+                    const accessToken = responseData.accessToken;
 
-                   const newPseudo = responseData.pseudo;
-
-                    await store.dispatch('updatePseudo', newPseudo);
-
-                    // Vous pouvez également accéder au pseudo mis à jour directement à partir du store
-                    console.log('Pseudo mis à jour :', store.state.pseudo);
-
-                    this.connectionMessage = responseData.message[1]
-                    console.log('message de success :', responseData.message[1]);
-                    setTimeout(() => {
-                        this.$router.push('/main');
-                    }, 1500);
-                    // Traitement de la réponse si nécessaire
-                    return responseData
-
-
-                } else {
-
-                    if (response.status === 401) {
-
-                        const errorData = await response.json();
-                        this.errorMessage = errorData.message;
-                        console.log('Erreur côté serveur :', this.errorMessage);
-                        // Afficher le message d'erreur pendant 6 secondes
-                        setTimeout(() => {
-                            this.errorMessage = null; // Réinitialiser le message d'erreur après le délai
-                        }, 2000);
+                    if (accessToken) {
+                        // Stockez le token dans le local storage
+                        localStorage.setItem('token', accessToken);
                     }
 
+                        console.log("responsData : ", responseData)
 
+                        const newPseudo = responseData.pseudo;
+
+                        await store.dispatch('updatePseudo', newPseudo);
+
+                        // Vous pouvez également accéder au pseudo mis à jour directement à partir du store
+                        console.log('Pseudo mis à jour :', store.state.pseudo);
+
+                        this.connectionMessage = responseData.message[1]
+                        console.log('message de success :', responseData.message[1]);
+                        setTimeout(() => {
+                            this.$router.push('/main');
+                        }, 1500);
+                        // Traitement de la réponse si nécessaire
+                        return responseData
+
+
+                    } else {
+
+                        if (response.status === 401) {
+
+                            const errorData = await response.json();
+                            this.errorMessage = errorData.message;
+                            console.log('Erreur côté serveur :', this.errorMessage);
+                            // Afficher le message d'erreur pendant 6 secondes
+                            setTimeout(() => {
+                                this.errorMessage = null; // Réinitialiser le message d'erreur après le délai
+                            }, 2000);
+                        }
+
+
+                    }
                 }
-            }
 
             catch (error) {
 
-                console.log('Erreur lors de la requête :', error);
+                    console.log('Erreur lors de la requête :', error);
+                }
             }
-        }
     }
-}
+    }
 
 </script>
 
@@ -347,11 +354,11 @@ export default {
     margin-bottom: 2rem;
 }
 
-.error-message, 
+.error-message,
 .success-message {
 
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 

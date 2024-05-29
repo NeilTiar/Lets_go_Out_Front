@@ -7,11 +7,11 @@
     <div class="container-create-review-form">
         <form
             class="create-form"
-            @submit.prevent="submitForm"
+            @submit.prevent="submitForm($event)"
         >
             <div class="select-theme">
                 <select
-                    v-model="formData.selectedTheme"
+                    v-model="formData.theme"
                     class="theme-select"
                 >
                     <option
@@ -22,28 +22,28 @@
                     >
                         Sélectionnez un theme
                     </option>
-                    <option value="Food&Drinks">Food&drinks</option>
-                    <option value="Loisirs">Loisirs</option>
-                    <option value="Culture">Culture</option>
+                    <option value="food & drink">food & drink</option>
+                    <option value="culture">culture</option>
+                    <option value="loisir">loisir</option>
                 </select>
             </div>
 
             <input
-                v-model="formData.placeName"
+                v-model="formData.place_name"
                 class="input-place"
                 type="text"
                 placeholder="Nom du lieux ou de l'établissement"
             >
 
             <input
-                v-model="formData.address"
+                v-model="formData.address_place"
                 class="input-address"
                 type="text"
                 placeholder="Adresse du lieux ou de l'établissement"
             >
 
             <input
-                v-model="formData.district"
+                v-model="formData.district_num"
                 class="input-district"
                 type="number"
                 placeholder="numero de l'arrondissement"
@@ -70,7 +70,7 @@
 
                     <button
                         class="button-main-picture"
-                        @click="triggerFileInput"
+                        @click="triggerFileInput($event)"
                     >
                         ajouter une photo principale
                     </button>
@@ -211,7 +211,7 @@
 
     <div class="container-text">
         <textarea
-            v-model="formData.textDescription"
+            v-model="formData.text_description"
             class="text"
             cols="30"
             rows="10"
@@ -222,7 +222,7 @@
 
     <button
         class="submit-form"
-        @click="submitForm"
+        @click="submitForm($event)"
     >
         Enregistrer votre Review
     </button>
@@ -257,12 +257,12 @@ export default {
 
       formData: {
 
-        selectedTheme: "",
-        placeName: "",
-        district: "",
-        address: "",
-        textDescription: "",
-
+        theme: "",
+        place_name: "",
+        district_num: "",
+        address_place: "",
+        text_description: "",
+        files: [],
 //temporary pour stocker les images temporaire avant enregistrement ( url creer au format blob avec create URL)
 
        temporary: {
@@ -275,6 +275,8 @@ export default {
 
 // les props ci dessous pour stocker les urls qui seront transmit à l'api via fetch pour stockage sur serveurs Cloudinary
 
+
+// prochaine tache pour le 24 mai , comment alimenter ces props avec les url pour enregistrement depuis fonction onsubmit()
         mainPicture: "",
         secondPicture: "",
         thirdPicture: "",
@@ -318,8 +320,8 @@ export default {
       const reader = new FileReader();
 
       reader.onload = (e) => {
-        this.textDescription = e.target.result;
-        console.log("File content: ", this.textDescription); // Log the file content
+        this.text_description = e.target.result;
+        console.log("File content: ", this.text_description); // Log the file content
       };
 
       reader.readAsText(file);
@@ -329,20 +331,20 @@ export default {
 
     //test loading textDescription property
        logTextDescription() {
-      console.log(this.textDescription); // Log the textDescription whenever it changes
+      console.log(this.text_description); // Log the textDescription whenever it changes
     },
 
 
 
- onFileLoad(event ,pictureField ) {
-
-console.log(event, "formdata.",pictureField)
+ /*onFileLoad(event ,pictureField ) {
 
 
       if (!event.target.files || event.target.files.length === 0) {
         return;
       }
       const file = event.target.files[0];
+      this.mainPicture = file
+
       const currentImageUrl = URL.createObjectURL(file);
 
          // Assurez-vous que l'objet temporary existe avant d'ajouter la valeur
@@ -352,14 +354,29 @@ console.log(event, "formdata.",pictureField)
 
       this.formData.temporary[pictureField]= currentImageUrl;
 
-
-
       
-    },
+    },*/
+
+    onFileLoad(event, pictureField) {
+    if (!event.target.files || event.target.files.length === 0) {
+        return;
+    }
+    const file = event.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
+    this.formData.temporary[pictureField] = imageUrl;
+
+    // Ajouter l'image directement au FormData
+    this.formData.files.push({ field: pictureField, file: file });
+
+    console.log("mainPicture: ", this.mainPicture)
+},
+
 
 
     triggerFileInput() {
+     
       this.$refs.fileInput.click();
+      
     },
 
     triggerFileInputSecond() {
@@ -381,36 +398,77 @@ console.log(event, "formdata.",pictureField)
 
 
 
-    submitForm() {
-      // Effectuez ici toute action que vous souhaitez effectuer lorsque le formulaire est soumis
-      // Vous pouvez accéder aux données du formulaire via this.formData
-      console.log('Données du formulaire :', JSON.stringify(this.formData));
+async submitForm() {
 
-      // Réinitialiser les données du formulaire après la soumission si nécessaire
-      // Réinitialiser toutes les propriétés du formulaire, object assign permet de reinitialiser en un seul temps 
-      /*   
-      c'est l'equivalent des lignes ci dessous :
-           this.formData.district = '';
-           this.formData.address = '';
-           this.formData.placeName = '';  etc.....*/
+    
+    // Construct FormData
+    const formData = new FormData();
+    formData.append('theme', this.formData.theme);
+    formData.append('place_name', this.formData.place_name);
+    formData.append('address_place', this.formData.address_place);
+    formData.append('district_num', this.formData.district_num);
+    formData.append('text_description', this.formData.text_description);
+     
 
-       // ci dessou a activer apres validation du formulaire pour effacer la derniere review creer dans la memoire du client , ainsi si il creer une nouvelle review pendant la session courante ,les donné renseigner pour creer  la precedente review n'apparaisset pas .
-      /*Object.assign(this.formData, {
-        district: '',
-        address: '',
-        placeName: '',
-        selectedTheme: '',
-      });*/
-
-
-
-
+    // Append images if they exist
+    if (this.mainPicture) {
+        formData.append('mainPicture', formData.temporary.mainPicture);
+    }
+    if (this.$refs.fileInputSecond.files[0]) {
+        formData.append('secondPicture', this.$refs.fileInputSecond.files[0]);
+    }
+    if (this.$refs.fileInputThird.files[0]) {
+        formData.append('thirdPicture', this.$refs.fileInputThird.files[0]);
+    }
+    if (this.$refs.fileInputFourth.files[0]) {
+        formData.append('fourthPicture', this.$refs.fileInputFourth.files[0]);
+    }
+    if (this.$refs.fileInputFifth.files[0]) {
+        formData.append('fifthPicture', this.$refs.fileInputFifth.files[0]);
     }
 
+       // Visualiser le contenu de formData dans la console
+        for (let [key, value] of formData.entries()) {
+          console.log(key, value);
+        }
 
+
+    try {
+  
+        let token = localStorage.getItem('token');
+
+        console.log("XXXXXXXXXXXXXxxxxxxXXXXXXXXXXXXXXXXXXXXXX   token => ", token)
+
+        const url = 'http://192.168.1.168:5001/review/create';
+        
+        const response = await fetch(url, {
+            method: 'POST',
+            headers : {
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            },
+            body: formData, // No need to set Content-Type header manually
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+            this.successMessage = responseData.successMessage;
+            token = responseData.AccessToken;
+            console.log("Success, review created:", this.successMessage,  responseData);
+        } else {
+            
+            const errorData = await response.json();
+            console.log("Pictures not shared to API, try again.  !!!!!!!", errorData);
+           // this.errorMessage = errorData.msgError.slice(0, 3) || [];
+        }
+    } catch (error) {
+        console.log('Error during the request:', error);
+    }
+}
 
   },
 }
+
 
 </script>
 

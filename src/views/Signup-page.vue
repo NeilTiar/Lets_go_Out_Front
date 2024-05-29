@@ -282,7 +282,7 @@ export default {
 
 
             try {
-                console.log("")
+                
 
                 const response = await fetch('http://192.168.1.168:5001/user/signup', {
 
