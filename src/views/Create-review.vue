@@ -336,14 +336,14 @@ export default {
 
 
 
- /*onFileLoad(event ,pictureField ) {
+ onFileLoad(event ,pictureField ) {
 
 
       if (!event.target.files || event.target.files.length === 0) {
         return;
       }
       const file = event.target.files[0];
-      this.mainPicture = file
+      this[pictureField] = file
 
       const currentImageUrl = URL.createObjectURL(file);
 
@@ -353,11 +353,11 @@ export default {
     }
 
       this.formData.temporary[pictureField]= currentImageUrl;
+      console.log("THIS.MAINPICTURE: ", this.mainPicture)
+      console.log("PICTUREFIELD: ", pictureField)
+    },
 
-      
-    },*/
-
-    onFileLoad(event, pictureField) {
+   /* onFileLoad(event, pictureField) {
     if (!event.target.files || event.target.files.length === 0) {
         return;
     }
@@ -369,14 +369,14 @@ export default {
     this.formData.files.push({ field: pictureField, file: file });
 
     console.log("mainPicture: ", this.mainPicture)
-},
+},*/
 
 
 
     triggerFileInput() {
      
       this.$refs.fileInput.click();
-      
+      this.mainPicture =  this.$refs.fileInput[0];
     },
 
     triggerFileInputSecond() {
@@ -405,14 +405,14 @@ async submitForm() {
     const formData = new FormData();
     formData.append('theme', this.formData.theme);
     formData.append('place_name', this.formData.place_name);
-    formData.append('address_place', this.formData.address_place);
+    formData.append('adress_place', this.formData.address_place);
     formData.append('district_num', this.formData.district_num);
     formData.append('text_description', this.formData.text_description);
      
 
     // Append images if they exist
     if (this.mainPicture) {
-        formData.append('mainPicture', formData.temporary.mainPicture);
+         formData.append('mainPicture', this.mainPicture);
     }
     if (this.$refs.fileInputSecond.files[0]) {
         formData.append('secondPicture', this.$refs.fileInputSecond.files[0]);
