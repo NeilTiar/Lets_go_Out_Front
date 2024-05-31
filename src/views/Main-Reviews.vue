@@ -1,5 +1,5 @@
 <template>
-    <HeaderComponent />
+    <HeaderComponent @return-button-clicked="handlePagePaginate" />
 
     <div
         class="container-main-reviews"
@@ -140,9 +140,7 @@ export default {
       this.hideButton = true;
     }, 4000);
 
-    const pseudo = this.$store.state.pseudo;
-
-    console.log("pseudo transmit via store page Main-review: ", pseudo)
+  
 
   },
 
@@ -157,9 +155,12 @@ export default {
 
   methods: {
 
+     
+
 
     getDetailsReviewOnClick(currentReview) {
 
+      this.$store.state.currentReviewsPage = this.currentPage;
       this.$store.commit('setSelectedReview', currentReview);
       console.log("review was clicked !!!", currentReview.data)
       this.$router.push({ name: 'Review-details' });

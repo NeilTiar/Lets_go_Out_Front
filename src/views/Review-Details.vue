@@ -1,9 +1,11 @@
 <template>
-    <HeaderComponent />
+    <div>
+        <HeaderComponent @return-button-clicked="handlePagePaginate" />
 
-    <ReviewDetailsComponent />
+        <ReviewDetailsComponent />
 
-    <FooterComponent />
+        <FooterComponent />
+    </div>
 </template>
 
 <script>
@@ -18,7 +20,15 @@ export default {
         ReviewDetailsComponent,
         HeaderComponent,
         FooterComponent
+    },
+
+     methods: {
+    handlePagePaginate() {
+    
+    
+      console.log("TEST DEPUIS CLICK BACK BUTTON ")
     }
+  }
 }
 
 

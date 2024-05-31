@@ -12,10 +12,18 @@ export default createStore({
         store: store,
         selectedReview: null,
         initialReviews: [],
+        currentReviewsPage : "",
     },
 
 
     mutations: {
+
+        lastReviewsPage(state, pageNumber) {
+        
+         state.currentReviewsPage = pageNumber;
+         console.log("currentReviewsPage from vue store : ", this.currentReviewsPage)
+
+        },
 
 
         setSelectedReview(state, review) {
@@ -62,6 +70,16 @@ export default createStore({
 
 
     actions: {
+
+    getLastReviewsPage({ commit }, pageNumber) {
+      commit('lastReviewsPage', pageNumber);    
+    },
+
+    updateReviewsPage({commit}, pageNumber) {
+      
+     commit('setReviewsPage',pageNumber)
+    },
+
 
         updatePseudo({ commit }, pseudo) {
             commit('setPseudo', pseudo);

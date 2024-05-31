@@ -191,6 +191,8 @@ export default {
 
   },
 
+     emits: ['returnButtonClicked'],
+
   data() {
 
     return {
@@ -238,15 +240,16 @@ export default {
 
 
 
-
-
-
   methods: {
     
     handleReturnButton() {
-       window.history.go(-1);
+         this.$emit('returnButtonClicked');
+         //logic pour alimenter currentPage avec this.$store.state.currentReviewsPage
+       window.history.back();
      console.log("from return button on click")
     },
+
+
 
             navigateToCreateReview() {
       // Utiliser router.push() pour naviguer vers une autre page

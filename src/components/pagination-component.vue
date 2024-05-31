@@ -33,7 +33,7 @@ export default {
 
   data() {
     return {
-      currentPage: 1,
+      currentPage:this.$store.state.currentReviewsPage || 1,
       itemsPerPage: 18,
       pagesShown: 1,
 
@@ -60,7 +60,11 @@ export default {
 
   },
 
-  methods: {
+  methods: {  
+
+
+    
+
 
     changePage(newPage) {
 
@@ -68,7 +72,7 @@ export default {
 
     },
 
-
+    
 
     scrollToTop() {
       window.scrollTo({
