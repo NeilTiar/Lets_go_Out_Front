@@ -51,13 +51,13 @@
     </div>
 
     <div
-        v-if="$route.path === '/review-details'"
+        v-if="$route.path === '/review-details' || $route.path === '/create-review'"
         :class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
         @mouseover="startHover"
         @mouseout="endHover"
     >
         <div
-            v-if="$route.path === '/review-details'"
+            v-if="$route.path === '/review-details' || $route.path === '/create-review'"
             class="return-button"
             @click="handleReturnButton"
         >
@@ -99,7 +99,10 @@
             </ul>
 
             <div class="container-create-review-link">
-                <li class="link-create-review">
+                <li
+                    v-if="pseudo != `visitor`"
+                    class="link-create-review"
+                >
                     <a
                         class="create-link"
                         @click="navigateToCreateReview"
@@ -246,7 +249,7 @@ export default {
          this.$emit('returnButtonClicked');
          //logic pour alimenter currentPage avec this.$store.state.currentReviewsPage
        window.history.back();
-     console.log("from return button on click")
+    // console.log("from return button on click")
     },
 
 

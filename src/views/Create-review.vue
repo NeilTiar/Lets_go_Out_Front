@@ -7,7 +7,7 @@
     <div class="container-create-review-form">
         <form
             class="create-form"
-            @submit.prevent="submitForm($event)"
+            @submit.prevent
         >
             <div class="select-theme">
                 <select
@@ -150,7 +150,7 @@
                                 class="input-main-picture"
                                 type="file"
                                 accept="image/*"
-                                @change="onFileLoad($event,'fourthPicture')"
+                                @click="onFileLoad($event,'fourthPicture')"
                             >
 
 
@@ -238,9 +238,6 @@ import HeaderComponent from '@/components/Header-component.vue';
 import FooterComponent from '@/components/Footer-component.vue';
 
 
-
-
-
 export default {
 
   name: 'ViewHome',
@@ -277,7 +274,7 @@ export default {
 
 
 // prochaine tache pour le 24 mai , comment alimenter ces props avec les url pour enregistrement depuis fonction onsubmit()
-        mainPicture: "",
+        mainPicture: [],
         secondPicture: "",
         thirdPicture: "",
         fourthPicture: "",
@@ -354,7 +351,8 @@ export default {
 
       this.formData.temporary[pictureField]= currentImageUrl;
       console.log("THIS.MAINPICTURE: ", this.mainPicture)
-      console.log("PICTUREFIELD: ", pictureField)
+      console.log("xxxxxxxxxxxxxxxx place_name : ", this.place_name)
+
     },
 
    /* onFileLoad(event, pictureField) {
@@ -375,30 +373,39 @@ export default {
 
     triggerFileInput() {
      
+     /*permet de simuler un click sur l'element 'fileInput' ,  
+     In this case, when triggerFileInputFifth() is called, it simulates a click on the fileInputFifth element.*/
+
       this.$refs.fileInput.click();
-      this.mainPicture =  this.$refs.fileInput[0];
+      this.mainPicture = this.$refs.fileInput;
     },
 
     triggerFileInputSecond() {
       this.$refs.fileInputSecond.click();
+      this.secondPicture = this.$refs.fileInputSecond;
     },
 
        triggerFileInputThird() {
       this.$refs.fileInputThird.click();
+this.thirdPicture = this.$refs.fileInputThird;
     },
     
          triggerFileInputFourth() {
       this.$refs.fileInputFourth.click();
+this.fourthPicture = this.$refs.fileInputFourth;
     },
 
          triggerFileInputFifth() {
       this.$refs.fileInputFifth.click();
+     this.fifthPicture = this.$refs.fileInputFifth; 
     },
     
 
 
 
 async submitForm() {
+
+  console.log("PASSE PAR SUBMIT FORM !!!!!!")
 
     
     // Construct FormData
@@ -411,7 +418,7 @@ async submitForm() {
      
 
     // Append images if they exist
-    if (this.mainPicture) {
+    if (this.$refs.fileInput.files[0]) {
          formData.append('mainPicture', this.mainPicture);
     }
     if (this.$refs.fileInputSecond.files[0]) {
@@ -439,12 +446,13 @@ async submitForm() {
 
         console.log("XXXXXXXXXXXXXxxxxxxXXXXXXXXXXXXXXXXXXXXXX   token => ", token)
 
+        
+
         const url = 'http://192.168.1.168:5001/review/create';
         
         const response = await fetch(url, {
             method: 'POST',
             headers : {
-              'Accept': 'application/json',
               'Authorization': `Bearer ${token}`,
             },
             body: formData, // No need to set Content-Type header manually

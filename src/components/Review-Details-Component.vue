@@ -287,7 +287,7 @@ img {
     
     width: 80%;
     margin:2rem auto;
-    font-size: 1.5rem;
+    font-size: 2.3rem;
     font-family: Arial, Helvetica, sans-serif;
 }
 
