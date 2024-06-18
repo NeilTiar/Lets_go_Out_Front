@@ -119,8 +119,8 @@ export default {
         async submitForm() {
 
 
-            console.log('Identifiant:', this.email);
-            console.log('Mot de passe:', this.password);
+           //test console.log('Identifiant:', this.email);
+           //test console.log('Mot de passe:', this.password);
 
             try {
                 // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
@@ -146,53 +146,62 @@ export default {
 
                     const accessToken = responseData.accessToken;
 
-                    if (accessToken) {
+                    const refreshToken = responseData.refreshTokenValid;
+
+                   // console.log('refreshToken :', refreshToken)
+
+                    if (refreshToken) {
                         // Stockez le token dans le local storage
-                        localStorage.setItem('token', accessToken);
+
+                         store.dispatch('updateAccessToken', accessToken);
+
+                         store.dispatch('currentRefreshToken', refreshToken);
                     }
 
-                        console.log("responsData : ", responseData)
+                
 
-                        const newPseudo = responseData.pseudo;
+                 // test console.log("AccessToken From Store : ", store.state.accessToken , "refreshToken :" , store.state.refreshToken)
 
-                        await store.dispatch('updatePseudo', newPseudo);
+                   // test console.log("responsData : ", responseData)
 
-                        // Vous pouvez également accéder au pseudo mis à jour directement à partir du store
-                        console.log('Pseudo mis à jour :', store.state.pseudo);
+                    const newPseudo = responseData.pseudo;
 
-                        this.connectionMessage = responseData.message[1]
-                        console.log('message de success :', responseData.message[1]);
+                    await store.dispatch('updatePseudo', newPseudo);
+
+                    // Vous pouvez également accéder au pseudo mis à jour directement à partir du store
+                   // test console.log('Pseudo mis à jour :', store.state.pseudo);
+
+                    this.connectionMessage = responseData.message[1]
+                   // test console.log('message de success :', responseData.message[1]);
+                    setTimeout(() => {
+                        this.$router.push('/main');
+                    }, 1500);
+                    // Traitement de la réponse si nécessaire
+                    return responseData
+
+
+                } else {
+
+                    if (response.status === 401) {
+
+                        const errorData = await response.json();
+                        this.errorMessage = errorData.message;
+                        console.log('Erreur côté serveur :', this.errorMessage);
+                        // Afficher le message d'erreur pendant 6 secondes
                         setTimeout(() => {
-                            this.$router.push('/main');
-                        }, 1500);
-                        // Traitement de la réponse si nécessaire
-                        return responseData
-
-
-                    } else {
-
-                        if (response.status === 401) {
-
-                            const errorData = await response.json();
-                            this.errorMessage = errorData.message;
-                            console.log('Erreur côté serveur :', this.errorMessage);
-                            // Afficher le message d'erreur pendant 6 secondes
-                            setTimeout(() => {
-                                this.errorMessage = null; // Réinitialiser le message d'erreur après le délai
-                            }, 2000);
-                        }
-
-
+                            this.errorMessage = null; // Réinitialiser le message d'erreur après le délai
+                        }, 2000);
                     }
                 }
+            }
 
             catch (error) {
 
-                    console.log('Erreur lors de la requête :', error);
-                }
+                console.log('Erreur lors de la requête :', error);
             }
+        }
     }
-    }
+}
 
 </script>
 

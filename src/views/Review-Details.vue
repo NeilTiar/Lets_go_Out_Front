@@ -26,7 +26,7 @@ export default {
     handlePagePaginate() {
     
     
-      console.log("TEST DEPUIS CLICK BACK BUTTON ")
+    
     }
   }
 }

@@ -12,16 +12,28 @@ export default createStore({
         store: store,
         selectedReview: null,
         initialReviews: [],
-        currentReviewsPage : "",
+        currentReviewsPage: "",
+        accessToken: null,
+        refreshToken: null,
     },
 
 
     mutations: {
 
+        setAccessToken(state, accessToken) {
+            state.accessToken = accessToken;
+        },
+
+
+        setRefreshToken(state, refreshToken) {
+            state.refreshToken = refreshToken;
+        },
+
+    
         lastReviewsPage(state, pageNumber) {
-        
-         state.currentReviewsPage = pageNumber;
-         console.log("currentReviewsPage from vue store : ", this.currentReviewsPage)
+
+            state.currentReviewsPage = pageNumber;
+            console.log("currentReviewsPage from vue store : ", this.currentReviewsPage)
 
         },
 
@@ -50,7 +62,7 @@ export default createStore({
         setPseudo(state, pseudo) {
             state.pseudo = pseudo;
         },
-        
+
 
         setIsDarkMode(state, isDarkMode) {
 
@@ -71,14 +83,23 @@ export default createStore({
 
     actions: {
 
-    getLastReviewsPage({ commit }, pageNumber) {
-      commit('lastReviewsPage', pageNumber);    
-    },
+             updateAccessToken({ commit }, accessToken) {
+            commit('setAccessToken', accessToken);
+        },
 
-    updateReviewsPage({commit}, pageNumber) {
-      
-     commit('setReviewsPage',pageNumber)
-    },
+            currentRefreshToken({ commit }, refreshToken) {
+            commit('setRefreshToken', refreshToken);
+        },
+
+
+        getLastReviewsPage({ commit }, pageNumber) {
+            commit('lastReviewsPage', pageNumber);
+        },
+
+        updateReviewsPage({ commit }, pageNumber) {
+
+            commit('setReviewsPage', pageNumber)
+        },
 
 
         updatePseudo({ commit }, pseudo) {
@@ -107,25 +128,25 @@ export default createStore({
 
             if ((cardInfo.length > 0 && cardContainer)) {
 
-                  Array.from(cardInfo).map(card => {
-                      card.style.color = this.isDarkMode ? '#caded6' : '';
-  
-                       Array.from(cardContainer).map(card => {
-                        
-                           card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
-   
-                       })
-  
-                  })
+                Array.from(cardInfo).map(card => {
+                    card.style.color = this.isDarkMode ? '#caded6' : '';
+
+                    Array.from(cardContainer).map(card => {
+
+                        card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
+
+                    })
+
+                })
 
             }
 
             const route = useRoute();
 
-            if (route !== '/review-details' && route !== undefined && route !== null){
-            document.querySelector('.logo-camera').style.filter = this.isDarkMode ? 'invert(100%)' : '';
-            document.querySelector('.msg-user-logo').style.filter = this.isDarkMode ? 'invert(100%)' : '';
-            console.log(document.querySelector('.logo-camera'))
+            if (route !== '/review-details' && route !== undefined && route !== null) {
+                document.querySelector('.logo-camera').style.filter = this.isDarkMode ? 'invert(100%)' : '';
+                document.querySelector('.msg-user-logo').style.filter = this.isDarkMode ? 'invert(100%)' : '';
+                console.log(document.querySelector('.logo-camera'))
             }
 
             // Assurez-vous de réinitialiser la transition après la transition terminée pour éviter de l'appliquer à d'autres changements non souhaités

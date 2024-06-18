@@ -122,7 +122,6 @@ export default {
 
   mounted() {
 
-
     this.fetchData()
 
     // les fonctions indiquées dans la section mounted d'un composant Vue sont automatiquement appelées lorsque le composant est monté dans le DOM
