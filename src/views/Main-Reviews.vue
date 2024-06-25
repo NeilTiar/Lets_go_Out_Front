@@ -343,8 +343,13 @@ body {
 }
 
 .header {
+position: relative;
+border: 3px solid black;
+width: 100%;
+}
 
-width: 100vw;
+.container-main-review {
+ background-color: aquamarine;
 }
 
 </style>

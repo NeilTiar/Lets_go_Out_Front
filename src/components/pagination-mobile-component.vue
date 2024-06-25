@@ -48,7 +48,7 @@ export default {
             currentPage: 1,
             itemsPerPage: 10,
             totalItems: 100,
-            pagesShown: 5,
+            pagesShown: 1,
             
         };
     },

@@ -6,171 +6,192 @@
     >
         <div class="header">
             <div class="container-logo-title">
-                <!-- <img class=" logo" src="" alt="logo">-->
-                <h1>
-                    <a
-                        class="header-title"
-                        href="/"
-                    >Let's go out in Paris</a>
-                </h1>
-                <h2
+                <div class="container-title">
+                    <!-- <img class=" logo" src="" alt="logo">-->
+                    <h1>
+                        <a
+                            class="header-title"
+                            href="/"
+                        >Let's go out in Paris</a>
+                    </h1>
+                    <h2
+                        v-if="isDesktop"
+                        class="title-description"
+                    >
+                        Explorez et partagez les meilleurs endroits de la ville lumière
+                    </h2>
+                    <h2
+                        v-if="!isDesktop"
+                        class="title-description"
+                    >
+                        les meilleurs endroits de la ville lumière
+                    </h2>
+                </div>
+
+                <div class="container-mobile-logo">
+                    <div
+                        v-if="!isDesktop"
+                        class="mobile-user-logo"
+                    >
+                        <img
+                            class="user-logo"
+                            src="../assets/user.png"
+                            alt="user"
+                        >
+                        <p class="user-logo-msg">Bonjour, {{ pseudo }}</p>
+                        <div />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            v-if="isDesktop"
+            class="container-user-dark-theme"
+        >  
+            <div class="container-logo-pseudo">
+                <img
+                    class="user-logo"
+                    src="../assets/user.png"
+                    alt="user"
+                >
+                <div
+                    :class="{ 'msg-user-log': !isDarkMode,'dark-mode-user-logo': isDarkMode}"
+                >
+                    Bonjour, {{ pseudo }}
+                </div>
+            </div>
+            <div class="dark-button-container">
+                <darkThemeComponent
                     v-if="isDesktop"
-                    class="title-description"
-                >
-                    Explorez et partagez les meilleurs endroits de la ville lumière
-                </h2>
-                <h2
-                    v-if="!isDesktop"
-                    class="title-description"
-                >
-                    les meilleurs endroits de la ville lumière
-                </h2>
+                    @click="handleToggle"
+                />
             </div>
         </div>
-    </div>
 
-    <div class="container-user-dark-theme">
-        <div class="container-logo-pseudo">
-            <img
-                class="user-logo"
-                src="../assets/user.png"
-                alt="user"
-            >
-            <div
-                :class="{ 'msg-user-log': !isDarkMode,'dark-mode-user-logo': isDarkMode}"
-            >
-                Bonjour, {{ pseudo }}
-            </div>
-        </div>
-        <div class="dark-button-container">
-            <darkThemeComponent
-                v-if="isDesktop"
-                @click="handleToggle"
-            />
-        </div>
-    </div>
-
-    <div
-        v-if="$route.path === '/review-details' || $route.path === '/create-review'"
-        :class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
-        @mouseover="startHover"
-        @mouseout="endHover"
-    >
         <div
             v-if="$route.path === '/review-details' || $route.path === '/create-review'"
-            class="return-button"
-            @click="handleReturnButton"
+            :class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
+            @mouseover="startHover"
+            @mouseout="endHover"
         >
-            retour vers reviews
-        </div>
-    </div>
-
-    <div
-        v-if="isDesktop"
-        class="top-desktop-menu"
-    >
-        <nav 
-            v-if="shouldDisplayBannerTheme" 
-            class="theme-banner"
-        >
-            <ul
-                class="themes"
-                @mouseover="startHover"
-                @mouseout="endHover"
+            <div
+                v-if="$route.path === '/review-details' || $route.path === '/create-review'"
+                class="return-button"
+                @click="handleReturnButton"
             >
-                <li class="theme-link">
-                    <a 
-                        class="theme-link culture-link"
-                        href="#Culture"
-                    >Culture</a>
-                </li>
-                <li class="theme-link">
-                    <a
-                        class="theme-link  food-and-drink-link"
-                        href="#FoodAndDrink"
-                    >Food & Drink</a>
-                </li>
-                <li class="theme-link">
-                    <a
-                        class="theme-link  loisir-link"
-                        href="#Loisir"
-                    >Loisirs</a>
-                </li>
-            </ul>
-
-            <div class="container-create-review-link">
-                <li
-                    v-if="pseudo != `visitor`"
-                    class="link-create-review"
-                >
-                    <a
-                        class="create-link"
-                        @click="navigateToCreateReview"
-                    >Creer une review </a>
-                    <div class="logo-container">
-                        <img
-                            :class="{'dark-logo-camera': isDarkMode }"
-                            class="logo-camera"
-                            src="../assets/black-camera.png"
-                            alt="logo-camera"
-                        >
-                    </div>
-                </li>
-            </div>
-        </nav>
-    </div>
-
-
-    <div
-        v-if="!isDesktop"
-        class="top-menu"
-        :class="[{ 'fixed-container': isFixed, 'dark-top-menu': isDarkMode }, 'top-main']"
-    >
-        <div class="container-left-button ">
-            <div :class="[{ 'dark-button': isDarkMode }, 'left-buttons']">
-                <img
-                    src="../assets/filter.png"
-                    alt="button-filter"
-                    class="buttons filter-button"
-                >
-                <img
-                    src="../assets/search.png"
-                    alt="input-search"
-                    class="buttons search-button"
-                >
+                retour vers reviews
             </div>
         </div>
-        <p
-            v-if="isFixed"
-            :class="[{ 'dark-title': isDarkMode }, 'title-to-menu']"
+
+        <div
+            v-if="isDesktop"
+            class="top-desktop-menu"
         >
-            {{ TitleIfTopMenu }}
-        </p>
+            <nav 
+                v-if="shouldDisplayBannerTheme" 
+                class="theme-banner"
+            >
+                <ul
+                    class="themes"
+                    @mouseover="startHover"
+                    @mouseout="endHover"
+                >
+                    <li class="theme-link">
+                        <a 
+                            class="theme-link culture-link"
+                            href="#Culture"
+                        >Culture</a>
+                    </li>
+                    <li class="theme-link">
+                        <a
+                            class="theme-link  food-and-drink-link"
+                            href="#FoodAndDrink"
+                        >Food & Drink</a>
+                    </li>
+                    <li class="theme-link">
+                        <a
+                            class="theme-link  loisir-link"
+                            href="#Loisir"
+                        >Loisirs</a>
+                    </li>
+                </ul>
 
-        <button
-            v-if="!isFixed"
-            class="create-review-banner"
+                <div class="container-create-review-link">
+                    <li
+                        v-if="pseudo != `visitor`"
+                        class="link-create-review"
+                    >
+                        <a
+                            class="create-link"
+                            @click="navigateToCreateReview"
+                        >Creer une review </a>
+                        <div class="logo-container">
+                            <img
+                                :class="{'dark-logo-camera': isDarkMode }"
+                                class="logo-camera"
+                                src="../assets/black-camera.png"
+                                alt="logo-camera"
+                            >
+                        </div>
+                    </li>
+                </div>
+            </nav>
+        </div>
+
+
+        <div
+            v-if="!isDesktop && $route.path !== '/create-review'" 
+            class="top-menu"
+            :class="[{ 'fixed-container': isFixed, 'dark-top-menu': isDarkMode }, 'top-main']"
         >
-            Créer une review
-        </button>
+            <div class="container-left-button ">
+                <div :class="[{ 'dark-button': isDarkMode }, 'left-buttons']">
+                    <img
+                        src="../assets/filter.png"
+                        alt="button-filter"
+                        class="buttons filter-button"
+                    >
+                    <img
+                        src="../assets/search.png"
+                        alt="input-search"
+                        class="buttons search-button"
+                    >
+                </div>
+            </div>
+            <p
+                v-if="isFixed"
+                :class="[{ 'dark-title': isDarkMode }, 'title-to-menu']"
+            >
+                {{ TitleIfTopMenu }}
+            </p>
+
+            <button
+                v-if="!isFixed && $route.path ==='/main' "
+                class="create-review-banner"
+                @click="navigateToCreateReview"
+            >
+                Créer une review
+            </button>
 
 
-        <div class="container-right-button">
-            <div :class="[{ 'dark-button': isDarkMode }, 'right-buttons']">
-                <img
-                    v-if="isDarkmodeActive"
-                    src="../assets/dark-moon.png"
-                    alt="moon-button"
-                    class="buttons moon-button"
-                    :class="{ 'darkTheme': isDarkMode, 'lightTheme': !isDarkMode, 'buttons': true, 'moon-button': true }"
-                    @click="isDarkmodeActive"
-                >
+            <div class="container-right-button">
+                <div :class="[{ 'dark-button': isDarkMode }, 'right-buttons']">
+                    <img
+                        v-if="isDarkmodeActive"
+                        src="../assets/dark-moon.png"
+                        alt="moon-button"
+                        class="buttons moon-button"
+                        :class="{ 'darkTheme': isDarkMode, 'lightTheme': !isDarkMode, 'buttons': true, 'moon-button': true }"
+                        @click="isDarkmodeActive"
+                    >
 
-                <img
-                    src="../assets/menu.png"
-                    alt="menu-button"
-                    class="buttons menu-button"
-                >
+                    <img
+                        src="../assets/menu.png"
+                        alt="menu-button"
+                        class="buttons menu-button"
+                    >
+                </div>
             </div>
         </div>
     </div>
@@ -309,7 +330,7 @@ export default {
 }
 
 .dark-top-menu {
-  background-color: rgb(36, 33, 33);
+  background-color: rgb(51, 47, 47);
 }
 
 .dark-title {
@@ -331,8 +352,15 @@ export default {
     border-radius: 25px;
     align-items: center;
     justify-content: center;
-    color:rgb(109, 140, 155);
+    color:rgb(67, 77, 82);
     font-size: 1.4rem;  
+}
+
+.container-mobile-logo {
+    display: flex;
+    justify-content: flex-end;
+    width:100%;
+    margin-top:0.5rem;
 }
 
 .container-user-connexion-desktop {
@@ -347,10 +375,10 @@ export default {
 .container-user-dark-theme {
 
     display: flex;
-    padding-right: 2rem;
     align-items: center;
     gap:1rem;
-    justify-content: flex-end;
+    justify-content:flex-end;
+    width: calc(100vw - 17px)
     
 }
 
@@ -366,6 +394,80 @@ export default {
     background-color: aquamarine;
     height:2rem;
     width:100%;
+}
+
+.mobile-user-logo {
+    
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    color:aliceblue;
+    width: 33%;
+   
+}
+
+.user-logo {
+    width:40%;
+    margin: auto;
+}
+
+.user-logo-msg {
+    font-size: 1rem;
+    color: rgb(255, 253, 253);
+    margin: 0;
+
+}
+
+@media screen and ( max-width : 1000px) {
+
+  
+
+.return-button {
+
+ width: 35%;  
+ font-size: 1.2rem;
+ padding:0.3rem;
+}
+
+.container-user-connexion-mobile {
+ 
+ margin: 1.3rem 0 3rem 1rem;
+ display: flex;
+ align-items: flex-start;
+ 
+}
+
+
+ .container-logo-title,
+ .header {
+
+  height:14rem;
+ }
+
+ .container-mobile-logo {
+    display:flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height:30%;
+ } 
+
+ .container-title {
+    height:70%;
+ }
+
+ .header-title {
+    margin-top: 3rem;
+ }
+
+ .header-title,
+ .title-description {
+    margin-left: 0.8rem;
+ }
+
+ .submit-form {
+    margin: auto;;
+ }
+
 }
 
 @import url('../styles/Header.css');
