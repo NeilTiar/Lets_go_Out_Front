@@ -1,7 +1,7 @@
 <template>
     <div
         v-if="currentReview" 
-        class="currentReview"
+        :class="[isDarkMode ? 'dark-mode-currentReview' : 'currentReview']"
     >
         <p class="theme">{{ currentReview.theme }}</p>
         <h1 class="title">{{ currentReview.place_name }}</h1>
@@ -317,6 +317,8 @@ img {
 
 .desktop-pictures {
     border-radius: 25px;
+     object-fit:contain;
+     width: 100%;
 }
 
 .title {
@@ -337,6 +339,10 @@ img {
     color:#fff;
 }
 
+.dark-mode-currentReview {
+    background-color: #000;
+}
+
 @media screen and (min-width: 2000px) {
     
 .swiper-slide  {
@@ -349,6 +355,7 @@ img {
 }
 
 .desktop-pictures {
+   
     width: 80%;
     margin: auto;
 }

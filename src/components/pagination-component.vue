@@ -20,7 +20,7 @@
 
 export default {
 
- 
+
   props: {
     reviews: {
       type: Array,
@@ -28,22 +28,22 @@ export default {
     },
   },
 
-   emits: ['page-changed'],
+  emits: ['page-changed'],
 
 
   data() {
     return {
-      currentPage:this.$store.state.currentReviewsPage || 1,
+      currentPage: this.$store.state.currentReviewsPage || 1,
       itemsPerPage: 18,
       pagesShown: 1,
-
+     //totalItems :  la fonction totalItems() dans computed creer implicitement une props du meme nom  ici. 
     };
   },
 
 
   computed: {
 
-
+    
     totalItems() {
       return this.reviews.length; // Nombre total de commentaires
     },
@@ -58,13 +58,21 @@ export default {
 
   mounted() {
 
+
+    window.addEventListener('resize', this.updateItemsPerPage),
+
+
+     function beforeUnmount() {
+      window.removeEventListener('resize', this.updateItemsPerPage)
+    }
+
   },
 
-  methods: {  
+
+  methods: {
 
 
-    
-
+  
 
     changePage(newPage) {
 
@@ -72,7 +80,7 @@ export default {
 
     },
 
-    
+
 
     scrollToTop() {
       window.scrollTo({
@@ -83,28 +91,6 @@ export default {
     },
   },
 
-  /*handlePaginationClick(newPage) {
-       // Assurez-vous que newPage et newPage.target sont définis
-       if (newPage && newPage.target) {
-         // Accéder à l'index du bouton de pagination
-         const pageIndex = newPage.target.dataset.index;
- 
-         // Vérifier si pageIndex est une chaîne non vide
-         if (pageIndex.trim() !== "") {
-           // Convertir la valeur en nombre
-           this.currentPage = parseInt(pageIndex, 10);
- 
-           // Appeler la fonction scrollToTop ou toute autre logique de mise à jour de la vue
-           this.scrollToTop();
- 
-           console.log("Index de la page depuis le bouton de pagination :", pageIndex);
-         } else {
-           console.warn("L'index du bouton de pagination est une chaîne vide.");
-         }
-       } else {
-         console.warn("L'événement de pagination ou son élément cible est indéfini.");
-       }
-     },*/
 }
 
 

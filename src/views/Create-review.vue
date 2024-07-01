@@ -1,278 +1,300 @@
 <template>
     <HeaderComponent />
 
-
-    <h2 class="title">Créer votre nouvelle review :</h2>
-
-    <div class="container-create-review-form">
-        <form
-            class="create-form"
-            @submit.prevent
-        >
-            <div class="select-theme">
-                <select
-                    v-model="formData.theme"
-                    class="theme-select"
-                >
-                    <option
-                        disabled
-                        selected
-                        value=""
-                        hidden
-                    >
-                        Sélectionnez un theme
-                    </option>
-                    <option value="food & drink">food & drink</option>
-                    <option value="culture">culture</option>
-                    <option value="loisir">loisir</option>
-                </select>
-            </div>
-
-            <input
-                v-model="formData.place_name"
-                class="input-place"
-                type="text"
-                placeholder="Nom du lieux ou de l'établissement"
-            >
-
-            <input
-                v-model="formData.address_place"
-                class="input-address"
-                type="text"
-                placeholder="Adresse du lieux ou de l'établissement"
-            >
-
-            <input
-                v-model="formData.district_num"
-                class="input-district"
-                type="number"
-                placeholder="numero de l'arrondissement"
-            >
-
-            <div
-                v-if="isDesktop"
-                class="container-pictures"
-            >
-                <div class="container-main-picture">
-                    <input
-                        ref="fileInput"
-                        class="input-main-picture"
-                        type="file"
-                        accept="image/*"
-                        @change="onFileLoad($event, 'mainPicture')"
-                    >
-
-                    <img
-                        src="../assets/abstract continuous line art camera.png"
-                        alt="logo-camera"
-                        class="camera-logo"
-                    >
-
-                    <button
-                        class="button-main-picture"
-                        @click="triggerFileInput($event)"
-                    >
-                        ajouter une photo principale
-                    </button>
-
-                    <img
-                        v-if="formData.temporary.mainPicture"
-                        :src="formData.temporary.mainPicture"
-                        class="main-picture"
-                        alt="uploaded"
-                    >
-                </div>
-                <div class="container-gallery">
-                    <div class="container-top-pictures">
-                        <div class="container-picture2 pictures-container">
-                            <input
-                                ref="fileInputSecond"
-                                class="input-main-picture"
-                                type="file"
-                                accept="image/*"
-                                @change="onFileLoad($event, 'secondPicture')"
-                            >
-
-
-                            <img
-                                src="../assets/abstract continuous line art camera.png"
-                                alt="logo-camera"
-                                class="camera-logo"
-                            >
-
-                            <button
-                                class="button-gallery"
-                                @click="triggerFileInputSecond"
-                            >
-                                ajouter une photo
-                            </button>
-
-                            <img
-                                v-if="formData.temporary.secondPicture"
-                                :src="formData.temporary.secondPicture"
-                                alt="uploaded"
-                            >
-                        </div>
-                        <div class="container-picture3 pictures-container">
-                            <input
-                                ref="fileInputThird"
-                                class="input-main-picture"
-                                type="file"
-                                accept="image/*"
-                                @change="onFileLoad($event, 'thirdPicture')"
-                            >
-
-                            <img
-                                src="../assets/abstract continuous line art camera.png"
-                                alt="logo-camera"
-                                class="camera-logo"
-                            >
-
-                            <button
-                                class="button-gallery"
-                                @click="triggerFileInputThird"
-                            >
-                                ajouter une photo
-                            </button>
-
-                            <img
-                                v-if="formData.temporary.thirdPicture"
-                                :src="formData.temporary.thirdPicture"
-                                class="picture3"
-                                alt="uploaded"
-                            >
-                        </div>
-                    </div>
-
-                    <div class="container-bottom-pictures">
-                        <div class="container-picture4 pictures-container">
-                            <input
-                                ref="fileInputFourth"
-                                class="input-main-picture"
-                                type="file"
-                                accept="image/*"
-                                @change="onFileLoad($event, 'fourthPicture')"
-                            >
-
-                            <img
-                                src="../assets/abstract continuous line art camera.png"
-                                alt="logo-camera"
-                                class="camera-logo"
-                            >
-
-                            <button
-                                class="button-gallery"
-                                @click="triggerFileInputFourth"
-                            >
-                                ajouter une photo
-                            </button>
-
-                            <img
-                                v-if="formData.temporary.fourthPicture"
-                                :src="formData.temporary.fourthPicture"
-                                class="picture4"
-                                alt="uploaded"
-                            >
-                        </div>
-                        <div class="container-picture5 pictures-container">
-                            <input
-                                ref="fileInputFifth"
-                                class="input-main-picture"
-                                type="file"
-                                accept="image/*"
-                                @change="onFileLoad($event, 'fifthPicture')"
-                            >
-
-                            <img
-                                src="../assets/abstract continuous line art camera.png"
-                                alt="logo-camera"
-                                class="camera-logo"
-                            >
-
-                            <button
-                                class="button-gallery"
-                                @click="triggerFileInputFifth"
-                            >
-                                ajouter une photo
-                            </button>
-
-                            <img
-                                v-if="formData.temporary.fifthPicture"
-                                class="picture5"
-                                :src="formData.temporary.fifthPicture"
-                                alt="uploaded"
-                            >
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
     <div
-        v-if="!isDesktop"
-        class="container-mobile-picture"
+        class="main-container-create-review"
+        :class="{ 'dark-container-create-form': isDarkMode }"
     >
-        <div
-            class="container-pictures"
-            @click="addMobilePictures(), triggerFileInputMobile($event)"
-        >
-            <input
-                ref="fileInputMobile"
-                class="input-mobile-pictures"
-                type="file"
-                accept="image/*"
-                multiple
-                @change="onMobileFileLoad($event, 'mobilePictures')"
-            >
+        <h2 class="title">Créer votre nouvelle review :</h2>
 
-            <p class="add-picture-msg">Ajouter des Photos</p>
-            <img
-                class="add-picture-img"
-                src="../assets/apareil-photo-noir.jpg"
-                alt="add pictures"
-            >
-        </div>
-    </div>
-
-    <div 
-        v-for="(picture, index) in formData.temporary.mobilePictures"
-        :key="index"
-        class="container-img"
-    >
         <div
-            class="picture-container"
+            class="container-create-review-form"
         >
-            <img
-                :key="index"
-                :src="picture"
-                alt="Uploaded Image"
-                class="uploaded-picture"
+            <form 
+                class="
+        create-form"
+                @submit.prevent
             >
+                <div class="select-theme">
+                    <select
+                        v-model="formData.theme"
+                        class="theme-select"
+                    >
+                        <option
+                            disabled
+                            selected
+                            value=""
+                            hidden
+                        >
+                            Sélectionnez un theme
+                        </option>
+                        <option value="food & drink">food & drink</option>
+                        <option value="culture">culture</option>
+                        <option value="loisir">loisir</option>
+                    </select>
+                </div>
+
+                <input
+                    v-model="formData.place_name"
+                    class="input-place"
+                    type="text"
+                    placeholder="Nom du lieux ou de l'établissement"
+                >
+
+                <input
+                    v-model="formData.address_place"
+                    class="input-address"
+                    type="text"
+                    placeholder="Adresse du lieux ou de l'établissement"
+                >
+
+                <input
+                    v-model="formData.district_num"
+                    class="input-district"
+                    type="number"
+                    placeholder="numero de l'arrondissement"
+                >
+
+                <div
+                    v-if="isDesktop"
+                    class="container-pictures"
+                >
+                    <div class="container-main-picture">
+                        <input
+                            ref="fileInput"
+                            class="input-main-picture"
+                            type="file"
+                            accept="image/*"
+                            @change="onFileLoad($event, 'mainPicture')"
+                        >
+
+                        <img
+                            src="../assets/abstract continuous line art camera.png"
+                            alt="logo-camera"
+                            class="camera-logo"
+                        >
+
+                        <button
+                            class="button-main-picture"
+                            @click="triggerFileInput($event)"
+                        >
+                            ajouter une photo principale
+                        </button>
+
+                        <img
+                            v-if="formData.temporary.mainPicture"
+                            :src="formData.temporary.mainPicture"
+                            class="main-picture"
+                            alt="uploaded"
+                        >
+                    </div>
+                    <div class="container-gallery">
+                        <div class="container-top-pictures">
+                            <div class="container-picture2 pictures-container">
+                                <input
+                                    ref="fileInputSecond"
+                                    class="input-main-picture"
+                                    type="file"
+                                    accept="image/*"
+                                    @change="onFileLoad($event, 'secondPicture')"
+                                >
+
+
+                                <img
+                                    src="../assets/abstract continuous line art camera.png"
+                                    alt="logo-camera"
+                                    class="camera-logo"
+                                >
+
+                                <button
+                                    class="button-gallery"
+                                    @click="triggerFileInputSecond"
+                                >
+                                    ajouter une photo
+                                </button>
+
+                                <img
+                                    v-if="formData.temporary.secondPicture"
+                                    :src="formData.temporary.secondPicture"
+                                    alt="uploaded"
+                                >
+                            </div>
+                            <div class="container-picture3 pictures-container">
+                                <input
+                                    ref="fileInputThird"
+                                    class="input-main-picture"
+                                    type="file"
+                                    accept="image/*"
+                                    @change="onFileLoad($event, 'thirdPicture')"
+                                >
+
+                                <img
+                                    src="../assets/abstract continuous line art camera.png"
+                                    alt="logo-camera"
+                                    class="camera-logo"
+                                >
+
+                                <button
+                                    class="button-gallery"
+                                    @click="triggerFileInputThird"
+                                >
+                                    ajouter une photo
+                                </button>
+
+                                <img
+                                    v-if="formData.temporary.thirdPicture"
+                                    :src="formData.temporary.thirdPicture"
+                                    class="picture3"
+                                    alt="uploaded"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="container-bottom-pictures">
+                            <div class="container-picture4 pictures-container">
+                                <input
+                                    ref="fileInputFourth"
+                                    class="input-main-picture"
+                                    type="file"
+                                    accept="image/*"
+                                    @change="onFileLoad($event, 'fourthPicture')"
+                                >
+
+                                <img
+                                    src="../assets/abstract continuous line art camera.png"
+                                    alt="logo-camera"
+                                    class="camera-logo"
+                                >
+
+                                <button
+                                    class="button-gallery"
+                                    @click="triggerFileInputFourth"
+                                >
+                                    ajouter une photo
+                                </button>
+
+                                <img
+                                    v-if="formData.temporary.fourthPicture"
+                                    :src="formData.temporary.fourthPicture"
+                                    class="picture4"
+                                    alt="uploaded"
+                                >
+                            </div>
+                            <div class="container-picture5 pictures-container">
+                                <input
+                                    ref="fileInputFifth"
+                                    class="input-main-picture"
+                                    type="file"
+                                    accept="image/*"
+                                    @change="onFileLoad($event, 'fifthPicture')"
+                                >
+
+                                <img
+                                    src="../assets/abstract continuous line art camera.png"
+                                    alt="logo-camera"
+                                    class="camera-logo"
+                                >
+
+                                <button
+                                    class="button-gallery"
+                                    @click="triggerFileInputFifth"
+                                >
+                                    ajouter une photo
+                                </button>
+
+                                <img
+                                    v-if="formData.temporary.fifthPicture"
+                                    class="picture5"
+                                    :src="formData.temporary.fifthPicture"
+                                    alt="uploaded"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-    </div>
+
+        <div
+            v-if="!isDesktop"
+            class="container-mobile-picture"
+        >
+            <div
+                class="container-pictures"
+                @click="addMobilePictures(), triggerFileInputMobile($event)"
+            >
+                <input
+                    ref="fileInputMobile"
+                    class="input-mobile-pictures"
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    @change="onMobileFileLoad($event, 'mobilePictures')"
+                >
+
+                <p class="add-picture-msg">Ajouter des Photos</p>
+                <img
+                    class="add-picture-img"
+                    src="../assets/apareil-photo-noir.jpg"
+                    alt="add pictures"
+                >
+            </div>
+        </div>
+
+        <div 
+            v-for="(picture, index) in formData.temporary.mobilePictures"
+            :key="index"
+            class="container-img"
+        >
+            <div
+                class="picture-container"
+            >
+                <img
+                    :key="index"
+                    :src="picture"
+                    alt="Uploaded Image"
+                    class="uploaded-picture"
+                >
+            </div>
+        </div>
   
-    <div class="container-text">
-        <textarea
-            v-model="formData.text_description"
-            class="text"
-            cols="30"
-            rows="10"
-            placeholder="Votre description ici...."
-            @input="logTextDescription"
-        />
-    </div>
+        <div class="container-text">
+            <textarea
+                v-model="formData.text_description"
+                class="text"
+                cols="30"
+                rows="10"
+                placeholder="Votre description ici...."
+                @input="logTextDescription"
+            />
+        </div>
 
-    <div class="container-button-submit">
-        <button
-            class="submit-form"
-            @click="submitForm($event), logFormData()"
-            @change="onMobileFileLoad()"
+        <div 
+            v-if="isDesktop"
+            class="container-button-submit"
         >
-            Enregistrer votre Review
-        </button>
-    </div>
+            <button
+                class="submit-form"
+                @click="submitForm($event), logFormData()"
+                @change="onFileLoad()"
+            >
+                Enregistrer votre Review
+            </button>
+        </div>
 
+        <div 
+            v-if="!isDesktop"
+            class="container-mobile-button-submit"
+        >
+            <button
+                class="submit-mobile-form"
+                @click="submitMobileForm($event), logFormData()"
+                @change="onMobileFileLoad($event)"
+            >
+                Enregistrer votre Review
+            </button>
+        </div>
+    </div>
     <FooterComponent />
 </template>
 
@@ -335,7 +357,7 @@ export default {
 
       isDesktop: window.innerWidth > 768,
       imageURL: "",
-
+      isDarkMode: this.$store.state.isDarkMode,
     }
   },
 
@@ -353,8 +375,6 @@ export default {
 
 
   },
-
-
 
 
   methods: {
@@ -471,28 +491,7 @@ export default {
         this.formData.mobilePictures = files;
       }
   
-
-      // Révoquez l'URL lorsque l'image n'est plus nécessaire (lors de la destruction du composant)
-    /*  onBeforeUnmount(() => {
-        URL.revokeObjectURL(currentImageUrl);
-      });*/
   },
-
-
-
-    /* onFileLoad(event, pictureField) {
-     if (!event.target.files || event.target.files.length === 0) {
-         return;
-     }
-     const file = event.target.files[0];
-     const imageUrl = URL.createObjectURL(file);
-     this.formData.temporary[pictureField] = imageUrl;
- 
-     // Ajouter l'image directement au FormData
-     this.formData.files.push({ field: pictureField, file: file });
- 
-     console.log("mainPicture: ", this.mainPicture)
- },*/
 
 
 
@@ -630,16 +629,109 @@ export default {
         console.log('Error during the request:', error);
       }
 
+    },
+
+    async submitMobileForm() {
+
+     
+
+
+      // Construct FormData
+      const formData = new FormData();
+      formData.append('theme', this.formData.theme);
+      formData.append('place_name', this.formData.place_name);
+      formData.append('adress_place', this.formData.address_place);
+      formData.append('district_num', this.formData.district_num);
+      formData.append('text_description', this.formData.text_description);
+
+
+      // Append images if they exist
+      if (this.formData.mobilePictures[0]) {
+        formData.append('mainPicture', this.formData.mobilePictures[0]);
+      }
+
+      if (this.formData.mobilePictures[1]) {
+        formData.append('secondPicture', this.formData.mobilePictures[1]);
+      }
+
+      if (this.formData.mobilePictures[2]) {
+        formData.append('thirdPicture', this.formData.mobilePictures[2]);
+      }
+
+      if (this.formData.mobilePictures[3]) {
+        formData.append('fourthPicture', this.formData.mobilePictures[3]);
+      }
+
+      if (this.formData.mobilePictures[4]) {
+        formData.append('fifthPicture', this.formData.mobilePictures[4]);
+      }
+
+
+
+      // Visualiser le contenu de formData dans la console
+      for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
+
+
+
+      //verifier le refreshToken ici
+      /* comme il n'est pas possible d'efectuer la verification ici car je ne peux pas cumuler les reponses de l'api,
+      je vais inclure la verification depuis l'api au niveau de la fonction pour creer une review */
+
+
+
+      try {
+
+        let token = this.token;
+
+
+        console.log("XXXXXXXXXXXXXxxxxxxXXXXXXXXXXXXXXXXXXXXXX   token => ", token)
+
+        const url = 'http://192.168.1.168:5001/review/create';
+
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+          body: formData, // No need to set Content-Type header manually
+        });
+
+        if (response.ok) {
+
+          const responseData = await response.json();
+          token = response.accessToken;
+          this.successMessage = responseData.successMessage;
+          token = responseData.AccessToken;
+          console.log("Success, review created:", this.successMessage, responseData);
+          this.resetForm();
+
+        } else {
+
+          const errorData = await response.json();
+          console.log("Pictures not shared to API, try again.  !!!!!!!", errorData);
+          // this.errorMessage = errorData.msgError.slice(0, 3) || [];
+        }
+      } catch (error) {
+        console.log('Error during the request:', error);
+      }
+
     }
 
   },
 }
 
 
+
+
+
 </script>
 
 <style scoped>
 /* config reset */
+
+
 
 body {
 
@@ -911,7 +1003,7 @@ img {
 
   .title {
     font-size: 1.6rem;
-    margin: 0 1.5rem 2rem 1.5rem;
+    margin: 2rem 1.5rem 2rem 1.5rem;
   }
 
   .top-main {
@@ -1013,9 +1105,27 @@ img {
   .container-img {
     
     height:11rem;
-    
+  }
 
-    
+  .submit-mobile-form {
+    border-radius: 25px;
+    margin: 2rem;
+    height:2.5rem;
+    background-color: rgb(36, 255, 200);
+    font-family: 'Courgette',cursive;
+    border: 0.5px solid purple;
+    font-size: 1rem;
+  }
+
+  .container-mobile-button-submit {
+
+    display:flex;
+    justify-content: center;
+  }
+
+  .dark-container-create-form {
+
+    background-color: black
   }
 }
 </style>

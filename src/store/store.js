@@ -1,24 +1,30 @@
 import { createStore } from 'vuex';
 import store from '@/store/store';
 import { useRoute } from 'vue-router';
-
+import createPersistedState from "vuex-persistedstate";
 
 export default createStore({
 
     state: {
 
-        isDarkMode: false,
+        isDarkMode: false, 
         pseudo: 'visitor', // Initialise le pseudo à une valeur par défaut
         store: store,
         selectedReview: null,
         initialReviews: [],
         currentReviewsPage: "",
         accessToken: null,
-        refreshToken: null,
+        refreshToken: null, 
     },
 
 
     mutations: {
+
+       
+        setTotalReviews(state, totalReviews) {
+            state.totalReviews = totalReviews;
+        },
+
 
         setAccessToken(state, accessToken) {
             state.accessToken = accessToken;
@@ -119,10 +125,10 @@ export default createStore({
 
             this.isDarkMode = !this.isDarkMode
             this.darkTheme = !this.darkTheme
-            document.body.style.transition = 'background-color 0.5s ease';
+            document.body.style.transition = 'background-color 0.8s ease';
 
             // Changez la couleur du fond du body
-            document.body.style.backgroundColor = this.isDarkMode ? '#332939' : '';
+            document.body.style.backgroundColor = this.isDarkMode ? '#332939' : 'white';
 
             // Changez la couleur de fond de la card-container
 
@@ -144,8 +150,8 @@ export default createStore({
             const route = useRoute();
 
             if (route !== '/review-details' && route !== undefined && route !== null) {
-                document.querySelector('.logo-camera').style.filter = this.isDarkMode ? 'invert(100%)' : '';
-                document.querySelector('.msg-user-logo').style.filter = this.isDarkMode ? 'invert(100%)' : '';
+                document.querySelector('.logo-camera').style.filter = !this.isDarkMode ? 'invert(100%)' : '';
+                document.querySelector('.msg-user-logo').style.filter = !this.isDarkMode ? 'invert(100%)' : '';
                 console.log(document.querySelector('.logo-camera'))
             }
 
@@ -160,5 +166,5 @@ export default createStore({
     },
 
 
-
+ plugins: [createPersistedState()],
 });

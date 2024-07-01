@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <HeaderComponent @return-button-clicked="handlePagePaginate" />
+    <div :class="[getDarkmodestate ? 'container-dark-mode-review-details' : 'container-review-details']">
+        <HeaderComponent />
 
         <ReviewDetailsComponent />
 
@@ -14,6 +14,7 @@ import FooterComponent from '@/components/Footer-component.vue';
 import HeaderComponent from '@/components/Header-component.vue';
 
 
+
 export default {
 
     components:{
@@ -22,16 +23,26 @@ export default {
         FooterComponent
     },
 
-     methods: {
-    handlePagePaginate() {
-    
-    
-    
-    }
-  }
+
+  computed: {
+        getDarkmodestate() {
+            return this.$store.state.isDarkMode;
+        },
+  },
+
 }
 
 
 
 
 </script>
+
+
+<style scoped>
+
+.container-dark-mode-review-details {
+
+    background-color: black;
+}
+
+</style>

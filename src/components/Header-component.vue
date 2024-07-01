@@ -1,7 +1,7 @@
 <template>
     <div
         class="header-container"
-        :class="{ 'desktop-style': isDesktop, 'mobile-style': !isDesktop }"
+        :class="{ 'desktop-style': isDesktop, 'mobile-style': !isDesktop, 'header-darkmode' : isDarkMode && !isDesktop }"
         @scroll-up="handleScroll"
     >
         <div class="header">
@@ -71,7 +71,7 @@
 
         <div
             v-if="$route.path === '/review-details' || $route.path === '/create-review'"
-            :class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop }"
+            :class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop, 'dark-container-user-connexion':!isDesktop && isDarkMode }"
             @mouseover="startHover"
             @mouseout="endHover"
         >
@@ -178,7 +178,7 @@
             <div class="container-right-button">
                 <div :class="[{ 'dark-button': isDarkMode }, 'right-buttons']">
                     <img
-                        v-if="isDarkmodeActive"
+                       
                         src="../assets/dark-moon.png"
                         alt="moon-button"
                         class="buttons moon-button"
@@ -233,6 +233,7 @@ export default {
   },
 
     computed: {
+
     ...mapState(['isDarkMode']),
     // Autres computed properties
 
@@ -265,6 +266,29 @@ export default {
 
 
   methods: {
+
+
+     isDarkmodeActive() {
+      
+
+      console.log("test depuis un composant pour acceder a l'etat de isDarkmode depuuis le store :",this.$store.state.isDarkMode)
+      // Access and update the state from the Vuex store
+      this.$store.commit('toggleDarkMode');
+      // Your other dark mode logic here
+    },
+
+
+    handleMouseMove(event) {
+      this.mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
+      this.mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
+    },
+
+  
+
+  
+
+
+    
     
     handleReturnButton() {
          this.$emit('returnButtonClicked');
@@ -286,6 +310,7 @@ export default {
       this.isActive = !this.isActive;
 
     },
+
 
 
     handleScroll() {
@@ -418,6 +443,11 @@ export default {
 
 }
 
+.header-darkmode {
+
+    background-color: rgb(34, 31, 31);
+}
+
 @media screen and ( max-width : 1000px) {
 
   
@@ -431,7 +461,7 @@ export default {
 
 .container-user-connexion-mobile {
  
- margin: 1.3rem 0 3rem 1rem;
+ margin: 1.3rem 0 0rem 1rem;
  display: flex;
  align-items: flex-start;
  

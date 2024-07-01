@@ -1,9 +1,9 @@
 <template>
-    <HeaderComponent @return-button-clicked="handlePagePaginate" />
+    <HeaderComponent />
 
     <div
         class="container-main-reviews"
-        :class="{ 'dark-body': isDarkMode }"
+        :class="{ 'dark-body': isDarkMode && !isDesktop }"
     >
         <button
             v-if="isScrolledY"
@@ -94,12 +94,13 @@ export default {
       actualPostionY: window.scrollY,
       buttonOpacity: 0,
       reviews: [],
-      currentPage: 1,
-      itemsPerPage: 18,
-      totalItems: 0,
+      currentPage: this.$store.state.currentReviewsPage || 1,
+      itemsPerPage: this.getDynamicItemsPerPage(),
+      totalItems: this.$store.state.totalReviews,
       pagesShown: 1,
       pagination: {},
       currentId: null,
+      isDarkmodeActive: this.$store.state.isDarkMode,
 
     }
   },
@@ -118,11 +119,24 @@ export default {
     },
   },
 
+  beforeMount() {
+
+     this.fetchData();
+
+    this.updateItemsPerPage();
+
+    this.updateTotalItems();
+
+    
+
+  },
 
 
   mounted() {
 
-    this.fetchData()
+    /*test this.logTotalReviews()*/
+
+
 
     // les fonctions indiquées dans la section mounted d'un composant Vue sont automatiquement appelées lorsque le composant est monté dans le DOM
 
@@ -139,12 +153,14 @@ export default {
       this.hideButton = true;
     }, 4000);
 
-  
+    console.log("TOTAL ITEMS : ", this.totalItems);
 
   },
 
 
   beforeUnmount() {
+
+    this.getTotalItems();
 
     window.removeEventListener('scroll', this.handleScroll);
 
@@ -154,8 +170,28 @@ export default {
 
   methods: {
 
-     
+ getDynamicItemsPerPage() {
+      return this.isDesktop ? 18 : 10;
+    },
 
+
+    /* test logTotalReviews(){
+    console.log('this.$store.state.totalReviews: ', this.$store.state.totalReviews);
+    },*/
+
+    updateItemsPerPage() {
+
+      if (!this.isDesktop) { // Mobile
+        this.itemsPerPage = 10;
+      } else { // Desktop
+        this.itemsPerPage = 18;
+      }
+    },
+
+    getTotalItems() {
+
+      return this.$store.state.totalReviews === this.reviews.length;
+    },
 
     getDetailsReviewOnClick(currentReview) {
 
@@ -167,13 +203,19 @@ export default {
 
 
 
-    displayReviews(reviews) {
+    displayReviews() {
 
-      reviews = this.reviews;
       const stratIndex = (this.currentPage * this.itemsPerPage) - this.itemsPerPage
       const endIndex = stratIndex + this.itemsPerPage
-      return reviews.slice(stratIndex, endIndex)
+      return this.reviews.slice(stratIndex, endIndex)
     },
+
+    updateTotalItems() {
+      this.totalItems = this.$store.state.totalItems;
+      console.log('totalItems: ', this.totalItems);
+      this.$store.commit('setTotalReviews', this.totalItems);
+    },
+
 
 
 
@@ -183,7 +225,7 @@ export default {
 
       try { //perte de temps enorme ( une aprés midi ) a cause de l'url qui indiqué localhost 
 
-        if (this.$store.state.initialReviews.length === 0) {
+        
 
           const response = await fetch(`http://192.168.1.168:5001/review/home`);
           if (!response.ok) {
@@ -192,12 +234,26 @@ export default {
           const data = await response.json();
           this.reviews = data;
           this.totalItems = data.length;
-          this.pagesShown = Math.ceil(this.totalItems / this.itemsPerPage);
-          this.$store.commit('setInitialReviews', data);
 
-        } else {
+          const totalRviewsFromStore = this.$store.state.totalReviews;
 
-          /*  détail sur la methode employé pour concerver les meme reviews qu'au premier chargement ,meme si visite autre pages que main-reviews:
+          this.totalItems = totalRviewsFromStore;
+          
+          console.log('totalReviewsFromStore: ', this.totalItems);
+
+
+          if (this.totalItems == 0) {
+
+            this.pagesShown = Math.ceil(this.totalItems / this.itemsPerPage);
+            this.$store.commit('setInitialReviews', data);
+
+            this.$store.commit('setTotalReviews', data.length);
+            console.log('totalReviewsFromStore: ', totalRviewsFromStore);
+
+          }
+
+     
+          /*  détail sur la methode employé pour concerver les memes reviews qu'au premier chargement ,meme si visite autre pages que main-reviews:
           
               this.reviews etant le point d'acces pour afficher les annonces, (voir composant ReviewCard plus haut)
               l'idée est de copier this.reviews dans une propiété du store "initialReviews" ,celle ci alimentée au chargement de la page (l'ors du fetch)
@@ -208,7 +264,7 @@ export default {
 
 
 
-          this.reviews = JSON.parse(JSON.stringify(this.$store.state.initialReviews));
+          //this.reviews = JSON.parse(JSON.stringify(this.$store.state.initialReviews));
 
           /*
           L'utilisation de JSON.parse(JSON.stringify(...)) est une technique courante pour créer une copie profonde (deep copy) d'un objet en JavaScript.
@@ -224,7 +280,7 @@ export default {
            si vous avez besoin de copier les données initiales de votre magasin Vuex pour les modifier localement dans 
            un composant sans altérer les données originales du magasin, cette technique est utile.    */
 
-        }
+        
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -305,6 +361,11 @@ body {
   background: none;
 }
 
+.dark-body {
+
+  background-color: black;
+}
+
 .pagination {
 
   display: flex;
@@ -343,13 +404,12 @@ body {
 }
 
 .header {
-position: relative;
-border: 3px solid black;
-width: 100%;
+  position: relative;
+  border: 3px solid black;
+  width: 100%;
 }
 
 .container-main-review {
- background-color: aquamarine;
+  background-color: aquamarine;
 }
-
 </style>

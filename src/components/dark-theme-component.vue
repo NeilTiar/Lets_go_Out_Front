@@ -42,7 +42,7 @@ export default {
       isActive: false,
       isRightPosition: false,
       movedButton: false,
-    };
+    }; 
   },
 
   methods: {
@@ -54,7 +54,7 @@ export default {
     },
 
     isDarkModeOn() {
-      this.$store.dispatch("setIsDarkMode", !this.$store.state.isDarkMode);
+      this.$store.dispatch("setIsDarkMode",this.isActive);
       this.$store.dispatch('isDarkmodeActive')
     }
 
