@@ -1,7 +1,7 @@
 <template>
     <div
         v-if="currentReview" 
-        :class="[isDarkMode ? 'dark-mode-currentReview' : 'currentReview']"
+        :class="[isDarkMode && !isDesktop ? 'dark-mode-currentReview' : 'currentReview']"
     >
         <p class="theme">{{ currentReview.theme }}</p>
         <h1 class="title">{{ currentReview.place_name }}</h1>
@@ -45,19 +45,20 @@
                 :alt="generateAltText()"
             > 
         </div>
+    
+        <p
+            class="review"
+            :class="{ 'dark-mode-review': isDarkMode }"
+        >
+            {{ currentReview.review }}
+        </p>
+        <p
+            class="author"
+            :class="{ 'dark-mode-author': isDarkMode }"
+        >
+            {{ currentReview.creator_name }}
+        </p>
     </div>
-    <p
-        class="review"
-        :class="{ 'dark-mode-review': isDarkMode }"
-    >
-        {{ currentReview.review }}
-    </p>
-    <p
-        class="author"
-        :class="{ 'dark-mode-author': isDarkMode }"
-    >
-        {{ currentReview.creator_name }}
-    </p>
 </template>
 
 <script>
@@ -271,7 +272,6 @@ body {
 }
 
 .swiper-slide  {
-    display: block;
     width: 80%;
     height: 110%;
     object-fit:scale-down;
@@ -301,7 +301,7 @@ img {
     
     font-size: 2.6rem;
     font-family: "Exo 2", sans-serif;
-    margin:5rem 0 0 0;
+    margin:0;
     font-weight: 600;
     color: #3aafad;
 }
@@ -331,6 +331,11 @@ img {
     text-align: right;
     margin:0 12rem 5rem 0;
     font-size: 1.4rem;
+}
+
+.dark-mode-author {
+
+    margin: 0;
 }
 
 .dark-mode-adress,

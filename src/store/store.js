@@ -120,22 +120,22 @@ export default createStore({
 
         isDarkmodeActive() {
 
-            const cardInfo = document.getElementsByClassName('card-info');
-            const cardContainer = document.getElementsByClassName('card-container');
+           /* const cardInfo = document.getElementsByClassName('card-info');
+            const cardContainer = document.getElementsByClassName('card-container');*/
 
             this.isDarkMode = !this.isDarkMode
             this.darkTheme = !this.darkTheme
             document.body.style.transition = 'background-color 0.8s ease';
 
             // Changez la couleur du fond du body
-            document.body.style.backgroundColor = this.isDarkMode ? '#332939' : 'white';
+            document.body.style.backgroundColor = this.isDarkMode ? '#0f0311' : 'white';
 
-            // Changez la couleur de fond de la card-container
+            //exemple pour Changez la couleur de fond de la card-container avec javascript ,mais finalement géré avec les classes conditionnelles.
 
-            if ((cardInfo.length > 0 && cardContainer)) {
+         /*   if ((cardInfo.length > 0 && cardContainer)) {
 
                 Array.from(cardInfo).map(card => {
-                    card.style.color = this.isDarkMode ? '#caded6' : '';
+                    card.style.color = this.isDarkMode ? '' : '';
 
                     Array.from(cardContainer).map(card => {
 
@@ -145,7 +145,7 @@ export default createStore({
 
                 })
 
-            }
+            } */
 
             const route = useRoute();
 

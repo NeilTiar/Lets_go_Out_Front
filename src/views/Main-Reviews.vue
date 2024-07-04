@@ -3,7 +3,7 @@
 
     <div
         class="container-main-reviews"
-        :class="{ 'dark-body': isDarkMode && !isDesktop }"
+        :class="{ 'dark-body': isDarkMode }"
     >
         <button
             v-if="isScrolledY"
@@ -363,7 +363,7 @@ body {
 
 .dark-body {
 
-  background-color: black;
+  background-color: rgb(48, 34, 70);
 }
 
 .pagination {

@@ -1,11 +1,9 @@
 <template>
-    <div :class="[getDarkmodestate ? 'container-dark-mode-review-details' : 'container-review-details']">
-        <HeaderComponent />
+    <HeaderComponent />
 
-        <ReviewDetailsComponent />
+    <ReviewDetailsComponent />
 
-        <FooterComponent />
-    </div>
+    <FooterComponent />
 </template>
 
 <script>

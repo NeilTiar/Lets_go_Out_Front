@@ -10,6 +10,21 @@
         <div
             class="container-create-review-form"
         >
+            <div
+                v-if="isModalVisible"
+                class="modal"
+            >
+                <div class="modal-content">
+                    <div class="modal-text-container">
+                        <p class="modal-message">Merci pour votre partage . Votre annonce sera verifiée dans les plus bref delai, et sera consultable pendant 90 jours aprés publication </p>
+                    </div>
+                    <span
+                        class="close"
+                        @click="closeModalOnClick"
+                    >&times;</span>
+                    <p>{{ message }}</p>
+                </div>
+            </div>
             <form 
                 class="
         create-form"
@@ -358,6 +373,7 @@ export default {
       isDesktop: window.innerWidth > 768,
       imageURL: "",
       isDarkMode: this.$store.state.isDarkMode,
+      isModalVisible: false,
     }
   },
 
@@ -378,6 +394,12 @@ export default {
 
 
   methods: {
+
+  closeModalOnClick() {
+
+    this.isModalVisible = false;
+  },
+
 
     logFormData() {
 
@@ -618,6 +640,7 @@ export default {
           token = responseData.AccessToken;
           console.log("Success, review created:", this.successMessage, responseData);
           this.resetForm();
+          this.isModalVisible = true;
 
         } else {
 
@@ -995,6 +1018,57 @@ img {
 
 .container-mobile-picture {
   color: black
+}
+
+.modal {
+  
+  position: fixed; 
+  z-index: 10; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  display: flex; 
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  height: 20rem;
+  border-radius: 25px;
+}
+
+.modal-message {
+ 
+  font-family: 'Courgette', cursive;
+  font-size: 2rem;
+}
+
+.modal-text-container {
+
+   display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; 
+}
+
+.close {
+  color: #867171;
+  float: right;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1000px) {

@@ -16,7 +16,10 @@
             </h3>
         </div>
 
-        <div class="card-details">
+        <div
+            class="card-details"
+            :class="{ 'dark-card-details': isDarkMode }"
+        >
             <div
                 class="card-info"
                 :class="{ 'dark-card-info': isDarkMode }"

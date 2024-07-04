@@ -2,7 +2,7 @@
     <div class="button-container">
         <button
             :class="{ 'dark-theme-container': true, 'light-mode': isActive, 'dark-mode': !isActive }"
-            @click="() => { toggle(); isDarkModeOn() }"
+            @click="() => {toggle(), isDarkModeOn() }"
         >
             <template v-if="isActive">
                 <span class="light-mode-tag">Theme clair</span>
@@ -39,11 +39,23 @@ export default {
   data() {
 
     return {
-      isActive: false,
+      //isActive est responsable du changement de position du boutton 
+      isActive: '',
       isRightPosition: false,
       movedButton: false,
     }; 
   },
+
+
+
+  /*permet d'initialiser l'etat du boutton darkmode avant le chargement de la page pour conserver le meme etat que la page precedente.
+  la propriété isActive etant responsable du placement du boutton toggle isDarkMode */
+  beforeMount() {
+
+  this.isActive = this.$store.state.isDarkMode
+  },
+
+
 
   methods: {
 
@@ -52,13 +64,15 @@ export default {
       this.$emit('toggle', this.isActive);
       // Alterne l'état de déplacement du boutton dark mode
     },
+    
 
     isDarkModeOn() {
-      this.$store.dispatch("setIsDarkMode",this.isActive);
+      this.$store.dispatch("setIsDarkMode", this.isActive);
       this.$store.dispatch('isDarkmodeActive')
     }
 
   },
+
 
 };
 </script>

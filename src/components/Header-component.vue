@@ -1,7 +1,7 @@
 <template>
     <div
         class="header-container"
-        :class="{ 'desktop-style': isDesktop, 'mobile-style': !isDesktop, 'header-darkmode' : isDarkMode && !isDesktop }"
+        :class="{ 'desktop-style': isDesktop, 'mobile-style': !isDesktop, 'header-darkmode' : isDarkMode }"
         @scroll-up="handleScroll"
     >
         <div class="header">
@@ -70,7 +70,7 @@
         </div>
 
         <div
-            v-if="$route.path === '/review-details' || $route.path === '/create-review'"
+            v-if="isExcludedRoute()"
             :class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop, 'dark-container-user-connexion':!isDesktop && isDarkMode }"
             @mouseover="startHover"
             @mouseout="endHover"
@@ -141,7 +141,7 @@
 
 
         <div
-            v-if="!isDesktop && $route.path !== '/create-review'" 
+            v-if="!isDesktop && !isExcludedRoute()" 
             class="top-menu"
             :class="[{ 'fixed-container': isFixed, 'dark-top-menu': isDarkMode }, 'top-main']"
         >
@@ -217,6 +217,9 @@ export default {
 
      emits: ['returnButtonClicked'],
 
+
+
+
   data() {
 
     return {
@@ -232,15 +235,13 @@ export default {
 
   },
 
+
+
     computed: {
 
     ...mapState(['isDarkMode']),
     // Autres computed properties
 
-     shouldDisplayBannerTheme() {
-      const excludedPaths = ['/review-details', '/create-review']; // Liste des chemins à exclure
-      return !excludedPaths.includes(this.$route.path);
-    }
   },
    
 
@@ -284,7 +285,11 @@ export default {
     },
 
   
-
+     isExcludedRoute () {
+        const excludedPaths = ['/review-details', '/review-details']; // Liste des chemins à exclure
+      return excludedPaths.includes(this.$route.path);
+      
+    },
   
 
 
@@ -403,8 +408,7 @@ export default {
     align-items: center;
     gap:1rem;
     justify-content:flex-end;
-    width: calc(100vw - 17px)
-    
+    width: calc(100vw - 17px);  
 }
 
 .container-logo-pseudo {
