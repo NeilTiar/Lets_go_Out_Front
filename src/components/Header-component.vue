@@ -70,7 +70,7 @@
         </div>
 
         <div
-            v-if="isExcludedRoute()"
+            v-if="isExcludedRoute() && isDesktop"
             :class="{ 'container-user-connexion-mobile': !isDesktop, 'container-user-connexion-desktop': isDesktop, 'dark-container-user-connexion':!isDesktop && isDarkMode }"
             @mouseover="startHover"
             @mouseout="endHover"
@@ -89,7 +89,7 @@
             class="top-desktop-menu"
         >
             <nav 
-                v-if="shouldDisplayBannerTheme" 
+               
                 class="theme-banner"
             >
                 <ul
