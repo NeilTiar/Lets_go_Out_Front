@@ -1,21 +1,47 @@
 import { createStore } from 'vuex';
 import store from '@/store/store';
 import { useRoute } from 'vue-router';
-
+import createPersistedState from "vuex-persistedstate";
 
 export default createStore({
 
     state: {
 
-        isDarkMode: false,
+        isDarkMode: false, 
         pseudo: 'visitor', // Initialise le pseudo à une valeur par défaut
         store: store,
         selectedReview: null,
         initialReviews: [],
+        currentReviewsPage: "",
+        accessToken: null,
+        refreshToken: null, 
     },
 
 
     mutations: {
+
+       
+        setTotalReviews(state, totalReviews) {
+            state.totalReviews = totalReviews;
+        },
+
+
+        setAccessToken(state, accessToken) {
+            state.accessToken = accessToken;
+        },
+
+
+        setRefreshToken(state, refreshToken) {
+            state.refreshToken = refreshToken;
+        },
+
+    
+        lastReviewsPage(state, pageNumber) {
+
+            state.currentReviewsPage = pageNumber;
+            console.log("currentReviewsPage from vue store : ", this.currentReviewsPage)
+
+        },
 
 
         setSelectedReview(state, review) {
@@ -42,7 +68,7 @@ export default createStore({
         setPseudo(state, pseudo) {
             state.pseudo = pseudo;
         },
-        
+
 
         setIsDarkMode(state, isDarkMode) {
 
@@ -63,6 +89,25 @@ export default createStore({
 
     actions: {
 
+             updateAccessToken({ commit }, accessToken) {
+            commit('setAccessToken', accessToken);
+        },
+
+            currentRefreshToken({ commit }, refreshToken) {
+            commit('setRefreshToken', refreshToken);
+        },
+
+
+        getLastReviewsPage({ commit }, pageNumber) {
+            commit('lastReviewsPage', pageNumber);
+        },
+
+        updateReviewsPage({ commit }, pageNumber) {
+
+            commit('setReviewsPage', pageNumber)
+        },
+
+
         updatePseudo({ commit }, pseudo) {
             commit('setPseudo', pseudo);
         },
@@ -75,39 +120,39 @@ export default createStore({
 
         isDarkmodeActive() {
 
-            const cardInfo = document.getElementsByClassName('card-info');
-            const cardContainer = document.getElementsByClassName('card-container');
+           /* const cardInfo = document.getElementsByClassName('card-info');
+            const cardContainer = document.getElementsByClassName('card-container');*/
 
             this.isDarkMode = !this.isDarkMode
             this.darkTheme = !this.darkTheme
-            document.body.style.transition = 'background-color 0.5s ease';
+            document.body.style.transition = 'background-color 0.8s ease';
 
             // Changez la couleur du fond du body
-            document.body.style.backgroundColor = this.isDarkMode ? '#332939' : '';
+            document.body.style.backgroundColor = this.isDarkMode ? '#0f0311' : 'white';
 
-            // Changez la couleur de fond de la card-container
+            //exemple pour Changez la couleur de fond de la card-container avec javascript ,mais finalement géré avec les classes conditionnelles.
 
-            if ((cardInfo.length > 0 && cardContainer)) {
+         /*   if ((cardInfo.length > 0 && cardContainer)) {
 
-                  Array.from(cardInfo).map(card => {
-                      card.style.color = this.isDarkMode ? '#caded6' : '';
-  
-                       Array.from(cardContainer).map(card => {
-                        
-                           card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
-   
-                       })
-  
-                  })
+                Array.from(cardInfo).map(card => {
+                    card.style.color = this.isDarkMode ? '' : '';
 
-            }
+                    Array.from(cardContainer).map(card => {
+
+                        card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
+
+                    })
+
+                })
+
+            } */
 
             const route = useRoute();
 
-            if (route !== '/review-details' && route !== undefined && route !== null){
-            document.querySelector('.logo-camera').style.filter = this.isDarkMode ? 'invert(100%)' : '';
-            document.querySelector('.msg-user-logo').style.filter = this.isDarkMode ? 'invert(100%)' : '';
-            console.log(document.querySelector('.logo-camera'))
+            if (route !== '/review-details' && route !== undefined && route !== null) {
+                document.querySelector('.logo-camera').style.filter = !this.isDarkMode ? 'invert(100%)' : '';
+                document.querySelector('.msg-user-logo').style.filter = !this.isDarkMode ? 'invert(100%)' : '';
+                console.log(document.querySelector('.logo-camera'))
             }
 
             // Assurez-vous de réinitialiser la transition après la transition terminée pour éviter de l'appliquer à d'autres changements non souhaités
@@ -121,5 +166,5 @@ export default createStore({
     },
 
 
-
+ plugins: [createPersistedState()],
 });

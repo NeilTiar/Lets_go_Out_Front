@@ -7,6 +7,7 @@
   position: relative;
   right: 0rem;
   top: -3.7px;
+  margin-right: 1rem;
 
 }
 
@@ -145,25 +146,22 @@ img.sun {
 .header-container {
 
   width: 100%;
-  display: table;
-  flex-direction: column;
+ 
+  
 
 }
 
 .header {
-
+  
+   max-width: 100%;
   display: flex;
   justify-content: space-between;
   top: 0;
   height: 10rem;
-
   margin-bottom: 0.5rem;
   background: url('../assets/paris2.jpg') center center no-repeat;
   background-size: cover;
-
-
 }
-
 
 
 .header-title {
@@ -181,15 +179,13 @@ img.sun {
 
 .container-logo-title {
 
+ width: 100%;
   display: flex;
   margin-top: 1rem;
   font-family: 'Courgette';
   flex-direction: column;
   font-size: 0.8rem;
   
-
-
-
 }
 
 .title-description {
@@ -205,7 +201,7 @@ img.sun {
 
   display: flex;
   align-items: center;
-  position: relative;
+  
   width: 100%;
 
 }
@@ -232,7 +228,8 @@ img.sun {
 }
 
 li.link-create-review {
-
+ 
+  cursor: pointer;
   margin: 0.4rem;
   display: flex;
   align-items: center;
@@ -362,7 +359,6 @@ a.loisir-link:hover {
   font-family: 'Courgette';
   font-weight: 800;
   margin-bottom: 0.3rem;
-  background-color: rgba(0, 5, 0, 0.5);
   height: 50%;
   margin: auto 0 1rem 0;
   border-radius: 25px;
@@ -372,7 +368,8 @@ a.loisir-link:hover {
 .container-logo-title {
 
   display: flex;
-  margin: 0.2rem 0 0 1rem;
+  margin: 0;
+
 
 }
 
@@ -412,15 +409,15 @@ margin-top: 4rem;
 
 
 
-
 @media screen and (max-width:391px) {
 
   .container-logo-title {
+
     display: flex;
     align-items: flex-start;
     font-size: clamp(0.5rem, 0.6rem, 0.8rem);
     margin-left: 0.8rem;
-
+    
   }
 
   .title-description {
@@ -447,20 +444,14 @@ margin-top: 4rem;
 
   }
 
-  .top-main {
-
-    margin-bottom: 12rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
 
   .search-button {
     margin-right: 1rem;
   }
 
   .moon-button {
-
+    
+    
     margin-left: 1rem;
   }
 
@@ -498,7 +489,8 @@ margin-top: 4rem;
 
   width: 100vw;
   }
-}
+};
+
 
 
 @media screen and (max-width: 1300px) {
@@ -509,5 +501,4 @@ margin-top: 4rem;
     font-size: 1rem;
   }
 
-
-}
+};

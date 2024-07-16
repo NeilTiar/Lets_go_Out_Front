@@ -3,20 +3,22 @@
 @media screen and (min-width: 768px) {
 
 
-  .header-title {
+  .header-title,
+  .title-description {
 
     margin-left: 2rem;
   }
 
 
   .cards-container {
-
+    
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(4, 1fr);
     /* 4 => nb colonnes ; 1fr element penant 1 fraction égale de l'espace disponible. */
 
-    margin: 5rem 2rem 5.5rem 2rem;  
+    margin: 0rem 1rem 5.5rem 2rem;
+    padding-top: 4rem;
 
   }
 
@@ -30,10 +32,10 @@
 
 
   .card-container:hover {
-background :#afe2e2;
+    background: #afe2e2;
 
 
- }
+  }
 
   .card-container:hover::before {
 
@@ -62,7 +64,6 @@ background :#afe2e2;
     gap: 0.5rem;
     justify-content: space-between;
 
-
   }
 
 
@@ -70,11 +71,11 @@ background :#afe2e2;
 
     display: inline-flex;
   }
-  
+
 
   button.create-review {
 
-   
+
     right: 10rem;
     color: rgb(68, 50, 71);
     background-color: rgb(210, 203, 218);
@@ -90,23 +91,28 @@ background :#afe2e2;
   }
 
   button.create-review-after-scrollY {
-    
+
     position: fixed;
     height: 2rem;
     background-color: rgb(210, 203, 218);
-    color:rgb(122, 109, 128);
+    color: rgb(122, 109, 128);
     z-index: 1;
-    right:-4.2rem;
+    right: -4.2rem;
     top: 8rem;
     font-family: 'Times New Roman', Times, serif;
     border-radius: 0 0 15px 15px;
     vertical-align: top;
     font-size: 1.5rem;
     transform: rotate(7deg);
-    -ms-transform: rotate(90deg);/* IE 9 */
-    -moz-transform: rotate(90deg);/* Firefox */
-    -webkit-transform: rotate(90deg);/* Safari and Chrome */
-    -o-transform: rotate(90deg);/* Opera */
+    -ms-transform: rotate(90deg);
+    /* IE 9 */
+    -moz-transform: rotate(90deg);
+    /* Firefox */
+    -webkit-transform: rotate(90deg);
+    /* Safari and Chrome */
+    -o-transform: rotate(90deg);
+    /* Opera */
+
 
   }
 
@@ -119,7 +125,7 @@ background :#afe2e2;
   .cards-container {
 
 
-    
+
     grid-template-columns: repeat(6, 1fr);
     /* 4 => nb colonnes ; 1fr element penant 1 fraction égale de l'espace disponible. */
 

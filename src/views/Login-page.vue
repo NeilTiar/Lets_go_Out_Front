@@ -119,8 +119,8 @@ export default {
         async submitForm() {
 
 
-            console.log('Identifiant:', this.email);
-            console.log('Mot de passe:', this.password);
+           //test console.log('Identifiant:', this.email);
+           //test console.log('Mot de passe:', this.password);
 
             try {
                 // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
@@ -133,7 +133,7 @@ export default {
 
                         email: this.email,
                         password: this.password,
-                        
+
                     }),
 
                 })
@@ -144,17 +144,35 @@ export default {
 
                     const responseData = await response.json();
 
-                    console.log("responsData : ", responseData)
+                    const accessToken = responseData.accessToken;
 
-                   const newPseudo = responseData.pseudo;
+                    const refreshToken = responseData.refreshTokenValid;
+
+                   // console.log('refreshToken :', refreshToken)
+
+                    if (refreshToken) {
+                        // Stockez le token dans le local storage
+
+                         store.dispatch('updateAccessToken', accessToken);
+
+                         store.dispatch('currentRefreshToken', refreshToken);
+                    }
+
+                
+
+                 // test console.log("AccessToken From Store : ", store.state.accessToken , "refreshToken :" , store.state.refreshToken)
+
+                   // test console.log("responsData : ", responseData)
+
+                    const newPseudo = responseData.pseudo;
 
                     await store.dispatch('updatePseudo', newPseudo);
 
                     // Vous pouvez également accéder au pseudo mis à jour directement à partir du store
-                    console.log('Pseudo mis à jour :', store.state.pseudo);
+                   // test console.log('Pseudo mis à jour :', store.state.pseudo);
 
                     this.connectionMessage = responseData.message[1]
-                    console.log('message de success :', responseData.message[1]);
+                   // test console.log('message de success :', responseData.message[1]);
                     setTimeout(() => {
                         this.$router.push('/main');
                     }, 1500);
@@ -174,8 +192,6 @@ export default {
                             this.errorMessage = null; // Réinitialiser le message d'erreur après le délai
                         }, 2000);
                     }
-
-
                 }
             }
 
@@ -347,11 +363,11 @@ export default {
     margin-bottom: 2rem;
 }
 
-.error-message, 
+.error-message,
 .success-message {
 
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 

@@ -1,7 +1,7 @@
 <template>
     <div
         v-if="currentReview" 
-        class="currentReview"
+        :class="[isDarkMode && !isDesktop ? 'dark-mode-currentReview' : 'currentReview']"
     >
         <p class="theme">{{ currentReview.theme }}</p>
         <h1 class="title">{{ currentReview.place_name }}</h1>
@@ -45,19 +45,20 @@
                 :alt="generateAltText()"
             > 
         </div>
+    
+        <p
+            class="review"
+            :class="{ 'dark-mode-review': isDarkMode }"
+        >
+            {{ currentReview.review }}
+        </p>
+        <p
+            class="author"
+            :class="{ 'dark-mode-author': isDarkMode }"
+        >
+            {{ currentReview.creator_name }}
+        </p>
     </div>
-    <p
-        class="review"
-        :class="{ 'dark-mode-review': isDarkMode }"
-    >
-        {{ currentReview.review }}
-    </p>
-    <p
-        class="author"
-        :class="{ 'dark-mode-author': isDarkMode }"
-    >
-        {{ currentReview.creator_name }}
-    </p>
 </template>
 
 <script>
@@ -271,7 +272,6 @@ body {
 }
 
 .swiper-slide  {
-    display: block;
     width: 80%;
     height: 110%;
     object-fit:scale-down;
@@ -287,7 +287,7 @@ img {
     
     width: 80%;
     margin:2rem auto;
-    font-size: 1.5rem;
+    font-size: 2.3rem;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -301,7 +301,7 @@ img {
     
     font-size: 2.6rem;
     font-family: "Exo 2", sans-serif;
-    margin:5rem 0 0 0;
+    margin:0;
     font-weight: 600;
     color: #3aafad;
 }
@@ -317,6 +317,8 @@ img {
 
 .desktop-pictures {
     border-radius: 25px;
+     object-fit:contain;
+     width: 100%;
 }
 
 .title {
@@ -331,10 +333,19 @@ img {
     font-size: 1.4rem;
 }
 
+.dark-mode-author {
+
+    margin: 0;
+}
+
 .dark-mode-adress,
 .dark-mode-review,
 .dark-mode-author {
     color:#fff;
+}
+
+.dark-mode-currentReview {
+    background-color: #000;
 }
 
 @media screen and (min-width: 2000px) {
@@ -349,6 +360,7 @@ img {
 }
 
 .desktop-pictures {
+   
     width: 80%;
     margin: auto;
 }
