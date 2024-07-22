@@ -13,8 +13,10 @@
         </button>
 
         <main class="cards-container">
+            <loadingComponent :loading="loading" />
+            
             <ReviewCard
-                v-for="review in displayReviews(reviews)"
+                v-for="review in displayReviews(reviews) "
                 :key="review.id"
                 :theme="review.theme"
                 :arrondissement="review.district_num"
@@ -22,7 +24,7 @@
                 :image-url="review.secure_url"
                 @click="getDetailsReviewOnClick(review)"
             />
-
+        
             <button
                 v-show="showButton"
                 v-if="!isDesktop"
@@ -66,6 +68,7 @@ import FooterComponent from '@/components/Footer-component.vue';
 import ReviewCard from '../components/Review-card-component.vue';
 import Pagination from '../components/pagination-component.vue';
 import PaginationMobileComponent from '../components/pagination-mobile-component.vue';
+import loadingComponent from '../components/loading-component.vue';
 
 
 
@@ -79,7 +82,8 @@ export default {
     FooterComponent,
     ReviewCard,
     Pagination,
-    PaginationMobileComponent
+    PaginationMobileComponent,
+    loadingComponent,
   },
 
   data() {
@@ -101,6 +105,7 @@ export default {
       pagination: {},
       currentId: null,
       isDarkmodeActive: this.$store.state.isDarkMode,
+      loading:false,
 
     }
   },
@@ -132,11 +137,11 @@ export default {
   },
 
 
+
+
   mounted() {
 
     /*test this.logTotalReviews()*/
-
-
 
     // les fonctions indiquées dans la section mounted d'un composant Vue sont automatiquement appelées lorsque le composant est monté dans le DOM
 
@@ -202,7 +207,7 @@ export default {
     },
 
 
-
+    
     displayReviews() {
 
       const stratIndex = (this.currentPage * this.itemsPerPage) - this.itemsPerPage
@@ -240,6 +245,8 @@ export default {
           this.totalItems = totalRviewsFromStore;
           
           console.log('totalReviewsFromStore: ', this.totalItems);
+
+        
 
 
           if (this.totalItems == 0) {
@@ -281,11 +288,13 @@ export default {
            un composant sans altérer les données originales du magasin, cette technique est utile.    */
 
         
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     },
 
+   
 
 
     /* La fonction handlePageChange est automatiquement alimentée par la variable 'newPage' fournie par VueAwesomePagination.

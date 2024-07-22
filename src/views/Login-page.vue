@@ -158,7 +158,16 @@ export default {
                          store.dispatch('currentRefreshToken', refreshToken);
                     }
 
-                
+                    const isAdmin = responseData.isAdmin;
+
+                    /*test isAdmin from response .
+                    console.log('isAdmin: ', isAdmin);*/
+
+
+                  await this.$store.commit('setIsAdmin', isAdmin);
+
+                    console.log('isAdmin from store:', this.$store.state.isAdmin);
+
 
                  // test console.log("AccessToken From Store : ", store.state.accessToken , "refreshToken :" , store.state.refreshToken)
 

@@ -89,7 +89,8 @@
             class="top-desktop-menu"
         >
             <nav 
-               
+            
+                v-if="$route.path !== '/admin'"
                 class="theme-banner"
             >
                 <ul
@@ -135,6 +136,18 @@
                             >
                         </div>
                     </li>
+                </div>
+                <div
+                   
+                    v-if="isAdmin && isDesktop"
+                    class="admin-button-link"
+                >
+                    <a
+                        href="/admin"
+                        class="admin-link"
+                    > admin-page
+                        <div class="button-link-container" />
+                    </a>
                 </div>
             </nav>
         </div>
@@ -203,7 +216,7 @@
 import darkThemeComponent from '@/components/dark-theme-component.vue';
 
 // eslint-disable-next-line no-unused-vars
-import store from '../store/store'
+import store from '../store/store';
 import { mapState } from 'vuex';
 
 export default {
@@ -227,10 +240,11 @@ export default {
       isFixed: false,
       isClassPresent: false,
       TitleIfTopMenu: "",
-      isDesktop: window.innerWidth > 768,
+      windowWidth: window.innerWidth ,
       previousScrollY: 0,
       isScrollingUpX: false,
       pseudo: this.$store.state.pseudo,
+      isAdmin: this.$store.state.isAdmin,
     };
 
   },
@@ -242,6 +256,11 @@ export default {
     ...mapState(['isDarkMode']),
     // Autres computed properties
 
+    isDesktop() {
+
+        return this.windowWidth > 1000;
+    }
+
   },
    
 
@@ -252,6 +271,9 @@ export default {
 
     window.addEventListener('resize', this.handleResize);
 
+     //test get isAdmin from store 
+   
+    console.log('isAdmin from header by sore', this.isAdmin);
   
 
   },
@@ -262,12 +284,14 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
 
     window.removeEventListener('resize', this.handleResize);
+
   },
 
 
 
   methods: {
 
+ 
 
      isDarkmodeActive() {
       
@@ -275,7 +299,7 @@ export default {
       console.log("test depuis un composant pour acceder a l'etat de isDarkmode depuuis le store :",this.$store.state.isDarkMode)
       // Access and update the state from the Vuex store
       this.$store.commit('toggleDarkMode');
-      // Your other dark mode logic here
+     
     },
 
 
@@ -341,7 +365,7 @@ export default {
 
     handleResize() {
       // Met à jour isDesktop lors de changements de taille d'écran
-      this.isDesktop = window.innerWidth > 768;
+      this.windowWidth = window.innerWidth ;
     },
 
 
@@ -353,6 +377,8 @@ export default {
 
 
 <style scoped>
+
+
 
 .dark-button {
 
@@ -452,6 +478,8 @@ export default {
     background-color: rgb(34, 31, 31);
 }
 
+
+
 @media screen and ( max-width : 1000px) {
 
   
@@ -501,6 +529,8 @@ export default {
  .submit-form {
     margin: auto;;
  }
+
+
 
 }
 

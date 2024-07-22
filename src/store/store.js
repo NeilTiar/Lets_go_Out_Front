@@ -1,24 +1,34 @@
 import { createStore } from 'vuex';
-import store from '@/store/store';
 import { useRoute } from 'vue-router';
 import createPersistedState from "vuex-persistedstate";
 
-export default createStore({
+const store =  createStore({
 
     state: {
 
         isDarkMode: false, 
         pseudo: 'visitor', // Initialise le pseudo à une valeur par défaut
-        store: store,
         selectedReview: null,
         initialReviews: [],
         currentReviewsPage: "",
         accessToken: null,
         refreshToken: null, 
+        isAdmin: false,
     },
 
+     getters: {
+ 
+    isAdmin(state) {
+      return state.isAdmin; // Retourne true si l'utilisateur est administrateur
+    }
+  },
+  
 
     mutations: {
+
+        setIsAdmin(state, isAdmin) {
+            state.isAdmin = isAdmin
+        },
 
        
         setTotalReviews(state, totalReviews) {
@@ -88,6 +98,11 @@ export default createStore({
 
 
     actions: {
+
+        updateIsAdmin({commit}, isAdmin) {
+        commit('setIsAdmin', isAdmin)
+
+        },
 
              updateAccessToken({ commit }, accessToken) {
             commit('setAccessToken', accessToken);
@@ -165,6 +180,10 @@ export default createStore({
 
     },
 
-
- plugins: [createPersistedState()],
+  // permet de conserver letat du state pendant la visite du client ( changement de page , connexion etc ....)
+  plugins: [createPersistedState()],
 });
+
+
+
+export default store;
