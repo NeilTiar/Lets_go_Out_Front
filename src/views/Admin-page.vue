@@ -1,22 +1,19 @@
 <template>
     <HeaderComponent />
-    <div>
+
+    <div
+               
+        class="number-reviews-to-activate"
+    >
+        {{ disableReviews.length }}
+    </div>
+    <div class="activate-button-container">
         <div 
             v-if=" disableReviews"
             class="admin-container"
+            @click="getActivationPage"
         >
-            <div
-               
-                class="number-reviews-to-activate"
-            >
-                {{ disableReviews.length }}
-            </div>
-            <div class="activate-reviews">
-                <a
-                    href=""
-                    class="link-activate-review"
-                >en attente de validation</a>
-            </div>
+            <div class="activate-reviews" />
         </div>
     <!-- Your template content goes here -->
     </div>
@@ -52,10 +49,7 @@ beforeMount() {
 this.fetchDisableReviews()
 },
 
-mounted() {
 
-
-},
 
 
  
@@ -83,6 +77,13 @@ mounted() {
       }
     },
 
+    getActivationPage() {
+
+      console.log('click on activation button');
+      this.$router.push('admin/activate-reviews')
+     
+    }
+
  }
 
  
@@ -94,18 +95,29 @@ mounted() {
 .number-reviews-to-activate {
 
 padding-top:0.5rem;
-position: absolute;
-right:0rem;
-top:-1.2rem;
+position: relative;
+right:-5rem;
+top:1.5rem;
 height:1.7rem;
-width: 1.7rem;
+width: 2rem;
 border-radius: 30px;
 background-color: rgb(199, 85, 85);
 color:white;
 font-size: 1.2rem;
+font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 text-align: center;
-z-index: 4;
+z-index: 5;
+box-shadow: 9px 4px 25px rgb(87, 84, 84);
+animation: bounce 3.5s ease-in-out infinite; ;
 }
+
+
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-30px);}
+	60% {transform: translateY(-5px);}
+}
+
 
 .link-activate-review {
    color:rgb(250, 255, 255);
@@ -116,14 +128,15 @@ z-index: 4;
 
 .admin-container {
 
-  --offset:3px;
   position: relative;
-  width: max-content;
+  width: 16rem;
+  height: 4rem;
   border-radius: 10px;
-  padding: 1rem;
-  margin:4rem 4rem;
+  padding: 1.5rem;
+  margin:0rem 4rem;
   background-color:transparent;
   overflow: hidden;
+   transition: transform 0.3s ease; /* Animation de transition */
 }
 
 
@@ -137,19 +150,32 @@ content:'Activate Reviews';
 color:white;
 font-family: 'Courgette',cursive;
 font-size: 2rem;
-background: rgb(148, 151, 189);
+background: rgb(164, 160, 182);
 position: absolute;
 top: 50%;
 left: 52%;
-transform: translate(-50%, -50%);
+transform: translate(-52%, -50%);
 aspect-ratio: 1;
-width: 90%;
+width: 95%;
 height:90%;
 z-index:2;
 border-radius: 15px;
-
+ transition: background 1.3s ease-in-out, color 0.3s ease;
 
 }
+
+.admin-container:hover::before{
+
+  background: linear-gradient(170deg,rgb(0, 255, 200),white);
+  color: rgb(255, 255, 255);
+ 
+}
+
+.admin-container:hover {
+   transform: scale(1.1);
+}
+
+
 
 
 .admin-container::after {
@@ -160,13 +186,12 @@ border-radius: 15px;
   position:absolute;
   top: 0;
   background: conic-gradient( transparent 60deg,
-  rgb(191, 207, 206),rgb(122, 147, 168),rgb(157, 226, 174),rgb(229, 214, 248), rgb(139, 190, 161),rgb(216, 184, 184));
+  rgb(240, 241, 241),rgb(163, 147, 201),rgb(180, 91, 121),rgb(229, 214, 248), rgb(190, 139, 139),rgb(216, 184, 184));
   animation: rotate 5s linear infinite;
   border-radius:25px;
    filter: blur(5px);
- 
+  box-shadow: 9px 4px 25px rgb(145, 33, 33);
 }
-
 
 @keyframes rotate {
   0% {
@@ -182,6 +207,23 @@ transform: rotate(360deg);
     
   }
 }
+
+.activate-button-container {
+
+width: max-content;
+height:5rem;
+
+}
+
+.activate-reviews {
+
+  width: 18rem;
+}
+
+
+
+
+
 
 
 

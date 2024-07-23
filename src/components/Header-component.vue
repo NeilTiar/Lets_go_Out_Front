@@ -90,7 +90,7 @@
         >
             <nav 
             
-                v-if="$route.path !== '/admin'"
+                v-if="!$route.path.includes('admin')" 
                 class="theme-banner"
             >
                 <ul

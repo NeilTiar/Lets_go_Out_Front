@@ -7,6 +7,7 @@ import LoginPageVue from '@/views/Login-page.vue';
 import ReviewDetailsComponent from '@/views/Review-Details.vue';
 import CreateReview from '@/views/Create-review.vue';
 import AdminPageVue from '@/views/Admin-page.vue'
+import ActivateReviewsPage from '@/views/Activate-Reviews.vue'
 import store from '@/store/store';
 
 const routes = [
@@ -57,6 +58,16 @@ const routes = [
    meta: { requiresAuth: true, requiresAdmin: true } 
     //métadonnées requiresAuth et requiresAdmin aux routes qui nécessitent une authentification ou des privilèges d'administrateur.
   },
+
+  
+  {
+   path :'/admin/activate-reviews',
+   name:'Activate-Reviews',
+   component: ActivateReviewsPage,
+   meta: { requiresAuth: true, requiresAdmin: true } 
+    //métadonnées requiresAuth et requiresAdmin aux routes qui nécessitent une authentification ou des privilèges d'administrateur.
+  },
+
   // Ajoutez d'autres routes ici
 ];
 
