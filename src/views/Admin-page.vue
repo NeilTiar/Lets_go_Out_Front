@@ -61,7 +61,7 @@ this.fetchDisableReviews()
 
         
 
-          const response = await fetch(`http://192.168.1.168:5001/review/disableReviews`);
+          const response = await fetch(`http://192.168.1.168:5001/admin/disable-reviews`);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
