@@ -273,7 +273,7 @@ export default {
 
      //test get isAdmin from store 
    
-    console.log('isAdmin from header by sore', this.isAdmin);
+   // test console.log('isAdmin from header by sore', this.isAdmin);
   
 
   },

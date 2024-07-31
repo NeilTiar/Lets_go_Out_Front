@@ -244,10 +244,10 @@ export default {
 
           this.totalItems = totalRviewsFromStore;
           
-          console.log('totalReviewsFromStore: ', this.totalItems);
+         //test console.log('totalReviewsFromStore: ', this.totalItems);
 
         
-
+    console.log("reviews from Main Reviews", this.reviews)
 
           if (this.totalItems == 0) {
 
@@ -255,7 +255,7 @@ export default {
             this.$store.commit('setInitialReviews', data);
 
             this.$store.commit('setTotalReviews', data.length);
-            console.log('totalReviewsFromStore: ', totalRviewsFromStore);
+          //test  console.log('totalReviewsFromStore: ', totalRviewsFromStore);
 
           }
 

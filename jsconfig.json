@@ -24,7 +24,12 @@
       "dom.iterable",
       "scripthost"
     ]
-  }
+  },
+
+   "emmet.includeLanguages": {
+   "vue-html": "html",
+   "vue": "html"
+    }
 
   
 }

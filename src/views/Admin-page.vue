@@ -68,6 +68,31 @@ this.fetchDisableReviews()
           const data = await response.json();
           console.log('data from fetch on admin-page component: ', data);
           this.disableReviews = data;
+
+             const reviewsMap = data.reduce((acc, item) => {
+      if (!acc[item.review_id]) {
+        acc[item.review_id] = {
+          review_id: item.review_id,
+          place_name: item.place_name,
+          review: item.review,
+          district_num: item.district_num,
+          creator_name: item.creator_name,
+          is_active: item.is_active,
+          author:item.creator_name,
+          theme:item.theme,
+          address_place: item.adress_place,
+          pictures: []
+        };
+      }
+      // Ajouter l'image à la liste des images de la revue
+      acc[item.review_id].pictures.push(item.secure_url);
+      return acc;
+    }, {});
+
+    // Convertir l'objet reviewsMap en un tableau
+   // const orderedReviewsWithPics = ;
+
+    this.disableReviews = Object.values(reviewsMap)
           
          // console.log('totalReviewsFromStore: ', this.totalItems);
 
@@ -79,7 +104,7 @@ this.fetchDisableReviews()
 
     getActivationPage() {
 
-      console.log('click on activation button');
+      // test console.log('click on activation button');
       this.$router.push('admin/activate-reviews')
      
     }

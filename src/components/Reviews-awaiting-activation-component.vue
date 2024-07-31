@@ -1,70 +1,79 @@
 <template>
     <div
-        class="card-container "
+        class="validation-card-container"
         :class="{ 'dark-mode-class': isDarkMode }"
-    >
-        <div class="card-review">
+    >   
+        <h2 class="header-card detail place-name"> {{ placeName }}</h2>
+        <h2 class="header-card address">{{ addressPlace }}</h2>
+        <p
+            class="header-card detail arrondissement"
+            :class="{ 'dark-arrondissement': isDarkMode }"
+        >
+            {{ arrondissementTest }} eme
+        </p>
+
+        <div class="pictures-container">
             <img
-                :src="imageUrl"
+                v-for="(photoUrl, index) in imageUrl"
+                :key="index"
+                :src="photoUrl"
                 :alt="generateAltText()"
                 class="card-image"
             >
-            <h3
-                :class="[{ 'culture': theme === 'Culture', 'loisir': theme === 'Loisir', 'food-drink': theme === 'Food&drink' }, 'card-theme']"
-            >
-                {{ theme }}
-            </h3>
         </div>
-
+        <h3
+            :class="[{ 'culture': theme === 'Culture', 'loisir': theme === 'Loisir', 'food-drink': theme === 'Food&drink' }, 'card-theme']"
+        >
+            {{ theme }}
+        </h3>
         <div
-            class="card-details"
+            class="activation-card-details"
             :class="{ 'dark-card-details': isDarkMode }"
         >
             <div
-                class="card-info"
+                class="activation-card-info"
                 :class="{ 'dark-card-info': isDarkMode }"
             >
-                <h2 class="detail place-name"> {{ placeName }}</h2>
-                <p
-                    class="detail arrondissement"
-                    :class="{ 'dark-arrondissement': isDarkMode }"
-                >
-                    {{ arrondissement }} eme
-                </p>
+                <p class="activation-card-description"> {{ description }}</p>
+
+                <p class="creator-name">{{ author }}</p>
+            </div>
+            
+
+            <div class="container-activation-buttons">
+                <button class="activation-button">activer</button>
+                <button class="delete-button">suprimer</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-
 export default {
-
   props: {
-
     theme: String,
-    arrondissement: String,
+    arrondissementTest: String,
     placeName: String,
-    imageUrl: String,
+    imageUrl: Array,
+    pictures: Array,
+    author: String,
+    description:String,
+    addressPlace:String,
+    reviews:Array
   },
 
   data() {
     return {
       mouseX: 0,
       mouseY: 0,
-
     };
+
   },
 
-
   computed: {
-
-     isDarkMode() {
+    isDarkMode() {
       return this.$store.state.isDarkMode;
-      
     },
-
- 
 
     carteStyle() {
       const rotateX = this.mouseY * 30;
@@ -76,54 +85,131 @@ export default {
     },
   },
 
-  watch : {
-
+  watch: {
     isDarkMode(newVal) {
-     console.log("test ",this.$store.state.isDarkMode, newVal)
-    
+      console.log("test ", this.$store.state.isDarkMode, newVal);
     }
   },
 
   mounted() {
 
-    
   },
 
-
   methods: {
-
+   
 
     isDarkmodeActive() {
-      
-
-      console.log("test depuis un composant pour acceder a l'etat de isDarkmode depuuis le store :",this.$store.state.isDarkMode)
-      // Access and update the state from the Vuex store
+      console.log("test depuis un composant pour acceder a l'etat de isDarkmode depuuis le store :", this.$store.state.isDarkMode);
       this.$store.commit('toggleDarkMode');
-      // Your other dark mode logic here
     },
 
     generateAltText() {
       return `Description de l'image ${this.placeName}`;
     },
-    generateTheme() {
-      return `${this.theme}`;
-    },
-    generateUrlImage() {
-      return `${this.imageUrl}`
-    },
+
     handleMouseMove(event) {
       this.mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
       this.mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
     },
-
-
-
   },
 };
-
-
 </script>
 
 <style scoped>
+
+.card-image {
+  
+  height: auto;
+  width: 96%;
+  margin: 0.1rem;
+  max-width: 80%;
+  object-fit: cover;
+
+}
+
+.pictures-container{
+  
+  height: auto;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));  /* 2 items per row */
+   grid-auto-rows: max-content;
+}
+
+.activation-card-details {
+  position: absolute;
+  width: 100%;
+  bottom:3rem;
+}
+
+.creator-name {
+display:flex;
+justify-content: flex-end;
+margin-right: 1.5rem;
+}
+
+
+.validation-card-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border:2px solid black;
+  border-radius: 25px;
+  width: 95%;
+  height: 50em;
+  margin: 1rem auto
+}
+
+
+.activation-card-description {
+  width: 100%;
+  height:max-content;
+  width: 92%; 
+  font-size: 1.3rem;
+  padding-left: 1.2rem;
+  
+}
+
+.container-activation {
+  width: 100%;
+  display:flex;
+  justify-content:space-between;
+  background-color: aquamarine;
+  display: flex;
+  justify-content: flex-end;
+  height:4rem;
+}
+
+.container-activation-buttons {
+    display:flex;
+  justify-content:space-between;
+
+  display: flex;
+  justify-content: space-around;
+  height:4rem;
+}
+
+.activation-card-button {
+  
+  display:inline-flex;
+}
+
+.activation-button, .delete-button {
+border-radius:25px;
+width: 30%;
+}
+
+.header-card {
+
+  margin-left: 2rem;
+}
+
+
+
+
+
+
+
 @import url('../styles/Review-card.css');
 </style>

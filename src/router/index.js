@@ -47,7 +47,7 @@ const routes = [
     path: '/create-review',
     name: 'Create-review',
     component: CreateReview,
-    meta: { requiresAuth: true, requiresAdmin: true } 
+    meta: { requiresAuth: true, requiresAdmin: false } 
     //métadonnées requiresAuth et requiresAdmin aux routes qui nécessitent une authentification ou des privilèges d'administrateur.
   },
 
@@ -81,7 +81,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 
   const isAuthAsAdmin = store.getters.isAdmin;
-  console.log('isAuthAsAdmin from router by store: ', isAuthAsAdmin);
+ // test  console.log('isAuthAsAdmin from router by store: ', isAuthAsAdmin);
 
 
 
