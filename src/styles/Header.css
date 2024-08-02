@@ -430,7 +430,10 @@ img.user-logo {
   /* Empêche la sélection du texte */
 }
 
-
+.admin-button-link:hover {
+     transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
 
 .admin-button-link:active {
   background-color: rgb(43, 238, 163);
@@ -439,14 +442,19 @@ img.user-logo {
 }
 
 .admin-link {
-  color:#ffffff;
+   background-color: #ffffff;
+  color: transparent;
+  text-shadow: 2px 2px 3px rgba(212, 208, 216, 0.5);
+  -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
 }
 
 @keyframes crescendo {
 
   /*   0%   {transform: scale(.8);} */
   100% {
-    transform: scale(1.1);
+    transform: scale(0.7);
   }
 }
 

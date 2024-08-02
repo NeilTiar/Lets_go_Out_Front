@@ -13,6 +13,9 @@
                 :author="review.author"
                 :description="review.review"
                 :address-place="review.address_place"
+                :status="review.status"
+                @validation-button="handleValidationButton(review.review_id)"
+                @delete-button="handleDeleteButon(review.review_id)"
             />
         </div>
         <div />
@@ -26,6 +29,7 @@
 import HeaderComponent from '@/components/Header-component.vue';
 import FooterComponent from '@/components/Footer-component.vue';
 import ReviewsAwaitingActivationComponent from '@/components/Reviews-awaiting-activation-component.vue';
+
 
 
 
@@ -47,14 +51,22 @@ export default {
             itemsPerPage: 10, // Define your items per page
             currentPage: 1, // Add currentPage to your data properties
             organizedPictures: {},
-
+            cards: [],
+            validate : [], //conserve la liste d'id pour valider des reviews et permetre leur publication.
+            delete : [], //conserve la liste d'id pour effacer des reviews et permetre de les supprimer de la bdd.
         };
     },
 
    onMounted() {
 
-     console.log("reviews from Activate Reviews", this.reviews)
+     console.log("reviews from Activate Reviews :", this.reviews)
    },
+
+
+ computed: {
+
+
+ },
 
     beforeMount() {
 
@@ -70,10 +82,51 @@ export default {
 
     },
 
-    
-
 
     methods: {
+
+
+       handleValidationButton(index) {
+
+       const currentReview = this.reviews.find(review => review.review_id === index )
+
+        if (currentReview) {
+            //test console.log("currentReview.status:", currentReview.review_id);
+
+            // Toggle status if necessary
+            currentReview.status = currentReview.status === 'validated' ? null : 'validated';
+            //test console.log("Updated Status:", currentReview.status);
+        } else {
+            console.error("Review not found for ID:", index);
+        }
+
+       
+
+        console.log( "CurrentReview.status from validation Button :", currentReview.status)
+       
+       // this.reviews.status[index]
+
+       },
+
+
+       handleDeleteButon(index) {
+      
+       
+       const currentReview = this.reviews.find(review => review.review_id === index )
+
+        if (currentReview) {
+            //test console.log("currentReview.status:", currentReview.review_id);
+
+            // Toggle status if necessary
+            currentReview.status = currentReview.status === 'deleted' ? null : 'deleted';
+            //test console.log("Updated Status:", currentReview.status);
+        } else {
+            console.error("Review not found for ID:", index);
+        }
+
+        console.log( "CurrentReview.status from delete Button:", currentReview.status)
+       },
+
 
         displayReviews() {
 
@@ -120,6 +173,7 @@ export default {
           author:item.creator_name,
           theme:item.theme,
           address_place: item.adress_place,
+          status:null, //status permet de determiner le style de la carte suivant son etat validate ou delete.
           pictures: []
         };
       }
@@ -127,6 +181,8 @@ export default {
       acc[item.review_id].pictures.push(item.secure_url);
       return acc;
     }, {});
+
+      
 
     // Convertir l'objet reviewsMap en un tableau
    // const orderedReviewsWithPics = ;
@@ -197,6 +253,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .FooterComponent {
 
     flex: 1;
@@ -206,9 +264,85 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 items per row */
 
-
 }
 
+.validation-card-container {
+  transition: background-color 25s ease-in-out;
+}
+
+.validated-class {
+   background: linear-gradient(180deg, #259b77,#c1e2d8, #63bb92 , #55bba5, #eef5f1 );
+    background-size: 200% 250%;
+
+    -webkit-animation: AnimationName 25s ease-in-out infinite;
+    -moz-animation: AnimationName 25s ease-in-out infinite;
+    animation: AnimationName 25s ease-in-out infinite;
+}
+.deleted-class {
+  background: linear-gradient(-180deg, #8a224d, #a50052, #96778d ,#960454, #cabcc6 ,#5c3455);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 25s ease-in-out infinite;
+    -moz-animation: AnimationName 25s ease-in-out infinite;
+    animation: AnimationName 25s ease-in-out infinite;
+}
+
+
+.pending-class {
+
+     
+    background: linear-gradient(20deg, #9cb9a1, #a5b5d8,  #cec8e6, #a5b5d8,  #8ea7d4);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 25s ease-in-out infinite;
+    -moz-animation: AnimationName 25s ease-in-out infinite;
+    animation: AnimationName 25s ease-in-out infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:33% 0%}
+    50%{background-position:90% 100%}
+    100%{background-position:30% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:11% 0%}
+    50%{background-position:90% 100%}
+    100%{background-position:11% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:11% 0%}
+    50%{background-position:90% 100%}
+    100%{background-position:11% 0%}
+}
+
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 
 
 

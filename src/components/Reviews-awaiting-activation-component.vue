@@ -1,8 +1,11 @@
 <template>
     <div
-        class="validation-card-container"
-        :class="{ 'dark-mode-class': isDarkMode }"
-    >   
+        class="validation-card-container transition-background"
+        :class=" [{ 'dark-mode-class': isDarkMode}, getClassForReview(status) ]"
+        @validate-background="handleValidationBackgroundColor()"
+        @delete-background="handleDeleteBackgroundColor()"
+        @default-background="handleDefaultBackgroundColor()"
+    >
         <h2 class="header-card detail place-name"> {{ placeName }}</h2>
         <h2 class="header-card address">{{ addressPlace }}</h2>
         <p
@@ -11,7 +14,7 @@
         >
             {{ arrondissementTest }} eme
         </p>
-
+        
         <div class="pictures-container">
             <img
                 v-for="(photoUrl, index) in imageUrl"
@@ -24,7 +27,7 @@
         <h3
             :class="[{ 'culture': theme === 'Culture', 'loisir': theme === 'Loisir', 'food-drink': theme === 'Food&drink' }, 'card-theme']"
         >
-            {{ theme }}
+            <p class="theme">{{ theme }}</p>
         </h3>
         <div
             class="activation-card-details"
@@ -41,15 +44,29 @@
             
 
             <div class="container-activation-buttons">
-                <button class="activation-button">activer</button>
-                <button class="delete-button">suprimer</button>
+                <button-component 
+                    button-name="Valider"
+                    class="button-validation"
+                    @click="toggleValidationButton()"
+                />
+
+                <button-component 
+                    button-name="Supprimer"
+                    class="button-delete"
+                    @click="toggleDeleteButton()"
+                />          
             </div>
         </div>
     </div>
 </template>
 
+
 <script>
+import buttonComponent from './button-component.vue';
+
+
 export default {
+  components: { buttonComponent },
   props: {
     theme: String,
     arrondissementTest: String,
@@ -59,11 +76,16 @@ export default {
     author: String,
     description:String,
     addressPlace:String,
-    reviews:Array
+    reviews:Array,
+    status:String,
   },
+  emits: ['validation-button', 'delete-button'],
+
+
 
   data() {
     return {
+      isActive: false,
       mouseX: 0,
       mouseY: 0,
     };
@@ -73,7 +95,11 @@ export default {
   computed: {
     isDarkMode() {
       return this.$store.state.isDarkMode;
+
+      
     },
+
+     
 
     carteStyle() {
       const rotateX = this.mouseY * 30;
@@ -92,10 +118,32 @@ export default {
   },
 
   mounted() {
+   
 
   },
 
   methods: {
+
+       getClassForReview(status) {
+
+        console.log('status FROM GETCLASSFORREVIEW: ', status);
+
+
+        return {
+            'validated-class': status === 'validated',
+            'pending-class': status === null,
+            'deleted-class': status === 'deleted',
+        };
+    },
+
+       toggleValidationButton() {
+      
+      this.$emit('validation-button'); // Émet l'événement
+    },
+
+    toggleDeleteButton() {
+      this.$emit('delete-button');
+    },
    
 
     isDarkmodeActive() {
@@ -117,35 +165,59 @@ export default {
 
 <style scoped>
 
+
+
+.transition-background {
+
+ transition: background-color 0.5s ease;
+}
+
+.theme {
+  text-shadow: 15px 9px 35px rgb(0, 0, 0);
+  margin-left: -0.1rem;
+  color:black
+}
+
+.card-theme {
+  
+  margin-left: 0.5rem;
+  font-size: 2rem;
+}
+
+.validation-button{
+  background-color: brown;
+}
+
 .card-image {
   
   height: auto;
   width: 96%;
-  margin: 0.1rem;
+  margin: auto;
   max-width: 80%;
   object-fit: cover;
+  box-shadow: 10px 5px 10px rgb(43, 43, 43);
 
 }
 
 .pictures-container{
   
   height: auto;
-  align-items: center;
+  justify-content: center;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));  /* 2 items per row */
-   grid-auto-rows: max-content;
+  grid-auto-rows: max-content;
 }
 
 .activation-card-details {
   position: absolute;
   width: 100%;
-  bottom:3rem;
+  bottom:1rem;
 }
 
 .creator-name {
 display:flex;
 justify-content: flex-end;
-margin-right: 1.5rem;
+margin:0 1.5rem 2rem 0;
 }
 
 
@@ -153,8 +225,7 @@ margin-right: 1.5rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
-  border:2px solid black;
+  background-color:rgb(178, 171, 185);
   border-radius: 25px;
   width: 95%;
   height: 50em;
@@ -162,11 +233,13 @@ margin-right: 1.5rem;
 }
 
 
+
 .activation-card-description {
   width: 100%;
   height:max-content;
   width: 92%; 
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
   padding-left: 1.2rem;
   
 }
@@ -184,10 +257,8 @@ margin-right: 1.5rem;
 .container-activation-buttons {
     display:flex;
   justify-content:space-between;
-
-  display: flex;
-  justify-content: space-around;
   height:4rem;
+   margin-top: 3.5rem;
 }
 
 .activation-card-button {
@@ -205,7 +276,9 @@ width: 30%;
   margin-left: 2rem;
 }
 
-
+.arrondissement {
+  color: black;
+}
 
 
 
