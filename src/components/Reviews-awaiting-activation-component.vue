@@ -12,7 +12,7 @@
             class="header-card detail arrondissement"
             :class="{ 'dark-arrondissement': isDarkMode }"
         >
-            {{ arrondissementTest }} eme
+            {{ arrondissementTest }} eme  
         </p>
         
         <div class="pictures-container">
@@ -47,7 +47,7 @@
                 <button-component 
                     button-name="Valider"
                     class="button-validation"
-                    @click="toggleValidationButton()"
+                    @click="toggleValidationButton();"
                 />
 
                 <button-component 
@@ -68,6 +68,7 @@ import buttonComponent from './button-component.vue';
 export default {
   components: { buttonComponent },
   props: {
+    reviewId: Number,
     theme: String,
     arrondissementTest: String,
     placeName: String,
@@ -78,6 +79,7 @@ export default {
     addressPlace:String,
     reviews:Array,
     status:String,
+    
   },
   emits: ['validation-button', 'delete-button'],
 
@@ -123,6 +125,9 @@ export default {
   },
 
   methods: {
+
+
+
 
        getClassForReview(status) {
 

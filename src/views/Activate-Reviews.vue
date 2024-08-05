@@ -14,6 +14,7 @@
                 :description="review.review"
                 :address-place="review.address_place"
                 :status="review.status"
+                :review-id="review.review_id"
                 @validation-button="handleValidationButton(review.review_id)"
                 @delete-button="handleDeleteButon(review.review_id)"
             />
@@ -52,33 +53,35 @@ export default {
             currentPage: 1, // Add currentPage to your data properties
             organizedPictures: {},
             cards: [],
-            validate : [], //conserve la liste d'id pour valider des reviews et permetre leur publication.
-            delete : [], //conserve la liste d'id pour effacer des reviews et permetre de les supprimer de la bdd.
+            validate: [], //conserve la liste d'id pour valider des reviews et permetre leur publication.
+            delete: [], //conserve la liste d'id pour effacer des reviews et permetre de les supprimer de la bdd.
+            validateReviews: [],
+            deleteReviews: [],
         };
     },
 
-   onMounted() {
+    onMounted() {
 
-     console.log("reviews from Activate Reviews :", this.reviews)
-   },
-
-
- computed: {
+        console.log("reviews from Activate Reviews :", this.reviews)
+    },
 
 
- },
+    computed: {
+
+
+    },
 
     beforeMount() {
 
-        
+
         this.displayReviews()
 
 
     },
 
     mounted() {
-   this.fetchData()
-     console.log('log REVIEWS:', JSON.stringify(this.reviews));
+        this.fetchData()
+        console.log('log REVIEWS:', JSON.stringify(this.reviews));
 
     },
 
@@ -86,46 +89,59 @@ export default {
     methods: {
 
 
-       handleValidationButton(index) {
+        handleValidationButton(currentReviewId) {
 
-       const currentReview = this.reviews.find(review => review.review_id === index )
+            const currentReview = this.reviews.find(review => review.review_id === currentReviewId)
 
-        if (currentReview) {
-            //test console.log("currentReview.status:", currentReview.review_id);
+            if (currentReview) {
+                //test console.log("currentReview.status:", currentReview.review_id);
 
-            // Toggle status if necessary
-            currentReview.status = currentReview.status === 'validated' ? null : 'validated';
-            //test console.log("Updated Status:", currentReview.status);
-        } else {
-            console.error("Review not found for ID:", index);
-        }
+                // Toggle status if necessary
+                currentReview.status = currentReview.status === 'validated' ? null : 'validated';
+                //test console.log("Updated Status:", currentReview.status);
+            } else {
+                console.error("Review not found for ID:", currentReviewId);
+            }
 
-       
+            // testconsole.log( "CurrentReview.status from validation Button :", currentReview.status)
 
-        console.log( "CurrentReview.status from validation Button :", currentReview.status)
-       
-       // this.reviews.status[index]
+            const isAlreadyOnArray = this.validateReviews.includes(currentReviewId)
 
-       },
+            if (currentReview.status === 'validated' && !isAlreadyOnArray) {
+
+                this.validateReviews = [...this.validateReviews, currentReviewId]
+                console.log("After pushing:", this.validateReviews)
 
 
-       handleDeleteButon(index) {
-      
-       
-       const currentReview = this.reviews.find(review => review.review_id === index )
+            } else if (currentReview.status === null) {
 
-        if (currentReview) {
-            //test console.log("currentReview.status:", currentReview.review_id);
+                const indexInValidateReviews = this.validateReviews.findIndex(review => review === currentReviewId)
 
-            // Toggle status if necessary
-            currentReview.status = currentReview.status === 'deleted' ? null : 'deleted';
-            //test console.log("Updated Status:", currentReview.status);
-        } else {
-            console.error("Review not found for ID:", index);
-        }
+                this.validateReviews.splice(indexInValidateReviews, 1)
+                console.log("After pushing Else If ====>:", this.validateReviews)
+            }
 
-        console.log( "CurrentReview.status from delete Button:", currentReview.status)
-       },
+        },
+
+
+        handleDeleteButon(currentReviewId) {
+
+
+            const currentReview = this.reviews.find(review => review.review_id === currentReviewId)
+
+            if (currentReview) {
+                currentReviewId
+                //test console.log("currentReview.status:", currentReview.review_id);
+
+                // Toggle status if necessary
+                currentReview.status = currentReview.status === 'deleted' ? null : 'deleted';
+                //test console.log("Updated Status:", currentReview.status);
+            } else {
+                console.error("Review not found for ID:", currentReviewId);
+            }
+
+            console.log("CurrentReview.status from delete Button:", currentReview.status)
+        },
 
 
         displayReviews() {
@@ -152,7 +168,7 @@ export default {
                 }
                 const data = await response.json();
                 console.log('data: ', data);
-            
+
                 console.log('DATA TEST FIND PICTURES', data);
                 this.totalItems = data.length;
 
@@ -160,39 +176,39 @@ export default {
 
                 this.totalItems = totalRviewsFromStore;
 
-            // Utiliser un objet pour regrouper les données par review_id
-    const reviewsMap = data.reduce((acc, item) => {
-      if (!acc[item.review_id]) {
-        acc[item.review_id] = {
-          review_id: item.review_id,
-          place_name: item.place_name,
-          review: item.review,
-          district_num: item.district_num,
-          creator_name: item.creator_name,
-          is_active: item.is_active,
-          author:item.creator_name,
-          theme:item.theme,
-          address_place: item.adress_place,
-          status:null, //status permet de determiner le style de la carte suivant son etat validate ou delete.
-          pictures: []
-        };
-      }
-      // Ajouter l'image à la liste des images de la revue
-      acc[item.review_id].pictures.push(item.secure_url);
-      return acc;
-    }, {});
+                // Utiliser un objet pour regrouper les données par review_id
+                const reviewsMap = data.reduce((acc, item) => {
+                    if (!acc[item.review_id]) {
+                        acc[item.review_id] = {
+                            review_id: item.review_id,
+                            place_name: item.place_name,
+                            review: item.review,
+                            district_num: item.district_num,
+                            creator_name: item.creator_name,
+                            is_active: item.is_active,
+                            author: item.creator_name,
+                            theme: item.theme,
+                            address_place: item.adress_place,
+                            status: null, //status permet de determiner le style de la carte suivant son etat validate ou delete.
+                            pictures: []
+                        };
+                    }
+                    // Ajouter l'image à la liste des images de la revue
+                    acc[item.review_id].pictures.push(item.secure_url);
+                    return acc;
+                }, {});
 
-      
 
-    // Convertir l'objet reviewsMap en un tableau
-   // const orderedReviewsWithPics = ;
 
-    this.reviews = Object.values(reviewsMap)
+                // Convertir l'objet reviewsMap en un tableau
+                // const orderedReviewsWithPics = ;
 
-    // Afficher le résultat
-    //console.log('orderedReviewsWithPics: ', orderedReviewsWithPics);
+                this.reviews = Object.values(reviewsMap)
 
-    
+                // Afficher le résultat
+                //console.log('orderedReviewsWithPics: ', orderedReviewsWithPics);
+
+
 
                 //test console.log('totalReviewsFromStore: ', this.totalItems);
 
@@ -219,7 +235,7 @@ export default {
 
 
 
-               
+
 
                 if (this.totalItems == 0) {
 
@@ -253,33 +269,33 @@ export default {
 </script>
 
 <style scoped>
-
-
 .FooterComponent {
 
     flex: 1;
 }
 
 .reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 items per row */
 
 }
 
 .validation-card-container {
-  transition: background-color 25s ease-in-out;
+    transition: background-color 25s ease-in-out;
 }
 
 .validated-class {
-   background: linear-gradient(180deg, #259b77,#c1e2d8, #63bb92 , #55bba5, #eef5f1 );
+    background: linear-gradient(180deg, #259b77, #c1e2d8, #63bb92, #55bba5, #eef5f1);
     background-size: 200% 250%;
 
     -webkit-animation: AnimationName 25s ease-in-out infinite;
     -moz-animation: AnimationName 25s ease-in-out infinite;
     animation: AnimationName 25s ease-in-out infinite;
 }
+
 .deleted-class {
-  background: linear-gradient(-180deg, #8a224d, #a50052, #96778d ,#960454, #cabcc6 ,#5c3455);
+    background: linear-gradient(-180deg, #8a224d, #a50052, #96778d, #960454, #cabcc6, #5c3455);
     background-size: 400% 400%;
 
     -webkit-animation: AnimationName 25s ease-in-out infinite;
@@ -290,8 +306,8 @@ export default {
 
 .pending-class {
 
-     
-    background: linear-gradient(20deg, #9cb9a1, #a5b5d8,  #cec8e6, #a5b5d8,  #8ea7d4);
+
+    background: linear-gradient(20deg, #9cb9a1, #a5b5d8, #cec8e6, #a5b5d8, #8ea7d4);
     background-size: 400% 400%;
 
     -webkit-animation: AnimationName 25s ease-in-out infinite;
@@ -300,50 +316,101 @@ export default {
 }
 
 @-webkit-keyframes AnimationName {
-    0%{background-position:33% 0%}
-    50%{background-position:90% 100%}
-    100%{background-position:30% 0%}
+    0% {
+        background-position: 33% 0%
+    }
+
+    50% {
+        background-position: 90% 100%
+    }
+
+    100% {
+        background-position: 30% 0%
+    }
 }
+
 @-moz-keyframes AnimationName {
-    0%{background-position:11% 0%}
-    50%{background-position:90% 100%}
-    100%{background-position:11% 0%}
+    0% {
+        background-position: 11% 0%
+    }
+
+    50% {
+        background-position: 90% 100%
+    }
+
+    100% {
+        background-position: 11% 0%
+    }
 }
+
 @keyframes AnimationName {
-    0%{background-position:11% 0%}
-    50%{background-position:90% 100%}
-    100%{background-position:11% 0%}
+    0% {
+        background-position: 11% 0%
+    }
+
+    50% {
+        background-position: 90% 100%
+    }
+
+    100% {
+        background-position: 11% 0%
+    }
 }
 
 
 @-webkit-keyframes AnimationName {
-    0%{background-position:0% 82%}
-    50%{background-position:100% 19%}
-    100%{background-position:0% 82%}
+    0% {
+        background-position: 0% 82%
+    }
+
+    50% {
+        background-position: 100% 19%
+    }
+
+    100% {
+        background-position: 0% 82%
+    }
 }
+
 @-moz-keyframes AnimationName {
-    0%{background-position:0% 82%}
-    50%{background-position:100% 19%}
-    100%{background-position:0% 82%}
+    0% {
+        background-position: 0% 82%
+    }
+
+    50% {
+        background-position: 100% 19%
+    }
+
+    100% {
+        background-position: 0% 82%
+    }
 }
+
 @keyframes AnimationName {
-    0%{background-position:0% 82%}
-    50%{background-position:100% 19%}
-    100%{background-position:0% 82%}
+    0% {
+        background-position: 0% 82%
+    }
+
+    50% {
+        background-position: 100% 19%
+    }
+
+    100% {
+        background-position: 0% 82%
+    }
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
-
-
-
 </style>
