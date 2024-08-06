@@ -58,7 +58,8 @@ export default {
 
   mounted() {
 
-
+ 
+ 
     window.addEventListener('resize', this.updateItemsPerPage),
 
 

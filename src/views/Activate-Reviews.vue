@@ -15,8 +15,8 @@
                 :address-place="review.address_place"
                 :status="review.status"
                 :review-id="review.review_id"
-                @validation-button="handleValidationButton(review.review_id)"
-                @delete-button="handleDeleteButon(review.review_id)"
+                @validation-button=" handleValidationAndDeleteButtons(review.review_id,'validated')"
+                @delete-button=" handleValidationAndDeleteButtons(review.review_id, 'deleted')"
             />
         </div>
         <div />
@@ -55,8 +55,8 @@ export default {
             cards: [],
             validate: [], //conserve la liste d'id pour valider des reviews et permetre leur publication.
             delete: [], //conserve la liste d'id pour effacer des reviews et permetre de les supprimer de la bdd.
-            validateReviews: [],
-            deleteReviews: [],
+            validatedReviews: [],
+            deletedReviews: [],
         };
     },
 
@@ -66,17 +66,8 @@ export default {
     },
 
 
-    computed: {
-
-
-    },
-
     beforeMount() {
-
-
         this.displayReviews()
-
-
     },
 
     mounted() {
@@ -89,7 +80,11 @@ export default {
     methods: {
 
 
-        handleValidationButton(currentReviewId) {
+        handleValidationAndDeleteButtons(currentReviewId, buttonFunction) {
+
+            let targetArrayName = buttonFunction + 'Reviews'; 
+
+            //permet de cibler la review dans le tableau reviews.
 
             const currentReview = this.reviews.find(review => review.review_id === currentReviewId)
 
@@ -97,28 +92,46 @@ export default {
                 //test console.log("currentReview.status:", currentReview.review_id);
 
                 // Toggle status if necessary
-                currentReview.status = currentReview.status === 'validated' ? null : 'validated';
+                currentReview.status = currentReview.status === buttonFunction ? null : buttonFunction;
+                
                 //test console.log("Updated Status:", currentReview.status);
             } else {
                 console.error("Review not found for ID:", currentReviewId);
             }
 
+
+    /* test Vérifier si `this[targetArrayName]` est bien un tableau
+    if (!Array.isArray(this[targetArrayName])) {
+        console.error(`Property ${targetArrayName} is not an array.`);
+        return; // Sortir de la fonction si ce n'est pas un tableau.
+    }*/
+
             // testconsole.log( "CurrentReview.status from validation Button :", currentReview.status)
 
-            const isAlreadyOnArray = this.validateReviews.includes(currentReviewId)
+            const isAlreadyOnArray = [...this[targetArrayName]].includes(currentReviewId)
 
-            if (currentReview.status === 'validated' && !isAlreadyOnArray) {
+            if (currentReview.status === buttonFunction && !isAlreadyOnArray) {
 
-                this.validateReviews = [...this.validateReviews, currentReviewId]
-                console.log("After pushing:", this.validateReviews)
+                
+
+              this[targetArrayName] = [...this[targetArrayName], currentReviewId];
+            console.log("After pushing:", this[targetArrayName]);
+
+
+
+               
+
+                 console.log("After pushing:", [...this[buttonFunction+'Reviews']])
 
 
             } else if (currentReview.status === null) {
 
-                const indexInValidateReviews = this.validateReviews.findIndex(review => review === currentReviewId)
+                
 
-                this.validateReviews.splice(indexInValidateReviews, 1)
-                console.log("After pushing Else If ====>:", this.validateReviews)
+                const indexInValidateReviews = this[targetArrayName].findIndex(review => review === currentReviewId)
+
+                this[targetArrayName].splice(indexInValidateReviews, 1)
+                console.log("After pushing Else If ====>:", this[targetArrayName])
             }
 
         },

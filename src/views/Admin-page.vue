@@ -50,9 +50,6 @@ this.fetchDisableReviews()
 },
 
 
-
-
- 
  methods : {
 
    async fetchDisableReviews() {
