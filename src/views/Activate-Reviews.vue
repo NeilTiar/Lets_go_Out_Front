@@ -15,8 +15,8 @@
                 :address-place="review.address_place"
                 :status="review.status"
                 :review-id="review.review_id"
-                @validation-button=" handleValidationAndDeleteButtons(review.review_id,'validated')"
-                @delete-button=" handleValidationAndDeleteButtons(review.review_id, 'deleted')"
+                @validation-button=" handleValidationAndDeleteButtons(review.review_id, ['validated', 'deleted'])"
+                @delete-button=" handleValidationAndDeleteButtons(review.review_id, ['deleted', 'validated'])"
             />
         </div>
         <div />
@@ -32,7 +32,7 @@ import FooterComponent from '@/components/Footer-component.vue';
 import ReviewsAwaitingActivationComponent from '@/components/Reviews-awaiting-activation-component.vue';
 
 
-
+// GESTION DU COMPORTEMENT A L'AJOUT ET A LA SUPPRESSION DES CARTE VIA BOUTTON A CORIGER !!!!
 
 export default {
 
@@ -80,61 +80,81 @@ export default {
     methods: {
 
 
-        handleValidationAndDeleteButtons(currentReviewId, buttonFunction) {
+    handleValidationAndDeleteButtons(currentReviewId, buttonFunction) {
 
-            let targetArrayName = buttonFunction + 'Reviews'; 
-
-            //permet de cibler la review dans le tableau reviews.
-
-            const currentReview = this.reviews.find(review => review.review_id === currentReviewId)
-
-            if (currentReview) {
-                //test console.log("currentReview.status:", currentReview.review_id);
-
-                // Toggle status if necessary
-                currentReview.status = currentReview.status === buttonFunction ? null : buttonFunction;
-                
-                //test console.log("Updated Status:", currentReview.status);
-            } else {
-                console.error("Review not found for ID:", currentReviewId);
-            }
+    // Construire les noms de tableaux à partir des valeurs passées dans buttonFunction
+    let targetArrayName = `${buttonFunction[0]}Reviews`;
+    let otherArrayName = `${buttonFunction[1]}Reviews`;
 
 
-    /* test Vérifier si `this[targetArrayName]` est bien un tableau
+    // Vérifier si les tableaux existent et sont bien des tableaux
     if (!Array.isArray(this[targetArrayName])) {
-        console.error(`Property ${targetArrayName} is not an array.`);
-        return; // Sortir de la fonction si ce n'est pas un tableau.
-    }*/
+        console.error(`Property ${targetArrayName} is not an array or does not exist.`);
+        return; // Arrêter l'exécution si la propriété n'est pas un tableau
+    }
 
-            // testconsole.log( "CurrentReview.status from validation Button :", currentReview.status)
+    if (!Array.isArray(this[otherArrayName])) {
+        console.error(`Property ${otherArrayName} is not an array or does not exist.`);
+        return; // Arrêter l'exécution si la propriété n'est pas un tableau
+    }
 
-            const isAlreadyOnArray = [...this[targetArrayName]].includes(currentReviewId)
+    // Trouver l'index en indiquant l'identifiant courant dans le tableau cible
+    const indexInCurrentArray = this[targetArrayName].indexOf(currentReviewId);
 
-            if (currentReview.status === buttonFunction && !isAlreadyOnArray) {
+    // Trouver l'index en indiquant l'identifiant dans l'autre tableau
+    const indexInOtherArray = this[otherArrayName].indexOf(currentReviewId);
 
-                
+    // Rechercher  la review actuelle par ID dans la collection de toutes les reviews
+    const currentReview = this.reviews.find(review => review.review_id === currentReviewId);
 
-              this[targetArrayName] = [...this[targetArrayName], currentReviewId];
-            console.log("After pushing:", this[targetArrayName]);
+    if (currentReview) {
+        // Basculer le statut de la review actuelle
+        currentReview.status = currentReview.status === buttonFunction[0] ? null : buttonFunction[0]; // buttonFonction[0] renvoi 'validated' et buttonFonction[1] => 'deleted'
+    } else {
+        console.error("Review not found for ID:", currentReviewId);
+        return; // Arrêter l'exécution si la revue n'est pas trouvée
+    }
+
+    // Créer un ensemble combiné des deux tableaux ( activated et deleted ) pour vérifier si l'ID est déjà présent
+    const combinedArrayValidateDelete = new Set([
+        ...this[targetArrayName],
+        ...this[otherArrayName]
+    ]);
+
+    // Vérifier si l'identifiant actuel est déjà présent dans l'un des tableaux
+    const isAlreadyOnArray = combinedArrayValidateDelete.has(currentReviewId);
+    console.log('isAlreadyOnArray:', isAlreadyOnArray);
 
 
+    // Si l'identifiant est déjà dans un tableau et que le statut est correct, effectuer les opérations
+    if (isAlreadyOnArray && currentReview.status === buttonFunction[0]) {
 
-               
+        // Supprimer l'ID du tableau autre s'il est présent, le -1 ci dessous represente (false) et non la derniere place du tableau, indexInOtherArray recoit 1(true) ou -1(false) suivant si l'index est present ou non dans le tableau.
+        if (indexInOtherArray !== -1) {
+            this[otherArrayName].splice(indexInOtherArray, 1);
+        }
 
-                 console.log("After pushing:", [...this[buttonFunction+'Reviews']])
+        // Ajouter l'ID au tableau cible
+        this[targetArrayName].push(currentReviewId);
+       //test console.log('currentReviewId ===============>>:', currentReviewId);
+       //test console.log("After pushing, trying access to array with IDs ===>:", this[targetArrayName]);
 
+    } else if (!isAlreadyOnArray && currentReview.status === buttonFunction[0]) {  
 
-            } else if (currentReview.status === null) {
+    // Ajouter l'ID au tableau cible si ce n'est pas déjà là et le statut est correct
+     this[targetArrayName] = [...this[targetArrayName], currentReviewId];
 
-                
+     //test console.log('currentReviewId ===============>>:', currentReviewId);
+      //test console.log("After pushing, access to array ===>:", this[targetArrayName]);
 
-                const indexInValidateReviews = this[targetArrayName].findIndex(review => review === currentReviewId)
-
-                this[targetArrayName].splice(indexInValidateReviews, 1)
-                console.log("After pushing Else If ====>:", this[targetArrayName])
-            }
-
-        },
+    } else if (currentReview.status === null) {
+        // Supprimer l'ID du tableau cible si le statut est nul
+        if (indexInCurrentArray !== -1) {
+            this[targetArrayName].splice(indexInCurrentArray, 1);
+        }
+      //test console.log("After removing in Else If ====>:", this[targetArrayName]);
+    }
+},
 
 
         handleDeleteButon(currentReviewId) {
