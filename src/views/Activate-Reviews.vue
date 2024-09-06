@@ -21,10 +21,12 @@
         </div>
         <div
             class="container-selection-validation"
-            @click="handleValidatedSelection"
+            @click="handleReviewsByActivateOrDelete()"
         >
             <div class="reviews-state-msg">
-                il y a <span class="validate-num">{{ validatedReviews.length }}</span> reviews validée(s) et <span class="delete-num">{{ deletedReviews.length }}</span> en attentee de suppression
+                il y a <span class="validate-num">{{ validatedReviews.length }}</span> reviews validée(s) et <span
+                    class="delete-num"
+                >{{ deletedReviews.length }}</span> en attentee de suppression
             </div>
         </div>
         <div />
@@ -85,132 +87,166 @@ export default {
 
     methods: {
 
-  async handleValidatedSelection() {
-
-   try {
-
-     const rawValidateReviews = this.validatedReviews.slice();  
-
-    console.log('test this.validateReviews avant fetch un ou plusieurs review_id =>',this.validatedReviews);
-
-    const url = 'http://192.168.1.168:5001/review/activateReviews';
-
-    const response = await fetch(url,{
-        method:'PATCH',
-        headers: {
-        'Content-Type': 'application/json',  // Spécifie que le corps de la requête est en JSON
-      },
-       body: JSON.stringify({ arrayWithReview_id: rawValidateReviews }) 
-    },)
-    
-    if(response.ok){
-
-       console.log(response); 
-    }
-
-   }catch(error){
-  console.log(error);
-
-   }
 
 
-   // console.log("TEST HandleSelectionValidation XXXxXX=================>>>>", this.validatedReviews);
+        handleReviewsByActivateOrDelete() {
+
+            if (this.validatedReviews.length > 0) {
+
+                this.handleValidatedSelection()
+            }
+
+            if (this.deletedReviews.length > 0) {
+
+                this.handleDeletedSelection()
+            }
+        },
 
 
-    },  
-
-  
-  async handleDeletedSelection() {
-
-   // test console.log("TEST HandleSelectionValidation =================>>>>");
-
-      try {
-
-         //const response = await fetch(`http://192.168.1.168:5001/admin/disable-reviews`);
-
-      }catch(error) {
-
-        console.log(error);
-      }
-
-    },  
 
 
-    handleValidationAndDeleteButtons(currentReviewId, buttonFunction) {
 
-    // Construire les noms de tableaux à partir des valeurs passées dans buttonFunction
-    let targetArrayName = `${buttonFunction[0]}Reviews`;
-    let otherArrayName = `${buttonFunction[1]}Reviews`;
+        async handleValidatedSelection() {
 
+            try {
 
-    // Vérifier si les tableaux existent et sont bien des tableaux
-    if (!Array.isArray(this[targetArrayName])) {
-        console.error(`Property ${targetArrayName} is not an array or does not exist.`);
-        return; // Arrêter l'exécution si la propriété n'est pas un tableau
-    }
+                const rawValidateReviews = this.validatedReviews.slice();
 
-    if (!Array.isArray(this[otherArrayName])) {
-        console.error(`Property ${otherArrayName} is not an array or does not exist.`);
-        return; // Arrêter l'exécution si la propriété n'est pas un tableau
-    }
+                //console.log('test this.validateReviews avant fetch un ou plusieurs review_id =>', this.validatedReviews);
 
-    // Trouver l'index en indiquant l'identifiant courant dans le tableau cible
-    const indexInCurrentArray = this[targetArrayName].indexOf(currentReviewId);
+                const url = 'http://192.168.1.168:5001/review/activateReviews';
 
-    // Trouver l'index en indiquant l'identifiant dans l'autre tableau
-    const indexInOtherArray = this[otherArrayName].indexOf(currentReviewId);
+                const response = await fetch(url, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',  // Spécifie que le corps de la requête est en JSON
+                    },
+                    body: JSON.stringify({ arrayWithReviewIdToActivate: rawValidateReviews })
+                },)
 
-    // Rechercher  la review actuelle par ID dans la collection de toutes les reviews
-    const currentReview = this.reviews.find(review => review.review_id === currentReviewId);
+                if (response.ok) {
 
-    if (currentReview) {
-        // Basculer le statut de la review actuelle
-        currentReview.status = currentReview.status === buttonFunction[0] ? null : buttonFunction[0]; // buttonFonction[0] renvoi 'validated' et buttonFonction[1] => 'deleted'
-    } else {
-        console.error("Review not found for ID:", currentReviewId);
-        return; // Arrêter l'exécution si la revue n'est pas trouvée
-    }
+                    const result = await response.json(); 
 
-    // Créer un ensemble combiné des deux tableaux ( activated et deleted ) pour vérifier si l'ID est déjà présent
-    const combinedArrayValidateDelete = new Set([
-        ...this[targetArrayName],
-        ...this[otherArrayName]
-    ]);
+                    console.log(`${result.validated},Reviews ont été validées`);
+                }
 
-    // Vérifier si l'identifiant actuel est déjà présent dans l'un des tableaux
-    const isAlreadyOnArray = combinedArrayValidateDelete.has(currentReviewId);
-    console.log('isAlreadyOnArray:', isAlreadyOnArray);
+            } catch (error) {
+                console.log(error);
+
+            }
+
+        },
 
 
-    // Si l'identifiant est déjà dans un tableau et que le statut est correct, effectuer les opérations
-    if (isAlreadyOnArray && currentReview.status === buttonFunction[0]) {
+        async handleDeletedSelection() {
 
-        // Supprimer l'ID du tableau autre s'il est présent, le -1 ci dessous represente (false) et non la derniere place du tableau, indexInOtherArray recoit 1(true) ou -1(false) suivant si l'index est present ou non dans le tableau.
-        if (indexInOtherArray !== -1) {
-            this[otherArrayName].splice(indexInOtherArray, 1);
-        }
 
-        // Ajouter l'ID au tableau cible
-        this[targetArrayName] = [...this[targetArrayName], currentReviewId];
-       //test console.log('currentReviewId ===============>>:', currentReviewId);
-       console.log("After pushing, trying access to array with IDs ===>:", this[targetArrayName]);
+            try {
 
-    } else if (!isAlreadyOnArray && currentReview.status === buttonFunction[0]) {  
+                const rawDeletedReviews = this.deletedReviews.slice();
+                console.log('rawDeletedReviews: ', rawDeletedReviews);
 
-    // Ajouter l'ID au tableau cible si ce n'est pas déjà là et le statut est correct
-     this[targetArrayName] = [...this[targetArrayName], currentReviewId];
+                const url = 'http://192.168.1.168:5001/review/deleteReviews';
 
-     //test console.log('currentReviewId ===============>>:', currentReviewId);
-       console.log("After pushing, access to array ===>:", this[targetArrayName]);
 
-    } else if (currentReview.status === null) {
-        // Supprimer l'ID du tableau cible si le statut est nul
-        if (indexInCurrentArray !== -1) {
-            this[targetArrayName].splice(indexInCurrentArray, 1);
-        }
-       console.log("After removing in Else If ====>:", this[targetArrayName]);
-    }
-},
+                const response = await fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',  // Spécifie que le corps de la requête est en JSON
+                    },
+                    body: JSON.stringify({ arrayWithReviewIdToDelete: rawDeletedReviews })
+                },)
+
+                if (response.ok) {
+
+            const result = await response.json(); 
+            console.log(result);
+                }
+
+            } catch (error) {
+
+                console.log(error);
+            }
+
+        },
+
+
+        handleValidationAndDeleteButtons(currentReviewId, buttonFunction) {
+
+            // Construire les noms de tableaux à partir des valeurs passées dans buttonFunction
+            let targetArrayName = `${buttonFunction[0]}Reviews`;
+            let otherArrayName = `${buttonFunction[1]}Reviews`;
+
+
+            // Vérifier si les tableaux existent et sont bien des tableaux
+            if (!Array.isArray(this[targetArrayName])) {
+                console.error(`Property ${targetArrayName} is not an array or does not exist.`);
+                return; // Arrêter l'exécution si la propriété n'est pas un tableau
+            }
+
+            if (!Array.isArray(this[otherArrayName])) {
+                console.error(`Property ${otherArrayName} is not an array or does not exist.`);
+                return; // Arrêter l'exécution si la propriété n'est pas un tableau
+            }
+
+            // Trouver l'index en indiquant l'identifiant courant dans le tableau cible
+            const indexInCurrentArray = this[targetArrayName].indexOf(currentReviewId);
+
+            // Trouver l'index en indiquant l'identifiant dans l'autre tableau
+            const indexInOtherArray = this[otherArrayName].indexOf(currentReviewId);
+
+            // Rechercher  la review actuelle par ID dans la collection de toutes les reviews
+            const currentReview = this.reviews.find(review => review.review_id === currentReviewId);
+
+            if (currentReview) {
+                // Basculer le statut de la review actuelle
+                currentReview.status = currentReview.status === buttonFunction[0] ? null : buttonFunction[0]; // buttonFonction[0] renvoi 'validated' et buttonFonction[1] => 'deleted'
+            } else {
+                console.error("Review not found for ID:", currentReviewId);
+                return; // Arrêter l'exécution si la revue n'est pas trouvée
+            }
+
+            // Créer un ensemble combiné des deux tableaux ( activated et deleted ) pour vérifier si l'ID est déjà présent
+            const combinedArrayValidateDelete = new Set([
+                ...this[targetArrayName],
+                ...this[otherArrayName]
+            ]);
+
+            // Vérifier si l'identifiant actuel est déjà présent dans l'un des tableaux
+            const isAlreadyOnArray = combinedArrayValidateDelete.has(currentReviewId);
+            console.log('isAlreadyOnArray:', isAlreadyOnArray);
+
+
+            // Si l'identifiant est déjà dans un tableau et que le statut est correct, effectuer les opérations
+            if (isAlreadyOnArray && currentReview.status === buttonFunction[0]) {
+
+                // Supprimer l'ID du tableau autre s'il est présent, le -1 ci dessous represente (false) et non la derniere place du tableau, indexInOtherArray recoit 1(true) ou -1(false) suivant si l'index est present ou non dans le tableau.
+                if (indexInOtherArray !== -1) {
+                    this[otherArrayName].splice(indexInOtherArray, 1);
+                }
+
+                // Ajouter l'ID au tableau cible
+                this[targetArrayName] = [...this[targetArrayName], currentReviewId];
+                //test console.log('currentReviewId ===============>>:', currentReviewId);
+                console.log("After pushing, trying access to array with IDs ===>:", this[targetArrayName]);
+
+            } else if (!isAlreadyOnArray && currentReview.status === buttonFunction[0]) {
+
+                // Ajouter l'ID au tableau cible si ce n'est pas déjà là et le statut est correct
+                this[targetArrayName] = [...this[targetArrayName], currentReviewId];
+
+                //test console.log('currentReviewId ===============>>:', currentReviewId);
+                console.log("After pushing, access to array ===>:", this[targetArrayName]);
+
+            } else if (currentReview.status === null) {
+                // Supprimer l'ID du tableau cible si le statut est nul
+                if (indexInCurrentArray !== -1) {
+                    this[targetArrayName].splice(indexInCurrentArray, 1);
+                }
+                console.log("After removing in Else If ====>:", this[targetArrayName]);
+            }
+        },
 
 
         handleDeleteButon(currentReviewId) {
@@ -351,32 +387,29 @@ export default {
 </script>
 
 <style scoped>
-
 .container-selection-validation {
 
-width:max-content;
-height:3rem;
-padding:1rem 1rem 0rem 1rem;
-background:linear-gradient(
-    to left,
-                                   rgb(255, 255, 255)10%,
-                                   rgb(204, 216, 208)70%, 
-                                   rgb(236, 236, 236)95%,
-                                   rgb(211, 189, 196)100%
-                                   );
+    width: max-content;
+    height: 3rem;
+    padding: 1rem 1rem 0rem 1rem;
+    background: linear-gradient(to left,
+            rgb(255, 255, 255)10%,
+            rgb(204, 216, 208)70%,
+            rgb(236, 236, 236)95%,
+            rgb(211, 189, 196)100%);
 
 
-position:sticky;
-bottom:0.5rem;
-border-radius: 25px;
-margin-left: 2rem;
-border: 1px solid purple;
+    position: sticky;
+    bottom: 0.5rem;
+    border-radius: 25px;
+    margin-left: 2rem;
+    border: 1px solid purple;
 
 }
 
-.container-selection-validation:hover{
+.container-selection-validation:hover {
 
-  background: linear-gradient(180deg, #a781e4, #7a3cac, #a77689, #5e2ad6);
+    background: linear-gradient(180deg, #a781e4, #7a3cac, #a77689, #5e2ad6);
     background-size: 400% 400%;
 
     -webkit-animation: AnimationName 25s ease-in-out infinite;
@@ -389,23 +422,23 @@ border: 1px solid purple;
 
 .container-selection-validation:hover .reviews-state-msg {
 
-    color:rgb(215, 201, 233)
+    color: rgb(215, 201, 233)
 }
 
-.validate-num{
-    color:#1bdaa1
+.validate-num {
+    color: #1bdaa1
 }
 
-.delete-num{
-    color:#ca6178
+.delete-num {
+    color: #ca6178
 }
 
 
 .reviews-state-msg {
-    font-family: 'Courgette',cursive;
-    color:rgb(143, 113, 156);
-    font-size:1.6rem;
-   
+    font-family: 'Courgette', cursive;
+    color: rgb(143, 113, 156);
+    font-size: 1.6rem;
+
 }
 
 
