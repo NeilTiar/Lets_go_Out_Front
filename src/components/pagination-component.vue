@@ -16,7 +16,10 @@
 
 <Home />
 <script>
+import store from '@/store/store';
 
+
+//import store from '../store/store'
 
 export default {
 
@@ -33,7 +36,7 @@ export default {
 
   data() {
     return {
-      currentPage: this.$store.state.currentReviewsPage || 1,
+      currentPage:  store.state.currentReviewsPage || 1,
       itemsPerPage: 18,
       pagesShown: 1,
      //totalItems :  la fonction totalItems() dans computed creer implicitement une props du meme nom  ici. 
@@ -58,7 +61,11 @@ export default {
 
   mounted() {
 
- 
+      // Vérifiez si c'est une nouvelle session et réinitialisez la page
+    if (!sessionStorage.getItem('sessionActive')) {
+      store.dispatch('resetPageToFirst'); // Réinitialise la page dans le store
+      sessionStorage.setItem('sessionActive', true); // Marque la session comme active
+    }
  
     window.addEventListener('resize', this.updateItemsPerPage),
 
@@ -70,6 +77,8 @@ export default {
   },
 
 
+
+
   methods: {
 
 
@@ -78,7 +87,7 @@ export default {
     changePage(newPage) {
 
       this.$emit('page-changed', newPage);
-
+      
     },
 
 

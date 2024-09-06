@@ -322,8 +322,17 @@ export default {
     handleReturnButton() {
          this.$emit('returnButtonClicked');
          //logic pour alimenter currentPage avec this.$store.state.currentReviewsPage
+
+  // Check if currentReviewsPage is greater than 1
+    if (store.state.currentReviewsPage > 1) {
+        this.currentPage = store.state.currentReviewsPage;
+    }
+
+
        window.history.back();
     // console.log("from return button on click")
+
+    console.log("XXXXXX test XxxXXXXXXXXXxxxXXXXX =========>",store.state.currentReviewsPage);
     },
 
 

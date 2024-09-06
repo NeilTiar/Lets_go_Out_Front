@@ -10,7 +10,7 @@ const store =  createStore({
         pseudo: 'visitor', // Initialise le pseudo à une valeur par défaut
         selectedReview: null,
         initialReviews: [],
-        currentReviewsPage: "",
+        currentReviewsPage: 1,
         accessToken: null,
         refreshToken: null, 
         isAdmin: false,
@@ -25,6 +25,14 @@ const store =  createStore({
   
 
     mutations: {
+
+          setReviewsPage(state, pageNumber) {
+            state.currentReviewsPage = pageNumber;
+        },
+
+        resetReviewsPage(state) {
+            state.currentReviewsPage = 1; // Réinitialise la page à 1
+        },
 
         setIsAdmin(state, isAdmin) {
             state.isAdmin = isAdmin
@@ -122,6 +130,10 @@ const store =  createStore({
             commit('setReviewsPage', pageNumber)
         },
 
+           resetPageToFirst({ commit }) {
+            commit('resetReviewsPage'); // Réinitialise la page via l'action
+        },
+
 
         updatePseudo({ commit }, pseudo) {
             commit('setPseudo', pseudo);
@@ -181,7 +193,21 @@ const store =  createStore({
     },
 
   // permet de conserver letat du state pendant la visite du client ( changement de page , connexion etc ....)
-  plugins: [createPersistedState()],
+  plugins: [
+    createPersistedState({
+      reducer(val) {
+        // Conservez toutes les propriétés sauf `currentReviewsPage` et `accessToken`
+        return {
+          isDarkMode: val.isDarkMode,
+          pseudo: val.pseudo,
+          selectedReview: val.selectedReview,
+          initialReviews: val.initialReviews,
+          refreshToken: val.refreshToken,
+          isAdmin: val.isAdmin
+        };
+      }
+    })
+  ],
 });
 
 

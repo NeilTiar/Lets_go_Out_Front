@@ -19,6 +19,14 @@
                 @delete-button=" handleValidationAndDeleteButtons(review.review_id, ['deleted', 'validated'])"
             />
         </div>
+        <div
+            class="container-selection-validation"
+            @click="handleValidatedSelection"
+        >
+            <div class="reviews-state-msg">
+                il y a <span class="validate-num">{{ validatedReviews.length }}</span> reviews validée(s) et <span class="delete-num">{{ deletedReviews.length }}</span> en attentee de suppression
+            </div>
+        </div>
         <div />
 
         <FooterComponent class="FooterComponent" />
@@ -53,10 +61,8 @@ export default {
             currentPage: 1, // Add currentPage to your data properties
             organizedPictures: {},
             cards: [],
-            validate: [], //conserve la liste d'id pour valider des reviews et permetre leur publication.
-            delete: [], //conserve la liste d'id pour effacer des reviews et permetre de les supprimer de la bdd.
-            validatedReviews: [],
-            deletedReviews: [],
+            validatedReviews: [],//conserve la liste d'id pour valider des reviews et permetre leur publication.
+            deletedReviews: [],//conserve la liste d'id pour effacer des reviews et permetre de les supprimer de la bdd.
         };
     },
 
@@ -78,6 +84,56 @@ export default {
 
 
     methods: {
+
+  async handleValidatedSelection() {
+
+   try {
+
+     const rawValidateReviews = this.validatedReviews.slice();  
+
+    console.log('test this.validateReviews avant fetch un ou plusieurs review_id =>',this.validatedReviews);
+
+    const url = 'http://192.168.1.168:5001/review/activateReviews';
+
+    const response = await fetch(url,{
+        method:'PATCH',
+        headers: {
+        'Content-Type': 'application/json',  // Spécifie que le corps de la requête est en JSON
+      },
+       body: JSON.stringify({ arrayWithReview_id: rawValidateReviews }) 
+    },)
+    
+    if(response.ok){
+
+       console.log(response); 
+    }
+
+   }catch(error){
+  console.log(error);
+
+   }
+
+
+   // console.log("TEST HandleSelectionValidation XXXxXX=================>>>>", this.validatedReviews);
+
+
+    },  
+
+  
+  async handleDeletedSelection() {
+
+   // test console.log("TEST HandleSelectionValidation =================>>>>");
+
+      try {
+
+         //const response = await fetch(`http://192.168.1.168:5001/admin/disable-reviews`);
+
+      }catch(error) {
+
+        console.log(error);
+      }
+
+    },  
 
 
     handleValidationAndDeleteButtons(currentReviewId, buttonFunction) {
@@ -135,9 +191,9 @@ export default {
         }
 
         // Ajouter l'ID au tableau cible
-        this[targetArrayName].push(currentReviewId);
+        this[targetArrayName] = [...this[targetArrayName], currentReviewId];
        //test console.log('currentReviewId ===============>>:', currentReviewId);
-       //test console.log("After pushing, trying access to array with IDs ===>:", this[targetArrayName]);
+       console.log("After pushing, trying access to array with IDs ===>:", this[targetArrayName]);
 
     } else if (!isAlreadyOnArray && currentReview.status === buttonFunction[0]) {  
 
@@ -145,14 +201,14 @@ export default {
      this[targetArrayName] = [...this[targetArrayName], currentReviewId];
 
      //test console.log('currentReviewId ===============>>:', currentReviewId);
-      //test console.log("After pushing, access to array ===>:", this[targetArrayName]);
+       console.log("After pushing, access to array ===>:", this[targetArrayName]);
 
     } else if (currentReview.status === null) {
         // Supprimer l'ID du tableau cible si le statut est nul
         if (indexInCurrentArray !== -1) {
             this[targetArrayName].splice(indexInCurrentArray, 1);
         }
-      //test console.log("After removing in Else If ====>:", this[targetArrayName]);
+       console.log("After removing in Else If ====>:", this[targetArrayName]);
     }
 },
 
@@ -284,15 +340,8 @@ export default {
                 console.error('Error fetching data:', error);
             }
 
-
-
-
         }
-
     }
-
-
-
 }
 
 
@@ -302,6 +351,70 @@ export default {
 </script>
 
 <style scoped>
+
+.container-selection-validation {
+
+width:max-content;
+height:3rem;
+padding:1rem 1rem 0rem 1rem;
+background:linear-gradient(
+    to left,
+                                   rgb(255, 255, 255)10%,
+                                   rgb(204, 216, 208)70%, 
+                                   rgb(236, 236, 236)95%,
+                                   rgb(211, 189, 196)100%
+                                   );
+
+
+position:sticky;
+bottom:0.5rem;
+border-radius: 25px;
+margin-left: 2rem;
+border: 1px solid purple;
+
+}
+
+.container-selection-validation:hover{
+
+  background: linear-gradient(180deg, #a781e4, #7a3cac, #a77689, #5e2ad6);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 25s ease-in-out infinite;
+    -moz-animation: AnimationName 25s ease-in-out infinite;
+    animation: AnimationName 3s ease-in-out infinite;
+
+    box-shadow: inset 10px 10px 10px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+.container-selection-validation:hover .reviews-state-msg {
+
+    color:rgb(215, 201, 233)
+}
+
+.validate-num{
+    color:#1bdaa1
+}
+
+.delete-num{
+    color:#ca6178
+}
+
+
+.reviews-state-msg {
+    font-family: 'Courgette',cursive;
+    color:rgb(143, 113, 156);
+    font-size:1.6rem;
+   
+}
+
+
+
+.main-content-activate-review {
+    overflow: hidden;
+}
+
+
 .FooterComponent {
 
     flex: 1;
@@ -319,8 +432,8 @@ export default {
 }
 
 .validated-class {
-    background: linear-gradient(180deg, #259b77, #c1e2d8, #63bb92, #55bba5, #eef5f1);
-    background-size: 200% 250%;
+    background: linear-gradient(-180deg, #31b175, #a7f0bd, #1bdaa1, #c4e0a9, #34d168, #90a6c4);
+    background-size: 400% 400%;
 
     -webkit-animation: AnimationName 25s ease-in-out infinite;
     -moz-animation: AnimationName 25s ease-in-out infinite;
@@ -328,7 +441,7 @@ export default {
 }
 
 .deleted-class {
-    background: linear-gradient(-180deg, #8a224d, #a50052, #96778d, #960454, #cabcc6, #5c3455);
+    background: linear-gradient(180deg, #b12c49, #ac3c43, #a77689, #d62a2a);
     background-size: 400% 400%;
 
     -webkit-animation: AnimationName 25s ease-in-out infinite;
@@ -340,7 +453,7 @@ export default {
 .pending-class {
 
 
-    background: linear-gradient(20deg, #9cb9a1, #a5b5d8, #cec8e6, #a5b5d8, #8ea7d4);
+    background: linear-gradient(20deg, #8aa7c9, #f3f2f3, #f4f3f7, #e6e5e5, #bac4d6);
     background-size: 400% 400%;
 
     -webkit-animation: AnimationName 25s ease-in-out infinite;
