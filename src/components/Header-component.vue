@@ -28,10 +28,13 @@
                     </h2>
                 </div>
 
-                <div class="container-mobile-logo">
+                <div
+                    class="container-mobile-logo"
+                >
                     <div
                         v-if="!isDesktop"
                         class="mobile-user-logo"
+                        @click="mobileUserMenu"
                     >
                         <img
                             class="user-logo"
@@ -44,23 +47,45 @@
                 </div>
             </div>
         </div>
-
+        
+        
         <div
             v-if="isDesktop"
             class="container-user-dark-theme"
         >  
-            <div class="container-logo-pseudo">
+            <div
+                class="container-logo-pseudo"
+                @mouseenter="showMenu"
+                @mouseleave="hideMenu"
+            >
                 <img
                     class="user-logo"
                     src="../assets/user.png"
                     alt="user"
+                    @mouseenter="showMenu"
+                    @mouseleave="hideMenu"
                 >
                 <div
                     :class="{ 'msg-user-log': !isDarkMode,'dark-mode-user-logo': isDarkMode}"
                 >
                     Bonjour, {{ pseudo }}
                 </div>
+                <div
+                    v-if="isUserMenu"
+                    class="user-menu"
+                    @mouseenter="showMenu"
+                    @mouseleave="hideMenu"
+                >
+                    <ul>
+                        <li>consulter mes Rviews</li>
+                        <li>mes coup de coeur</li>
+                        <li>besoin d'aide ? Chat Room</li>
+                        <li>Déconnexion</li>
+                    </ul>
+                </div>
             </div>
+            
+
             <div class="dark-button-container">
                 <darkThemeComponent
                     v-if="isDesktop"
@@ -117,6 +142,7 @@
                         >Loisirs</a>
                     </li>
                 </ul>
+              
 
                 <div class="container-create-review-link">
                     <li
@@ -228,9 +254,9 @@ export default {
 
   },
 
-     emits: ['returnButtonClicked'],
+     emits: ['returnButtonClicked','isUserMenuFromHeader'],
 
-
+ 
 
 
   data() {
@@ -245,11 +271,11 @@ export default {
       isScrollingUpX: false,
       pseudo: this.$store.state.pseudo,
       isAdmin: this.$store.state.isAdmin,
+      isUserMenu: false
+    
     };
 
-  },
-
-
+  }, // Déclarer explicitement l'événement ici
 
     computed: {
 
@@ -290,6 +316,26 @@ export default {
 
 
   methods: {
+
+  mobileUserMenu () {
+    const newState = !this.isUserMenu; // Inverser l'état actuel du menu utilisateur
+      this.$emit('isUserMenuFromHeader', newState); // Émettre l'événement pour mettre à jour la prop
+      console.log('newState from header: ', newState);
+
+  } ,
+
+
+    // Fonction pour afficher la div
+ showMenu () {
+  this.isUserMenu = true;
+  console.log("Enter" ,"this.isUserMenu :",this.isUserMenu);
+},
+
+// Fonction pour masquer la div
+ hideMenu () {
+  this.isUserMenu = false;
+  console.log("Out","this.isUserMenu :",this.isUserMenu);
+},
 
  
 
@@ -387,7 +433,19 @@ export default {
 
 <style scoped>
 
-
+ .user-menu {
+    position: absolute;
+    top:10rem;
+    height:20rem;
+    width: 30rem;
+     background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond semi-transparente */
+    backdrop-filter: blur(4.5px); /* Applique un flou */
+    color: black;
+    border-radius: 25px;
+    z-index: 5;
+   
+    
+ }
 
 .dark-button {
 
@@ -536,8 +594,9 @@ export default {
  }
 
  .submit-form {
-    margin: auto;;
+    margin: auto;
  }
+
 
 
 

@@ -1,5 +1,20 @@
 <template>
-    <HeaderComponent />
+    <div
+        v-if="isUserMenu"
+        class="mobile-user-menu"
+    >
+        <div
+            class="disableUserMenu"
+            @click="HandleDisableUserMenu"
+        >
+            X
+        </div>
+    </div>
+
+    <HeaderComponent
+        v-model:isUserMenuFromHeader="isUserMenu"
+        @is-user-menu-from-header="activateUserMenu"
+    />
 
     <div
         class="container-main-reviews"
@@ -11,6 +26,7 @@
         >
             créer une review
         </button>
+
 
         <main class="cards-container">
             <loadingComponent :loading="loading" />
@@ -106,6 +122,7 @@ export default {
       currentId: null,
       isDarkmodeActive: this.$store.state.isDarkMode,
       loading:false,
+      isUserMenu: false
 
     }
   },
@@ -174,6 +191,20 @@ export default {
 
 
   methods: {
+
+  activateUserMenu() {
+   
+   this.isUserMenu = true;
+    document.body.style.overflowY = 'hidden';
+    console.log("From Activate User menu Func ", this.isUserMenu);
+
+  } , 
+
+  HandleDisableUserMenu() {
+this.isUserMenu = false;
+ document.body.style.overflowY = 'auto';
+  },
+
 
  getDynamicItemsPerPage() {
       return this.isDesktop ? 18 : 10;
@@ -370,6 +401,33 @@ body {
   background: none;
 }
 
+.mobile-user-menu {
+  
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond semi-transparente */
+  backdrop-filter: blur(4.5px); /* Applique un flou */
+  overflow-y: hidden;
+  z-index: 4;
+}
+
+.disableUserMenu {
+  
+  margin: 0.5rem;
+  display: flex;
+  line-height: 1; /* Ajuste la hauteur de ligne pour centrer verticalement */
+  color: rgb(189, 183, 189);
+  font-size: 3rem;
+  font-weight: bolde;
+  font-family: Arial, sans-serif;
+   transform-origin: center;
+   border-radius: 25px;
+   justify-content:end
+   
+  
+}
+
 .dark-body {
 
   background-color: rgb(48, 34, 70);
@@ -421,4 +479,6 @@ body {
 .container-main-review {
   background-color: aquamarine;
 }
+
+
 </style>
