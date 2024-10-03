@@ -387,7 +387,7 @@ export default {
 
   mounted() {
 
-
+console.log('accessToken from localTorage', localStorage.getItem('accessToken') );
 
 
   },
@@ -617,7 +617,7 @@ export default {
 
       try {
 
-        let token = this.token;
+      const token = localStorage.getItem('accessToken');
 
 
         console.log("XXXXXXXXXXXXXxxxxxxXXXXXXXXXXXXXXXXXXXXXX   token => ", token)
@@ -635,9 +635,8 @@ export default {
         if (response.ok) {
 
           const responseData = await response.json();
-          token = response.accessToken;
+          console.log('token from localStorage Front : ', token);
           this.successMessage = responseData.successMessage;
-          token = responseData.AccessToken;
           console.log("Success, review created:", this.successMessage, responseData);
           this.resetForm();
           this.isModalVisible = true;
@@ -706,17 +705,17 @@ export default {
 
       try {
 
-        let token = this.token;
+        const accessToken = localStorage.getItem('accessToken');
 
 
-        console.log("XXXXXXXXXXXXXxxxxxxXXXXXXXXXXXXXXXXXXXXXX   token => ", token)
+        console.log("XXXXXXXXXXXXXxxxxxxXXXXXXXXXXXXXXXXXXXXXX   token => ", accessToken)
 
         const url = 'http://192.168.1.168:5001/review/create';
 
         const response = await fetch(url, {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${accessToken}`,
           },
           body: formData, // No need to set Content-Type header manually
         });
@@ -724,9 +723,8 @@ export default {
         if (response.ok) {
 
           const responseData = await response.json();
-          token = response.accessToken;
+         // accessToken = response.accessToken;
           this.successMessage = responseData.successMessage;
-          token = responseData.AccessToken;
           console.log("Success, review created:", this.successMessage, responseData);
           this.resetForm();
 

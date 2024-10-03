@@ -38,6 +38,7 @@
                         class="input-login"
                         type="text"
                         required
+                        autocomplete="current-password"
                     >
 
                     <label
@@ -50,6 +51,7 @@
                         class="input-login"
                         type="password"
                         required
+                        autocomplete="current-password"
                     >
 
                     <a
@@ -119,8 +121,8 @@ export default {
         async submitForm() {
 
 
-           //test console.log('Identifiant:', this.email);
-           //test console.log('Mot de passe:', this.password);
+            //test console.log('Identifiant:', this.email);
+            //test console.log('Mot de passe:', this.password);
 
             try {
                 // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
@@ -139,49 +141,76 @@ export default {
                 })
 
 
+                // Vérifier si le header Authorization est présent
+                const accessToken = response.headers.get('Authorization');
+
+                localStorage.setItem('accessToken', accessToken); // Stocker le token dans localStorage
+                
+                console.log('authorizationHeader from  LocalStorage: ',localStorage.getItem('accessToken'));
+
+                const responseData = await response.json();
+
+                const refreshToken = responseData.refreshTokenValid;
+
+
+                //mon erreur etait d'essayé d'acceder a l'accesstoken ici , alors qu'il est generer aprés connexion !!!
+
+                // cette fonction est a revoir car la manipulation du req.headers.authorization n'est possible qu'aprés connexion 
+
                 // Vérification de la réponse du serveur
                 if (response.ok) {
 
-                    const responseData = await response.json();
 
-                    const accessToken = responseData.accessToken;
-
-                    const refreshToken = responseData.refreshTokenValid;
-
-                   // console.log('refreshToken :', refreshToken)
+                    // console.log('refreshToken :', refreshToken)
 
                     if (refreshToken) {
                         // Stockez le token dans le local storage
 
-                         store.dispatch('updateAccessToken', accessToken);
+                        store.dispatch('updateAccessToken', accessToken);
 
-                         store.dispatch('currentRefreshToken', refreshToken);
+                        store.dispatch('currentRefreshToken', refreshToken);
                     }
+
+
+
+
+                    if (accessToken) {
+                        const accessTokenFromHeaders = accessToken.split(' ')[1]; // Extraire le token du header
+                        console.log('Token from headers:', accessTokenFromHeaders);
+                        localStorage.setItem('accessToken', accessTokenFromHeaders); // Stocker le token dans localStorage
+                    }
+
+
 
                     const isAdmin = responseData.isAdmin;
 
                     /*test isAdmin from response .
                     console.log('isAdmin: ', isAdmin);*/
 
-
-                  await this.$store.commit('setIsAdmin', isAdmin);
-
-                    console.log('isAdmin from store:', this.$store.state.isAdmin);
+                    console.log("response.isValidRefreshToken", responseData);
 
 
-                 // test console.log("AccessToken From Store : ", store.state.accessToken , "refreshToken :" , store.state.refreshToken)
+                    await this.$store.commit('setIsAdmin', isAdmin);
 
-                   // test console.log("responsData : ", responseData)
+                    //test   console.log('isAdmin from store:', this.$store.state.isAdmin);
 
-                    const newPseudo = responseData.pseudo;
 
-                    await store.dispatch('updatePseudo', newPseudo);
+                    // test console.log("AccessToken From Store : ", store.state.accessToken , "refreshToken :" , store.state.refreshToken)
+
+                    // test console.log("responsData : ", responseData)
+
+                    const userName = responseData.pseudo;
+
+                    //test pseudo via local storage : console.log('test pseudo by local :', localStorage.getItem('pseudo'));
+
+                    await store.dispatch('updatePseudo', userName);
+
 
                     // Vous pouvez également accéder au pseudo mis à jour directement à partir du store
-                   // test console.log('Pseudo mis à jour :', store.state.pseudo);
+                    // test console.log('Pseudo mis à jour :', store.state.pseudo);
 
                     this.connectionMessage = responseData.message[1]
-                   // test console.log('message de success :', responseData.message[1]);
+                    // test console.log('message de success :', responseData.message[1]);
                     setTimeout(() => {
                         this.$router.push('/main');
                     }, 1500);

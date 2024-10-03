@@ -1,6 +1,37 @@
 <template>
     <HeaderComponent />
 
+    <div
+        v-if="isModal"
+        id="modal-container"
+        class="modal-container"
+    >
+        <div class="validation-modal">
+            <p class="modal-validation-msg">voulez vous valider votre selection :</p>
+            <p class="modal-validation-details">
+                {{ validatedReviews.length }} review(s) validée(s) et {{
+                    deletedReviews.length }} suprimée(s)
+            </p>
+
+            <div class="buttons-container">
+                <button
+                    class="modal-btn btn-modal-validation"
+                    @click="modalValidation"
+                >
+                    valider
+                </button>
+                <button
+                    class="modal-btn btn-modal-cancel"
+                    @click="modalCancel"
+                >
+                    annuler
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="main-content-activate-reviews">
         <div class="reviews-grid">
             <ReviewsAwaitingActivationComponent
@@ -21,7 +52,7 @@
         </div>
         <div
             class="container-selection-validation"
-            @click="handleReviewsByActivateOrDelete()"
+            @click="handleReviewsBtnActivateOrDelete()"
         >
             <div class="reviews-state-msg">
                 il y a <span class="validate-num">{{ validatedReviews.length }}</span> reviews validée(s) et <span
@@ -65,6 +96,7 @@ export default {
             cards: [],
             validatedReviews: [],//conserve la liste d'id pour valider des reviews et permetre leur publication.
             deletedReviews: [],//conserve la liste d'id pour effacer des reviews et permetre de les supprimer de la bdd.
+            isModal: false,
         };
     },
 
@@ -87,9 +119,8 @@ export default {
 
     methods: {
 
+        modalValidation() {
 
-
-        handleReviewsByActivateOrDelete() {
 
             if (this.validatedReviews.length > 0) {
 
@@ -100,6 +131,28 @@ export default {
 
                 this.handleDeletedSelection()
             }
+
+            this.isModal = false
+            document.body.style.filter = 'blur(0px)';
+            window.location.reload()
+        },
+
+        modalCancel() {
+        document.querySelectorAll('.reviews-grid, .container-selection-validation').forEach(el => {el.style.filter = 'blur(0px)'}); // Appliquer à chaque élément
+        this.isModal =false
+        },
+
+
+
+        handleReviewsBtnActivateOrDelete() {
+
+              window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Ajoute une animation de défilement fluide
+    });
+         this.isModal= true
+          document.querySelectorAll('.reviews-grid, .container-selection-validation').forEach(el=> {el.style.filter ='blur(5px)'});
+         
         },
 
 
@@ -126,7 +179,7 @@ export default {
 
                 if (response.ok) {
 
-                    const result = await response.json(); 
+                    const result = await response.json();
 
                     console.log(`${result.validated},Reviews ont été validées`);
                 }
@@ -160,8 +213,8 @@ export default {
 
                 if (response.ok) {
 
-            const result = await response.json(); 
-            console.log(result);
+                    const result = await response.json();
+                    console.log(result);
                 }
 
             } catch (error) {
@@ -387,6 +440,66 @@ export default {
 </script>
 
 <style scoped>
+
+.modal-container  {
+
+position: absolute;
+display:flex;
+width: 70%;
+height:70%;
+justify-content: center;
+left: 50%;
+transform: translateX(-50%);
+z-index: 3;
+background-color: white;
+border-radius:25px;
+font-size:2.3rem;
+font-family: 'Courgette';
+}
+
+.validation-modal {
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:1rem;
+}
+
+.buttons-container {
+
+    display:flex;
+    
+}
+
+.modal-validation-msg {
+
+margin-bottom: 0.5rem;
+}
+
+.modal-validation-details{
+
+margin: 0.5rem 0 6rem 0;
+}
+
+
+
+
+
+
+.modal-btn {
+
+display: flex;
+width:30%;
+margin: auto;
+justify-content: center;
+align-items: center ;
+height:2rem;
+border-radius: 25px;
+border: 0.3px solid black;
+font-family: 'Courgette';
+font-size:1.1rem;
+} 
+
 .container-selection-validation {
 
     width: max-content;
@@ -404,6 +517,7 @@ export default {
     border-radius: 25px;
     margin-left: 2rem;
     border: 1px solid purple;
+    cursor: pointer;
 
 }
 

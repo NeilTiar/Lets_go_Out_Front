@@ -2,31 +2,32 @@ import { createStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import createPersistedState from "vuex-persistedstate";
 
-const store =  createStore({
+const store = createStore({
 
     state: {
 
-        isDarkMode: false, 
+        isDarkMode: false,
         pseudo: 'visitor', // Initialise le pseudo à une valeur par défaut
         selectedReview: null,
         initialReviews: [],
         currentReviewsPage: 1,
         accessToken: null,
-        refreshToken: null, 
+        refreshToken: null,
         isAdmin: false,
+      
     },
 
-     getters: {
- 
-    isAdmin(state) {
-      return state.isAdmin; // Retourne true si l'utilisateur est administrateur
-    }
-  },
-  
+    getters: {
+
+        isAdmin(state) {
+            return state.isAdmin; // Retourne true si l'utilisateur est administrateur
+        }
+    },
+
 
     mutations: {
 
-          setReviewsPage(state, pageNumber) {
+        setReviewsPage(state, pageNumber) {
             state.currentReviewsPage = pageNumber;
         },
 
@@ -38,7 +39,7 @@ const store =  createStore({
             state.isAdmin = isAdmin
         },
 
-       
+
         setTotalReviews(state, totalReviews) {
             state.totalReviews = totalReviews;
         },
@@ -53,7 +54,7 @@ const store =  createStore({
             state.refreshToken = refreshToken;
         },
 
-    
+
         lastReviewsPage(state, pageNumber) {
 
             state.currentReviewsPage = pageNumber;
@@ -84,8 +85,12 @@ const store =  createStore({
 
 
         setPseudo(state, pseudo) {
+           
             state.pseudo = pseudo;
+
         },
+
+
 
 
         setIsDarkMode(state, isDarkMode) {
@@ -107,16 +112,16 @@ const store =  createStore({
 
     actions: {
 
-        updateIsAdmin({commit}, isAdmin) {
-        commit('setIsAdmin', isAdmin)
+        updateIsAdmin({ commit }, isAdmin) {
+            commit('setIsAdmin', isAdmin)
 
         },
 
-             updateAccessToken({ commit }, accessToken) {
+        updateAccessToken({ commit }, accessToken) {
             commit('setAccessToken', accessToken);
         },
 
-            currentRefreshToken({ commit }, refreshToken) {
+        currentRefreshToken({ commit }, refreshToken) {
             commit('setRefreshToken', refreshToken);
         },
 
@@ -130,14 +135,15 @@ const store =  createStore({
             commit('setReviewsPage', pageNumber)
         },
 
-           resetPageToFirst({ commit }) {
+        resetPageToFirst({ commit }) {
             commit('resetReviewsPage'); // Réinitialise la page via l'action
         },
 
 
-        updatePseudo({ commit }, pseudo) {
-            commit('setPseudo', pseudo);
-        },
+      updatePseudo({ commit }, userName) {
+
+       commit('setPseudo', userName);
+},
 
         setIsDarkMode({ commit }, isDarkMode) {
             console.log("toggleDarkMode is called");
@@ -147,8 +153,8 @@ const store =  createStore({
 
         isDarkmodeActive() {
 
-           /* const cardInfo = document.getElementsByClassName('card-info');
-            const cardContainer = document.getElementsByClassName('card-container');*/
+            /* const cardInfo = document.getElementsByClassName('card-info');
+             const cardContainer = document.getElementsByClassName('card-container');*/
 
             this.isDarkMode = !this.isDarkMode
             this.darkTheme = !this.darkTheme
@@ -159,20 +165,20 @@ const store =  createStore({
 
             //exemple pour Changez la couleur de fond de la card-container avec javascript ,mais finalement géré avec les classes conditionnelles.
 
-         /*   if ((cardInfo.length > 0 && cardContainer)) {
-
-                Array.from(cardInfo).map(card => {
-                    card.style.color = this.isDarkMode ? '' : '';
-
-                    Array.from(cardContainer).map(card => {
-
-                        card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
-
-                    })
-
-                })
-
-            } */
+            /*   if ((cardInfo.length > 0 && cardContainer)) {
+   
+                   Array.from(cardInfo).map(card => {
+                       card.style.color = this.isDarkMode ? '' : '';
+   
+                       Array.from(cardContainer).map(card => {
+   
+                           card.style.backgroundColor = this.isDarkMode ? '#0f4044' : '';
+   
+                       })
+   
+                   })
+   
+               } */
 
             const route = useRoute();
 
@@ -192,22 +198,24 @@ const store =  createStore({
 
     },
 
-  // permet de conserver letat du state pendant la visite du client ( changement de page , connexion etc ....)
-  plugins: [
-    createPersistedState({
-      reducer(val) {
-        // Conservez toutes les propriétés sauf `currentReviewsPage` et `accessToken`
-        return {
-          isDarkMode: val.isDarkMode,
-          pseudo: val.pseudo,
-          selectedReview: val.selectedReview,
-          initialReviews: val.initialReviews,
-          refreshToken: val.refreshToken,
-          isAdmin: val.isAdmin
-        };
-      }
-    })
-  ],
+    // permet de conserver letat du state pendant la visite du client ( changement de page , connexion etc ....)
+    plugins: [
+        createPersistedState({
+            reducer(val) {
+                // Conservez toutes les propriétés sauf `currentReviewsPage` et `accessToken`
+                return {
+                    isDarkMode: val.isDarkMode,
+                    selectedReview: val.selectedReview,
+                    initialReviews: val.initialReviews,
+                    refreshToken: val.refreshToken,
+                    accessToken : val.accessToken,
+                    isAdmin: val.isAdmin,
+                    pseudo: val.pseudo,  // Inclure pseudo
+                    lastActivity: val.lastActivity  // Inclure lastActivity
+                };
+            }
+        })
+    ],
 });
 
 
