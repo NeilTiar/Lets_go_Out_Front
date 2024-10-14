@@ -178,9 +178,9 @@ export default {
 }
 
 .theme {
-  text-shadow: 15px 9px 35px rgb(0, 0, 0);
+  text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
   margin-left: -0.1rem;
-  color:black
+  color:rgb(36, 131, 99)
 }
 
 .card-theme {
@@ -196,6 +196,7 @@ export default {
 .card-image {
   
   height: auto;
+   max-height : 30rem;
   width: 96%;
   margin: auto;
   max-width: 80%;
@@ -205,7 +206,7 @@ export default {
 }
 
 .pictures-container{
-  
+  margin-top: 4rem;
   height: auto;
   justify-content: center;
   display: grid;
@@ -233,14 +234,15 @@ margin:0 1.5rem 2rem 0;
   background-color:rgb(178, 171, 185);
   border-radius: 25px;
   width: 95%;
-  height: 50em;
+  height: 75rem;
   margin: 1rem auto
 }
 
 
 
 .activation-card-description {
-  width: 100%;
+
+  width: 90%;
   height:max-content;
   width: 92%; 
   font-size: 1.5rem;
@@ -277,7 +279,8 @@ width: 30%;
 }
 
 .header-card {
-
+  
+  font-family: 'Courgette', cursive;
   margin-left: 2rem;
 }
 

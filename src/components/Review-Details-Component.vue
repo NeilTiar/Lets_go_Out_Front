@@ -301,7 +301,7 @@ img {
     
     font-size: 2.6rem;
     font-family: "Exo 2", sans-serif;
-    margin:0;
+    margin-top: 4rem;
     font-weight: 600;
     color: #3aafad;
 }
@@ -319,11 +319,12 @@ img {
     border-radius: 25px;
      object-fit:contain;
      width: 100%;
+     margin-top: 4rem;
 }
 
 .title {
-
-    margin-left: 0;
+     
+    margin: 3rem 0 0 0;
 }
 
 .author {
