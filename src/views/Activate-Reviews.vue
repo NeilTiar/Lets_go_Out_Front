@@ -568,6 +568,7 @@ font-size:1.1rem;
 }
 
 .reviews-grid {
+    
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     /* 2 items per row */
@@ -576,6 +577,7 @@ font-size:1.1rem;
 
 .validation-card-container {
     transition: background-color 25s ease-in-out;
+     box-shadow: inset 0 5px 15px  #2b2531;
 }
 
 .validated-class {

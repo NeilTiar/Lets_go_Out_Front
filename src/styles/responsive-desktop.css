@@ -32,10 +32,29 @@
 
 
   .card-container:hover {
-    background: #afe2e2;
+     background: linear-gradient(-180deg, #f31616, #4fffad, #976ed8, #e6e1ee, #7ffdcf, #8358bb);
+      background-size: 200% 300%; /* Ajuste la taille pour permettre le déplacement */
+      -webkit-animation: AnimationName 25s ease-in-out infinite;
+    -moz-animation: AnimationName 25s ease-in-out infinite;
+    animation: AnimationName 14s ease-in-out infinite;
 
 
   }
+
+  @keyframes AnimationName {
+    0% {
+        background-position: 0% 82%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 50% 82%
+    }
+}
+
 
   .card-container:hover::before {
 

@@ -62,14 +62,12 @@ export default {
 
 
 <style scoped>
-
-
 @media screen and (min-width:600px) {
 
     .access-reviews {
         margin: 12rem 0 0 11rem;
         height: max-content;
-        
+
     }
 
 
@@ -176,13 +174,43 @@ export default {
 
     .home-link {
 
-        font-size: 2.3rem;
+        font-size: 1.7rem;
         color: rgba(4, 250, 147, 0.836);
         font-family: "Exo 2", sans-serif;
         font-weight: 800;
         text-shadow: none;
+        transition: all 0.2s ease-in-out;
 
     }
+
+
+    .home-link:hover {
+        font-size: 2.6rem;
+        background: linear-gradient(90deg,
+                rgb(60, 197, 128), rgb(163, 147, 201),
+                rgb(59, 170, 114), rgb(52, 22, 92),
+                rgb(132, 61, 173), rgb(60, 197, 128));
+        background-size: 200% 200%;
+        /* Permet d'avoir assez de "matériau" pour animer */
+        background-clip: text;
+        -webkit-background-clip: text;
+        /* Nécessaire pour Safari */
+        color: transparent;
+        /* Le texte devient transparent pour révéler le fond en dégradé */
+        animation: gradientMove 2s linear infinite;
+        /* Ajoute l'animation du dégradé */
+    }
+
+    @keyframes gradientMove {
+        0% {
+            background-position: 0% 0%;
+        }
+
+        100% {
+            background-position: 100% 0%;
+        }
+    }
+
 
     header {
 
@@ -200,13 +228,14 @@ export default {
         display: flex;
         gap: 4rem;
         margin-right: 4rem;
-    
-        
+
+
 
     }
 
-    .registration, .connexion {
-        color:rgb(49, 20, 95);
+    .registration,
+    .connexion {
+        color: rgb(49, 20, 95);
     }
 
 
@@ -246,7 +275,7 @@ export default {
 
         margin: 1rem 0 0 4rem;
         font-size: 0.7rem;
-        
+
     }
 
 }
@@ -314,7 +343,7 @@ export default {
     }
 
     .home-description {
-       font-size: clamp(0.8rem,1.5rem,2rem);
+        font-size: clamp(0.8rem, 1.5rem, 2rem);
         margin-top: 4rem;
         width: 80%;
         text-align: center;
@@ -326,11 +355,11 @@ export default {
         display: flex;
         justify-content: center;
         font-family: "Poiret One", sans-serif;
-        height:max-content;
+        height: max-content;
     }
 
     .access-reviews {
-        
+
         margin-top: 1rem;
         display: flex;
         justify-content: center;
