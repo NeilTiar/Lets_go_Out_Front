@@ -44,10 +44,18 @@ img.card-image {
 
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: bold;
-  display: flex;
+ 
   color: rgb(35, 26, 46);
   margin: 0.5rem 0 0 0.7rem;
+  height: 100%;
+  width: 90%;
   
+}
+
+.header-card-info {
+
+  display: flex;
+  justify-content: space-between;
 }
 
 
@@ -118,6 +126,36 @@ img.card-image {
   color: rgb(0, 2, 3);
 }
 
+
+.favorite-icon {
+
+
+  justify-content: flex-start;  
+  margin-top: 1rem;
+  mask: url('../../public/heart.svg') no-repeat center ;
+  height: 1rem;
+  background-image: #ffffff;
+  
+}
+
+.svg-icon {
+
+    fill:#8fc0b956;
+    width: 3rem;
+    height: 3rem;
+    transform: scale(0.9) ;
+    transition:fill 1s, transform 0.2s ; 
+}
+
+.svg-icon:hover {
+
+  fill: rgb(211, 22, 22);
+  -webkit-mask: url('../../public/heart_link.svg') no-repeat center;
+  mask: url('../../public/heart_link.svg') no-repeat center;
+  transform: scale(1.8) ;
+  transition:fill 1s, transform 0.s ease-in; 
+  cursor: pointer;
+}
 
 
 

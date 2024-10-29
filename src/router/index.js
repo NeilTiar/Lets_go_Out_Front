@@ -9,6 +9,7 @@ import CreateReview from '@/views/Create-review.vue';
 import AdminPageVue from '@/views/Admin-page.vue'
 import ActivateReviewsPage from '@/views/Activate-Reviews.vue'
 import store from '@/store/store';
+import FavoritesPage from '@/views/favorites-page.vue';
 
 const routes = [
   
@@ -67,6 +68,15 @@ const routes = [
    meta: { requiresAuth: true, requiresAdmin: true } 
     //métadonnées requiresAuth et requiresAdmin aux routes qui nécessitent une authentification ou des privilèges d'administrateur.
   },
+
+  {
+  
+  path : '/favorites',
+  name :'FavoritesPage',
+  component :FavoritesPage,
+  meta: { requiresAuth : true, requiresAdmin: false }
+
+  }
 
   // Ajoutez d'autres routes ici
 ];

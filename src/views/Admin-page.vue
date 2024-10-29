@@ -165,6 +165,7 @@ animation: bounce 3.5s ease-in-out infinite; ;
 
 
 .admin-container::before {
+  
 display: flex;
 justify-content: center;
 align-items: center;  

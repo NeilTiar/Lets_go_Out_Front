@@ -77,10 +77,15 @@
                     @mouseleave="hideMenu"
                 >
                     <ul>
-                        <li>consulter mes Rviews</li>
-                        <li>mes coup de coeur</li>
-                        <li>besoin d'aide ? Chat Room</li>
-                        <li>Déconnexion</li>
+                        <li class="user-menu-list">consulter mes Reviews</li>
+                        <li
+                            class="user-menu-list"
+                            @click="redirectToFavorites()"
+                        >
+                            mes coup de coeur
+                        </li>
+                        <li class="user-menu-list">besoin d'aide ? Chat Room</li>
+                        <li class="user-menu-list">Déconnexion</li>
                     </ul>
                 </div>
             </div>
@@ -244,6 +249,7 @@ import darkThemeComponent from '@/components/dark-theme-component.vue';
 // eslint-disable-next-line no-unused-vars
 import store from '../store/store';
 import { mapState } from 'vuex';
+import router from '@/router';
 
 export default {
 
@@ -323,6 +329,12 @@ export default {
       console.log('newState from header: ', newState);
 
   } ,
+
+  redirectToFavorites() {
+
+router.push({ path: '/favorites' })
+
+  },
 
 
     // Fonction pour afficher la div
@@ -433,19 +445,49 @@ export default {
 
 <style scoped>
 
+
  .user-menu {
     position: absolute;
+    display: flex;
     top:10rem;
     height:20rem;
     width: 30rem;
-     background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond semi-transparente */
+     background-color: rgba(255, 255, 255, 0.616); /* Couleur de fond semi-transparente */
     backdrop-filter: blur(4.5px); /* Applique un flou */
     color: black;
     border-radius: 25px;
     z-index: 5;
-   
-    
+    justify-content: center;
+    align-items: center;
  }
+
+
+
+.user-menu-list {
+
+list-style: none;
+font-size : 1.7rem;
+font-weight: bolder;
+margin-top: 1.5rem;
+font-family: 'Courgette',cursive;
+color:rgb(124, 85, 160);
+transition: transform 0.3s ease;
+
+
+}
+
+.user-menu-list:hover {
+
+transform: scale(1.5);
+cursor:pointer;
+color: rgba(55, 197, 102, 0.603);
+text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
+}
+
+
+
+
+
 
 .dark-button {
 
@@ -586,11 +628,13 @@ export default {
 
  .header-title {
     margin-top: 3rem;
+    
  }
 
  .header-title,
  .title-description {
     margin-left: 0.8rem;
+    
  }
 
  .submit-form {

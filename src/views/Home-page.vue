@@ -22,30 +22,38 @@
 
 
 
-        <div class="container-home-background-img">
-            <div class="container-img">
-                <img
-                    class="home-background-img"
-                    src="../assets/lgopHomePagePicture.jpg"
-                    alt="par une journée ensoleillée ,des cyclistes circule sur un pont avec la tour efeil en arriere plan"
-                >
-            </div>
+        
+        <div class="container-img">
+            <video
+                preload="auto"
+                class="home-background-img"
+                src="../../public/video/getmyfb.com_1729165383850.mp4"
+                autoplay
+                loop
+                muted
+            >
+                Votre navigateur ne supporte pas la vidéo. Vidéo description : par une journée ensoleillée, des
+                cyclistes circulent sur un pont avec la tour Eiffel en arrière-plan.
+            </video>
+         
             <div class="home-title-description">
                 <article>
                     <p class="home-description">
-                        Explorez la Ville Lumière grace à votre plateforme interactive qui vous propose de préparez vos
+                        Explorez la Ville Lumière grace à votre plateforme interactive qui vous propose de préparez
+                        vos
                         prochaines sorties plus simplement.
                     </p>
                 </article>
             </div>
         </div>
     </div>
+  
 
     <div class="access-reviews">
         <a
             href="main"
             class="home-link reviews-acces"
-        >àcceder aux reviews</a>
+        >acceder aux reviews</a>
     </div>
 </template>
 
@@ -83,7 +91,7 @@ export default {
         font-size: 5.2rem;
         margin-left: 3rem;
         padding-right: 1rem;
-
+        
     }
 
 
@@ -105,7 +113,8 @@ export default {
         background-position: center 8rem;
         background-repeat: no-repeat;
         height: 85vh;
-        z-index: -2
+        z-index: -2;
+        object-fit: cover;
     }
 
     .home_title-description-container {
@@ -295,8 +304,8 @@ export default {
         color: transparent;
         /* Rend le texte transparent */
         display: inline-block;
-        font-size: 2.5rem;
-        margin: 0 auto 0 auto;
+        font-size: 2.8rem;
+        margin: 1rem auto 0 auto;
 
     }
 
@@ -308,29 +317,20 @@ export default {
 
     }
 
-    .container-home-background-img {
 
-        display: flex;
-        flex-direction: column;
-
-    }
 
     .home-background-img {
+        position: relative;
         display: flex;
-        justify-content: flex-end;
-        margin-top: 2rem;
-        width: 95vw;
-        height: 35vh;
-        background-size: cover;
-        border-radius: 15px 0 0 15px;
+        margin:0 0 2rem auto;
+        border-radius : 9px 0 0 9px;
+        width:97vw;
+        height: 40vh;
+        object-fit: cover;
+        
+
     }
 
-    .container-img {
-
-        display: flex;
-        justify-content: flex-end;
-
-    }
 
 
 
@@ -340,11 +340,13 @@ export default {
         display: flex;
         justify-content: space-between;
         font-size: 1.3rem;
+        font-family: 'Courgette', cursive;
+
     }
 
     .home-description {
         font-size: clamp(0.8rem, 1.5rem, 2rem);
-        margin-top: 4rem;
+        margin-top: 2rem;
         width: 80%;
         text-align: center;
 
@@ -358,13 +360,63 @@ export default {
         height: max-content;
     }
 
+   
+
+    .home-link {
+        
+        font-family : 'Exo 2',sans-serif;
+        color : rgb(88, 71, 88);
+        font-weight: bolder;
+       
+   
+    } 
+    
     .access-reviews {
 
-        margin-top: 1rem;
+        margin-top: 2rem;
         display: flex;
         justify-content: center;
         font-size: 1.7rem;
     }
+
+    .reviews-access {
+
+        color:rgb(59, 170, 114);
+    }
+
+
+
+    
+
+    @-webkit-keyframes AnimationName {
+        0% {
+            background-position: 33% 0%
+        }
+
+        50% {
+            background-position: 90% 100%
+        }
+
+        100% {
+            background-position: 30% 0%
+        }
+    }
+
+    @-moz-keyframes AnimationName {
+        0% {
+            background-position: 11% 0%
+        }
+
+        50% {
+            background-position: 90% 100%
+        }
+
+        100% {
+            background-position: 11% 0%
+        }
+    }
+
+
 
 }
 
