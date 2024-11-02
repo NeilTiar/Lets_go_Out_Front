@@ -1,3 +1,9 @@
+
+<!-- 1- gerer le changement de classe concernant l'icon coeur suivant la props : isFavorited
+
+2- il faudrait ajouter la gestion des token ( verification au clique de l'icon coeur)-->
+
+
 <template>
     <HeaderComponent />
     <div class="main-container">
@@ -10,10 +16,12 @@
         <ReviewCard
             v-for="review in reviews "
             :key="review.id"
+            :review-id="review.review_id"
             :theme="review.theme"
             :arrondissement="review.district_num"
             :place-name="review.place_name"
             :image-url="review.secure_url[0]"
+            @favorites-need-reload="displayFavoritesReviews"
         />
     </main>
 
@@ -54,6 +62,8 @@ export default {
     mounted() {
 
         this.displayFavoritesReviews()
+
+    
     },
 
     methods: {
@@ -87,7 +97,9 @@ export default {
                 
 
                 const result = responseData.results;
-                console.log('result ==================>>>>>>>>>>>>: ', result);
+                console.log('result to get reviewId ==================>>>>>>>>>>>>: ', result);
+
+                
 
                  this.reviews = result; // Affecte directement le tableau des résultats
                  this.loading = false; // Marque la fin du chargement

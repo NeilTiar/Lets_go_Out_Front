@@ -34,6 +34,7 @@
             <ReviewCard
                 v-for="review in displayReviews(reviews) "
                 :key="review.id"
+                :review-id="review.review_id"
                 :theme="review.theme"
                 :arrondissement="review.district_num"
                 :place-name="review.place_name"
@@ -122,7 +123,8 @@ export default {
       currentId: null,
       isDarkmodeActive: this.$store.state.isDarkMode,
       loading:false,
-      isUserMenu: false
+      isUserMenu: false,
+      reviewId: Number,
 
     }
   },

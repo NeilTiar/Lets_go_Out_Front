@@ -86,7 +86,7 @@ img.card-image {
 
 .place-name {
 
-  font-size: 1.6rem;
+  font-size: clamp(1rem, 1.3rem, 1.6rem);
   margin-right:0.3rem;
   font-weight: lighter;
   color: #5a5163;
