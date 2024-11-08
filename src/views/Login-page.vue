@@ -195,6 +195,11 @@ export default {
                     //test   console.log('isAdmin from store:', this.$store.state.isAdmin);
 
 
+                    this.$store.commit('setFavorites', responseData.favoriteReviewsId)
+
+                    console.log('FAVORITES REVIEWS FROM STORE : ', this.$store.state.favorites);
+
+
                     // test console.log("AccessToken From Store : ", store.state.accessToken , "refreshToken :" , store.state.refreshToken)
 
                     // test console.log("responsData : ", responseData)

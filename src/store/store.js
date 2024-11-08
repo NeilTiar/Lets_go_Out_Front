@@ -14,7 +14,8 @@ const store = createStore({
         accessToken: null,
         refreshToken: null,
         isAdmin: false,
-      
+        favorites: [],
+
     },
 
     getters: {
@@ -26,6 +27,7 @@ const store = createStore({
 
 
     mutations: {
+
 
         setReviewsPage(state, pageNumber) {
             state.currentReviewsPage = pageNumber;
@@ -82,15 +84,11 @@ const store = createStore({
         },
 
 
-
-
         setPseudo(state, pseudo) {
-           
+
             state.pseudo = pseudo;
 
         },
-
-
 
 
         setIsDarkMode(state, isDarkMode) {
@@ -106,11 +104,43 @@ const store = createStore({
         },
 
 
+        setFavorites(state, favorites) {
+            state.favorites = favorites;
+        },
+
+
+        addFavorites(state, reviewId) {
+            if (!state.favorites.includes(reviewId)) {
+                state.favorites.push(reviewId);
+            }
+        },
+
+
+        removeFavorites(state, reviewId) {
+            state.favorites = state.favorites.filter(id => id !== reviewId);
+        }
+
+
     },
 
 
 
     actions: {
+
+
+        setFavorites({ commit }, favorites) {
+         commit('setFavorites' ,favorites )
+        },
+
+             addFavorites({ commit }, favorites) {
+         commit('addFavorites' ,favorites )
+        },
+
+             removeFavorites({ commit }, favorites) {
+         commit('removeFavorites' ,favorites )
+        },
+
+
 
         updateIsAdmin({ commit }, isAdmin) {
             commit('setIsAdmin', isAdmin)
@@ -140,10 +170,10 @@ const store = createStore({
         },
 
 
-      updatePseudo({ commit }, userName) {
+        updatePseudo({ commit }, userName) {
 
-       commit('setPseudo', userName);
-},
+            commit('setPseudo', userName);
+        },
 
         setIsDarkMode({ commit }, isDarkMode) {
             console.log("toggleDarkMode is called");
@@ -208,8 +238,9 @@ const store = createStore({
                     selectedReview: val.selectedReview,
                     initialReviews: val.initialReviews,
                     refreshToken: val.refreshToken,
-                    accessToken : val.accessToken,
+                    accessToken: val.accessToken,
                     isAdmin: val.isAdmin,
+                    favorites: val.favorites,
                     pseudo: val.pseudo,  // Inclure pseudo
                     lastActivity: val.lastActivity  // Inclure lastActivity
                 };

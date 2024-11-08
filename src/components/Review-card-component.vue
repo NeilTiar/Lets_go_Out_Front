@@ -26,11 +26,12 @@
             >
                 <div class="header-card-info">
                     <h2 class="detail place-name"> {{ placeName }}</h2>
-                    <div class="favorite-icon" />
+
+              
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
-                        class="svg-icon"
+                        :class="isFavorited(reviewId) ? 'favorited-icon' : 'svg-icon'"
                         fill="currentColor"
                         @click.stop="handleFavorite(reviewId)"
                     >
@@ -102,21 +103,35 @@ emits: ['favorites-need-reload'],
   mounted() {
  
     console.log('Mounted ReviewCard - reviewId:', this.reviewId);
+
+    console.log(`favorites from store on mounted ======>>>>> XXXXXXXxxXX ====>>>`,this.$store.state.favorites );
     
   },
 
 
   methods: {
 
+  isFavorited(reviewId) {
+
+    console.log("TEST TEST TEST includes ============> ", this.$store.state.favorites.includes(reviewId));
+
+
+    console.log(`ici on compare le tableau du store ${this.$store.state.favorites} et l'id de la review courante ${reviewId}`);
+
+  return this.$store.state.favorites.includes(reviewId)
+
+  },
+
+
    async handleFavorite() {
 
     
-    console.log('this.reviewId =====================>>>>>>>>>>>>>>: ', this.reviewId);
+    // test ok console.log('this.reviewId =====================>>>>>>>>>>>>>>: ', this.reviewId);
     
-    //event.stopPropagation();
+    event.stopPropagation();
     const accessToken = localStorage.getItem('accessToken');
 
-     await fetch(`http://192.168.1.168:5001/review/handle-favorites`, {
+     const response = await fetch(`http://192.168.1.168:5001/review/handle-favorites`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -126,7 +141,33 @@ emits: ['favorites-need-reload'],
                     body : JSON.stringify({ review_id: this.reviewId}),
                 });
 
-                 this.$emit('favorites-need-reload');
+                 
+
+                 const responseData = await response.json()
+                 console.log('responseData: ', responseData);
+
+            
+
+                 const addReviewId = await responseData.addReviewId
+                 console.log('addReviewId: ', addReviewId);
+                
+
+                 const reviewIdToDelete = await responseData.deleteReviewId
+                 console.log('reviewIdToDelete: ', reviewIdToDelete);
+                
+
+                 if( reviewIdToDelete ) {
+                 
+
+                  this.$store.commit('removeFavorites',reviewIdToDelete )
+
+                 } else if ( addReviewId ){
+                 
+
+                  this.$store.commit('addFavorites',addReviewId )
+
+                  this.$emit('favorites-need-reload');
+                 }
     },
 
 
