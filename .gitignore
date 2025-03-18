@@ -1,5 +1,4 @@
 # Ignore node_modules
 node_modules/
-public/video
 openssl_keys_certif
-
+public/video
