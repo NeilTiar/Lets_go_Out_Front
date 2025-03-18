@@ -112,7 +112,7 @@ export default {
 
     mounted() {
         this.fetchData()
-        console.log('log REVIEWS:', JSON.stringify(this.reviews));
+        //console.log('log REVIEWS:', JSON.stringify(this.reviews));
 
     },
 
@@ -345,9 +345,9 @@ export default {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                console.log('data: ', data);
+               // console.log('data: ', data);
 
-                console.log('DATA TEST FIND PICTURES', data);
+               // console.log('DATA TEST FIND PICTURES', data);
                 this.totalItems = data.length;
 
                 const totalRviewsFromStore = this.$store.state.totalReviews;

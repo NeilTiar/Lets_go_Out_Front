@@ -30,9 +30,9 @@
 
         <main class="cards-container">
             <loadingComponent :loading="loading" />
-            
+
             <ReviewCard
-                v-for="review in displayReviews(reviews) "
+                v-for="review in displayReviews()"
                 :key="review.id"
                 :review-id="review.review_id"
                 :theme="review.theme"
@@ -41,7 +41,7 @@
                 :image-url="review.secure_url"
                 @click="getDetailsReviewOnClick(review)"
             />
-        
+
             <button
                 v-show="showButton"
                 v-if="!isDesktop"
@@ -122,7 +122,7 @@ export default {
       pagination: {},
       currentId: null,
       isDarkmodeActive: this.$store.state.isDarkMode,
-      loading:false,
+      loading: false,
       isUserMenu: false,
       reviewId: Number,
 
@@ -130,6 +130,7 @@ export default {
   },
 
   computed: {
+
 
 
     isDarkMode() {
@@ -145,20 +146,26 @@ export default {
 
   beforeMount() {
 
-     this.fetchData();
+    this.fetchData();
 
     this.updateItemsPerPage();
 
     this.updateTotalItems();
 
-    
+
 
   },
 
 
 
 
-  mounted() {
+  async mounted() {
+
+
+    const token =  localStorage.getItem('accessToken');
+
+      console.log('req.authorization on mounted main page from localStorage: ' + token);
+    
 
     /*test this.logTotalReviews()*/
 
@@ -177,7 +184,7 @@ export default {
       this.hideButton = true;
     }, 4000);
 
-    console.log("TOTAL ITEMS : ", this.totalItems);
+    //test console.log("TOTAL ITEMS : ", this.totalItems);
 
   },
 
@@ -194,21 +201,21 @@ export default {
 
   methods: {
 
-  activateUserMenu() {
-   
-   this.isUserMenu = true;
-    document.body.style.overflowY = 'hidden';
-    console.log("From Activate User menu Func ", this.isUserMenu);
+    activateUserMenu() {
 
-  } , 
+      this.isUserMenu = true;
+      document.body.style.overflowY = 'hidden';
+      console.log("From Activate User menu Func ", this.isUserMenu);
 
-  HandleDisableUserMenu() {
-this.isUserMenu = false;
- document.body.style.overflowY = 'auto';
-  },
+    },
+
+    HandleDisableUserMenu() {
+      this.isUserMenu = false;
+      document.body.style.overflowY = 'auto';
+    },
 
 
- getDynamicItemsPerPage() {
+    getDynamicItemsPerPage() {
       return this.isDesktop ? 18 : 10;
     },
 
@@ -240,12 +247,12 @@ this.isUserMenu = false;
     },
 
 
-    
+
     displayReviews() {
 
-      const stratIndex = (this.currentPage * this.itemsPerPage) - this.itemsPerPage
-      const endIndex = stratIndex + this.itemsPerPage
-      return this.reviews.slice(stratIndex, endIndex)
+      const startIndex = (this.currentPage * this.itemsPerPage) - this.itemsPerPage
+      const endIndex = startIndex + this.itemsPerPage
+      return this.reviews.slice(startIndex, endIndex)
     },
 
     updateTotalItems() {
@@ -263,71 +270,71 @@ this.isUserMenu = false;
 
       try { //perte de temps enorme ( une aprés midi ) a cause de l'url qui indiqué localhost 
 
-        
 
-          const response = await fetch(`http://192.168.1.168:5001/review/home`);
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const data = await response.json();
-          this.reviews = data;
-          this.totalItems = data.length;
 
-          const totalRviewsFromStore = this.$store.state.totalReviews;
+        const response = await fetch(`http://192.168.1.168:5001/review/home`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        this.reviews = data;
+        this.totalItems = data.length;
 
-          this.totalItems = totalRviewsFromStore;
-          
-         //test console.log('totalReviewsFromStore: ', this.totalItems);
+        const totalReviewsFromStore = this.$store.state.totalReviews;
 
-        
-    console.log("reviews from Main Reviews", this.reviews)
+        this.totalItems = totalReviewsFromStore;
 
-          if (this.totalItems == 0) {
+        //test console.log('totalReviewsFromStore: ', this.totalItems);
 
-            this.pagesShown = Math.ceil(this.totalItems / this.itemsPerPage);
-            this.$store.commit('setInitialReviews', data);
 
-            this.$store.commit('setTotalReviews', data.length);
+        // test console.log("reviews from Main Reviews", this.reviews)
+
+        if (this.totalItems == 0) {
+
+          this.pagesShown = Math.ceil(this.totalItems / this.itemsPerPage);
+          this.$store.commit('setInitialReviews', data);
+
+          this.$store.commit('setTotalReviews', data.length);
           //test  console.log('totalReviewsFromStore: ', totalRviewsFromStore);
 
-          }
-
-     
-          /*  détail sur la methode employé pour concerver les memes reviews qu'au premier chargement ,meme si visite autre pages que main-reviews:
-          
-              this.reviews etant le point d'acces pour afficher les annonces, (voir composant ReviewCard plus haut)
-              l'idée est de copier this.reviews dans une propiété du store "initialReviews" ,celle ci alimentée au chargement de la page (l'ors du fetch)
-              si initialeReviews est non vide ,elle vas alimenter this.reviews 
-              pour afficher les meme annonces qu'au premier chargement car le fait de les stocker dans le store permet une immutabilité
-              les annonces s'affichent donc dans le bonne ordre.
-            */
+        }
 
 
-
-          //this.reviews = JSON.parse(JSON.stringify(this.$store.state.initialReviews));
-
-          /*
-          L'utilisation de JSON.parse(JSON.stringify(...)) est une technique courante pour créer une copie profonde (deep copy) d'un objet en JavaScript.
-           Voici comment cela fonctionne :
-          
-          JSON.stringify() convertit l'objet JavaScript en une chaîne JSON.
-          JSON.parse() convertit la chaîne JSON en un nouvel objet JavaScript.
-          Cette approche est utilisée pour contourner le fait que JSON.stringify() ne peut pas sérialiser
-           les objets qui contiennent des références circulaires (lorsque des objets se référencent mutuellement).
-          
-          Dans le contexte de Vuex, cela peut être utile lorsque vous stockez des données complexes dans l'état de Vuex 
-          et que vous devez effectuer des opérations d'écriture sans modifier l'état Vuex d'origine. Par exemple,
-           si vous avez besoin de copier les données initiales de votre magasin Vuex pour les modifier localement dans 
-           un composant sans altérer les données originales du magasin, cette technique est utile.    */
-
+        /*  détail sur la methode employé pour concerver les memes reviews qu'au premier chargement ,meme si visite autre pages que main-reviews:
         
+            this.reviews etant le point d'acces pour afficher les annonces, (voir composant ReviewCard plus haut)
+            l'idée est de copier this.reviews dans une propiété du store "initialReviews" ,celle ci alimentée au chargement de la page (l'ors du fetch)
+            si initialeReviews est non vide ,elle vas alimenter this.reviews 
+            pour afficher les meme annonces qu'au premier chargement car le fait de les stocker dans le store permet une immutabilité
+            les annonces s'affichent donc dans le bonne ordre.
+          */
+
+
+
+        //this.reviews = JSON.parse(JSON.stringify(this.$store.state.initialReviews));
+
+        /*
+        L'utilisation de JSON.parse(JSON.stringify(...)) est une technique courante pour créer une copie profonde (deep copy) d'un objet en JavaScript.
+         Voici comment cela fonctionne :
+        
+        JSON.stringify() convertit l'objet JavaScript en une chaîne JSON.
+        JSON.parse() convertit la chaîne JSON en un nouvel objet JavaScript.
+        Cette approche est utilisée pour contourner le fait que JSON.stringify() ne peut pas sérialiser
+         les objets qui contiennent des références circulaires (lorsque des objets se référencent mutuellement).
+        
+        Dans le contexte de Vuex, cela peut être utile lorsque vous stockez des données complexes dans l'état de Vuex 
+        et que vous devez effectuer des opérations d'écriture sans modifier l'état Vuex d'origine. Par exemple,
+         si vous avez besoin de copier les données initiales de votre magasin Vuex pour les modifier localement dans 
+         un composant sans altérer les données originales du magasin, cette technique est utile.    */
+
+
 
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     },
 
-   
+
 
 
     /* La fonction handlePageChange est automatiquement alimentée par la variable 'newPage' fournie par VueAwesomePagination.
@@ -404,30 +411,31 @@ body {
 }
 
 .mobile-user-menu {
-  
+
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond semi-transparente */
-  backdrop-filter: blur(4.5px); /* Applique un flou */
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Couleur de fond semi-transparente */
+  backdrop-filter: blur(4.5px);
+  /* Applique un flou */
   overflow-y: hidden;
   z-index: 4;
 }
 
 .disableUserMenu {
-  
+
   margin: 0.5rem;
   display: flex;
-  line-height: 1; /* Ajuste la hauteur de ligne pour centrer verticalement */
+  line-height: 1;
+  /* Ajuste la hauteur de ligne pour centrer verticalement */
   color: rgb(189, 183, 189);
   font-size: 3rem;
   font-weight: bolde;
   font-family: Arial, sans-serif;
-   transform-origin: center;
-   border-radius: 25px;
-   justify-content:end
-   
-  
+  transform-origin: center;
+  border-radius: 25px;
+  justify-content: end
 }
 
 .dark-body {
@@ -481,6 +489,4 @@ body {
 .container-main-review {
   background-color: aquamarine;
 }
-
-
 </style>

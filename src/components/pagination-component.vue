@@ -9,7 +9,7 @@
             :reviews="reviews"
             :items-per-page="itemsPerPage"
             :max-page-shown="pagesShown"
-            :on-click="changePage"
+            @update:modelValue="changePage"
         />
     </div>
 </template>
@@ -35,6 +35,7 @@ export default {
 
 
   data() {
+    
     return {
       currentPage:  store.state.currentReviewsPage || 1,
       itemsPerPage: 18,
@@ -66,6 +67,7 @@ export default {
       store.dispatch('resetPageToFirst'); // Réinitialise la page dans le store
       sessionStorage.setItem('sessionActive', true); // Marque la session comme active
     }
+
  
     window.addEventListener('resize', this.updateItemsPerPage),
 
@@ -81,11 +83,9 @@ export default {
 
   methods: {
 
-
-  
-
     changePage(newPage) {
-
+      console.log('newPage ==========>>>>>>>: ', newPage);
+      
       this.$emit('page-changed', newPage);
       
     },

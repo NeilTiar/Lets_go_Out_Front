@@ -18,3 +18,4 @@ app.use(VueAwesomePaginate)
 
 // Montage de l'application
 app.mount('#app');
+

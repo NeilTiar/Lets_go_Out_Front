@@ -71,7 +71,7 @@
                     Bonjour, {{ pseudo }}
                 </div>
                 <div
-                    v-if="isUserMenu"
+                    v-if="isUserMenu && isUserConnected"
                     class="user-menu"
                     @mouseenter="showMenu"
                     @mouseleave="hideMenu"
@@ -85,8 +85,28 @@
                             mes coup de coeur
                         </li>
                         <li class="user-menu-list">besoin d'aide ? Chat Room</li>
-                        <li class="user-menu-list">Déconnexion</li>
+                        <li
+                            class="user-menu-list"
+                            @click="signOut()"
+                        >
+                            Déconnexion
+                        </li>
                     </ul>
+                </div>
+
+                <div
+                    v-if="isUserMenu && !isUserConnected"
+                    class="visitor-menu"
+                    @mouseenter="showMenu"
+                    @mouseleave="hideMenu"
+                >
+                    <a 
+                        v-if="isUserMenu && !isUserConnected"
+                        class="user-menu-list"
+                        href="/login"
+                    >
+                        connectez-vous
+                    </a>
                 </div>
             </div>
             
@@ -268,7 +288,7 @@ export default {
   data() {
 
     return {
-
+     
       isFixed: false,
       isClassPresent: false,
       TitleIfTopMenu: "",
@@ -277,9 +297,10 @@ export default {
       isScrollingUpX: false,
       pseudo: this.$store.state.pseudo,
       isAdmin: this.$store.state.isAdmin,
-      isUserMenu: false
-    
+      isUserMenu: false,
+      isUserConnected : localStorage.getItem('accessToken') !== null,
     };
+
 
   }, // Déclarer explicitement l'événement ici
 
@@ -307,7 +328,7 @@ export default {
    
    // test console.log('isAdmin from header by sore', this.isAdmin);
   
-
+     console.log('isUserConected ', this.isUserConected );
   },
 
 
@@ -322,6 +343,17 @@ export default {
 
 
   methods: {
+
+
+    signOut() {
+
+      console.log('clicked on deconnexion ');
+      this.$store.dispatch('updatePseudo', 'visitor');
+      localStorage.removeItem('accessToken');
+      window.location.reload();
+
+    },  
+
 
   mobileUserMenu () {
     const newState = !this.isUserMenu; // Inverser l'état actuel du menu utilisateur
@@ -460,6 +492,24 @@ router.push({ path: '/favorites' })
     justify-content: center;
     align-items: center;
  }
+
+
+
+ .visitor-menu {
+    position: absolute;
+    display: flex;
+    top:10rem;
+    height:6rem;
+    width: 30rem;
+     background-color: rgba(255, 255, 255, 0.616); /* Couleur de fond semi-transparente */
+    backdrop-filter: blur(4.5px); /* Applique un flou */
+    color: black;
+    border-radius: 25px;
+    z-index: 5;
+    justify-content: center;
+    align-items: center;
+ }
+
 
 
 

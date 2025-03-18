@@ -29,6 +29,7 @@
 
               
                     <svg
+                        v-if="isUserConnected"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         :class="isFavorited(reviewId) ? 'favorited-icon' : 'svg-icon'"
@@ -50,8 +51,10 @@
 </template>
 
 <script>
+import store from '@/store/store';
 
 export default {
+
 
   props: {
 
@@ -60,7 +63,9 @@ export default {
     placeName: String,
     imageUrl: String,
     reviewId: Number,
+   
   },
+
   
 emits: ['favorites-need-reload'],
 
@@ -79,6 +84,10 @@ emits: ['favorites-need-reload'],
       return this.$store.state.isDarkMode;
       
     },
+    
+    isUserConnected() {
+   return store.state.pseudo !== "visitor"
+    },
 
  
 
@@ -94,6 +103,11 @@ emits: ['favorites-need-reload'],
 
   watch : {
 
+    isUserconnected() {
+
+   return store.state.pseudo !== "visitor"
+    },
+
     isDarkMode(newVal) {
      console.log("test ",this.$store.state.isDarkMode, newVal)
     
@@ -101,10 +115,13 @@ emits: ['favorites-need-reload'],
   },
 
   mounted() {
- 
-    console.log('Mounted ReviewCard - reviewId:', this.reviewId);
 
-    console.log(`favorites from store on mounted ======>>>>> XXXXXXXxxXX ====>>>`,this.$store.state.favorites );
+
+    console.log('isConnectedUser boolean :', store.state.pseudo == 'visitor');
+ 
+   //test console.log('Mounted ReviewCard - reviewId:', this.reviewId);
+
+   //test console.log(`favorites from store on mounted ======>>>>> XXXXXXXxxXX ====>>>`,this.$store.state.favorites );
     
   },
 
@@ -113,10 +130,10 @@ emits: ['favorites-need-reload'],
 
   isFavorited(reviewId) {
 
-    console.log("TEST TEST TEST includes ============> ", this.$store.state.favorites.includes(reviewId));
+   // console.log("TEST TEST TEST includes ============> ", this.$store.state.favorites.includes(reviewId));
 
 
-    console.log(`ici on compare le tableau du store ${this.$store.state.favorites} et l'id de la review courante ${reviewId}`);
+   //test console.log(`ici on compare le tableau du store ${this.$store.state.favorites} et l'id de la review courante ${reviewId}`);
 
   return this.$store.state.favorites.includes(reviewId)
 

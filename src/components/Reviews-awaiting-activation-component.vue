@@ -65,6 +65,7 @@
 import buttonComponent from './button-component.vue';
 
 
+
 export default {
   components: { buttonComponent },
   props: {
@@ -131,8 +132,7 @@ export default {
 
        getClassForReview(status) {
 
-        console.log('status FROM GETCLASSFORREVIEW: ', status);
-
+        
 
         return {
             'validated-class': status === 'validated',

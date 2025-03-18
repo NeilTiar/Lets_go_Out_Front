@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development vue-cli-service serve --open --host 192.168.1.168 --port 8079",
     "serve": "vue-cli-service serve --port 8080 --host 192.168.1.168",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev": "NODE_ENV=development vue-cli-service serve --open --host 192.168.1.168 --port 8079"
   },
   "dependencies": {
     "ajv": "^8.12.0",
@@ -27,13 +27,18 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",
+    "@babel/eslint-parser": "^7.24.1",
     "@babel/preset-typescript": "^7.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "~5.0.8",
-    "@vue/eslint-config-typescript": "^14.5.0",
+    "@vue/eslint-config-typescript": "^9.1.0",
     "compression-webpack-plugin": "^11.1.0",
-    "eslint": "^9.22.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-vue": "^9.25.0",
     "image-minimizer-webpack-plugin": "^4.0.0",
     "image-webpack-loader": "^8.1.0",
     "mkdirp": "^3.0.1",
@@ -51,10 +56,11 @@
     },
     "extends": [
       "plugin:vue/vue3-essential",
-      "eslint:recommended"
+      "eslint:recommended",
+      "@vue/typescript"
     ],
     "parserOptions": {
-      "parser": "@babel/eslint-parser"
+      "parser": "@typescript-eslint/parser"
     },
     "rules": {}
   },

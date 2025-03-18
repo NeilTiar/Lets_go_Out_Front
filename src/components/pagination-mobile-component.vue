@@ -55,7 +55,7 @@ export default {
             currentPage: this.$store.state.currentReviewsPage || 1,
             itemsPerPage: 10,
             pagesShown: 0,
-            totalItems:this.$store.state.initialReviews.length ,
+            
         };
     },
            //Error point breakfrom totalItems : this.$store.state.reviews.length,
@@ -63,18 +63,30 @@ export default {
 
         this.getNumPages();
 
-         console.log('reviews from component props: ',this.totalItems );
+        // console.log('reviews from component props: ',this.totalItems );
 
     },
+
+
+
+
+     // eslint-disable-next-line vue/order-in-components
+     computed: {
+ 
+        totalItems() {
+
+         return this.reviews.length; // Nombre total de commentaires
+         },
+        },
 
 
     mounted() {
 
         
 
+        console.log("Nombre de cartes via composant pagination :",this.totalItems ,);
+
     },
-
-
 
 
     methods: {

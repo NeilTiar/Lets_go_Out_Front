@@ -2,8 +2,8 @@
     <body>
         <h1 class="title">Let's go out in paris</h1>
 
-        <div class="container-login">
-            <section class="connection">
+        <div :class="{'container-login': isDesktop, 'container-login-mobile': !isDesktop}">
+            <section :class="{'connection': isDesktop, 'mobile-connection': !isDesktop}">
                 <div class="title-connection">
                     <h2>Se connecter :</h2>
                 </div>
@@ -92,7 +92,7 @@
 <script>
 
 import FooterComponent from '@/components/Footer-component.vue';
-import store from '../store/store'
+import store from '../store/store';
 
 export default {
 
@@ -111,6 +111,7 @@ export default {
             pseudo: "",
             errorMessage: null,
             connectionMessage: null,
+            isDesktop: window.innerWidth > 768,
         };
     },
 
@@ -132,7 +133,6 @@ export default {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-
                         email: this.email,
                         password: this.password,
 
@@ -141,16 +141,17 @@ export default {
                 })
 
 
-                // Vérifier si le header Authorization est présent
-                const accessToken = response.headers.get('Authorization');
 
-                localStorage.setItem('accessToken', accessToken); // Stocker le token dans localStorage
-                
-                console.log('authorizationHeader from  LocalStorage: ',localStorage.getItem('accessToken'));
+        
+
+
+                console.log('AccessToken depuis le LocalStorage : ', localStorage.getItem('accessToken'));
 
                 const responseData = await response.json();
 
-                const refreshToken = responseData.refreshTokenValid;
+                const isRefreshToken = responseData.isValidRefreshToken;
+
+
 
 
                 //mon erreur etait d'essayé d'acceder a l'accesstoken ici , alors qu'il est generer aprés connexion !!!
@@ -160,24 +161,25 @@ export default {
                 // Vérification de la réponse du serveur
                 if (response.ok) {
 
-
+                    console.log('Token stocké dans Vuex :', this.$store.state.accessToken);
                     // console.log('refreshToken :', refreshToken)
 
-                    if (refreshToken) {
+                    if (isRefreshToken) {
                         // Stockez le token dans le local storage
 
-                        store.dispatch('updateAccessToken', accessToken);
+                       
+                // Vérifier si le header Authorization est présent
+                const brutAccessToken = response.headers.get('Authorization');
 
-                        store.dispatch('currentRefreshToken', refreshToken);
-                    }
+                if (brutAccessToken) {
+                    const AccessToken = brutAccessToken.split(' ')[1]; // Prend la partie après 'Bearer'
+                    console.log('Token extrait :', AccessToken);
+                    localStorage.setItem('accessToken', AccessToken); // Stocker le token dans localStorage
+                } else {
+                    console.log('Aucun token trouvé');
+                }
 
-
-
-
-                    if (accessToken) {
-                        const accessTokenFromHeaders = accessToken.split(' ')[1]; // Extraire le token du header
-                        console.log('Token from headers:', accessTokenFromHeaders);
-                        localStorage.setItem('accessToken', accessTokenFromHeaders); // Stocker le token dans localStorage
+                        store.dispatch('currentRefreshToken', isRefreshToken);
                     }
 
 
@@ -197,7 +199,7 @@ export default {
 
                     this.$store.commit('setFavorites', responseData.favoriteReviewsId)
 
-                    console.log('FAVORITES REVIEWS FROM STORE : ', this.$store.state.favorites);
+                    // test  console.log('FAVORITES REVIEWS FROM STORE : ', this.$store.state.favorites);
 
 
                     // test console.log("AccessToken From Store : ", store.state.accessToken , "refreshToken :" , store.state.refreshToken)
@@ -249,6 +251,16 @@ export default {
 </script>
 
 <style scoped>
+
+.mobile-connection {
+
+padding:1rem;
+margin-top: 2rem;
+
+
+}
+
+
 .title {
 
     font-family: "Courgette", cursive;
@@ -299,7 +311,11 @@ export default {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.container-login-mobile {
 
+    display: flex;
+    flex-direction: column-reverse;
+}
 
 
 #username,

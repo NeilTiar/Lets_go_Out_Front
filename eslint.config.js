@@ -12,7 +12,7 @@ module.exports = {
     extends: [
         'eslint:recommended',
         'plugin:vue/vue3-recommended',
-
+        '@vue/typescript'
     ], 
     plugins: [
         "vue"
@@ -32,4 +32,7 @@ module.exports = {
     globals: {
         _: true,
     },
+     "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  }
 }

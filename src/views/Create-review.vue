@@ -7,16 +7,17 @@
     >
         <h2 class="title">Créer votre nouvelle review :</h2>
 
-        <div
-            class="container-create-review-form"
-        >
+        <div class="container-create-review-form">
             <div
                 v-if="isModalVisible"
                 class="modal"
             >
                 <div class="modal-content">
                     <div class="modal-text-container">
-                        <p class="modal-message">Merci pour votre partage . Votre annonce sera verifiée dans les plus bref delai, et sera consultable pendant 90 jours aprés publication </p>
+                        <p class="modal-message">
+                            Merci pour votre partage . Votre annonce sera verifiée dans les plus bref delai, et
+                            sera consultable pendant 90 jours aprés publication
+                        </p>
                     </div>
                     <span
                         class="close"
@@ -25,12 +26,16 @@
                     <p>{{ message }}</p>
                 </div>
             </div>
-            <form 
+            <form
                 class="
         create-form"
                 @submit.prevent
             >
                 <div class="select-theme">
+                    <span
+                        v-if="errors.theme"
+                        class="error"
+                    >{{ errors.theme }}</span>
                     <select
                         v-model="formData.theme"
                         class="theme-select"
@@ -256,14 +261,12 @@
             </div>
         </div>
 
-        <div 
+        <div
             v-for="(picture, index) in formData.temporary.mobilePictures"
             :key="index"
             class="container-img"
         >
-            <div
-                class="picture-container"
-            >
+            <div class="picture-container">
                 <img
                     :key="index"
                     :src="picture"
@@ -272,7 +275,7 @@
                 >
             </div>
         </div>
-  
+
         <div class="container-text">
             <textarea
                 v-model="formData.text_description"
@@ -284,26 +287,44 @@
             />
         </div>
 
-        <div 
+        <div
             v-if="isDesktop"
             class="container-button-submit"
         >
+            <div
+                v-show="!isUserConnected"
+                class="modal-expired-container"
+            >
+                <div class="modal-expired-message">
+                    votre session a éxpirer, pour enregistrer votre review veuillez vous
+                    connecter a nouveau
+                </div>
+            </div>
             <button
                 class="submit-form"
-                @click="submitForm($event), logFormData()"
+                @click="submitForm($event), logFormData(), handleErrorsBeforeSubmit()"
                 @change="onFileLoad()"
             >
                 Enregistrer votre Review
             </button>
         </div>
 
-        <div 
+        <div
             v-if="!isDesktop"
             class="container-mobile-button-submit"
         >
+            <div
+                v-show="!isUserConnected"
+                class="modal-expired-container"
+            >
+                <div class="modal-expired-message">
+                    votre session a éxpirer, pour enregistrer votre review veuillez vous
+                    connecter a nouveau
+                </div>
+            </div>
             <button
                 class="submit-mobile-form"
-                @click="submitMobileForm($event), logFormData()"
+                @click="submitMobileForm($event), logFormData(), handleErrorsBeforeSubmit()"
                 @change="onMobileFileLoad($event)"
             >
                 Enregistrer votre Review
@@ -374,31 +395,72 @@ export default {
       imageURL: "",
       isDarkMode: this.$store.state.isDarkMode,
       isModalVisible: false,
+      isUserConnected: true,
+      errors: {}
     }
   },
 
-  computed: {
 
+watch: {
 
+    isUserConnected(newValue) {
 
-  },
+       window.scrollTo({
+        top: 0, // position verticale 0 (haut de la page)
+        behavior: 'smooth' // pour un défilement fluide
+      });
+
+      if (!newValue) {
+        this.redirectToLogin(); // Appeler la méthode si false
+      }
+    }
+
+},
+
 
 
 
   mounted() {
 
-console.log('accessToken from localTorage', localStorage.getItem('accessToken') );
-
+    console.log('accessToken from localTorage', localStorage.getItem('accessToken'));
 
   },
 
 
   methods: {
 
-  closeModalOnClick() {
 
-    this.isModalVisible = false;
-  },
+    handleErrorsBeforeSubmit() {
+      this.errors = {}; // Reset errors
+
+      // Validate form inputs
+      if (!this.formData.theme) {
+        this.errors.theme = 'theme is required.';
+      }
+
+
+      // If no errors, submit the form
+      if (Object.keys(this.errors).length === 0) {
+        console.log('Form submitted:', this.form);
+      }
+    },
+
+  
+
+     async redirectToLogin() {
+      // Redirection vers la route /about
+  await new Promise(resolve => setTimeout(resolve, 4000));
+
+  // Rediriger après 4 secondes
+  this.$router.push('/login');
+     
+    },
+
+
+    closeModalOnClick() {
+
+      this.isModalVisible = false;
+    },
 
 
     logFormData() {
@@ -423,7 +485,7 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
       this.formData.temporary.fourthPicture = "";
       this.formData.temporary.fifthPicture = "";
       this.formData.temporary.mobilePictures = "";
- 
+
       // Réinitialiser les URLs d'image finales
       this.formData.mainPicture = "";
       this.formData.secondPicture = "";
@@ -440,6 +502,9 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
       this.$refs.fileInputFifth.value = "";
       this.$refs.fileInputMobile = "";
     },
+
+
+  
 
     onTextLoad(event) {
       const file = event.target.files[0];
@@ -495,14 +560,14 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
     },
 
 
-    // work in progress ...............................................................................................
+    // work in progress .......
     onMobileFileLoad(event) {
-      
-    if (!event.target.files || event.target.files.length === 0) {
-      return;
-    }
 
-     const files = event.target.files;
+      if (!event.target.files || event.target.files.length === 0) {
+        return;
+      }
+
+      const files = event.target.files;
 
 
       if (files && files.length) {
@@ -512,8 +577,8 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
         this.formData.temporary.mobilePictures = array;
         this.formData.mobilePictures = files;
       }
-  
-  },
+
+    },
 
 
 
@@ -548,7 +613,7 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
 
     triggerFileInputMobile() {
 
-       this.$refs.fileInputMobile.click();
+      this.$refs.fileInputMobile.click();
       this.mobilePictures = this.$refs.fileInputMobile;
     },
 
@@ -561,7 +626,7 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
 
     async submitForm() {
 
-      console.log("PASSE PAR SUBMIT FORM !!!!!!")
+      //test  console.log("PASSE PAR SUBMIT FORM  !!!!!!")
 
 
       // Construct FormData
@@ -594,13 +659,13 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
         formData.append('fifthPicture', this.$refs.fileInputFifth.files[0]);
       }
 
-     if (this.formData.mobilePictures && this.formData.mobilePictures.length > 0) {
-    this.formData.mobilePictures.forEach((file, index) => {
-      formData.append(`mobilePicture${index}`, file);
-      
-    });  
-     }
-  
+      if (this.formData.mobilePictures && this.formData.mobilePictures.length > 0) {
+        this.formData.mobilePictures.forEach((file, index) => {
+          formData.append(`mobilePicture${index}`, file);
+
+        });
+      }
+
 
       // Visualiser le contenu de formData dans la console
       for (let [key, value] of formData.entries()) {
@@ -617,10 +682,9 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
 
       try {
 
-      const token = localStorage.getItem('accessToken');
+        const token = localStorage.getItem('accessToken');
 
 
-        console.log("XXXXXXXXXXXXXxxxxxxXXXXXXXXXXXXXXXXXXXXXX   token => ", token)
 
         const url = 'http://192.168.1.168:5001/review/create';
 
@@ -634,17 +698,25 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
 
         if (response.ok) {
 
-          const responseData = await response.json();
-          console.log('token from localStorage Front : ', token);
-          this.successMessage = responseData.successMessage;
-          console.log("Success, review created:", this.successMessage, responseData);
-          this.resetForm();
-          this.isModalVisible = true;
+          try {
+            const responseData = await response.json();
+            console.log('token from localStorage Front =======================>>>>>>>>> : ', token);
+            this.successMessage = responseData.successMessage;
+            console.log("Success, review created:", this.successMessage, responseData);
+            this.resetForm();
+            this.isModalVisible = true;
 
-        } else {
+
+          } catch (error) {
+
+            console.log('error with response ok :', error);
+          }
+
+        } else if (!response.ok) {
 
           const errorData = await response.json();
-          console.log("Pictures not shared to API, try again.  !!!!!!!", errorData);
+          console.log("Pictures not shared to API, try again.  !!!!!!!", errorData, 'with response : ', response
+            , 'valid from submitform() response :', this.isUserConnected = errorData.valid);
           // this.errorMessage = errorData.msgError.slice(0, 3) || [];
         }
       } catch (error) {
@@ -655,7 +727,20 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
 
     async submitMobileForm() {
 
-     
+
+      this.errors = {}; // Reset errors
+      console.log('errors passe par submitMobileForm: ', this.errors);
+
+      // Validate form inputs
+      if (!this.formData.theme) {
+        this.errors.theme = 'Theme is required.';
+      }
+
+      // If no errors, submit the form
+      if (Object.keys(this.errors).length === 0) {
+        console.log('Form submitted:', this.form);
+      }
+
 
 
       // Construct FormData
@@ -707,9 +792,6 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
 
         const accessToken = localStorage.getItem('accessToken');
 
-
-        console.log("XXXXXXXXXXXXXxxxxxxXXXXXXXXXXXXXXXXXXXXXX   token => ", accessToken)
-
         const url = 'http://192.168.1.168:5001/review/create';
 
         const response = await fetch(url, {
@@ -720,18 +802,18 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
           body: formData, // No need to set Content-Type header manually
         });
 
-        if (response.ok) {
+        if (response.ok && this.errors.length == 0) {
 
           const responseData = await response.json();
-         // accessToken = response.accessToken;
+          // accessToken = response.accessToken;
           this.successMessage = responseData.successMessage;
           console.log("Success, review created:", this.successMessage, responseData);
           this.resetForm();
 
-        } else {
+        } else if (!response.ok){
 
           const errorData = await response.json();
-          console.log("Pictures not shared to API, try again.  !!!!!!!", errorData);
+          console.log("Pictures not shared to API, try again.  !!!!!!!", errorData ,this.isUserConnected = errorData.valid);
           // this.errorMessage = errorData.msgError.slice(0, 3) || [];
         }
       } catch (error) {
@@ -745,14 +827,40 @@ console.log('accessToken from localTorage', localStorage.getItem('accessToken') 
 
 
 
-
-
 </script>
 
 <style scoped>
 /* config reset */
 
+.modal-expired-container {
 
+  height: 15rem;
+  width: 60%;
+  background-color: rgb(214, 255, 241);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}
+
+
+
+.modal-expired-message {
+  display: flex;
+  position:relative;
+  justify-content: center;
+  align-items: center;
+  color: rgb(106, 62, 126);
+  height: 100%;
+  font-family: 'Courgette', cursive;
+  font-size: 1.7rem;
+  margin: 1rem;
+}
+
+.error {
+  color: red;
+}
 
 body {
 
@@ -1019,20 +1127,20 @@ img {
 }
 
 .modal {
-  
-  position: fixed; 
-  z-index: 10; 
+
+  position: fixed;
+  z-index: 10;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-  display: flex; 
+  display: flex;
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
@@ -1043,16 +1151,17 @@ img {
 }
 
 .modal-message {
- 
+
   font-family: 'Courgette', cursive;
   font-size: 2rem;
 }
 
 .modal-text-container {
 
-   display: flex;
-  justify-content: center; /* Centre horizontalement */
-  align-items: center; 
+  display: flex;
+  justify-content: center;
+  /* Centre horizontalement */
+  align-items: center;
 }
 
 .close {
@@ -1157,41 +1266,41 @@ img {
   }
 
 
-    .uploaded-picture {
+  .uploaded-picture {
 
-    object-fit:cover;
+    object-fit: cover;
     width: 95%;
-    height:10rem;
+    height: 10rem;
     margin: auto
   }
 
   .input-mobile-pictures {
-    display :none;
+    display: none;
   }
 
   .uploaded-container-pictures {
-   
-    height:10rem;
+
+    height: 10rem;
   }
 
   .container-img {
-    
-    height:11rem;
+
+    height: 11rem;
   }
 
   .submit-mobile-form {
     border-radius: 25px;
     margin: 2rem;
-    height:2.5rem;
+    height: 2.5rem;
     background-color: rgb(36, 255, 200);
-    font-family: 'Courgette',cursive;
+    font-family: 'Courgette', cursive;
     border: 0.5px solid purple;
     font-size: 1rem;
   }
 
   .container-mobile-button-submit {
 
-    display:flex;
+    display: flex;
     justify-content: center;
   }
 

@@ -22,7 +22,10 @@ const store = createStore({
 
         isAdmin(state) {
             return state.isAdmin; // Retourne true si l'utilisateur est administrateur
-        }
+        },
+
+        getAccesTokenFromStore: state => state.accessToken
+
     },
 
 
@@ -49,6 +52,10 @@ const store = createStore({
 
         setAccessToken(state, accessToken) {
             state.accessToken = accessToken;
+        },
+
+        clearAccessToken(state) {
+            state.accessToken = null;
         },
 
 
@@ -109,6 +116,7 @@ const store = createStore({
         },
 
 
+
         addFavorites(state, reviewId) {
             if (!state.favorites.includes(reviewId)) {
                 state.favorites.push(reviewId);
@@ -129,17 +137,20 @@ const store = createStore({
 
 
         setFavorites({ commit }, favorites) {
-         commit('setFavorites' ,favorites )
+            commit('setFavorites', favorites)
         },
 
-             addFavorites({ commit }, favorites) {
-         commit('addFavorites' ,favorites )
+        addFavorites({ commit }, favorites) {
+            commit('addFavorites', favorites)
         },
 
-             removeFavorites({ commit }, favorites) {
-         commit('removeFavorites' ,favorites )
+        removeFavorites({ commit }, favorites) {
+            commit('removeFavorites', favorites)
         },
 
+        removeToken({ commit }) {
+            commit('clearAccessToken');
+        },
 
 
         updateIsAdmin({ commit }, isAdmin) {
@@ -227,6 +238,8 @@ const store = createStore({
         },
 
     },
+
+
 
     // permet de conserver letat du state pendant la visite du client ( changement de page , connexion etc ....)
     plugins: [

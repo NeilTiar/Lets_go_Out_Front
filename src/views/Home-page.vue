@@ -53,17 +53,28 @@
         <a
             href="main"
             class="home-link reviews-acces"
+            @click="checkTokensBeforeSubmit"
         >acceder aux reviews</a>
     </div>
 </template>
 
 <script>
+import { checkTokensBeforeSubmit } from '../utils/jwt/CheckTokens.ts';
+
 
 
 export default {
 
     name: 'HomeView', // or 'HomeContainer'
     // other component options
+
+   
+    methods: {
+
+        checkTokensBeforeSubmit
+    }
+
+
 };
 
 </script>
