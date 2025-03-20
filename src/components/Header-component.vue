@@ -344,11 +344,12 @@ export default {
 
   methods: {
 
-   //test pour push 
+    //test pour push
     signOut() {
 
       console.log('clicked on deconnexion ');
       this.$store.dispatch('updatePseudo', 'visitor');
+      this.$store.dispatch('updateIsAdmin', false);
       localStorage.removeItem('accessToken');
       window.location.reload();
 
