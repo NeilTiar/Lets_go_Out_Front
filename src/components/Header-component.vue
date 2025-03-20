@@ -344,7 +344,7 @@ export default {
 
   methods: {
 
-
+   //test pour push 
     signOut() {
 
       console.log('clicked on deconnexion ');
