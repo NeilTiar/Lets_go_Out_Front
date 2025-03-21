@@ -716,7 +716,7 @@ watch: {
 
           const errorData = await response.json();
           console.log("Pictures not shared to API, try again.  !!!!!!!", errorData, 'with response : ', response
-            , 'valid from submitform() response :', this.isUserConnected = errorData.valid);
+          );
           // this.errorMessage = errorData.msgError.slice(0, 3) || [];
         }
       } catch (error) {
