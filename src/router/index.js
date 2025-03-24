@@ -10,6 +10,7 @@ import AdminPageVue from '@/views/Admin-page.vue'
 import ActivateReviewsPage from '@/views/Activate-Reviews.vue'
 import store from '@/store/store';
 import FavoritesPage from '@/views/favorites-page.vue';
+import ChatRoom from '@/views/chatRoom-page.vue';
 
 const routes = [
   
@@ -76,8 +77,15 @@ const routes = [
   component :FavoritesPage,
   meta: { requiresAuth : true, requiresAdmin: false }
 
-  }
+  },
 
+{
+  path: '/chatRoom',
+  name: 'ChatRoom-page',
+  component: ChatRoom,
+  meta: { requiresAuth : true, requiresAdmin: false }
+
+}
   // Ajoutez d'autres routes ici
 ];
 

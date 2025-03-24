@@ -62,7 +62,7 @@ export default {
     mounted() {
 
         this.displayFavoritesReviews()
-
+        console.log('reviews en favoris:', this.reviews)
     
     },
 

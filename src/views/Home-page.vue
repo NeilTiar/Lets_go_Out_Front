@@ -60,22 +60,163 @@
 
 <script>
 import { checkTokensBeforeSubmit } from '../utils/jwt/CheckTokens.ts';
-
+import { onMounted } from 'vue';
 
 
 export default {
 
     name: 'HomeView', // or 'HomeContainer'
     // other component options
-
+    
    
     methods: {
 
-        checkTokensBeforeSubmit
-    }
+        checkTokensBeforeSubmit,
 
+        
+         //submitForm() au demarage de la page pour verifier les tokens et eviter une connection infini.
+         //prevoir de refactoiser cette fonction pour la rendre plus generique et l'utiliser dans d'autres composants.
+         async submitForm() {
+
+
+            //test console.log('Identifiant:', this.email);
+            //test console.log('Mot de passe:', this.password);
+
+            try {
+                // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
+                const response = await fetch(`http://192.168.1.168:5001/user/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: this.email,
+                        password: this.password,
+
+                    }),
+
+                })
+
+
+
+        
+
+
+                console.log('AccessToken depuis le LocalStorage : ', localStorage.getItem('accessToken'));
+
+                const responseData = await response.json();
+
+                const isRefreshToken = responseData.isValidRefreshToken;
+
+
+
+
+                //mon erreur etait d'essayé d'acceder a l'accesstoken ici , alors qu'il est generer aprés connexion !!!
+
+                // cette fonction est a revoir car la manipulation du req.headers.authorization n'est possible qu'aprés connexion 
+
+                // Vérification de la réponse du serveur
+                if (response.ok) {
+
+                    console.log('Token stocké dans Vuex :', this.$store.state.accessToken);
+                    // console.log('refreshToken :', refreshToken)
+
+                    if (isRefreshToken) {
+                        // Stockez le token dans le local storage
+
+                       
+                // Vérifier si le header Authorization est présent
+                const brutAccessToken = response.headers.get('Authorization');
+
+                if (brutAccessToken) {
+                    const AccessToken = brutAccessToken.split(' ')[1]; // Prend la partie après 'Bearer'
+                    console.log('Token extrait :', AccessToken);
+                    localStorage.setItem('accessToken', AccessToken); // Stocker le token dans localStorage
+                } else {
+                    console.log('Aucun token trouvé');
+                }
+
+                        store.dispatch('currentRefreshToken', isRefreshToken);
+                    }
+
+
+
+                    const isAdmin = responseData.isAdmin;
+
+                    /*test isAdmin from response .
+                    console.log('isAdmin: ', isAdmin);*/
+
+                    console.log("response.isValidRefreshToken", responseData);
+
+
+                    await this.$store.commit('setIsAdmin', isAdmin);
+
+                    //test   console.log('isAdmin from store:', this.$store.state.isAdmin);
+
+
+                    this.$store.commit('setFavorites', responseData.favoriteReviewsId)
+
+                    // test  console.log('FAVORITES REVIEWS FROM STORE : ', this.$store.state.favorites);
+
+
+                    // test console.log("AccessToken From Store : ", store.state.accessToken , "refreshToken :" , store.state.refreshToken)
+
+                    // test console.log("responsData : ", responseData)
+
+                    const userName = responseData.pseudo;
+
+                    //test pseudo via local storage : console.log('test pseudo by local :', localStorage.getItem('pseudo'));
+
+                    await store.dispatch('updatePseudo', userName);
+
+
+                    // Vous pouvez également accéder au pseudo mis à jour directement à partir du store
+                    // test console.log('Pseudo mis à jour :', store.state.pseudo);
+
+                    this.connectionMessage = responseData.message[1]
+                    // test console.log('message de success :', responseData.message[1]);
+                    setTimeout(() => {
+                        this.$router.push('/main');
+                    }, 1500);
+                    // Traitement de la réponse si nécessaire
+                    return responseData
+
+
+                } else {
+
+                    if (response.status === 401) {
+
+                        const errorData = await response.json();
+                        this.errorMessage = errorData.message;
+                        console.log('Erreur côté serveur :', this.errorMessage);
+                        // Afficher le message d'erreur pendant 6 secondes
+                        setTimeout(() => {
+                            this.errorMessage = null; // Réinitialiser le message d'erreur après le délai
+                        }, 2000);
+                    }
+                }
+            }
+
+            catch (error) {
+
+                console.log('Erreur lors de la requête :', error);
+            }
+        }
+        
+    },
+
+      setup() {
+        
+    onMounted(() => {
+      console.log('La page est chargée !');
+      submitForm();
+      
+    });
+      }
 
 };
+
+
 
 </script>
 

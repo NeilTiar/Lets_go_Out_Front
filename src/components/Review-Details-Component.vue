@@ -164,7 +164,7 @@ export default {
 
         this.fetchPictures();
 
-        console.log("selectedReviewFromStorage :",)
+        console.log("reviews details on mounted:", reviewObject);
 
 
 
