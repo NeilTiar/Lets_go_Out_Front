@@ -3,7 +3,7 @@
 ![Aperçu de l'application](/public/screenshot_readme/Capture%20d’écran%202025-09-19%20191249.jpg)
 
 ##  Description du projet
-Let's Go Out** est une plateforme **mobile-first** permettant de :  
+Let's Go Out  est une plateforme **mobile-first** permettant de :  
 - Créer et consulter des **cartes interactives**  
 - Découvrir des lieux et organiser des **sorties à Paris**  
 - Partager des recommandations et explorer la ville autrement  
@@ -97,3 +97,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
