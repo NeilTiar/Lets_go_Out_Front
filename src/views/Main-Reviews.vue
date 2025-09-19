@@ -272,7 +272,7 @@ export default {
 
 
 
-        const response = await fetch(`http://192.168.1.168:5001/review/home`);
+        const response = await fetch(`http://localhost:5001/review/home`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

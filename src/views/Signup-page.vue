@@ -284,7 +284,7 @@ export default {
             try {
                 
 
-                const response = await fetch('http://192.168.1.168:5001/user/signup', {
+                const response = await fetch('http://localhost:5001/user/signup', {
 
                     method: 'POST',
                     headers: {

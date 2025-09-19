@@ -9,7 +9,7 @@ export async function checkTokensBeforeSubmit() {
   }
 
   try {
-    const response: Response = await fetch('http://192.168.1.168:5001/isValidTokens', {
+    const response: Response = await fetch('http://localhost:5001/isValidTokens', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export async function refreshAccessToken(): Promise<boolean> {
   }
 
   try {
-    const response: Response = await fetch('http://192.168.1.168:5001/api/refresh-token', {
+    const response: Response = await fetch('http://localhost:5001/api/refresh-token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ refreshToken })

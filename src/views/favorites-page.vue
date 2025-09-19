@@ -77,7 +77,7 @@ export default {
 
                 console.log("passe bien par fonction fetch pour afficher favoris !!!");
 
-                const response = await fetch(`http://192.168.1.168:5001/review/get-favorites-reviews`, {
+                const response = await fetch(`http://localhost:5001/review/get-favorites-reviews`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

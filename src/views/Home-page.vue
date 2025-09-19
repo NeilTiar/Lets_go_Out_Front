@@ -27,7 +27,7 @@
             <video
                 preload="auto"
                 class="home-background-img"
-                src="../../public/video/getmyfb.com_1729165383850.mp4"
+                src="../../public/home_video/Paris_LGOP.mp4"
                 autoplay
                 loop
                 muted
