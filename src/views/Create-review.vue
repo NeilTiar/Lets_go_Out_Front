@@ -686,7 +686,7 @@ watch: {
 
 
 
-        const url = 'http://192.168.1.168:5001/review/create';
+        const url = 'http://localhost:5001/review/create';
 
         const response = await fetch(url, {
           method: 'POST',
@@ -792,7 +792,7 @@ watch: {
 
         const accessToken = localStorage.getItem('accessToken');
 
-        const url = 'http://192.168.1.168:5001/review/create';
+        const url = 'http://localhost:5001/review/create';
 
         const response = await fetch(url, {
           method: 'POST',

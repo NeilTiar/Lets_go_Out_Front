@@ -1,5 +1,7 @@
 #  Let's Go Out — Front-end
 
+![Aperçu de l'application](/public/screenshot_readme/Capture%20d’écran%202025-09-19%20191249.jpg)
+
 ##  Description du projet
 Let's Go Out** est une plateforme **mobile-first** permettant de :  
 - Créer et consulter des **cartes interactives**  

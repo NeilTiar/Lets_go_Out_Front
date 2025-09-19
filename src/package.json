@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 8080 --host 192.168.1.168",
+    "serve": "vue-cli-service serve --port 8080 --host localhost",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "NODE_ENV=development vue-cli-service serve --open --host 192.168.1.168 --port 8079"
+    "dev": "NODE_ENV=development vue-cli-service serve --open --host localhost --port 8079"
   },
   "dependencies": {
     "ajv": "^8.12.0",
