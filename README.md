@@ -1,7 +1,7 @@
-# ?? Let's Go Out — Front-end
+#  Let's Go Out — Front-end
 
-## ?? Description du projet
-**Let's Go Out** est une plateforme **mobile-first** permettant de :  
+##  Description du projet
+Let's Go Out** est une plateforme **mobile-first** permettant de :  
 - Créer et consulter des **cartes interactives**  
 - Découvrir des lieux et organiser des **sorties à Paris**  
 - Partager des recommandations et explorer la ville autrement  
@@ -10,7 +10,7 @@ Le projet est développé dans le cadre de la préparation au **titre RNCP Déve
 
 ---
 
-## ??? Stack technique
+##  Stack technique :
 
 - ![Vue3](https://img.shields.io/badge/Vue.js-3-42b883?logo=vue.js&logoColor=white) — framework front-end principal  
 - ![TypeScript](https://img.shields.io/badge/TypeScript-partiel-3178c6?logo=typescript&logoColor=white) — typage statique léger  
@@ -28,65 +28,69 @@ Le projet est développé dans le cadre de la préparation au **titre RNCP Déve
 
 ---
 
-## ?? Fonctionnalités principales
+##  Fonctionnalités principales :
+
+- [ ] **Création de compte** (permettant de créer une review)  
 - [ ] **Carte interactive** avec affichage des lieux  
-- [ ] **Création d’événements** (sorties, rendez-vous, découvertes)  
-- [ ] **Consultation des sorties** organisées par d’autres utilisateurs  
-- [ ] **Responsive mobile-first** (optimisé smartphones/tablettes)  
-- [ ] **Authentification basique** (connexion/inscription)  
-- [ ] **Checklist RNCP** : intégration des bonnes pratiques (tests, CI, sécurité basique)  
+- [ ] **Consultation des reviews** (générées par d’autres utilisateurs)  
+- [ ] **Section Administrateur** (gestion des publications de reviews)  
+- [ ] **Responsive mobile-first** (optimisé pour smartphones/tablettes)  
+- [ ] **Authentification basique** (connexion / inscription)  
+- [ ] **Modale RGPD** (informer sur la gestion des données collectées)  
+
+
+
 
 ---
 
-## ?? Installation & lancement
+##  Installation & lancement
 
 ### Prérequis
 - Node.js (>= 18)  
 - npm ou pnpm  
 
-### Installation
+### 🚀 Installation
+
 ```bash
 git clone https://github.com/NeilTiar/Lets_go_Out_Front.git
 cd Lets_go_Out_Front
 npm install
-Lancer le projet
-bash
-Copier le code
+```
+
+```bash
+##Lancer en mode développement (hot reload)
 npm run dev
-? Le projet est accessible sur http://localhost:5173
+```
 
-Build production
-bash
-Copier le code
+ Application disponible sur http://localhost:5173
+
+ ---
+
+
+### Compiler et minifier pour la production
+```bash
 npm run build
-Lancer les tests
-bash
-Copier le code
+```
+
+➡️ Génère un dossier /dist prêt à être déployé.
+
+
+---
+
+###  Lancer les tests
+```bash
 npm run test
-??? Organisation du projet (front-end)
-bash
-Copier le code
-src/
- ??? assets/        # images, icônes, styles globaux
- ??? components/    # composants Vue réutilisables
- ??? views/         # pages principales
- ??? store/         # état global (Vuex)
- ??? router/        # routes Vue Router
- ??? services/      # API calls, logique métier
- ??? types/         # définitions TypeScript
- ??? App.vue        # composant racine
-?? Bonnes pratiques appliquées (RNCP)
-Mobile-first (Tailwind CSS)
+```
+ ### -> Exécute les tests unitaires configurés (Vitest / Jest).
+---
 
-Organisation en composants Vue 3 + composition API
+🔍 Linter et corriger automatiquement
+```bash
+npm run lint
+```
 
-Typage progressif avec TypeScript
+ Analyse du code avec ESLint + correction automatique des erreurs de style.
 
-Tests unitaires (Vitest / Jest)
-
-CI/CD (GitHub Actions)
-
-Documentation & template PR/Issues
 
 
 ### Customize configuration
