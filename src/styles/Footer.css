@@ -1,5 +1,4 @@
 .Footer {
-    
   width: 100%;
   bottom: 0;
   display: flex;
@@ -14,17 +13,14 @@
   display: flex;
   justify-content: flex-end;
   height: 2rem;
-
 }
 
-body{
-   
-    height:100vh;
-    background-color: rgb(255, 255, 255);
+body {
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
 }
 
 .button-create {
-
   background-color: rgb(99, 180, 155);
   color: azure;
   font-family: 'Courgette', cursive;
@@ -38,54 +34,47 @@ body{
 }
 
 .mail {
-
   font-family: 'Courgette', cursive;
   display: flex;
   flex-direction: column;
   width: auto;
-  margin-bottom:2rem;
+  margin-bottom: 2rem;
   justify-content: flex-end;
   align-items: flex-end;
   margin-right: 0.5rem;
 }
 
 .email {
-
   text-decoration: none;
 }
 
 .contact {
   display: inline;
   border: 1px solid black;
-
 }
 
 .contact-mail {
-  color:aliceblue;
+  color: aliceblue;
   margin: 0px;
   padding: 0;
 }
 
 .follow-us {
-
   margin-top: 0;
 }
 
 .follow-title {
-
   font-family: 'Courgette', cursive;
   color: white;
 }
 
 .contact-logo {
-
   width: 2rem;
   height: 2rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .contact-follow {
-
   display: inline-flex;
   justify-content: space-between;
 }
@@ -96,30 +85,24 @@ body{
 }
 
 .button-logo {
-  
   border: none;
 }
 
 .left-logo {
-
   border-radius: 17px 0 0 17px;
 }
 
 .right-logo {
-
   border-radius: 0 17px 17px 0;
 }
 
 .mention-legale {
-
   display: flex;
   justify-content: flex-end;
   margin: 0.3rem 0.4rem 0 0;
-  color:aliceblue;
- 
+  color: aliceblue;
 }
 
 a.email {
-  color:rgb(231, 215, 250);
-
+  color: rgb(231, 215, 250);
 }

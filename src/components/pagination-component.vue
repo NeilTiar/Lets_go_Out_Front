@@ -2,28 +2,25 @@
 <!-- Pagination.vue -->
 
 <template>
-    <div class="pagination">
-        <vue-awesome-paginate
-            v-model="currentPage"
-            :total-items="totalItems"
-            :reviews="reviews"
-            :items-per-page="itemsPerPage"
-            :max-page-shown="pagesShown"
-            @update:modelValue="changePage"
-        />
-    </div>
+  <div class="pagination">
+    <vue-awesome-paginate
+      v-model="currentPage"
+      :total-items="totalItems"
+      :reviews="reviews"
+      :items-per-page="itemsPerPage"
+      :max-page-shown="pagesShown"
+      @update:model-value="changePage"
+    />
+  </div>
 </template>
 
 <Home />
 <script>
 import store from '@/store/store';
 
-
-//import store from '../store/store'
+// import store from '../store/store'
 
 export default {
-
-
   props: {
     reviews: {
       type: Array,
@@ -33,21 +30,16 @@ export default {
 
   emits: ['page-changed'],
 
-
   data() {
-    
     return {
-      currentPage:  store.state.currentReviewsPage || 1,
+      currentPage: store.state.currentReviewsPage || 1,
       itemsPerPage: 18,
       pagesShown: 1,
-     //totalItems :  la fonction totalItems() dans computed creer implicitement une props du meme nom  ici. 
+      // totalItems :  la fonction totalItems() dans computed creer implicitement une props du meme nom  ici.
     };
   },
 
-
   computed: {
-
-    
     totalItems() {
       return this.reviews.length; // Nombre total de commentaires
     },
@@ -55,56 +47,36 @@ export default {
     totalPages() {
       return Math.ceil(this.reviews.length / this.itemsPerPage);
     },
-
-
   },
 
-
   mounted() {
-
-      // Vérifiez si c'est une nouvelle session et réinitialisez la page
+    // Vérifiez si c'est une nouvelle session et réinitialisez la page
     if (!sessionStorage.getItem('sessionActive')) {
       store.dispatch('resetPageToFirst'); // Réinitialise la page dans le store
       sessionStorage.setItem('sessionActive', true); // Marque la session comme active
     }
 
- 
-    window.addEventListener('resize', this.updateItemsPerPage),
-
-
-     function beforeUnmount() {
-      window.removeEventListener('resize', this.updateItemsPerPage)
-    }
-
+    (window.addEventListener('resize', this.updateItemsPerPage),
+      function beforeUnmount() {
+        window.removeEventListener('resize', this.updateItemsPerPage);
+      });
   },
 
-
-
-
   methods: {
-
     changePage(newPage) {
       console.log('newPage ==========>>>>>>>: ', newPage);
-      
+
       this.$emit('page-changed', newPage);
-      
     },
-
-
 
     scrollToTop() {
       window.scrollTo({
         top: 0,
         behavior: 'smooth', // Pour un défilement en douceur, si pris en charge
-      })
-
+      });
     },
   },
-
-}
-
-
-
+};
 </script>
 
 <style>
@@ -118,7 +90,6 @@ export default {
 }
 
 .pagination .paginate-buttons {
-
   width: 44px;
   height: 44px;
   cursor: pointer;
@@ -133,7 +104,6 @@ export default {
 
 .pagination .active-page {
   background-color: #5cd4c6;
-  ;
   color: #2c3e50;
 }
 

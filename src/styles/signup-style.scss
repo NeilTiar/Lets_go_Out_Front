@@ -1,131 +1,104 @@
-
 .signup-form {
-
-    display:flex;
-    flex-direction: column;
-    margin: auto;
-    
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
 .captcha-container {
-
   height: max-content;
   display: flex;
-  
+
   margin-top: 2rem;
 }
 
-
 .fields-container {
-    width: 70vw;
-    display: flex;
-    gap:1rem;
+  width: 70vw;
+  display: flex;
+  gap: 1rem;
 }
 
 .signup-input {
-
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 0.9rem;
-    height: 1.4rem;
-    width: 70%;
-    font-size: 1.2rem;
-    border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 0.9rem;
+  height: 1.4rem;
+  width: 70%;
+  font-size: 1.2rem;
+  border: 1px solid black;
 }
 
 .signup-input:focus {
-
-outline: 1px solid rgb(33, 250, 149);
-
-
+  outline: 1px solid rgb(33, 250, 149);
 }
 
 #gender-select {
-
-    width:40%;
-     border-radius: 25px;
-     margin-bottom: 2rem;
+  width: 40%;
+  border-radius: 25px;
+  margin-bottom: 2rem;
 }
 
 .title {
-
-    font-family: "Courgette", cursive;
-    background: linear-gradient(to right, rgb(174, 218, 202), rgb(62, 24, 112));
-    -webkit-background-clip: text;
-    /* Safari and older versions of Chrome, Edge, and Opera */
-    color: transparent;
-    /* Rend le texte transparent */
-    display: inline-block;
-    font-size: 3.2rem;
-    margin-left: 4rem;
+  font-family: 'Courgette', cursive;
+  background: linear-gradient(to right, rgb(174, 218, 202), rgb(62, 24, 112));
+  -webkit-background-clip: text;
+  /* Safari and older versions of Chrome, Edge, and Opera */
+  color: transparent;
+  /* Rend le texte transparent */
+  display: inline-block;
+  font-size: 3.2rem;
+  margin-left: 4rem;
 }
 
 .signup-title {
-   
-   font-family: "Exo 2", sans-serif;
-    font-size: 2.5rem;;
-    font-weight: 300;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 300;
   text-align: center;
   margin-bottom: 0.5rem;
 }
 
 .signup-form-tag {
-    
-    font-family: "Exo 2", sans-serif;
-    margin: 3.5rem 0 3rem 0;
-    font-weight: 300;
-    font-size: 1.7rem;
+  font-family: 'Exo 2', sans-serif;
+  margin: 3.5rem 0 3rem 0;
+  font-weight: 300;
+  font-size: 1.7rem;
 }
 
 .container-desktop-form {
-
-    margin: 3rem auto;
-    display: flex;
-    border: 1px solid black;
-    border-radius: 25px;
-    height: max-content;
+  margin: 3rem auto;
+  display: flex;
+  border: 1px solid black;
+  border-radius: 25px;
+  height: max-content;
 }
 
 .left-part-form {
-    
-    display: flex;
-    width:50%;
-   align-items: flex-start;
-   justify-content: center;
-   
-   
+  display: flex;
+  width: 50%;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .container-left-part-form {
-
-    width: 80%;
-    margin: 0 0 2.5rem 4rem;
-   
+  width: 80%;
+  margin: 0 0 2.5rem 4rem;
 }
 
 .container-right-part-form {
-
   width: 80%;
- 
 }
 
 .right-part-form {
-
-    width: 50%;
-    display: flex;
-    justify-content: flex-start;
-
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .desktop-captcha-container {
-   
-    margin-top: 4rem;;
+  margin-top: 4rem;
 }
 
 .container-mobile-form {
-
-width: 70%;
-margin: auto;
+  width: 70%;
+  margin: auto;
 }
-
-

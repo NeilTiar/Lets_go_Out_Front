@@ -20,25 +20,21 @@ module.exports = {
           implementation: ImageMinimizerPlugin.sharpMinify,
 
           options: {
-
             encodeOptions: {
-
               jpeg: {
                 quality: 90,
-                 mozjpeg: true
+                mozjpeg: true,
               },
               png: {
                 quality: 90,
               },
-                 jpg: {
+              jpg: {
                 quality: 90,
               },
             },
-
           },
         },
       }),
-
     ],
   },
   // Ajouter la clé "chainWebpack" pour définir le drapeau
@@ -50,9 +46,7 @@ module.exports = {
   },
 
   devServer: {
-   
     open: true, // Ouvrir automatiquement le navigateur
     hot: true, // Activer le rechargement à chaud,
   },
-  
 };

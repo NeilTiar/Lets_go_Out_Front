@@ -6,7 +6,13 @@
     "dev": "NODE_ENV=development vue-cli-service serve --open --host localhost --port 8079",
     "serve": "vue-cli-service serve --port 8080 --host localhost",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": "prettier --write"
   },
   "dependencies": {
     "ajv": "^8.12.0",
@@ -28,15 +34,20 @@
   "devDependencies": {
     "@babel/core": "^7.24.4",
     "@babel/preset-typescript": "^7.26.0",
+    "@stylistic/eslint-plugin": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "~5.0.8",
     "@vue/eslint-config-typescript": "^14.5.0",
     "compression-webpack-plugin": "^11.1.0",
-    "eslint": "^9.22.0",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.5.0",
+    "globals": "^16.4.0",
     "image-minimizer-webpack-plugin": "^4.0.0",
     "image-webpack-loader": "^8.1.0",
     "mkdirp": "^3.0.1",
+    "prettier": "^3.6.2",
     "ts-loader": "^9.5.2",
     "typescript": "^5.8.2",
     "vue-loader": "^17.4.2",

@@ -1,212 +1,175 @@
 import { createStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import createPersistedState from "vuex-persistedstate";
+import createPersistedState from 'vuex-persistedstate';
 
 const store = createStore({
+  state: {
+    isDarkMode: false,
+    pseudo: 'visitor', // Initialise le pseudo à une valeur par défaut
+    selectedReview: null,
+    initialReviews: [],
+    currentReviewsPage: 1,
+    accessToken: null,
+    refreshToken: null,
+    isAdmin: false,
+    favorites: [],
+  },
 
-    state: {
-
-        isDarkMode: false,
-        pseudo: 'visitor', // Initialise le pseudo à une valeur par défaut
-        selectedReview: null,
-        initialReviews: [],
-        currentReviewsPage: 1,
-        accessToken: null,
-        refreshToken: null,
-        isAdmin: false,
-        favorites: [],
-
+  getters: {
+    isAdmin(state) {
+      return state.isAdmin; // Retourne true si l'utilisateur est administrateur
     },
 
-    getters: {
+    getAccesTokenFromStore: (state) => state.accessToken,
+  },
 
-        isAdmin(state) {
-            return state.isAdmin; // Retourne true si l'utilisateur est administrateur
-        },
-
-        getAccesTokenFromStore: state => state.accessToken
-
+  mutations: {
+    setReviewsPage(state, pageNumber) {
+      state.currentReviewsPage = pageNumber;
     },
 
-
-    mutations: {
-
-
-        setReviewsPage(state, pageNumber) {
-            state.currentReviewsPage = pageNumber;
-        },
-
-        resetReviewsPage(state) {
-            state.currentReviewsPage = 1; // Réinitialise la page à 1
-        },
-
-        setIsAdmin(state, isAdmin) {
-            state.isAdmin = isAdmin
-        },
-
-
-        setTotalReviews(state, totalReviews) {
-            state.totalReviews = totalReviews;
-        },
-
-
-        setAccessToken(state, accessToken) {
-            state.accessToken = accessToken;
-        },
-
-        clearAccessToken(state) {
-            state.accessToken = null;
-        },
-
-
-        setRefreshToken(state, refreshToken) {
-            state.refreshToken = refreshToken;
-        },
-
-
-        lastReviewsPage(state, pageNumber) {
-
-            state.currentReviewsPage = pageNumber;
-            console.log("currentReviewsPage from vue store : ", this.currentReviewsPage)
-
-        },
-
-
-        setSelectedReview(state, review) {
-            state.selectedReview = review;
-
-            // Stockage des données dans localStorage pour concerver l'ordre des reviews
-            localStorage.setItem('selectedReview', JSON.stringify(review));
-        },
-
-        setReviews(state, reviews) {
-
-            state.reviews = reviews;
-
-
-        },
-
-        setInitialReviews(state, reviews) {
-            state.initialReviews = reviews;
-        },
-
-
-        setPseudo(state, pseudo) {
-
-            state.pseudo = pseudo;
-
-        },
-
-
-        setIsDarkMode(state, isDarkMode) {
-
-            console.log("toggleDarkMode is called");
-            state.isDarkMode = isDarkMode;
-
-        },
-
-        toggleDarkMode(state) {
-            console.log("toggleDarkMode is called");
-            state.isDarkMode = !state.isDarkMode;
-        },
-
-
-        setFavorites(state, favorites) {
-            state.favorites = favorites;
-        },
-
-
-
-        addFavorites(state, reviewId) {
-            if (!state.favorites.includes(reviewId)) {
-                state.favorites.push(reviewId);
-            }
-        },
-
-
-        removeFavorites(state, reviewId) {
-            state.favorites = state.favorites.filter(id => id !== reviewId);
-        }
-
-
+    resetReviewsPage(state) {
+      state.currentReviewsPage = 1; // Réinitialise la page à 1
     },
 
+    setIsAdmin(state, isAdmin) {
+      state.isAdmin = isAdmin;
+    },
 
+    setTotalReviews(state, totalReviews) {
+      state.totalReviews = totalReviews;
+    },
 
-    actions: {
+    setAccessToken(state, accessToken) {
+      state.accessToken = accessToken;
+    },
 
+    clearAccessToken(state) {
+      state.accessToken = null;
+    },
 
-        setFavorites({ commit }, favorites) {
-            commit('setFavorites', favorites)
-        },
+    setRefreshToken(state, refreshToken) {
+      state.refreshToken = refreshToken;
+    },
 
-        addFavorites({ commit }, favorites) {
-            commit('addFavorites', favorites)
-        },
+    lastReviewsPage(state, pageNumber) {
+      state.currentReviewsPage = pageNumber;
+      console.log(
+        'currentReviewsPage from vue store : ',
+        this.currentReviewsPage
+      );
+    },
 
-        removeFavorites({ commit }, favorites) {
-            commit('removeFavorites', favorites)
-        },
+    setSelectedReview(state, review) {
+      state.selectedReview = review;
 
-        removeToken({ commit }) {
-            commit('clearAccessToken');
-        },
+      // Stockage des données dans localStorage pour concerver l'ordre des reviews
+      localStorage.setItem('selectedReview', JSON.stringify(review));
+    },
 
+    setReviews(state, reviews) {
+      state.reviews = reviews;
+    },
 
-        updateIsAdmin({ commit }, isAdmin) {
-            commit('setIsAdmin', isAdmin)
+    setInitialReviews(state, reviews) {
+      state.initialReviews = reviews;
+    },
 
-        },
+    setPseudo(state, pseudo) {
+      state.pseudo = pseudo;
+    },
 
-        updateAccessToken({ commit }, accessToken) {
-            commit('setAccessToken', accessToken);
-        },
+    setIsDarkMode(state, isDarkMode) {
+      console.log('toggleDarkMode is called');
+      state.isDarkMode = isDarkMode;
+    },
 
-        currentRefreshToken({ commit }, refreshToken) {
-            commit('setRefreshToken', refreshToken);
-        },
+    toggleDarkMode(state) {
+      console.log('toggleDarkMode is called');
+      state.isDarkMode = !state.isDarkMode;
+    },
 
+    setFavorites(state, favorites) {
+      state.favorites = favorites;
+    },
 
-        getLastReviewsPage({ commit }, pageNumber) {
-            commit('lastReviewsPage', pageNumber);
-        },
+    addFavorites(state, reviewId) {
+      if (!state.favorites.includes(reviewId)) {
+        state.favorites.push(reviewId);
+      }
+    },
 
-        updateReviewsPage({ commit }, pageNumber) {
+    removeFavorites(state, reviewId) {
+      state.favorites = state.favorites.filter((id) => id !== reviewId);
+    },
+  },
 
-            commit('setReviewsPage', pageNumber)
-        },
+  actions: {
+    setFavorites({ commit }, favorites) {
+      commit('setFavorites', favorites);
+    },
 
-        resetPageToFirst({ commit }) {
-            commit('resetReviewsPage'); // Réinitialise la page via l'action
-        },
+    addFavorites({ commit }, favorites) {
+      commit('addFavorites', favorites);
+    },
 
+    removeFavorites({ commit }, favorites) {
+      commit('removeFavorites', favorites);
+    },
 
-        updatePseudo({ commit }, userName) {
+    removeToken({ commit }) {
+      commit('clearAccessToken');
+    },
 
-            commit('setPseudo', userName);
-        },
+    updateIsAdmin({ commit }, isAdmin) {
+      commit('setIsAdmin', isAdmin);
+    },
 
-        setIsDarkMode({ commit }, isDarkMode) {
-            console.log("toggleDarkMode is called");
-            commit('setIsDarkMode', isDarkMode);
-        },
+    updateAccessToken({ commit }, accessToken) {
+      commit('setAccessToken', accessToken);
+    },
 
+    currentRefreshToken({ commit }, refreshToken) {
+      commit('setRefreshToken', refreshToken);
+    },
 
-        isDarkmodeActive() {
+    getLastReviewsPage({ commit }, pageNumber) {
+      commit('lastReviewsPage', pageNumber);
+    },
 
-            /* const cardInfo = document.getElementsByClassName('card-info');
-             const cardContainer = document.getElementsByClassName('card-container');*/
+    updateReviewsPage({ commit }, pageNumber) {
+      commit('setReviewsPage', pageNumber);
+    },
 
-            this.isDarkMode = !this.isDarkMode
-            this.darkTheme = !this.darkTheme
-            document.body.style.transition = 'background-color 0.8s ease';
+    resetPageToFirst({ commit }) {
+      commit('resetReviewsPage'); // Réinitialise la page via l'action
+    },
 
-            // Changez la couleur du fond du body
-            document.body.style.backgroundColor = this.isDarkMode ? '#0f0311' : 'white';
+    updatePseudo({ commit }, userName) {
+      commit('setPseudo', userName);
+    },
 
-            //exemple pour Changez la couleur de fond de la card-container avec javascript ,mais finalement géré avec les classes conditionnelles.
+    setIsDarkMode({ commit }, isDarkMode) {
+      console.log('toggleDarkMode is called');
+      commit('setIsDarkMode', isDarkMode);
+    },
 
-            /*   if ((cardInfo.length > 0 && cardContainer)) {
+    isDarkmodeActive() {
+      /* const cardInfo = document.getElementsByClassName('card-info');
+             const cardContainer = document.getElementsByClassName('card-container'); */
+
+      this.isDarkMode = !this.isDarkMode;
+      this.darkTheme = !this.darkTheme;
+      document.body.style.transition = 'background-color 0.8s ease';
+
+      // Changez la couleur du fond du body
+      document.body.style.backgroundColor = this.isDarkMode
+        ? '#0f0311'
+        : 'white';
+
+      // exemple pour Changez la couleur de fond de la card-container avec javascript ,mais finalement géré avec les classes conditionnelles.
+
+      /*   if ((cardInfo.length > 0 && cardContainer)) {
    
                    Array.from(cardInfo).map(card => {
                        card.style.color = this.isDarkMode ? '' : '';
@@ -221,47 +184,49 @@ const store = createStore({
    
                } */
 
-            const route = useRoute();
+      const route = useRoute();
 
-            if (route !== '/review-details' && route !== undefined && route !== null) {
-                document.querySelector('.logo-camera').style.filter = !this.isDarkMode ? 'invert(100%)' : '';
-                document.querySelector('.msg-user-logo').style.filter = !this.isDarkMode ? 'invert(100%)' : '';
-                console.log(document.querySelector('.logo-camera'))
-            }
+      if (
+        route !== '/review-details' &&
+        route !== undefined &&
+        route !== null
+      ) {
+        document.querySelector('.logo-camera').style.filter = !this.isDarkMode
+          ? 'invert(100%)'
+          : '';
+        document.querySelector('.msg-user-logo').style.filter = !this.isDarkMode
+          ? 'invert(100%)'
+          : '';
+        console.log(document.querySelector('.logo-camera'));
+      }
 
-            // Assurez-vous de réinitialiser la transition après la transition terminée pour éviter de l'appliquer à d'autres changements non souhaités
-            setTimeout(() => {
-                document.body.style.transition = '';
-            }, 500);
-            console.log("from func :", this.isDarkMode)
-
-        },
-
+      // Assurez-vous de réinitialiser la transition après la transition terminée pour éviter de l'appliquer à d'autres changements non souhaités
+      setTimeout(() => {
+        document.body.style.transition = '';
+      }, 500);
+      console.log('from func :', this.isDarkMode);
     },
+  },
 
-
-
-    // permet de conserver letat du state pendant la visite du client ( changement de page , connexion etc ....)
-    plugins: [
-        createPersistedState({
-            reducer(val) {
-                // Conservez toutes les propriétés sauf `currentReviewsPage` et `accessToken`
-                return {
-                    isDarkMode: val.isDarkMode,
-                    selectedReview: val.selectedReview,
-                    initialReviews: val.initialReviews,
-                    refreshToken: val.refreshToken,
-                    accessToken: val.accessToken,
-                    isAdmin: val.isAdmin,
-                    favorites: val.favorites,
-                    pseudo: val.pseudo,  // Inclure pseudo
-                    lastActivity: val.lastActivity  // Inclure lastActivity
-                };
-            }
-        })
-    ],
+  // permet de conserver letat du state pendant la visite du client ( changement de page , connexion etc ....)
+  plugins: [
+    createPersistedState({
+      reducer(val) {
+        // Conservez toutes les propriétés sauf `currentReviewsPage` et `accessToken`
+        return {
+          isDarkMode: val.isDarkMode,
+          selectedReview: val.selectedReview,
+          initialReviews: val.initialReviews,
+          refreshToken: val.refreshToken,
+          accessToken: val.accessToken,
+          isAdmin: val.isAdmin,
+          favorites: val.favorites,
+          pseudo: val.pseudo, // Inclure pseudo
+          lastActivity: val.lastActivity, // Inclure lastActivity
+        };
+      },
+    }),
+  ],
 });
-
-
 
 export default store;

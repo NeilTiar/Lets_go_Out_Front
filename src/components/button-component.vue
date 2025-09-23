@@ -1,7 +1,7 @@
 <template>
-    <div>
-        {{ buttonName }}
-    </div> 
+  <div>
+    {{ buttonName }}
+  </div>
 </template>
 
 <script>
@@ -16,21 +16,12 @@ export default defineComponent({
     },
   },
 
-  methods: {
-
-    
-
-
-}
+  methods: {},
 });
-
-
 </script>
 
 <style scoped>
-
-.button-validation{
-
+.button-validation {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +50,6 @@ export default defineComponent({
 }
 
 .button-delete {
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,13 +71,9 @@ export default defineComponent({
   /* Empêche la sélection du texte */
 }
 
-
 .button-delete:active {
   background-color: rgb(238, 50, 43);
   box-shadow: 0.2rem 5px #94220e;
   transform: translateY(5px);
 }
-
-
-
 </style>

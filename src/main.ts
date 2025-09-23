@@ -10,12 +10,7 @@ import store from './store/store';
 const app = createApp(App);
 
 // Utilisation des plugins
-app.use(VueAwesomePaginate)
-.use(router)
-.use(store);
-
-
+app.use(VueAwesomePaginate).use(router).use(store);
 
 // Montage de l'application
 app.mount('#app');
-

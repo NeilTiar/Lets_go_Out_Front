@@ -1,5 +1,4 @@
 export const fetchDataMixin = {
-  
   methods: {
     async fetchData() {
       try {

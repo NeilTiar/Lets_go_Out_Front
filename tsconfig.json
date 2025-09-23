@@ -19,7 +19,7 @@
       "@/*": ["src/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-    "outDir": "./dist"  // Ajoute un dossier de sortie distinct pour les fichiers compilés
+    "outDir": "./dist" // Ajoute un dossier de sortie distinct pour les fichiers compilés
   },
   "include": [
     "src/**/*.ts",
@@ -28,8 +28,6 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ],
+  "exclude": ["node_modules"],
   "allowJs": true
 }

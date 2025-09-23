@@ -9,39 +9,28 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-
 }
-
-
 
 /*/////////////////////////////////////  Desktop CSS - above 1281px  ////////////////////////////////////*/
 
 @media screen and (min-width: 1367px) {
-
-
   /* ////////////////////////////////////// global-Header ////////////////////////////////////////////////////*/
 
   .user-connexion {
-
     display: flex;
     justify-content: flex-end;
     position: absolute;
     right: 200px;
-
   }
 
-
   .msg-user-logo {
-
     margin: auto 0 auto 0;
-    font-family: "Courgette";
+    font-family: 'Courgette';
     color: #5f315b;
     text-shadow: 7px 7px 3px rgba(015, 0, 0, 0.3);
   }
 
-
   .top-main {
-
     z-index: 1;
     display: inline-flex;
     justify-content: space-between;
@@ -50,17 +39,14 @@ body {
     position: relative;
     height: 2.5rem;
     width: 100%;
-
   }
 
-
   .button-admin-link {
-
     display: block;
     border: none;
     position: relative;
     background-color: rgb(110, 172, 138);
-    font-family: "Kalam", sans-serif;
+    font-family: 'Kalam', sans-serif;
     border-radius: 0 0 15px 15px;
     color: #ffffff;
     height: 2rem;
@@ -69,15 +55,13 @@ body {
     text-shadow: 2px 2px 9px rgba(015, 0, 0, 0.3);
     box-shadow: 2px 2px 12px rgb(59, 54, 70);
     left: 1rem;
-
   }
 
   .create-review-button-desktop {
-
     display: block;
     position: absolute;
     background-color: rgb(137, 120, 148);
-    font-family: "Kalam", sans-serif;
+    font-family: 'Kalam', sans-serif;
     border-radius: 0 0 15px 15px;
     color: #ffffff;
     height: 2rem;
@@ -89,15 +73,11 @@ body {
     top: 10.5rem;
   }
 
-
-
   .header-container {
-    
     position: absolute;
     width: 100%;
     display: table;
     flex-direction: column;
-
   }
 
   .header {
@@ -111,12 +91,9 @@ body {
     background: url('../assets/paris.jpg') center center no-repeat;
     background-size: cover;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-
   }
 
-
   .header-title {
-
     display: flex;
     font-family: 'Courgette';
     font-style: italic;
@@ -125,63 +102,53 @@ body {
     position: relative;
     margin: 0;
     padding: 0;
-    text-shadow: 1px 1px white, -1px -1px #444
+    text-shadow:
+      1px 1px white,
+      -1px -1px #444;
   }
 
   .header-title-admin {
-
     color: rgb(30, 165, 124);
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     font-size: 3.5rem;
     margin: 0;
     text-shadow: 7px 7px 3px rgba(015, 0, 0, 0.3);
   }
 
   .top-admin-banner {
-
     display: flex;
     height: 2rem;
-
   }
 
   .admin-indication {
     color: #706679;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     margin-left: 6rem;
-
   }
 
-
   .bienvenu {
-
     font-size: 1.5rem;
     position: relative;
     left: 45%;
   }
 
-
   .title-description {
-
     font-size: 1.2rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     color: white;
     text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
     margin: 0;
     padding: 0;
   }
 
-
   .theme-banner {
     display: inline-flex;
     align-items: center;
     height: 2rem;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-
   }
 
-
   ul {
-
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -191,7 +158,6 @@ body {
     margin: 0 0 0 1rem;
     animation: fillText 2s ease-out forwards;
     opacity: 1;
-
   }
 
   @keyframes textShine {
@@ -204,77 +170,56 @@ body {
     }
   }
 
-
   a {
-
     color: rgb(137, 120, 148);
     text-decoration: none;
     text-shadow: 0 0 0.15rem grey;
-
   }
 
-
   .logo {
-
     width: 8rem;
     height: 8rem;
   }
 
-
   .container-logo-title {
-
-   
     margin-left: 0.8rem;
     align-items: center;
-    
-
   }
 
-
   img.user-logo {
-
     display: block;
     height: 2rem;
     text-align: center;
   }
 
-
   .mobile-top-main {
-
     display: none;
   }
-
 
   .create-review-button-mobile {
-
     display: none;
   }
-
 
   .user-connexion-mobile {
     display: none;
   }
 
   .dark-theme-container {
-
     display: inline-flex;
     align-items: center;
     position: absolute;
     right: 40px;
     z-index: -1;
-
   }
 
   .dark-theme {
-
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     color: white;
     background-color: #8a7788;
     border-radius: 15px 0 0 15px;
   }
 
   .moon-button {
-
     z-index: 1;
     border: 3px solid rgb(255, 255, 255);
     width: 2rem;
@@ -284,38 +229,28 @@ body {
     right: 5px;
     background: #8a7788 url(../assets/moon.png);
     background-size: cover;
-
   }
 
-
   .home-title {
-
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     margin: 0.5rem 0 1.5rem 0;
   }
 
   /*////////////////////////////////////  Main-review-desktop  ////////////////////////////////////////*/
 
   .description {
-
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
   }
 
-
   .presentation-title {
-
     font-size: 4rem;
-
   }
 
   .description-texte {
-
     font-size: 1.5rem;
   }
 
-
   .cards-container {
-
     display: grid;
     justify-items: center;
     margin: 4rem 0 3rem 0;
@@ -323,19 +258,15 @@ body {
     grid-template-columns: repeat(2, 1fr);
     margin: 6rem 2rem 4rem 2rem;
     grid-gap: 1rem;
-   
   }
 
   .theme-container {
-
     display: inline-flex;
     position: relative;
     width: auto;
-
   }
 
   .review-theme {
-
     z-index: 1;
     position: absolute;
     writing-mode: vertical-rl;
@@ -345,61 +276,44 @@ body {
     left: -2.1rem;
   }
 
-
-
   .admin-activation-card-container {
-
     border-radius: 15px;
     height: 30rem;
     width: 100%;
     background-color: #cbc3d1;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-
-
   }
 
-
   .card-review {
-
-
     position: relative;
     display: flex;
     flex-direction: column;
     background-color: #cbc3d1;
     color: white;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     border-radius: 12px;
     box-shadow: 2px 2px 11px rgb(25, 10, 54);
     margin-bottom: 5rem;
-
   }
 
   .card-image {
-
-
     object-fit: cover;
     position: relative;
     height: 12rem;
     width: 100%;
     border-radius: 12px 12px 0 0;
-
   }
 
   .card-info {
-
     display: flex;
     flex-direction: column;
     margin-left: 0.5rem;
-
   }
 
   .detail {
-
     color: #56485e;
     margin: 0.5rem 0 0.5rem 0;
   }
-
-
 
   .left-link {
     position: relative;
@@ -414,22 +328,17 @@ body {
   }
 
   .left-arrow {
-
     margin-left: 0.5rem;
     transform: rotate(180deg);
     width: 2rem;
   }
 
-
-
   .right-arrow {
-
     margin-right: 0.5rem;
     width: 2rem;
   }
 
   .arrows-pictures {
-
     opacity: 0.73;
     width: 100%;
     display: flex;
@@ -440,7 +349,6 @@ body {
   }
 
   .circular-marker-container {
-
     position: absolute;
 
     display: flex;
@@ -450,12 +358,9 @@ body {
     left: 30%;
     bottom: 1rem;
     opacity: 0.8;
-
   }
 
-
   .circular {
-
     width: 0.5rem;
     height: 0.5rem;
     background-color: #ffffff;
@@ -463,20 +368,16 @@ body {
     margin: 0.5rem;
   }
 
-
   .circular-marker {
-
     position: relative;
     bottom: 0.2rem;
     width: 0.7rem;
     height: 0.7rem;
     border: rgb(255, 255, 255) 2px solid;
     background-color: rgb(170, 76, 76);
-
   }
 
   /*//////////////////////////  home-page  ////////////////////////////////////////////////////////*/
-
 
   .home_title-description-container {
     display: flex;
@@ -485,22 +386,16 @@ body {
     align-items: center;
     background-image: url(../assets/lgopHomePagePicture.jpg);
     background-size: cover;
-    height: 100%
+    height: 100%;
   }
 
-
-
   .home_title-description {
-
-
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     height: min-content;
     width: 60%;
     color: rgb(255, 255, 255);
     font-weight: bold;
     text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
-
-
   }
 
   .home-title {
@@ -518,7 +413,6 @@ body {
     top: 1.4rem;
     display: flex;
     justify-content: space-between;
-
   }
 
   .home-link {
@@ -526,13 +420,13 @@ body {
     color: white;
     text-shadow: 1px 0.5px 4px rgb(25, 10, 54);
     font-weight: 600;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto
+    font-family:
+      -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto;
   }
 
   /* /////////////////////////////  "main"-- admin-activation & modification page /////////////////////////////////*/
 
   .admin-cards-container {
-
     flex: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -542,28 +436,20 @@ body {
     width: 95%;
   }
 
-
   .card-container {
-
     border-radius: 15px;
     height: 25rem;
     width: 25rem;
     margin: 1.5rem 0 0 0;
     border: 1px #5f315b solid;
-    
-
   }
-
 
   .descriptions-with-buttons {
     display: flex;
     justify-content: space-between;
   }
 
-
   .container-admin-card-buttons {
-
-
     display: flex;
     flex-direction: column;
     left: 37rem;
@@ -571,24 +457,19 @@ body {
     height: 10rem;
     gap: 1rem;
     margin: 2.5rem 0.5rem 0 0;
-
-
   }
 
-
   .container-admin-card-buttons-modify {
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 20%;
 
-    gap: 1rem
+    gap: 1rem;
   }
 
   .admin-card-pictures {
-
     object-fit: cover;
     width: 100%;
     height: 15rem;
@@ -597,16 +478,10 @@ body {
   }
 
   .top-admin-card {
-
     width: 100%;
-
   }
 
-
-
-
   .admin-card-button {
-
     background-color: #9c7a99;
     color: #ffffff;
     border: none;
@@ -619,19 +494,16 @@ body {
   }
 
   .card-admin-descriptions {
-
     z-index: 1;
     position: relative;
     margin-top: 5rem;
-    ;
     left: 1rem;
     border-radius: 15px;
     height: 9rem;
     width: 15rem;
-    font-family: "courgette", cursive;
+    font-family: 'courgette', cursive;
     color: rgb(252, 249, 255);
     text-shadow: 2px 2px 2px rgba(015, 0, 0, 0.5);
-
   }
 
   .admin-card-theme {
@@ -640,14 +512,13 @@ body {
   }
 
   .access-modified-reviews-activation {
-
     position: relative;
     left: 2rem;
     top: 0.5rem;
     background-color: #9c7a99;
     border: none;
     border-radius: 15px;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     color: white;
     height: 2rem;
     width: 15rem;
@@ -657,16 +528,12 @@ body {
   }
 
   .agree {
-
     height: 2rem;
     font-size: 1rem;
     font-weight: bolder;
-
   }
 
   .accept-modify {
-
-
     height: 6rem;
     font-size: 1rem;
     font-weight: bolder;
@@ -674,33 +541,23 @@ body {
   }
 
   .admin-connexion {
-
     display: inline-flex;
     position: relative;
     right: 6rem;
     top: 2rem;
     align-items: center;
-
   }
 
   .msg-admin-logo {
-
-
-
     margin: 0;
-    font-family: "Courgette";
+    font-family: 'Courgette';
     color: white;
     text-shadow: 7px 7px 3px rgba(015, 0, 0, 0.3);
   }
 
-
-
-
   /* ///////////////////////////// Desktop-login-page ////////////////////////////////////////*/
 
-
   main.main-container {
-
     position: relative;
     display: flex;
     margin: 0;
@@ -712,13 +569,9 @@ body {
     width: 100%;
     margin: auto;
     flex: 1;
-
   }
 
-
-
   .login-card {
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -732,17 +585,13 @@ body {
 
   .left-side-card,
   .right-side-card {
-
     display: flex;
     justify-content: center;
     flex-direction: column;
     border-radius: 4%;
-
-
   }
 
   .left-side-card {
-
     position: relative;
     justify-content: center;
     align-items: center;
@@ -752,25 +601,19 @@ body {
   }
 
   .question {
-
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     margin: 0;
   }
 
   .right-side-card {
-
     border-left: 1px solid rgb(190, 185, 194);
     padding-left: 2rem;
-
-
   }
 
-
   .login-input {
-
     text-align: center;
     display: flex;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     font-size: clamp(0.8rem, 1.5rem, 1.4rem);
     width: 50%;
     border-radius: 15px;
@@ -780,44 +623,34 @@ body {
   }
 
   .login-input:focus {
-
     outline-color: #3a063b;
     background-color: #e4dfe7;
-
   }
 
-
-
   .login-validation {
-
     max-height: 30%;
     width: max-content;
     border-radius: 15px;
     font-size: 1.7rem;
     border: none;
     background-color: #af94ad;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     color: white;
     text-shadow: 2px 2px 2px rgba(015, 0, 0, 0.5);
     box-shadow: 2px 6px 15px rgb(0 0 0 / 45%);
-
   }
 
-
   .lost-password {
-
     font-size: 1.7rem;
     margin-bottom: 4rem;
     text-shadow: 2px 9px 7px rgba(015, 0, 0, 0.5);
-
   }
 
   .title-connexion {
-
     position: relative;
     right: 5rem;
     bottom: 2rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     font-size: clamp(0.8rem, 1.5rem, 2rem);
     color: #5f315b;
     text-shadow: 5px 7px 9px rgba(015, 0, 0, 0.5);
@@ -826,22 +659,18 @@ body {
   }
 
   .signup-right-side {
-
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     font-size: 2.4rem;
     color: #5f315b;
     text-shadow: 2px 3px 7px rgba(015, 0, 0, 0.5);
     padding-left: 2rem;
-
   }
 
   .signup-description-texte {
-
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-style: italic;
     font-size: 1.3rem;
     margin-bottom: 13rem;
-
   }
 
   .recaptcha-protection {
@@ -853,19 +682,14 @@ body {
   }
 
   .login-main-container {
-
     display: flex;
     flex-direction: column;
     flex: 1;
-
-
   }
 
   .signin-link {
-
     margin-left: 2rem;
     font-size: 0.9rem;
-    ;
   }
 
   #gender-select {
@@ -878,29 +702,26 @@ body {
   }
 
   #gender-tag {
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     color: #5f315b;
     margin-bottom: 1.2rem;
   }
 
   select {
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
   }
-
-
 
   /* /////////////////////////// desktop-signup-page /////////////////////////////////////////////*/
 
   .input-container {
     gap: 1rem;
     display: flex;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
   }
 
   .signup-input {
-
     display: flex;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     font-size: 1.2rem;
     width: 50%;
     border-radius: 15px;
@@ -911,50 +732,38 @@ body {
   }
 
   .signup-input:focus {
-
     outline-color: #96d6ab;
-
   }
-
 
   .signup-form-tag {
     padding-bottom: 1.5rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     text-shadow: 4px 9px 12px rgba(5, 65, 37, 0.5);
     color: #5f315b;
 
     text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7);
-
   }
 
   .password-confirmation-input {
     margin-bottom: 2.5rem;
-
   }
 
-
-
-
   .signup-validation {
-
-
-
     width: 40%;
     border-radius: 15px;
     font-size: 1.2rem;
     border: none;
     background-color: #af94ad;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     color: white;
     text-shadow: 2px 2px 2px rgba(015, 0, 0, 0.5);
     box-shadow: 2px 6px 15px rgb(0 0 0 / 45%);
     margin: 14rem 0 1rem 0;
-
   }
 
   .title-signup {
     color: #5f315b;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     width: 100lvw;
     display: flex;
     justify-content: flex-start;
@@ -963,28 +772,24 @@ body {
 
   .signup-recaptcha-protection {
     text-align: end;
-
   }
-
 
   /*///////////////////////////// desktop message-404 ////////////////////////////////////////////*/
 
   .message-404 {
-
     margin: 0 auto 0 auto;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     text-align: center;
-
   }
 
   .container-404 {
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
-    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+    text-shadow:
+      2px 7px 5px rgba(0, 0, 0, 0.3),
       0px 4px 10px rgba(125, 83, 179, 0.644);
     font-size: clamp(1rem, 3rem, 5rem);
   }
@@ -998,23 +803,31 @@ body {
   }
 
   .red-heart {
-
     height: 1.7rem;
     margin-bottom: 0.4rem;
-
   }
 
   .heart-tag {
-
     text-align: center;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-family:
+      Circular,
+      -apple-system,
+      BlinkMacSystemFont,
+      Roboto,
+      Helvetica Neue,
+      sans-serif !important;
     font-size: 1rem;
     color: #20071e;
   }
 
   .first-header-part {
-
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-family:
+      Circular,
+      -apple-system,
+      BlinkMacSystemFont,
+      Roboto,
+      Helvetica Neue,
+      sans-serif !important;
     margin-left: 0.5rem;
     color: #6d4a6a;
     font-size: 1.2rem;
@@ -1022,34 +835,30 @@ body {
 
   .place {
     margin: 0;
-    font-family: "Courgette", sans-serif;
+    font-family: 'Courgette', sans-serif;
     font-size: 3.6rem;
     color: #744970;
-    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+    text-shadow:
+      2px 7px 5px rgba(0, 0, 0, 0.3),
       0px -4px 10px rgba(255, 255, 255, 0.3);
-
   }
 
   .address {
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     text-shadow: 1px 1.2px 0px #aea9c5;
     color: rgb(35, 30, 41);
     font-size: 1.4rem;
     font-weight: 100;
   }
 
-
   .second-header-part {
-
     display: flex;
     align-items: end;
     gap: 0.5rem;
     margin-right: 1rem;
-
   }
 
   .main-picture {
-
     border-radius: 20px 0 0 20px;
     height: 100%;
     width: 100%;
@@ -1057,15 +866,11 @@ body {
   }
 
   .main-picture-container {
-
     object-fit: cover;
     width: 150%;
-
   }
 
-
   .pictures {
-
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -1080,60 +885,52 @@ body {
   }
 
   .right-pictures-container {
-
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     /* Deux colonnes de largeur égale */
     gap: 0.5rem;
-
   }
 
   .pictures-container {
-
     display: flex;
     gap: 0.5rem;
     width: 80%;
     margin: 0 auto;
-
-
   }
 
   .admin-pictures-container {
-
     display: flex;
     gap: 0.5rem;
     width: 100%;
-
-
   }
 
-
   .header-detail-review {
-
     display: flex;
     justify-content: space-between;
     width: 80%;
     margin: 0 auto 0 auto;
-
   }
 
   .card-detail-review {
-
     display: flex;
     flex-direction: column;
     margin: 3.5rem auto 0 auto;
   }
 
   .description-container {
-
     margin: 4.5rem auto 0 auto;
     height: max-content;
     width: 80%;
     border-radius: 19px;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-family:
+      Circular,
+      -apple-system,
+      BlinkMacSystemFont,
+      Roboto,
+      Helvetica Neue,
+      sans-serif;
     font-size: 1.5rem;
     color: rgb(0, 0, 0);
-
   }
 
   .author-tag {
@@ -1145,11 +942,9 @@ body {
     font-size: 2.2rem;
   }
 
-
   /* ////////////////////////// Desktop-create-review ////////////////////////////////////////////*/
 
   .container-button-add-picture {
-
     position: relative;
     bottom: 2rem;
     left: 0.5rem;
@@ -1182,16 +977,14 @@ body {
   }
 
   .title-create-review {
-
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     margin: 0 0 4rem 0.5rem;
     color: #8d6289;
     text-shadow: 7px 7px 10px rgba(015, 0, 0, 0.3);
   }
 
   .container-create-description {
-
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     font-size: 1.1rem;
     width: 80%;
     margin: 1rem auto;
@@ -1204,33 +997,25 @@ body {
     font-size: 1.1rem;
     border-radius: 15px;
     border: 0.5px solid rgb(49, 35, 58);
-
   }
 
   .review-and-button-only {
-
     display: flex;
     height: 10rem;
   }
 
   .container-button-validation {
-
     display: flex;
     align-items: center;
     margin-left: 0.5rem;
-
-
   }
 
   .button-validation {
-
     font-size: 1.1rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
   }
 
   .container-input {
-
-
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -1239,34 +1024,32 @@ body {
   }
 
   .create-input {
-
     border: 1px solid rgb(118, 106, 128);
     border-radius: 15px;
     font-size: 1.1rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     text-align: center;
   }
 
-
   #review-theme {
-
     font-size: 1.2rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
   }
 
   /* ////////////////////////// Chat-Room /////////////////////////////////////////////////////////*/
 
-
   .tag-chat-room {
-
-    font-family: "Courgette", cursive;
-    background: linear-gradient(to right, rgb(180, 202, 228), rgb(162, 230, 227));
+    font-family: 'Courgette', cursive;
+    background: linear-gradient(
+      to right,
+      rgb(180, 202, 228),
+      rgb(162, 230, 227)
+    );
     -webkit-background-clip: text;
     color: transparent;
   }
 
   .container-text-admin {
-
     position: relative;
     display: flex;
     align-items: center;
@@ -1277,20 +1060,17 @@ body {
     height: max-content;
     color: rgb(142, 130, 163);
     font-size: 1.6rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     padding: 1rem;
-
   }
 
   .container-text-user {
-
-
     padding: 1rem;
     height: 4rem;
     width: max-content;
     border-radius: 15px;
     font-size: 1.6rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     background-color: rgb(162, 230, 227);
     text-align: justify;
     color: rgb(142, 130, 163);
@@ -1298,21 +1078,15 @@ body {
   }
 
   .container-bubble-admin {
-
     margin: 3rem 0 0 3rem;
-
   }
 
   .container-bubble-user {
-
-
     margin: 4rem 0 0 auto;
     padding-right: 3rem;
-
   }
 
   .indicator-left {
-
     width: 0;
     height: 0;
     transform: rotate(10deg);
@@ -1321,12 +1095,9 @@ body {
     margin-left: 2rem;
     position: relative;
     top: -0.3rem;
-
-
   }
 
   .indicator-right {
-
     width: 0;
     height: 0;
     transform: rotate(7deg);
@@ -1338,34 +1109,25 @@ body {
   }
 
   .user-speaker-indicator {
-
     display: flex;
     justify-content: end;
     margin: 0.7rem 1.5rem 0 0;
   }
 
   .speaker-indicator {
-
     font-size: 1.6rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
   }
 
-
-
   .input-form {
-
-    display: inline-flex
+    display: inline-flex;
   }
 
   main {
-
     flex-direction: column;
     display: flex;
-    flex: 1
+    flex: 1;
   }
-
-
-
 
   #input-chat {
     margin: 0 auto 0 auto;
@@ -1373,17 +1135,16 @@ body {
     height: 2rem;
     border-radius: 25px;
     font-size: 1.2rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
   }
 
   .input-with-submit {
-
     width: 80%;
     margin: 0 auto;
   }
 
   #chat-button-submit {
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     font-size: 1.3rem;
     color: white;
     background-color: #744970;
@@ -1392,32 +1153,22 @@ body {
   }
 
   .display-chat-message {
-
     border: 5px solid red;
     flex: 1;
   }
 
-
   .messages-container {
-
     flex: 1;
-
-
   }
-
 
   main {
     overflow: auto;
     flex: 1;
-
   }
 
-
   .container-input-chat {
-
     padding-top: 1rem;
     padding-bottom: 1rem;
-
   }
 
   .messages-container {
@@ -1426,23 +1177,17 @@ body {
   }
 
   .tag-chat-room-desktop {
-
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     font-size: 2rem;
     color: transparent;
-    background: linear-gradient(45deg, rgb(124, 194, 179) , rgb(124, 83, 136) );
+    background: linear-gradient(45deg, rgb(124, 194, 179), rgb(124, 83, 136));
     -webkit-background-clip: text;
     background-clip: text;
-
-
-
   }
 
   /* ////////////////////////// Desktop-Footer //////////////////////////////////////////////////*/
 
   Footer {
-
-
     bottom: 0;
     margin-top: 1.8rem;
     width: 100%;
@@ -1450,24 +1195,16 @@ body {
     flex-direction: column;
     background-color: rgb(137, 120, 148);
     box-shadow: rgb(0 0 0 / 50%) 0px -6px 16px -6px;
-
-
   }
 
-
-
   .container-button {
-
     width: 100%;
     display: flex;
     justify-content: flex-end;
     height: 2rem;
-
   }
 
-
   .button-create {
-
     background-color: rgb(99, 180, 155);
     color: azure;
     font-family: 'Courgette', cursive;
@@ -1481,7 +1218,6 @@ body {
   }
 
   .mail {
-
     font-family: 'Courgette', cursive;
     display: flex;
     flex-direction: column;
@@ -1490,7 +1226,6 @@ body {
     align-items: flex-end;
     margin-right: 0.5rem;
   }
-
 
   .email {
     color: #ffffff;
@@ -1507,7 +1242,6 @@ body {
   .contact {
     display: inline;
     border: 1px solid black;
-
   }
 
   .contact-mail {
@@ -1517,18 +1251,15 @@ body {
   }
 
   .follow-us {
-
     margin-top: 0;
   }
 
   .follow-title {
-
     font-family: 'Courgette', cursive;
     color: white;
   }
 
   .contact-logo {
-
     width: 2rem;
     height: 2rem;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
@@ -1538,12 +1269,9 @@ body {
     height: 100%;
     display: inline-flex;
     justify-content: space-between;
-
-
   }
 
   .social-network {
-
     display: inline-flex;
     border-radius: 20px;
     margin-left: 0.5rem;
@@ -1557,39 +1285,29 @@ body {
   .social-img {
     display: inline-flex;
     width: 10rem;
-
-
   }
 
-
   .button-logo {
-
     border: none;
   }
 
   .left-logo {
-
     border-radius: 17px 0 0 17px;
   }
 
   .right-logo {
-
     border-radius: 0 17px 17px 0;
   }
 
   .mention-legale {
-
     color: white;
     margin: 1.5rem 0 0 0;
   }
-
-
 }
 
 /* //////////////////////////// handle other specific format (large screen ) ////////////////////////////////*/
 
 @media screen and (min-width: 1925px) {
-
   .cards-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -1597,8 +1315,6 @@ body {
   }
 
   .login-card {
-
-
     border-radius: 15px;
     width: 60%;
 
@@ -1606,18 +1322,12 @@ body {
   }
 
   .input-form {
-
-    display: inline-flex
+    display: inline-flex;
   }
 
   main {
-
     height: 100%;
   }
-
-
-
-
 
   #input-chat {
     margin: 0 auto 0 auto;
@@ -1625,80 +1335,63 @@ body {
     height: 2rem;
     border-radius: 25px;
     font-size: 1.2rem;
-    font-family: "Courgette", cursive;
-
+    font-family: 'Courgette', cursive;
   }
 
   .input-with-submit {
-
     width: 80%;
     margin: 0 auto;
   }
 
   #chat-button-submit {
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     font-size: 1.3rem;
     color: white;
     background-color: #744970;
     margin-left: 1rem;
     border-radius: 25px;
   }
-
-
-
 }
 
 @media screen and (max-width: 1617px) {
-
   .cards-container {
-
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
 
   .input-form {
-
-    display: inline-flex
+    display: inline-flex;
   }
 
   main {
-
     height: 100%;
-
   }
 
   .container-input-chat {
-
     padding-top: 1rem;
     padding-bottom: 1rem;
-
   }
 
-
   #input-chat {
-
     margin: 0 auto 0 auto;
     width: 100%;
     height: 2rem;
     border-radius: 25px;
     font-size: 1.2rem;
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
   }
 
   .input-with-submit {
-
     width: 80%;
     margin: 0 auto;
   }
 
   #chat-button-submit {
-    font-family: "Courgette", cursive;
+    font-family: 'Courgette', cursive;
     font-size: 1.3rem;
     color: white;
     background-color: #744970;
     margin-left: 1rem;
     border-radius: 25px;
   }
-
-
 }
