@@ -64,28 +64,18 @@ npm install
 npm run dev
 ```
 
-<<<<<<< HEAD
 Application disponible sur http://localhost:5173
 
 ---
 
 ### Compiler et minifier pour la production
 
-=======
- Application disponible sur http://localhost:5173
-
- ---
-
-
-### Compiler et minifier pour la production
->>>>>>> origin/main
 ```bash
 npm run build
 ```
 
 ➡️ Génère un dossier /dist prêt à être déployé.
 
-<<<<<<< HEAD
 ---
 
 ### Lancer les tests
@@ -100,30 +90,11 @@ npm run test
 
 🔍 Linter et corriger automatiquement
 
-=======
-
----
-
-###  Lancer les tests
-```bash
-npm run test
-```
- ### -> Exécute les tests unitaires configurés (Vitest / Jest).
----
-
-🔍 Linter et corriger automatiquement
->>>>>>> origin/main
 ```bash
 npm run lint
 ```
 
-<<<<<<< HEAD
 Analyse du code avec ESLint + correction automatique des erreurs de style.
-=======
- Analyse du code avec ESLint + correction automatique des erreurs de style.
-
-
->>>>>>> origin/main
 
 ### Customize configuration
 
