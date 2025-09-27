@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "lets-go-out-paris",
   "version": "0.1.0",
@@ -71,3 +72,78 @@
     "not ie 11"
   ]
 }
+=======
+{
+  "name": "lets-go-out-paris",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --port 8080 --host localhost",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "dev": "NODE_ENV=development vue-cli-service serve --open --host localhost --port 8079"
+  },
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "core-js": "^3.37.0",
+    "latest": "^0.2.0",
+    "latest-version": "^9.0.0",
+    "nodemon": "^3.1.0",
+    "sharp": "^0.33.3",
+    "swiper": "^11.1.1",
+    "vite": "^5.2.10",
+    "vue-awesome-paginate": "^1.1.46",
+    "vue-recaptcha": "^3.0.0-alpha.6",
+    "vue-router": "^4.3.2",
+    "vue3-carousel": "^0.3.3",
+    "vue3-recaptcha2": "^1.8.0",
+    "vuex": "^4.1.0",
+    "vuex-persistedstate": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/eslint-parser": "^7.24.1",
+    "@babel/preset-typescript": "^7.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.8",
+    "@vue/cli-plugin-typescript": "~5.0.0",
+    "@vue/cli-service": "~5.0.8",
+    "@vue/eslint-config-typescript": "^9.1.0",
+    "compression-webpack-plugin": "^11.1.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-vue": "^9.25.0",
+    "image-minimizer-webpack-plugin": "^4.0.0",
+    "image-webpack-loader": "^8.1.0",
+    "mkdirp": "^3.0.1",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.2",
+    "vue-loader": "^17.4.2",
+    "vue-template-compiler": "^2.7.16",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended",
+      "@vue/typescript"
+    ],
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
+>>>>>>> origin/main
