@@ -1,6 +1,6 @@
 # Let's Go Out — Front-end
 
-![Aperçu de l'application](/public/screenshot_readme/Capture%20d’écran%202025-09-19%20191249.jpg)
+![Aperçu de l'application](/public/screenshot_readme/readme_screenShot_lgo.jpg)
 
 ## Description du projet
 

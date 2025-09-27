@@ -384,6 +384,16 @@ export default {
 
 @import url('../styles/Header.css');
 
+.header-title {
+
+margin-left: 2rem;;
+}
+
+.title-description {
+
+margin-left: 2rem;
+}
+
 .user-menu {
   position: absolute;
   display: flex;
@@ -556,6 +566,7 @@ export default {
   .container-logo-title,
   .header {
     height: 14rem;
+    
   }
 
   .container-mobile-logo {
@@ -571,6 +582,7 @@ export default {
 
   .header-title {
     margin-top: 3rem;
+   
   }
 
   .header-title,
