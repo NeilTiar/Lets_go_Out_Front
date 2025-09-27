@@ -156,6 +156,9 @@ props: {
 </script>
 
 <style scoped>
+
+@import url('../styles/Review-card.css');
+
 .transition-background {
   transition: background-color 0.5s ease;
 }
@@ -278,5 +281,5 @@ props: {
   color: black;
 }
 
-@import url('../styles/Review-card.css');
+
 </style>

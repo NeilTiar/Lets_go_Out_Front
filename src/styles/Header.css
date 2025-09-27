@@ -1,3 +1,5 @@
+@import './globals.css';
+
 .dark-theme-container {
   display: flex;
   align-items: center;
@@ -25,7 +27,7 @@ img.sun {
 }
 
 .title-to-menu {
-  font-family: 'courgette', cursive;
+  font-family: var(--font-title);
 }
 
 .top-main {
@@ -42,7 +44,7 @@ img.sun {
 
 .create-review-banner {
   margin-top: 0.5rem;
-  background-color: rgb(36, 255, 200);
+  background-color: var(--theme-header);
   font-family: 'Kalam', sans-serif;
   border-radius: 9px;
   color: #ffffff;
@@ -60,7 +62,7 @@ img.sun {
   justify-content: space-around;
   width: 100vw;
   height: 3.5rem;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--neutral-white);
 }
 
 .theme-link {
@@ -114,16 +116,16 @@ img.sun {
   top: 0;
   height: 10rem;
   margin-bottom: 0.5rem;
-  background: url('../assets/paris2.jpg') center center no-repeat;
+  background: url('../assets/paris2.avif') center center no-repeat;
   background-size: cover;
 }
 
 .header-title {
   display: flex;
-  font-family: 'Courgette';
+  font-family: var(--font-title);
   font-style: italic;
   font-size: clamp(1.8rem, 3vw + 1.3rem, 4rem);
-  color: azure;
+  color: var(--neutral-white);
   margin: auto;
   text-shadow:
     1px 1px white,
@@ -134,14 +136,14 @@ img.sun {
   width: 100%;
   display: flex;
   margin-top: 1rem;
-  font-family: 'Courgette';
+  font-family: var(--font-title);
   flex-direction: column;
   font-size: 0.8rem;
 }
 
 .title-description {
   margin: 0;
-  color: white;
+  color: var(--neutral-white);
 }
 
 .theme-banner {
@@ -152,8 +154,8 @@ img.sun {
 }
 
 .theme-link {
-  font-family: 'Exo 2', sans-serif;
-  color: #3aafad;
+  font-family: var(--font-base);
+  color: var(--theme-header);
 }
 
 .themes {
@@ -242,9 +244,9 @@ a.loisir-link:hover {
 }
 
 .create-link {
-  font-family: 'Exo 2', sans-serif;
+  font-family: var(--font-base);
   font-size: 1.5rem;
-  color: #9271bd;
+  color: var(--theme-purple-variation);
   font-weight: 700;
 }
 
@@ -262,7 +264,7 @@ a.loisir-link:hover {
   height: moz-fit-content;
   width: moz-fit-content;
   display: block;
-  font-family: 'Courgette', cursive;
+  font-family: var(--font-title);
   font-weight: bolder;
   color: white;
   margin-right: 0.5rem;
@@ -276,7 +278,7 @@ a.loisir-link:hover {
   justify-content: flex-end;
   text-align: center;
   color: white;
-  font-family: 'Courgette';
+  font-family: var(--font-title);
   font-weight: 800;
   margin-bottom: 0.3rem;
   height: 50%;
@@ -330,7 +332,7 @@ img.user-logo {
   font-size: 1.4rem;
   margin-left: 10rem;
   font-weight: 400;
-  font-family: 'Courgette', cursive;
+  font-family: var(--font-title);
   padding: 0 1rem;
   border: 2px solid transparent;
   box-shadow: 0.1rem 9px #51ad70;
@@ -437,3 +439,26 @@ img.user-logo {
     font-size: 1rem;
   }
 }
+
+/* scss exemple : 
+
+@media screen and (max-width: $breakpoint- md) {
+  ul.themes {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .search-button {
+    margin-right: 1rem;
+  }
+
+  .moon-button {
+    margin-left: 1rem;
+  }
+
+  .container-logo-title {
+    width: 100vw;
+  }
+    
+}*/

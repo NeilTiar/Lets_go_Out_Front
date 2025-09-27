@@ -381,6 +381,9 @@ export default {
 </script>
 
 <style scoped>
+
+@import url('../styles/Header.css');
+
 .user-menu {
   position: absolute;
   display: flex;
@@ -580,5 +583,5 @@ export default {
   }
 }
 
-@import url('../styles/Header.css');
+
 </style>

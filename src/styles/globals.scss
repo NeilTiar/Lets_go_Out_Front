@@ -1,0 +1,37 @@
+// fichier preparer pour anticiper update vers scss 
+
+// Palette principale
+$primary-violet: #b8a4c8;
+$primary-blueGreen: #a9cecd;
+
+// Neutres
+$neutral-white: #FFFFFF;
+$neutral-black: #000000;
+$neutral-grayLight: #F3F4F6;
+$neutral-gray: #9CA3AF;
+$neutral-grayDark: #374151;
+
+// Feedback
+$feedback-success: #86EFAC;
+$feedback-warning: #FDE68A;
+$feedback-error: #FCA5A5;
+
+// Spécifiques au thème
+$theme-header: #c0b1d6;
+$theme-header-variation: #95c5bf;
+$icon-heart-default: #89bfb7;
+$icon-heart-favorite: #fa0102;
+$card-text: #c8c5c2;
+
+// Typographie
+$font-base: 'Exo 2', sans-serif;
+$font-alt: Inter, sans-serif;
+$font-heading: 'Courgette', cursive, sans-serif;
+$font-mono: 'Fira Code', monospace;
+
+// Breakpoints
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;

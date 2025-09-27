@@ -1,0 +1,43 @@
+:root {
+  /* Palette principale */
+  --primary-violet: #b8a4c8;
+  --primary-blueGreen: #a9cecd;
+
+  /* Neutres */
+  --neutral-white: #ffffff;
+  --neutral-black: #000000;
+  --neutral-grayLight: #f3f4f6;
+  --neutral-gray: #9ca3af;
+  --neutral-grayDark: #374151;
+
+  /* Feedback */
+  --feedback-success: #86efac;
+  --feedback-warning: #fde68a;
+  --feedback-error: #fca5a5;
+
+  /* Spécifiques au thème */
+
+  --theme-header: #3aafad;
+
+  --theme-purple: #c0b1d6;
+  --theme-purple-variation: #9271bd;
+  --theme-header-variation: #95c5bf;
+  --icon-heart-default: #89bfb7;
+  --icon-heart-favorite: #fa0102;
+  --card-text: #c8c5c2;
+
+  /* Typographie */
+  --font-base: 'Exo 2', sans-serif;
+  --font-alt: Inter, sans-serif;
+  --font-title: 'Courgette', cursive, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+
+  /* Breakpoints 
+
+ 480px → petit mobile (anciens smartphones ou affichage réduit).
+ 768px → tablettes (format portrait), certains mobiles en paysage.
+ 1024px → tablettes en paysage / petits laptops.
+ 1280px → ordinateurs portables standards.
+ 1536px → grands écrans, desktop large ou ultra-wide.
+*/
+}

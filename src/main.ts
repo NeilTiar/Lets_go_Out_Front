@@ -6,6 +6,7 @@ import '../src/styles/responsive-desktop.css';
 import VueAwesomePaginate from 'vue-awesome-paginate';
 import 'vue-awesome-paginate/dist/style.css';
 import store from './store/store';
+import './styles/globals.css';
 
 const app = createApp(App);
 

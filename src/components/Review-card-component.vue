@@ -1,7 +1,7 @@
 <template>
   <div class="card-container" :class="{ 'dark-mode-class': isDarkMode }">
     <div class="card-review">
-      <img :src="imageUrl" :alt="generateAltText()" class="card-image" />
+      <img :src="imageUrl" :alt="generateAltText()" class="card-image" loading="lazy" />
       <h3
         :class="[
           {
