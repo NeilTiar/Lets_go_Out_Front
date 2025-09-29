@@ -15,6 +15,7 @@
     "*.{js,jsx,ts,tsx,json,css,md}": "prettier --write"
   },
   "dependencies": {
+    "@vueuse/head": "^2.0.0",
     "ajv": "^8.12.0",
     "core-js": "^3.37.0",
     "latest": "^0.2.0",

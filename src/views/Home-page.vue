@@ -1,11 +1,7 @@
 <template>
-  <title>
-    Découvrez les meilleurs endroits à Paris avec Let's Go Out in Paris
-  </title>
-
   <div class="main">
     <div class="top-title-login-connexion">
-      <h1 class="title">Let's go out in paris</h1>
+      <h1 class="title">Let's go out in Paris</h1>
 
       <div class="right-link">
         <a href="signup" class="home-link registration">Inscription</a>
@@ -22,16 +18,15 @@
         loop
         muted
       >
-        Votre navigateur ne supporte pas la vidéo. Vidéo description : par une
-        journée ensoleillée, des cyclistes circulent sur un pont avec la tour
-        Eiffel en arrière-plan.
+        Votre navigateur ne supporte pas la vidéo.  
+        Vidéo description : par une journée ensoleillée, des cyclistes circulent sur un pont avec la tour Eiffel en arrière-plan.
       </video>
 
       <div class="home-title-description">
         <article>
           <p class="home-description">
-            Explorez la Ville Lumière grace à votre plateforme interactive qui
-            vous propose de préparez vos prochaines sorties plus simplement.
+            Explorez la Ville Lumière grâce à votre plateforme interactive qui
+            vous propose de préparer vos prochaines sorties plus simplement.
           </p>
         </article>
       </div>
@@ -43,22 +38,54 @@
       href="main"
       class="home-link reviews-acces"
       @click="checkTokensBeforeSubmit"
-      >acceder aux reviews</a
     >
+      accéder aux reviews
+    </a>
   </div>
+
+  <CookieConsent />
 </template>
 
-<script>
+<script setup>
+// Import du composant cookies
+import CookieConsent from '@/components/Cookie-consent.vue';
+// Import fonction de sécurité
 import { checkTokensBeforeSubmit } from '../utils/jwt/CheckTokens.ts';
 
-export default {
-  name: 'HomeView', // or 'HomeContainer'
-  // other component options
 
-  methods: {
-    checkTokensBeforeSubmit,
+// SEO : configuration des balises <head> avec @vueuse/head
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: "Découvrez les meilleurs endroits à Paris avec Let's Go Out in Paris", // Balise <title>
+  meta: [
+    {
+      name: 'description',
+      content:
+        "Explorez Paris avec Let's Go Out in Paris : une plateforme interactive pour préparer vos sorties et découvrir les meilleurs lieux de la Ville Lumière."
+    },
+    {
+      name: 'keywords',
+      content: 'Paris, sorties, meilleurs endroits, activités, reviews, loisirs'
+    },
+    { property: 'og:title', content: "Let's Go Out in Paris - Découvrez Paris autrement" },
+    { property: 'og:description', content: 'Partagez et découvrez les meilleurs endroits de Paris grâce à notre plateforme interactive.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
+
+</script>
+
+<script>
+export default {
+  name: 'HomeView',
+  components: {
+    CookieConsent
   },
-};
+  methods: {
+    checkTokensBeforeSubmit
+  }
+}
 </script>
 
 <style scoped>
