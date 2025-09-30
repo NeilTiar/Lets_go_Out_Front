@@ -164,6 +164,7 @@
 <script setup>
 // ✅ SEO : gestion du <title> et des balises meta pour la page Inscription
 import { useHead } from '@vueuse/head'
+import recaptchaComponent from '../components/Recaptcha-component.vue'
 
 useHead({
   title: "Inscription - Let's Go Out in Paris",
