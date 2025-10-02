@@ -5,7 +5,7 @@
       :sitekey="recaptchaSiteKey"
       @verify="onRecaptchaVerify"
     />
-    <button class="signup-submit-button" @click="submitForm">Submit</button>
+   
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
 
         const data = await response.json();
         this.recaptchaSiteKey = data.siteKey;
-        console.log('from func :', data);
+        // console.log("Clé reCAPTCHA récupérée :", this.recaptchaSiteKey);
       } catch (error) {
         console.error(
           'Erreur lors de la récupération de la clé reCAPTCHA:',

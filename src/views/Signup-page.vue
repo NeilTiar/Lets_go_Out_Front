@@ -1,9 +1,10 @@
 <template>
   <h1 class="title">Let's go out in Paris</h1>
 
-  <h2 class="signup-title">crée un compte</h2>
 
   <form action="" class="signup-form" @submit.prevent="submitForm">
+
+
     <div
       :class="{
         'container-mobile-form': !isDesktop,
@@ -13,6 +14,7 @@
       <div :class="{ 'fields-container': isDesktop }">
         <div :class="{ 'left-part-form': isDesktop }">
           <div :class="{ 'container-left-part-form': isDesktop }">
+                  <h2 class="signup-title">crée un compte</h2>
             <h3 class="signup-form-tag">informations relatives à votre compte</h3>
 
             <input
@@ -124,6 +126,21 @@
               placeholder="Numéro de téléphone"
             />
 
+                <div v-if="errorMessage" class="error-message">
+      <ul>
+        <li v-for="(msgError, index) in errorMessage" :key="index">
+         - {{ msgError }}
+        </li>
+      </ul>
+    </div>
+
+
+      <recaptchaComponent
+                class="recaptcha-component"
+                @captcha-verification="handleCaptchaVerification"
+                @submit-request="submitForm , console.log('recaptcha passed by signup with $emit')"
+              />
+
             <div v-if="successMessage" class="success-message">
               <p>{{ successMessage }}</p>
             </div>
@@ -133,14 +150,24 @@
               Veuillez remplir le captcha
             </div>
 
+             <ModalSignup 
+  :show="successMessage.length > 0"
+  :message="successMessage" 
+  @close="successMessage = 'fermer'"
+/>
+
             <div
               class="captcha-container"
               :class="{ 'desktop-captcha-container': isDesktop }"
             >
-              <recaptchaComponent
-                class="recaptcha-component"
-                @captcha-verification="handleCaptchaVerification"
-              />
+
+            
+
+<button type="submit" class="signup-submit-button" @click="submitForm, console.log('submit form clicked')">
+  Submit
+</button>
+
+
             </div>
           </div>
         </div>
@@ -149,41 +176,28 @@
 
     <p class="signup-recaptcha-protection">protection par reCaptcha</p>
 
-    <div v-if="errorMessage" class="error-message">
-      <ul>
-        <li v-for="(msgError, index) in errorMessage" :key="index">
-          {{ msgError }}
-        </li>
-      </ul>
-    </div>
+
   </form>
 
   <FooterComponent />
 </template>
 
-<script setup>
+<script >
 // ✅ SEO : gestion du <title> et des balises meta pour la page Inscription
 import { useHead } from '@vueuse/head'
+import FooterComponent from '../components/Footer-component.vue'
 import recaptchaComponent from '../components/Recaptcha-component.vue'
+import ModalSignup from '../components/Modal-Signup.vue';
 
-useHead({
-  title: "Inscription - Let's Go Out in Paris",
-  meta: [
-    {
-      name: 'description',
-      content:
-        "Créez un compte sur Let's Go Out in Paris pour découvrir, partager et organiser vos sorties dans la Ville Lumière."
-    },
-    // Open Graph pour un partage optimisé
-    { property: 'og:title', content: "Inscription - Let's Go Out in Paris" },
-    { property: 'og:description', content: "Rejoignez notre communauté et explorez Paris autrement grâce à Let's Go Out in Paris." },
-    { property: 'og:type', content: 'website' }
-  ]
-})
-</script>
 
-<script>
 export default {
+
+ components: {
+    recaptchaComponent,
+    ModalSignup,
+    FooterComponent
+  },
+
   name: 'SignupView',
   data() {
     return {
@@ -203,12 +217,85 @@ export default {
       errorMessage: null,
       captchaVerified: false,
       captchaMissed: false,
-      isDesktop: true
+      isDesktop: window.innerWidth > 768 // true si largeur > 768px
     }
   },
+
+  
+setup() {
+useHead({
+  title: "Inscription - Let's Go Out in Paris",
+  meta: [
+    {
+      name: 'description',
+      content:
+        "Créez un compte sur Let's Go Out in Paris pour découvrir, partager et organiser vos sorties dans la Ville Lumière."
+    },
+    // Open Graph pour un partage optimisé
+    { property: 'og:title', content: "Inscription - Let's Go Out in Paris" },
+    { property: 'og:description', content: "Rejoignez notre communauté et explorez Paris autrement grâce à Let's Go Out in Paris." },
+    { property: 'og:type', content: 'website' }
+  ]
+})
+},
+
   methods: {
-    submitForm() {
-      // logique d'inscription
+
+
+  testButton() {
+   console.log("CLIC OK ✅"); // plus visible que console.log
+  }
+,
+
+
+
+   async submitForm() {
+  
+    console.log('submitForm called');
+
+      try {
+        // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
+        const response = await fetch(`http://localhost:5001/user/signup`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+
+            email: this.email,
+            password: this.password,
+            pseudo: this.pseudo,
+            gender: this.gender,
+            checkVerifyEmail: this.checkVerifyEmail,
+            password: this.password,
+            passwordConfirmation: this.passwordConfirmation,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            phone: this.phone, 
+            street_name: this.street_name,
+            city: this.city,  
+            postal_code: this.postal_code
+          }),
+        });
+
+        const data = await response.json(); 
+       
+
+        if (response.ok) {
+          // Si la réponse est OK, traiter les données reçues
+          this.errorMessage = null;
+          this.successMessage = data.successMessage;
+          // Rediriger ou effectuer d'autres actions après une connexion réussie
+          console.log('Inscription réussie :', data);
+
+        } else {
+          // Si la réponse n'est pas OK, afficher les erreurs
+          this.errorMessage = data.msgError || ['Une erreur est survenue lors de la connexion.'];
+          console.error('Erreur lors de la connexion :', data.msgError);
+        }
+      } catch (error) {
+        console.error('Erreur réseau ou serveur :', error); 
+      }
     },
     handleCaptchaVerification(status) {
       this.captchaVerified = status
@@ -226,5 +313,25 @@ export default {
 .missed-captcha-msg {
   color: red;
   font-size: 1.3rem;
+}
+
+.error-message {
+  list-style-type: none;
+  color: var(--feedback-error);
+  font-size: 0.8rem;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 2rem;
+  
+
+}
+
+ul li, ol li {
+  list-style: none;
+  margin: 1rem;
+}
+
+.recaptcha-component {
+margin-top: 1rem;
+
 }
 </style>

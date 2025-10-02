@@ -56,6 +56,7 @@ function loadThirdPartyScripts() {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 4;
 }
 .actions button {
   margin-left: 0.5rem;
