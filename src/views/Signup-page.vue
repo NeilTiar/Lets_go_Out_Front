@@ -183,7 +183,7 @@
 </template>
 
 <script >
-// ✅ SEO : gestion du <title> et des balises meta pour la page Inscription
+// SEO : gestion du <title> et des balises meta pour la page Inscription
 import { useHead } from '@vueuse/head'
 import FooterComponent from '../components/Footer-component.vue'
 import recaptchaComponent from '../components/Recaptcha-component.vue'
@@ -240,14 +240,6 @@ useHead({
 },
 
   methods: {
-
-
-  testButton() {
-   console.log("CLIC OK ✅"); // plus visible que console.log
-  }
-,
-
-
 
    async submitForm() {
   

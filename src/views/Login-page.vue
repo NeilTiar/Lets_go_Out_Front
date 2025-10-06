@@ -15,9 +15,6 @@
           <h2>Se connecter :</h2>
         </div>
 
-        <div v-if="errorMessage" class="error-message">
-          {{ errorMessage }}
-        </div>
 
         <div v-if="connectionMessage" class="connection-message">
           {{ connectionMessage }}
@@ -63,6 +60,14 @@
           alimenter votre liste coup de cœur dés maintenant
         </p>
         <a href="signup" class="link-to-signup">créer votre compte</a>
+        <transition
+    enter-active-class="animate__animated animate__fadeInLeftBig"
+    leave-active-class="animate__animated animate__fadeOutRightBig"
+  >
+    <p v-if="errorMessage">
+      {{ errorMessage }}
+    </p>
+  </transition>
       </section>
     </div>
 
@@ -73,6 +78,8 @@
 <script>
 import FooterComponent from '@/components/Footer-component.vue';
 import store from '../store/store';
+import { error } from 'ajv/dist/vocabularies/applicator/dependencies';
+import 'animate.css';
 
 export default {
   name: 'SignupPage',
@@ -118,12 +125,22 @@ export default {
 
         const isRefreshToken = responseData.isValidRefreshToken;
 
+        const errorMessage = responseData.messageError;
+
+        errorMessage
+          ? (this.errorMessage = errorMessage)
+          : (this.errorMessage = null);
+
+         const isActivateAccount = responseData.isActivateAccount;
+
+         console.log("isActivateAccount from login :", isActivateAccount);
+
         // mon erreur etait d'essayé d'acceder a l'accesstoken ici , alors qu'il est generer aprés connexion !!!
 
         // cette fonction est a revoir car la manipulation du req.headers.authorization n'est possible qu'aprés connexion
 
         // Vérification de la réponse du serveur
-        if (response.ok) {
+        if (response.ok ) {
           console.log(
             'Token stocké dans Vuex :',
             this.$store.state.accessToken
@@ -148,6 +165,8 @@ export default {
           }
 
           const isAdmin = responseData.isAdmin;
+          
+         
 
           /* test isAdmin from response .
                     console.log('isAdmin: ', isAdmin); */
@@ -184,13 +203,13 @@ export default {
           return responseData;
         } else {
           if (response.status === 401) {
-            const errorData = await response.json();
-            this.errorMessage = errorData.message;
-            console.log('Erreur côté serveur :', this.errorMessage);
+        
+            this.errorMessage = responseData.messageError;
+            console.log('Erreur côté serveur :', responseData);
             // Afficher le message d'erreur pendant 6 secondes
             setTimeout(() => {
               this.errorMessage = null; // Réinitialiser le message d'erreur après le délai
-            }, 2000);
+            }, 3500);
           }
         }
       } catch (error) {
@@ -419,5 +438,13 @@ export default {
     justify-content: center;
     margin-bottom: 4rem;
   }
+
+    .animate__fadeInLeftBig
+    .animate__fadeOutRightBig
+    {
+     animation-duration: 18s;  /* durée de l’animation */
+     animation-delay: 9s;
+  }
+
 }
 </style>

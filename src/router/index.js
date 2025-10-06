@@ -10,6 +10,7 @@ import AdminPageVue from '@/views/Admin-page.vue';
 import ActivateReviewsPage from '@/views/Activate-Reviews.vue';
 import store from '@/store/store';
 import FavoritesPage from '@/views/favorites-page.vue';
+import ActivateAccount from '@/views/Activate-Account.vue';
 
 const routes = [
   {
@@ -72,6 +73,13 @@ const routes = [
     name: 'FavoritesPage',
     component: FavoritesPage,
     meta: { requiresAuth: true, requiresAdmin: false },
+  },
+
+    {
+    path: '/Activate-Account/:token',
+    name: 'ActivateAccount',
+    component: ActivateAccount,
+   
   },
 
   // Ajoutez d'autres routes ici
