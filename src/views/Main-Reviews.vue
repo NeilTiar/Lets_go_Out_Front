@@ -81,6 +81,7 @@ export default {
   },
 
   data() {
+
     return {
       dataReviews: dataReviews,
       isDesktop: window.innerWidth > 768,
@@ -156,6 +157,7 @@ export default {
   },
 
   methods: {
+    
     activateUserMenu() {
       this.isUserMenu = true;
       document.body.style.overflowY = 'hidden';

@@ -193,7 +193,7 @@ props: {
 
 .card-image {
   height: auto;
-  max-height: 30rem;
+  max-height: 75%;
   width: 96%;
   margin: auto;
   max-width: 80%;

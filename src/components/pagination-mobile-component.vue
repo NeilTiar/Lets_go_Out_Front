@@ -1,6 +1,6 @@
 <template>
   <!-- Emplacement pour le bouton de page précédente -->
-
+  
   <div class="mobile-pagination-container">
     <div class="prev">
       <button class="prevButton" @click="handlePrevPage">
@@ -35,6 +35,17 @@ export default {
       type: Array,
       default: () => [],
     },
+
+      modelValue: {
+      type: Number,
+      default: 1,
+    },
+
+   /*  totalItems: {
+     type: Number, 
+   default: 0,
+     required: true         
+  },    */ 
   },
 
   emits: ['mobile-page-changed'],
@@ -43,7 +54,7 @@ export default {
     return {
       currentPage: this.$store.state.currentReviewsPage || 1,
       itemsPerPage: 10,
-      pagesShown: 0,
+      //pagesShown: this.totalPages,  // le nombre depage devrais etre indiquer dynamiquement et non en dur  !!!
     };
   },
   // Error point breakfrom totalItems : this.$store.state.reviews.length,
@@ -55,23 +66,33 @@ export default {
 
   // eslint-disable-next-line vue/order-in-components
   computed: {
-    totalItems() {
+
+     totalItems() {
       return this.reviews.length; // Nombre total de commentaires
     },
+
+   totalPages() {
+      return Math.max(1, Math.ceil(this.totalItems / this.itemsPerPage));
+    },
+
+     pagesShown() {
+      return this.totalPages; //  Calculé dynamiquement
+    },
+
+
   },
 
   mounted() {
     console.log('Nombre de cartes via composant pagination :', this.totalItems);
+
+    this.getNumPages();
+
+   
+    this.totalPages
   },
 
   methods: {
-    getPagesShownUpdated() {
-      if (this.pagesShown === 0) {
-        return (this.pagesShown = this.getNumPages());
-      } else {
-        return;
-      }
-    },
+    
 
     getNumPages() {
       console.log('this.reviews.length: ', this.reviews.length);
@@ -86,15 +107,18 @@ export default {
     },
 
     handleNextPage() {
+      
       if (
         this.currentPage < this.pagesShown + 1 &&
         this.currentPage !== this.pagesShown
       ) {
         this.currentPage++;
+        this.$emit('update:modelValue', this.currentPage); // Emit the page change event
       } else {
         return this.currentPage;
       }
       this.$emit('mobile-page-changed', this.currentPage);
+    
 
       // Faire quelque chose avec les avis paginés, par exemple, les assigner à une propriété
     },
@@ -102,6 +126,7 @@ export default {
     handlePrevPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
+        this.$emit('update:modelValue', this.currentPage); 
       } else {
         return this.currentPage;
       }
@@ -115,6 +140,7 @@ export default {
 </script>
 
 <style>
+
 .mobile-pagination-container {
   display: flex;
   align-items: center;
@@ -162,4 +188,5 @@ export default {
   width: 1rem;
   transform: rotate(180deg);
 }
+
 </style>

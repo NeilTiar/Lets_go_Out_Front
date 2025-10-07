@@ -1,6 +1,7 @@
 .card-container {
   margin: auto;
   display: flex;
+  
   flex-direction: column;
   background: rgb(255, 255, 255);
   border-radius: 9px;
@@ -26,12 +27,20 @@ img.card-image {
   position: relative;
   justify-content: center;
   width: 99%;
+  transition: height 0.9s ease;
+
 }
+
+.card-container:hover .card-image {
+  height: 35vh;
+ 
+}
+
+
 
 .card-details {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: bold;
-
   color: rgb(35, 26, 46);
   margin: 0.5rem 0 0 0.7rem;
   height: 100%;

@@ -13,6 +13,7 @@ const store = createStore({
     refreshToken: null,
     isAdmin: false,
     favorites: [],
+    totalReviews: 55,
   },
 
   getters: {

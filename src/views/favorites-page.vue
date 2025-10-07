@@ -5,11 +5,13 @@
 <template>
   <HeaderComponent />
   <div class="main-container">
-    <div class="favorites-reviews-container" />
-  </div>
+  
+  
 
-  <main class="cards-container">
-    <loadingComponent :loading="loading" />
+  <p class="empty-favori-msg" v-if="reviews.length == 0 && !loading"> Vous n'avez pas d'annonce en favoris </p>
+
+  <main v-if="!reviews.length == 0 && !loading" class="cards-container">
+  
 
     <ReviewCard
       v-for="review in reviews"
@@ -22,9 +24,10 @@
       @favorites-need-reload="displayFavoritesReviews"
     />
   </main>
-
+ </div>
   <div class="footer-container">
     <FooterComponent />
+ 
   </div>
 </template>
 
@@ -94,8 +97,25 @@ export default {
 <style scoped>
 .footer-container {
   height: auto;
-  background-color: blue;
   display: flex;
   align-items: flex-end;
+}
+
+.cards-container {
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  width: 90vw;
+}
+
+
+.empty-favori-msg {
+  font-family: var(--font-title);
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  color: #555;
+
 }
 </style>

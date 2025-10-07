@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       currentPage: store.state.currentReviewsPage || 1,
-      itemsPerPage: 18,
+      itemsPerPage: 10,
       pagesShown: 1,
       // totalItems :  la fonction totalItems() dans computed creer implicitement une props du meme nom  ici.
     };
@@ -50,6 +50,8 @@ export default {
   },
 
   mounted() {
+
+    this.totalItems
     // Vérifiez si c'est une nouvelle session et réinitialisez la page
     if (!sessionStorage.getItem('sessionActive')) {
       store.dispatch('resetPageToFirst'); // Réinitialise la page dans le store
