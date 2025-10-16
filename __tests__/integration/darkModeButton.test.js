@@ -5,6 +5,7 @@ import DarkModeButton from '@/components/dark-theme-component.vue'
 
 describe('DarkModeButton.vue — Integration Test', () => {
   let store
+  
 
   beforeEach(() => {
     //Vrai store Vuex minimal
