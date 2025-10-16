@@ -1,71 +1,42 @@
-
 import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
-import { describe, test, expect, vi, beforeEach } from 'vitest'
-import CookieBanner from '../../src/components/Cookie-consent.vue'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import CookieConsent from '@/components/Cookie-consent.vue'
 
+describe('CookieConsent.vue — Integration Test', () => {
+  let appendSpy
 
-/*
-est vérifier :
-
-1-L’affichage initial (bannière visible si aucun consentement).
-
-2-Le masquage de la bannière après acceptation.
-
-3-Le masquage de la bannière après refus.
-
-4-L’ajout du script quand les cookies sont acceptés.
-*/
-
-
-
-describe('CookieBanner', () => {
-  let wrapper
-
-  beforeEach(async () => {
+  beforeEach(() => {
+    // Nettoyer le localStorage et mocks avant chaque test
     localStorage.clear()
-    document.head.innerHTML = '' // Réinitialiser les scripts ajoutés
-
-    wrapper = mount(CookieBanner)
-    await nextTick() // attendre que onMounted() s’exécute avant chaque test
+    appendSpy = vi.spyOn(document.head, 'appendChild')
   })
-  
-  //#1
-  test('shows banner if no consent in localStorage', () => {
+
+  it('affiche la bannière si aucun consentement n’est donné', () => {
+    const wrapper = mount(CookieConsent)
     expect(wrapper.find('.cookie-banner').exists()).toBe(true)
   })
 
-
-  //#2
-  test('hides banner when consent is accepted', async () => {
-    const acceptButton = wrapper.find('.accept')
-    expect(acceptButton.exists()).toBe(true)
-
-    await acceptButton.trigger('click')
+  it('cache la bannière et stocke "accepted" après clic sur Accepter', async () => {
+    const wrapper = mount(CookieConsent)
+    await wrapper.find('.accept').trigger('click')
 
     expect(localStorage.getItem('cookieConsent')).toBe('accepted')
     expect(wrapper.find('.cookie-banner').exists()).toBe(false)
+    expect(appendSpy).toHaveBeenCalled() // Vérifie que le script est chargé
   })
 
-  //#3
-  test('hides banner when consent is refused', async () => {
-    const refuseButton = wrapper.find('.refuse')
-    expect(refuseButton.exists()).toBe(true)
-
-    await refuseButton.trigger('click')
+  it('cache la bannière et stocke "refused" après clic sur Refuser', async () => {
+    const wrapper = mount(CookieConsent)
+    await wrapper.find('.refuse').trigger('click')
 
     expect(localStorage.getItem('cookieConsent')).toBe('refused')
     expect(wrapper.find('.cookie-banner').exists()).toBe(false)
+    expect(appendSpy).not.toHaveBeenCalled() // Aucun script ne doit être inséré
   })
 
-  //#4
-  test('loads script when cookies are accepted', async () => {
-    const appendSpy = vi.spyOn(document.head, 'appendChild')
-
-    await wrapper.find('.accept').trigger('click')
-
+  it('charge directement le script si consentement déjà accepté', () => {
+    localStorage.setItem('cookieConsent', 'accepted')
+    mount(CookieConsent)
     expect(appendSpy).toHaveBeenCalled()
-    appendSpy.mockRestore()
   })
 })
-
