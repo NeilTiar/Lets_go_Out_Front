@@ -25,7 +25,7 @@
             v-if="isUserConnected"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            :class="isFavorited(reviewId) ? 'favorited-icon' : 'svg-icon'"
+            :class="isFavorited(reviewId) ? 'svg-icon' :'favorited-icon' "
             fill="currentColor"
             @click.stop="handleFavorite(reviewId)"
           >

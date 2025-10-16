@@ -22,6 +22,7 @@
       :place-name="review.place_name"
       :image-url="review.secure_url[0]"
       @favorites-need-reload="displayFavoritesReviews"
+       @click="getDetailsReviewOnClick(review)"
     />
   </main>
  </div>
@@ -55,6 +56,14 @@ export default {
   },
 
   methods: {
+
+        getDetailsReviewOnClick(currentReview) {
+      this.$store.state.currentReviewsPage = this.currentPage;
+      this.$store.commit('setSelectedReview', currentReview);
+      console.log('review was clicked !!!', currentReview.data);
+      this.$router.push({ name: 'Review-details' });
+    },
+
     async displayFavoritesReviews() {
       try {
         const accessToken = localStorage.getItem('accessToken');
@@ -111,11 +120,15 @@ export default {
 
 
 .empty-favori-msg {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
   font-family: var(--font-title);
   text-align: center;
   font-size: 1.5rem;
-  margin-top: 2rem;
+  height:50vh;
   color: #555;
+  
 
 }
 </style>

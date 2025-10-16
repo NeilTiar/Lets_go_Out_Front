@@ -152,15 +152,17 @@ export default {
   }
 
   .home-description {
-    margin-top: 4rem;
-    width: 80%;
-    text-align: center;
+   font-size: clamp(0.8rem, 1.5rem, 2rem);
+    font-family: var(--font-title);
+    margin-top: 2rem;
+    width: 85%;
+   
   }
 
   article {
     justify-content: start;
     align-items: center;
-    margin: 8rem 0 0 1rem;
+    margin: 15rem 0 0 1rem;
     width: 40%;
     color: #010703;
     font-size: 2.3rem;
@@ -183,6 +185,7 @@ export default {
     font-weight: 800;
     text-shadow: none;
     transition: all 0.2s ease-in-out;
+    text-decoration: none;
   }
 
   .home-link:hover {
@@ -230,6 +233,7 @@ export default {
     display: flex;
     gap: 4rem;
     margin-right: 4rem;
+    
   }
 
   .registration,
@@ -262,7 +266,7 @@ export default {
 
 @media screen and (max-width: 1300px) {
   .access-reviews {
-    margin: 1rem 0 0 4rem;
+    margin: 1rem auto;
     font-size: 0.7rem;
   }
 }
@@ -306,6 +310,7 @@ export default {
 
   .home-description {
     font-size: clamp(0.8rem, 1.5rem, 2rem);
+    font-family: var(--font-title);
     margin-top: 2rem;
     width: 80%;
     text-align: center;
@@ -322,6 +327,7 @@ export default {
     font-family: 'Exo 2', sans-serif;
     color: rgb(88, 71, 88);
     font-weight: bolder;
+    text-decoration: none;
   }
 
   .access-reviews {

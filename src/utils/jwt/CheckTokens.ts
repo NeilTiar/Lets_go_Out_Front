@@ -1,4 +1,5 @@
 export async function checkTokensBeforeSubmit() {
+  
   const accessToken: string | null = localStorage.getItem('accessToken');
 
   if (!accessToken) {

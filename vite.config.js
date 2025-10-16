@@ -9,10 +9,15 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+
+
   },
   server: {
     host: 'localhost',
     port: 8080,
     open: true,
   },
+      test: {
+    environment: 'jsdom' // ⬅️ essentiel pour les tests de composants Vue
+  }
 });

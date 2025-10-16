@@ -99,6 +99,7 @@ export default {
   },
 
   methods: {
+    
     async submitForm() {
       // test console.log('Identifiant:', this.email);
       // test console.log('Mot de passe:', this.password);
@@ -166,15 +167,15 @@ export default {
 
           const isAdmin = responseData.isAdmin;
           
-         
+          await this.$store.commit('setIsAdmin', isAdmin);
+
 
           /* test isAdmin from response .
                     console.log('isAdmin: ', isAdmin); */
 
-          console.log('response.isValidRefreshToken', responseData);
+         // test console.log('response.isValidRefreshToken', responseData);
 
-          await this.$store.commit('setIsAdmin', isAdmin);
-
+         
           // test   console.log('isAdmin from store:', this.$store.state.isAdmin);
 
           this.$store.commit('setFavorites', responseData.favoriteReviewsId);

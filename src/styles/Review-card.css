@@ -124,13 +124,13 @@ img.card-image {
   margin-top: 1rem;
   mask: url('../../public/heart.svg') no-repeat center;
   height: 1rem;
-  background-image: #ffffff;
+  background-image: #0003b3;
 }
 
 .favorited-icon {
   z-index: 2;
   background: url('../../public/heart_link.svg') no-repeat center;
-  fill: red;
+  fill: rgb(206, 175, 192);
   width: max-content;
   height: max-content;
   max-width: 2.8rem;
@@ -144,22 +144,22 @@ img.card-image {
 }
 
 .svg-icon {
-  fill: #76b4abda;
+  color: #c41c1c;
   width: 3rem;
   height: 3rem;
   transform: scale(0.9);
   transition:
-    fill 1s,
+    color 1s,
     transform 0.2s;
 }
 
 .svg-icon:hover {
-  fill: rgb(211, 22, 22);
+  color: rgb(211, 22, 22);
   -webkit-mask: url('../../public/heart_link.svg') no-repeat center;
   mask: url('../../public/heart_link.svg') no-repeat center;
   transform: scale(1.8);
   transition:
-    fill 1s,
+    color 1s,
     transform 0s ease-in;
   cursor: pointer;
 }

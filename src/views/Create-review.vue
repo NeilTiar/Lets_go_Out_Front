@@ -353,10 +353,11 @@ export default {
   },
 
   mounted() {
+    /* test 
     console.log(
       'accessToken from localTorage',
       localStorage.getItem('accessToken')
-    );
+    );*/
   },
 
   methods: {
@@ -577,6 +578,7 @@ export default {
       try {
         const token = localStorage.getItem('accessToken');
 
+
         const url = 'http://localhost:5001/review/create';
 
         const response = await fetch(url, {
@@ -586,6 +588,7 @@ export default {
           },
           body: formData, // No need to set Content-Type header manually
         });
+        
 
         if (response.ok) {
           try {
@@ -677,6 +680,7 @@ export default {
       try {
         const accessToken = localStorage.getItem('accessToken');
 
+
         const url = 'http://localhost:5001/review/create';
 
         const response = await fetch(url, {
@@ -696,6 +700,7 @@ export default {
             this.successMessage,
             responseData
           );
+
           this.resetForm();
         } else if (!response.ok) {
           const errorData = await response.json();
