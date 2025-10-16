@@ -1,49 +1,55 @@
 import { mount } from '@vue/test-utils'
 import { describe, test, expect } from 'vitest'
-import ModalComponent from '../../src/components/Modal-Signup.vue'
+import ModalComponent from '@/components/Modal-Signup.vue'
 
-describe('ModalComponent', () => {
-
-  test('renders when show is true', () => {
+describe('ModalComponent — Unit Tests', () => {
+  // #1 : Le message s’affiche correctement
+  test('renders the message when visible', () => {
     const wrapper = mount(ModalComponent, {
-      props: { show: true, message: 'Hello Modal' }
+      props: { show: true, message: 'Test message' }
     })
 
-    expect(wrapper.find('.modal-box').exists()).toBe(true)
-
-    expect(wrapper.text()).toContain('Hello Modal')
+    expect(wrapper.text()).toContain('Test message')
+    expect(wrapper.find('.modal-overlay').exists()).toBe(true)
   })
 
-
-  test('does not render when show is false', () => {
-
+  // #2 : La modale n’est pas affichée quand show = false
+  test('is hidden when show = false', () => {
     const wrapper = mount(ModalComponent, {
-      props: { show: false, message: 'Hidden Modal' }
+      props: { show: false, message: 'Hidden' }
     })
 
-    expect(wrapper.find('.modal-box').exists()).toBe(false)
+    expect(wrapper.find('.modal-overlay').exists()).toBe(false)
   })
 
-
-
-  test('emits close event when overlay is clicked', async () => {
-    
+  // #3 : Émet un événement "close" quand on clique sur le fond
+  test('emits close when clicking on overlay background', async () => {
     const wrapper = mount(ModalComponent, {
-      props: { show: true, message: 'Close me' }
+      props: { show: true, message: 'Test' }
     })
 
     await wrapper.find('.modal-overlay').trigger('click')
     expect(wrapper.emitted().close).toBeTruthy()
   })
 
-
-
-  test('emits close event when close button is clicked', async () => {
+  // #4 : Émet un événement "close" quand on clique sur le bouton X
+  test('emits close when clicking the close button', async () => {
     const wrapper = mount(ModalComponent, {
-      props: { show: true, message: 'Bye' }
+      props: { show: true, message: 'Test' }
     })
 
     await wrapper.find('.close-btn').trigger('click')
     expect(wrapper.emitted().close).toBeTruthy()
+  })
+
+  // #5 : Affiche le contenu du slot
+  test('renders slot content', () => {
+    const wrapper = mount(ModalComponent, {
+      props: { show: true },
+      slots: { default: '<div class="slot-content">Hello Slot</div>' }
+    })
+
+    expect(wrapper.find('.slot-content').exists()).toBe(true)
+    expect(wrapper.text()).toContain('Hello Slot')
   })
 })
