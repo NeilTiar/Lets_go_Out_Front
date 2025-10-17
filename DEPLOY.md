@@ -73,9 +73,11 @@ Tester les fonctionnalités critiques (connexion, navigation, formulaires).
 ## 6. Test End to end ( Cypress)
 
 Lancer l’application en local :
+
 -npm run serve
 
 depuis un nouveau terminal ,ouvrir l’interface de test Cypress :
+
 -npx cypress open
 
 
