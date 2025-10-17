@@ -70,7 +70,16 @@ Ouvrir la console du navigateur pour détecter d’éventuelles erreurs.
 
 Tester les fonctionnalités critiques (connexion, navigation, formulaires).
 
-## 6. Notes futures
+## 6. Test End to end ( Cypress)
+
+Lancer l’application en local :
+-npm run serve
+
+depuis un nouveau terminal ,ouvrir l’interface de test Cypress :
+-npx cypress open
+
+
+## 7. Notes futures
 
 Ajouter configuration HTTPS (si serveur perso).
 

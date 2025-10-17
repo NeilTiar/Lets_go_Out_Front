@@ -13,7 +13,7 @@
       <video
         preload="auto"
         class="home-background-img"
-        src="../../public/home_video/Paris_LGOP.mp4"
+        src="https://res.cloudinary.com/cloudinary-lets-go-out-paris/video/upload/v1760693464/Paris_LGOP_wocalu.mp4" 
         autoplay
         loop
         muted
@@ -36,7 +36,7 @@
   <div class="access-reviews">
     <a
       href="main"
-      class="home-link reviews-acces"
+      class="home-link reviews-access"
       @click="checkTokensBeforeSubmit"
     >
       accéder aux reviews
