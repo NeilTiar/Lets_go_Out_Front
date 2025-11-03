@@ -152,7 +152,7 @@ export default {
 
         // console.log('test this.validateReviews avant fetch un ou plusieurs review_id =>', this.validatedReviews);
 
-        const url = 'http://localhost:5001/review/activateReviews';
+        const url = 'https://localhost:5001/review/activateReviews';
 
         const response = await fetch(url, {
           method: 'PATCH',
@@ -179,7 +179,7 @@ export default {
         const rawDeletedReviews = this.deletedReviews.slice();
         console.log('rawDeletedReviews: ', rawDeletedReviews);
 
-        const url = 'http://localhost:5001/review/deleteReviews';
+        const url = 'https://localhost:5001/review/deleteReviews';
 
         const response = await fetch(url, {
           method: 'DELETE',
@@ -321,7 +321,7 @@ export default {
         // perte de temps enorme ( une aprés midi ) a cause de l'url qui indiqué localhost au lieu de localhost
 
         const response = await fetch(
-          `http://localhost:5001/admin/disable-reviews`
+          `https://localhost:5001/admin/disable-reviews`
         );
         if (!response.ok) {
           throw new Error('Network response was not ok');

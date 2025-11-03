@@ -385,13 +385,14 @@ export default {
 @import url('../styles/Header.css');
 
 .header-title {
-
-margin-left: 2rem;;
+text-shadow:  5px 4px 1px #402e4d, 4px 5px 1px #eeeeee, 6px 5px 1px #cccccc, 5px 6px 1px #ffffff, 7px 6px 1px #c7bdbd;
+margin-left: 2rem;
 }
 
 .title-description {
-
 margin-left: 2rem;
+text-shadow:  5px 4px 1px #402e4d, 4px 5px 1px #eeeeee, 6px 5px 1px #cccccc, 5px 6px 1px #ffffff, 7px 6px 1px #c7bdbd;
+
 }
 
 .user-menu {
@@ -582,6 +583,7 @@ margin-left: 2rem;
 
   .header-title {
     margin-top: 3rem;
+    text-shadow: 1px 0px 1px #1d1818, 0px 1px 1px #181313, 2px 1px 1px #130c0c, 1px 2px 1px #b36391, 3px 2px 1px #e6e7f1, 2px 3px 1px #eeeeee, 4px 3px 1px #1a0808, 3px 4px 1px #eeeeee, 5px 4px 1px #cccccc, 4px 5px 1px #eeeeee, 6px 5px 1px #cccccc, 5px 6px 1px #070404, 7px 6px 1px #0c0707;
    
   }
 

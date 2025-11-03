@@ -27,12 +27,24 @@ img.card-image {
   position: relative;
   justify-content: center;
   width: 99%;
-  transition: height 0.9s ease;
+  transition: height 2.2s ease;
 
 }
 
+.card-container:hover .card-theme {
+ transform: rotateY(30deg) translate3d(-50px, 50px, 0) scale(1.5);
+  transition: transform 1.7s ease;
+}
+
+.card-container:hover .place-name {
+  transform:  scale(1.1) translateX(1rem);
+  transition: transform 1.7s ease;
+}
+
+
+
 .card-container:hover .card-image {
-  height: 35vh;
+  height: 30vh;
  
 }
 
@@ -56,12 +68,12 @@ img.card-image {
   height: max-content;
   writing-mode: vertical-rl;
   /* Cette valeur affiche le texte de haut en bas */
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'courgette', sans-serif;
   font-size: 1.8rem;
   margin: 0 0 1.5rem 0;
   position: absolute;
   top: 0.4rem;
-  left: -1.8rem;
+  left: 0.5rem;
   color: #3aafad;
   justify-content: flex-end;
   text-shadow:

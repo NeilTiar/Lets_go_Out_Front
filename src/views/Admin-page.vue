@@ -43,7 +43,7 @@ export default {
         // perte de temps enorme ( une aprés midi ) a cause de l'url qui indiqué localhost
 
         const response = await fetch(
-          `http://localhost:5001/admin/disable-reviews`
+          `https://localhost:5001/admin/disable-reviews`
         );
         if (!response.ok) {
           throw new Error('Network response was not ok');

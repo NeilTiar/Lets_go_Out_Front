@@ -119,7 +119,7 @@ export default {
       const accessToken = localStorage.getItem('accessToken');
 
       const response = await fetch(
-        `http://localhost:5001/review/handle-favorites`,
+        `https://localhost:5001/review/handle-favorites`,
         {
           method: 'POST',
           headers: {

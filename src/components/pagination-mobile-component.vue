@@ -41,6 +41,11 @@ export default {
       default: 1,
     },
 
+      modelValue: { // <-- sert au v-model
+    type: Number,
+    default: 1,
+  },
+
    /*  totalItems: {
      type: Number, 
    default: 0,
@@ -48,7 +53,7 @@ export default {
   },    */ 
   },
 
-  emits: ['mobile-page-changed'],
+  emits: ['mobile-page-changed', 'update:modelValue'],
 
   data() {
     return {

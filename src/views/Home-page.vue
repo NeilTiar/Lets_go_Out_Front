@@ -106,6 +106,7 @@ export default {
     font-size: 5.2rem;
     margin-left: 3rem;
     padding-right: 1rem;
+
   }
 
   .top-title-login-connexion {
