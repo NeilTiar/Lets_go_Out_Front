@@ -78,10 +78,20 @@ npm run build
 
 ---
 
-### Lancer les tests
+### Lancer les tests unitaire
 
 ```bash
 npm run test
+```
+### Lancer les tests fonctionnels ( End to end -- Cypress ) 
+
+```bash
+npm run serve
+```
+puis dans un second terminal : 
+
+```bash
+npx cypress open
 ```
 
 ### -> Exécute les tests unitaires configurés (Vitest / Jest).
@@ -99,4 +109,5 @@ Analyse du code avec ESLint + correction automatique des erreurs de style.
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
 
