@@ -18,7 +18,6 @@
             </p>
           </div>
           <span class="close" @click="closeModalOnClick">&times;</span>
-          <p>{{ message }}</p>
         </div>
       </div>
       <form class="create-form" @submit.prevent>
@@ -336,6 +335,7 @@ export default {
       isModalVisible: false,
       isUserConnected: true,
       errors: {},
+      csrfToken : '',
     };
   },
 
@@ -352,15 +352,16 @@ export default {
     },
   },
 
-  mounted() {
-    /* test 
-    console.log(
-      'accessToken from localTorage',
-      localStorage.getItem('accessToken')
-    );*/
-  },
+async mounted() {
+
+  this.csrfToken = await this.getCsrfToken(); // ✅ récupéré dès le montage
+  console.log("✅ CSRF initial reçu :", this.csrfToken);
+  
+},
+
 
   methods: {
+
     handleErrorsBeforeSubmit() {
       this.errors = {}; // Reset errors
 
@@ -374,6 +375,22 @@ export default {
         console.log('Form submitted:', this.form);
       }
     },
+
+ async getCsrfToken() {
+  const res = await fetch("https://localhost:5001/token/csrf-token", {
+    credentials: "include", // pour le cookie
+  });
+
+  console.log("document.cookie ",document.cookie);
+  const data = await res.json();
+
+   console.log("CSRF reçu :", data.csrfToken);
+ this.csrfToken = data.csrfToken;
+  
+   console.log("Prop data csrfToken :", this.csrfToken);
+  
+  return data.csrfToken;
+},
 
     async redirectToLogin() {
       // Redirection vers la route /about
@@ -391,38 +408,50 @@ export default {
       const formDataCopy = JSON.parse(JSON.stringify(this.formData));
       console.log('FormData ', formDataCopy);
     },
+resetForm() {
+  // Réinitialiser les champs du formulaire
+  this.formData.theme = '';
+  this.formData.place_name = '';
+  this.formData.address_place = '';
+  this.formData.district_num = '';
+  this.formData.text_description = '';
 
-    resetForm() {
-      this.formData.theme = '';
-      this.formData.place_name = '';
-      this.formData.address_place = '';
-      this.formData.district_num = '';
-      this.formData.text_description = '';
+  // Réinitialiser les champs temporaires d'image
+  this.formData.temporary = {
+    mainPicture: '',
+    secondPicture: '',
+    thirdPicture: '',
+    fourthPicture: '',
+    fifthPicture: '',
+    mobilePictures: '',
+  };
 
-      // Réinitialiser les champs temporaires d'image
-      this.formData.temporary.mainPicture = '';
-      this.formData.temporary.secondPicture = '';
-      this.formData.temporary.thirdPicture = '';
-      this.formData.temporary.fourthPicture = '';
-      this.formData.temporary.fifthPicture = '';
-      this.formData.temporary.mobilePictures = '';
+  // Réinitialiser les URLs finales d'image
+  this.formData.mainPicture = '';
+  this.formData.secondPicture = '';
+  this.formData.thirdPicture = '';
+  this.formData.fourthPicture = '';
+  this.formData.fifthPicture = '';
+  this.formData.mobilePictures = '';
 
-      // Réinitialiser les URLs d'image finales
-      this.formData.mainPicture = '';
-      this.formData.secondPicture = '';
-      this.formData.thirdPicture = '';
-      this.formData.fourthPicture = '';
-      this.formData.fifthPicture = '';
-      this.formData.mobilePictures = '';
+  // 🔥 Réinitialiser les inputs file en toute sécurité
+  const refs = [
+    'fileInput',
+    'fileInputSecond',
+    'fileInputThird',
+    'fileInputFourth',
+    'fileInputFifth',
+    'fileInputMobile',
+  ];
 
-      // Réinitialiser les éléments input file
-      this.$refs.fileInput.value = '';
-      this.$refs.fileInputSecond.value = '';
-      this.$refs.fileInputThird.value = '';
-      this.$refs.fileInputFourth.value = '';
-      this.$refs.fileInputFifth.value = '';
-      this.$refs.fileInputMobile = '';
-    },
+  refs.forEach(refName => {
+    const ref = this.$refs[refName];
+    if (ref) ref.value = ''; // Vérifie avant d'accéder
+  });
+
+  console.log('Formulaire entièrement réinitialisé ✅');
+},
+
 
     onTextLoad(event) {
       const file = event.target.files[0];
@@ -528,6 +557,11 @@ export default {
     async submitForm() {
       // test  console.log("PASSE PAR SUBMIT FORM  !!!!!!")
 
+         // 🔁 vérifie ou régénère le token si besoin
+    if (!this.csrfToken) {
+      this.csrfToken = await this.getCsrfToken();
+    }
+
       // Construct FormData
       const formData = new FormData();
       formData.append('theme', this.formData.theme);
@@ -576,27 +610,29 @@ export default {
       je vais inclure la verification depuis l'api au niveau de la fonction pour creer une review */
 
       try {
+
         const token = localStorage.getItem('accessToken');
 
-
-        const url = 'http://localhost:5001/review/create';
+        const csrfToken = this.csrfToken; // ✅ utilise celui récupéré au mounted
+        const accessToken = localStorage.getItem('accessToken');
+        const url = 'https://localhost:5001/review/create';
 
         const response = await fetch(url, {
           method: 'POST',
+          credentials: "include", //credentials est une props qui permet d'envoyer les cookies avec la requete, cette propriété est native de fetch API
           headers: {
-            Authorization: `Bearer ${token}`,
+            "x-csrf-token": csrfToken,
+            "Authorization": `Bearer ${accessToken}`,
           },
           body: formData, // No need to set Content-Type header manually
+          
         });
-        
+
 
         if (response.ok) {
           try {
             const responseData = await response.json();
-            console.log(
-              'token from localStorage Front =======================>>>>>>>>> : ',
-              token
-            );
+            
             this.successMessage = responseData.successMessage;
             console.log(
               'Success, review created:',
@@ -678,19 +714,10 @@ export default {
       je vais inclure la verification depuis l'api au niveau de la fonction pour creer une review */
 
       try {
-        const accessToken = localStorage.getItem('accessToken');
 
 
-        const url = 'http://localhost:5001/review/create';
-
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: formData, // No need to set Content-Type header manually
-        });
-
+     
+  
         if (response.ok && this.errors.length == 0) {
           const responseData = await response.json();
           // accessToken = response.accessToken;

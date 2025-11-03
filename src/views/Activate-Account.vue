@@ -37,7 +37,7 @@ onMounted(() => {
 
   if (token) {
     loading.value = true;
-    fetch(`http://localhost:5001/user/activate/${token}`)
+    fetch(`https://localhost:5001/user/activate/${token}`)
       .then(res => res.json())
       .then(data => {
         console.log("Réponse du backend :", data);

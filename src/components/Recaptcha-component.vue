@@ -37,7 +37,7 @@ export default {
   methods: {
     async fetchRecaptchaSiteKey() {
       try {
-        const response = await fetch('http://localhost:5001/user/siteKey', {
+        const response = await fetch('https://localhost:5001/user/siteKey', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default {
 
         this.$emit('captcha-verification', true);
 
-        const result = await fetch('http://localhost:5001/captcha', {
+        const result = await fetch('https://localhost:5001/captcha', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

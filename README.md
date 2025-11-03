@@ -34,13 +34,13 @@ Le projet est développé dans le cadre de la préparation au **titre RNCP Déve
 
 ## Fonctionnalités principales :
 
-- [ ] **Création de compte** (permettant de créer une review)
-- [ ] **Carte interactive** avec affichage des lieux
-- [ ] **Consultation des reviews** (générées par d’autres utilisateurs)
-- [ ] **Section Administrateur** (gestion des publications de reviews)
-- [ ] **Responsive mobile-first** (optimisé pour smartphones/tablettes)
-- [ ] **Authentification basique** (connexion / inscription)
-- [ ] **Modale RGPD** (informer sur la gestion des données collectées)
+-  **Création de compte** (permettant de créer une review)
+-  **Carte interactive** avec affichage des lieux
+-  **Consultation des reviews** (générées par d’autres utilisateurs)
+-  **Section Administrateur** (gestion des publications de reviews)
+-  **Responsive mobile-first** (optimisé pour smartphones/tablettes)
+-  **Authentification basique** (connexion / inscription)
+-  **Modale RGPD** (informer sur la gestion des données collectées)
 
 ---
 
@@ -51,7 +51,7 @@ Le projet est développé dans le cadre de la préparation au **titre RNCP Déve
 - Node.js (>= 18)
 - npm ou pnpm
 
-### 🚀 Installation
+### Installation
 
 ```bash
 git clone https://github.com/NeilTiar/Lets_go_Out_Front.git
@@ -74,7 +74,7 @@ Application disponible sur http://localhost:5173
 npm run build
 ```
 
-➡️ Génère un dossier /dist prêt à être déployé.
+ Génère un dossier /dist prêt à être déployé.
 
 ---
 

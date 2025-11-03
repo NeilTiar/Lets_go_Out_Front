@@ -8,7 +8,7 @@ export async function checkTokensBeforeSubmit() {
 
   try {
     const response: Response = await fetch(
-      'http://localhost:5001/isValidTokens',
+      'https://localhost:5001/isValidTokens',
       {
         method: 'POST',
         headers: {
@@ -39,7 +39,7 @@ export async function refreshAccessToken(): Promise<boolean> {
 
   try {
     const response: Response = await fetch(
-      'http://localhost:5001/api/refresh-token',
+      'https://localhost:5001/api/refresh-token',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

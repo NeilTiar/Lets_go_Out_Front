@@ -13,7 +13,8 @@ const store = createStore({
     refreshToken: null,
     isAdmin: false,
     favorites: [],
-    totalReviews: 55,
+    totalReviews:'',
+    itemsPerPage: 15,
   },
 
   getters: {
@@ -25,6 +26,12 @@ const store = createStore({
   },
 
   mutations: {
+
+
+     setItemsPerPage(state, value) {
+    state.itemsPerPage = value;
+    },
+
     setReviewsPage(state, pageNumber) {
       state.currentReviewsPage = pageNumber;
     },
@@ -106,6 +113,15 @@ const store = createStore({
   },
 
   actions: {
+
+
+    updateItemsPerPage({ commit }) {
+    const isDesktop = window.innerWidth > 768;
+    const itemsPerPage = isDesktop ? 15 : 10;
+    commit('setItemsPerPage', itemsPerPage);
+  },
+
+
     setFavorites({ commit }, favorites) {
       commit('setFavorites', favorites);
     },

@@ -22,16 +22,27 @@ est vérifier :
 describe('CookieBanner', () => {
   let wrapper
 
-  beforeEach(async () => {
+
+
+
+   beforeEach(async () => {
     localStorage.clear()
     document.head.innerHTML = '' // Réinitialiser les scripts ajoutés
 
     wrapper = mount(CookieBanner)
-    await nextTick() // attendre que onMounted() s’exécute avant chaque test
+
+    // Attendre que onMounted() + showBanner soient pris en compte
+    await nextTick()
+    await nextTick()
   })
+
+
+ 
+
   
   //#1
-  test('shows banner if no consent in localStorage', () => {
+  test('shows banner if no consent in localStorage', async () => {
+    await nextTick()
     expect(wrapper.find('.cookie-banner').exists()).toBe(true)
   })
 

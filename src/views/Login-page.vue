@@ -106,7 +106,7 @@ export default {
 
       try {
         // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
-        const response = await fetch(`http://localhost:5001/user/login`, {
+        const response = await fetch(`https://localhost:5001/user/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -142,10 +142,10 @@ export default {
 
         // Vérification de la réponse du serveur
         if (response.ok ) {
-          console.log(
-            'Token stocké dans Vuex :',
-            this.$store.state.accessToken
-          );
+
+
+
+      
           // console.log('refreshToken :', refreshToken)
 
           if (isRefreshToken) {
@@ -156,14 +156,23 @@ export default {
 
             if (brutAccessToken) {
               const AccessToken = brutAccessToken.split(' ')[1]; // Prend la partie après 'Bearer'
-              console.log('Token extrait :', AccessToken);
-              localStorage.setItem('accessToken', AccessToken); // Stocker le token dans localStorage
-            } else {
-              console.log('Aucun token trouvé');
+            
+           
+        //test   console.log(' ===========>>>>brutAccessToken from header :', brutAccessToken);    
+
+        
+        // Stockage local de l'accessToken
+          localStorage.setItem('accessToken', AccessToken);
+
             }
 
             store.dispatch('currentRefreshToken', isRefreshToken);
           }
+
+              console.log(
+            'Token stocké dans Vuex :',
+            this.$store.state.accessToken
+          );
 
           const isAdmin = responseData.isAdmin;
           
@@ -222,6 +231,21 @@ export default {
 </script>
 
 <style scoped>
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+
+
 .mobile-connection {
   padding: 1rem;
   margin-top: 2rem;
@@ -242,12 +266,11 @@ export default {
 .container-login {
   display: flex;
   border: 1px solid black;
-  height: max-content;
-  max-width: 80%;
-  margin: auto;
+  width: 80vw;              /* ✅ corrige "vwh" → "vw" */
+  margin: auto;             /* centre horizontalement et verticalement si possible */
   border-radius: 15px;
   background-color: rgb(249, 254, 255);
-  margin-bottom: auto;
+  min-height: max-content;  /* garde la hauteur selon le contenu */
 }
 
 .form-connection {

@@ -247,7 +247,7 @@ useHead({
 
       try {
         // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
-        const response = await fetch(`http://localhost:5001/user/signup`, {
+        const response = await fetch(`https://localhost:5001/user/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

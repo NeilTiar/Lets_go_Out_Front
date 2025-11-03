@@ -6,8 +6,7 @@
     <vue-awesome-paginate
       v-model="currentPage"
       :total-items="totalItems"
-      :reviews="reviews"
-      :items-per-page="itemsPerPage"
+      :items-per-page="itemsPerPage" 
       :max-page-shown="pagesShown"
       @update:model-value="changePage"
     />
@@ -32,21 +31,24 @@ export default {
 
   data() {
     return {
+      itemsPerPage: store.state.itemsPerPage || 15,
       currentPage: store.state.currentReviewsPage || 1,
-      itemsPerPage: 10,
       pagesShown: 1,
       // totalItems :  la fonction totalItems() dans computed creer implicitement une props du meme nom  ici.
     };
   },
 
   computed: {
+
+    itemsPerPageFromStore() {
+    return this.$store.state.itemsPerPage;
+  },
+   
+
     totalItems() {
-      return this.reviews.length; // Nombre total de commentaires
+      return this.reviews.length; // Nombre total de reviews
     },
 
-    totalPages() {
-      return Math.ceil(this.reviews.length / this.itemsPerPage);
-    },
   },
 
   mounted() {
