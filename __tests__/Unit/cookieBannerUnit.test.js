@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import CookieConsent from '@/components/Cookie-consent.vue'
+import { nextTick } from 'vue' 
 
 describe('CookieConsent.vue — Integration Test', () => {
   let appendSpy
@@ -9,15 +10,19 @@ describe('CookieConsent.vue — Integration Test', () => {
     // Nettoyer le localStorage et mocks avant chaque test
     localStorage.clear()
     appendSpy = vi.spyOn(document.head, 'appendChild')
+  
   })
 
-  it('affiche la bannière si aucun consentement n’est donné', () => {
+
+  it('affiche la bannière si aucun consentement n’est donné', async () => {
     const wrapper = mount(CookieConsent)
+    await nextTick()
+   
     expect(wrapper.find('.cookie-banner').exists()).toBe(true)
   })
-
   it('cache la bannière et stocke "accepted" après clic sur Accepter', async () => {
     const wrapper = mount(CookieConsent)
+     await nextTick()
     await wrapper.find('.accept').trigger('click')
 
     expect(localStorage.getItem('cookieConsent')).toBe('accepted')
@@ -27,6 +32,7 @@ describe('CookieConsent.vue — Integration Test', () => {
 
   it('cache la bannière et stocke "refused" après clic sur Refuser', async () => {
     const wrapper = mount(CookieConsent)
+     await nextTick()
     await wrapper.find('.refuse').trigger('click')
 
     expect(localStorage.getItem('cookieConsent')).toBe('refused')
