@@ -10,7 +10,7 @@
     "lint": "vite lint",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "prepare": "husky"
+    "prepare": ""
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,md}": "prettier --write"
