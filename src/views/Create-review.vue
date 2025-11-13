@@ -355,7 +355,7 @@ export default {
 async mounted() {
 
  /* this.csrfToken = await this.getCsrfToken(); // ✅ récupéré dès le montage
-  console.log("✅ CSRF initial reçu :", this.csrfToken);*/
+  console.log("✅ CSRF initial reçu :", this.csrfToken); */
   
 },
 
@@ -393,7 +393,7 @@ async getCsrfToken() {
    console.log("Prop data csrfToken :", this.csrfToken);
   
   return data.csrfToken;
-},*/
+}, */
 
     async redirectToLogin() {
       // Redirection vers la route /about
@@ -565,7 +565,7 @@ resetForm() {
         /*
     if (!this.csrfToken) {
       this.csrfToken = await this.getCsrfToken();
-    }*/
+    } */
 
       // Construct FormData
       const formData = new FormData();
@@ -859,7 +859,7 @@ body {
   position: relative;
   /* display: flex;
   justify-content: flex-end;
-  align-items: flex-end;*/
+  align-items: flex-end; */
   width: 80%;
   height: 27rem;
   border: 1px solid black;

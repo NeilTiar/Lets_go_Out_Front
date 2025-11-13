@@ -6,6 +6,9 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig([
   {
+    ignores: ["dist/**", "node_modules/**"],   // ✔️ ignore global
+  },
+  {
     files: ["**/*.{js,mjs,cjs,vue}"],
     languageOptions: {
       globals: globals.browser,
