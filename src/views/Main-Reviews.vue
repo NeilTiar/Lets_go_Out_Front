@@ -213,14 +213,17 @@ export default {
     },
 
     async fetchData() {
+      
       try {
         // perte de temps enorme ( une aprés midi ) a cause de l'url qui indiqué localhost
 
-        const response = await fetch(`https://localhost:5001/review/home`);
+        const response = await fetch(`https://lets-go-out-back.onrender.com/review/home`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+
+        // Filtrer les avis pour supprimer les doublons basés sur review_id
         this.reviews =  data.filter(
   (r, i, self) => i === self.findIndex(t => t.review_id === r.review_id)
 );

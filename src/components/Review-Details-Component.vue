@@ -143,7 +143,7 @@ export default {
     async fetchPictures() {
       try {
         const response = await fetch(
-          `https://localhost:5001/review/pictures?review_id=${this.review_id}`
+          `https://lets-go-out-back.onrender.com/review/pictures?review_id=${this.review_id}`
         );
 
         if (!response.ok) {

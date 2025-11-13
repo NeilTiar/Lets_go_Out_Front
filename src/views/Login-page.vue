@@ -106,7 +106,7 @@ export default {
 
       try {
         // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
-        const response = await fetch(`https://localhost:5001/user/login`, {
+        const response = await fetch(`https://lets-go-out-back.onrender.com/user/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -155,6 +155,9 @@ export default {
             const brutAccessToken = response.headers.get('Authorization');
 
             if (brutAccessToken) {
+
+              console.log('Header Authorization ===========>>>:', brutAccessToken);
+
               const AccessToken = brutAccessToken.split(' ')[1]; // Prend la partie après 'Bearer'
             
            
