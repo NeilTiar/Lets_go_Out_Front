@@ -354,8 +354,8 @@ export default {
 
 async mounted() {
 
-  this.csrfToken = await this.getCsrfToken(); // ✅ récupéré dès le montage
-  console.log("✅ CSRF initial reçu :", this.csrfToken);
+ /* this.csrfToken = await this.getCsrfToken(); // ✅ récupéré dès le montage
+  console.log("✅ CSRF initial reçu :", this.csrfToken);*/
   
 },
 
@@ -376,8 +376,11 @@ async mounted() {
       }
     },
 
- async getCsrfToken() {
-  const res = await fetch("https://localhost:5001/token/csrf-token", {
+// csrf remplacé ,pas de cookie parser ici , car le token est dans le localstorage , donc securiser via access et refresh token */
+
+/*
+async getCsrfToken() {
+  const res = await fetch("https://lets-go-out-back.onrender.com/token/csrf-token", {
     credentials: "include", // pour le cookie
   });
 
@@ -390,7 +393,7 @@ async mounted() {
    console.log("Prop data csrfToken :", this.csrfToken);
   
   return data.csrfToken;
-},
+},*/
 
     async redirectToLogin() {
       // Redirection vers la route /about
@@ -558,9 +561,11 @@ resetForm() {
       // test  console.log("PASSE PAR SUBMIT FORM  !!!!!!")
 
          // 🔁 vérifie ou régénère le token si besoin
+
+        /*
     if (!this.csrfToken) {
       this.csrfToken = await this.getCsrfToken();
-    }
+    }*/
 
       // Construct FormData
       const formData = new FormData();
@@ -613,15 +618,15 @@ resetForm() {
 
         const token = localStorage.getItem('accessToken');
 
-        const csrfToken = this.csrfToken; // ✅ utilise celui récupéré au mounted
+       // const csrfToken = this.csrfToken; // ✅ utilise celui récupéré au mounted
         const accessToken = localStorage.getItem('accessToken');
-        const url = 'https://localhost:5001/review/create';
+        const url = 'https://lets-go-out-back.onrender.com/review/create';
 
         const response = await fetch(url, {
           method: 'POST',
-          credentials: "include", //credentials est une props qui permet d'envoyer les cookies avec la requete, cette propriété est native de fetch API
+         // credentials: "include", //credentials est une props qui permet d'envoyer les cookies avec la requete, cette propriété est native de fetch API
           headers: {
-            "x-csrf-token": csrfToken,
+           // "x-csrf-token": csrfToken,
             "Authorization": `Bearer ${accessToken}`,
           },
           body: formData, // No need to set Content-Type header manually
