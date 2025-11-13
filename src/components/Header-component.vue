@@ -259,9 +259,7 @@ export default {
       return this.windowWidth > 1000;
     },
 
-      isUserConnected() {
-    return !!this.$store.state.auth?.token
-  },
+   
   },
 
   mounted() {

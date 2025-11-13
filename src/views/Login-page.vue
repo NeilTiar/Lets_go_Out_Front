@@ -161,7 +161,7 @@ export default {
               const AccessToken = brutAccessToken.split(' ')[1]; // Prend la partie après 'Bearer'
             
            
-        //test   console.log(' ===========>>>>brutAccessToken from header :', brutAccessToken);    
+        // test   console.log(' ===========>>>>brutAccessToken from header :', brutAccessToken);    
 
         
         // Stockage local de l'accessToken

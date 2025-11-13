@@ -36,10 +36,6 @@ export default {
       default: () => [],
     },
 
-      modelValue: {
-      type: Number,
-      default: 1,
-    },
 
       modelValue: { // <-- sert au v-model
     type: Number,
@@ -59,7 +55,7 @@ export default {
     return {
       currentPage: this.$store.state.currentReviewsPage || 1,
       itemsPerPage: 10,
-      //pagesShown: this.totalPages,  // le nombre depage devrais etre indiquer dynamiquement et non en dur  !!!
+      // pagesShown: this.totalPages,  // le nombre depage devrais etre indiquer dynamiquement et non en dur  !!!
     };
   },
   // Error point breakfrom totalItems : this.$store.state.reviews.length,
