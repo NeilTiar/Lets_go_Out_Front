@@ -35,9 +35,11 @@ onMounted(() => {
 
   console.log("Token from URL params:", token);
 
+    const api = import.meta.env.VITE_API_URL;
+
   if (token) {
     loading.value = true;
-    fetch(`https://localhost:5001/user/activate/${token}`)
+    fetch(`${api}/user/activate/${token}`)
       .then(res => res.json())
       .then(data => {
         console.log("Réponse du backend :", data);

@@ -70,8 +70,10 @@ export default {
 
         console.log('passe bien par fonction fetch pour afficher favoris !!!');
 
+        const API_URL = import.meta.env.VITE_API_URL;
+
         const response = await fetch(
-          `https://localhost:5001/review/get-favorites-reviews`,
+          `${API_URL}/review/get-favorites-reviews`,
           {
             method: 'GET',
             headers: {

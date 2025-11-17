@@ -2,7 +2,9 @@ export const fetchDataMixin = {
   methods: {
     async fetchData() {
       try {
-        const response = await fetch(`http://localhost:5001/review/home`);
+        const api = import.meta.env.VITE_API_URL;
+
+        const response = await fetch(`${api}/review/home`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

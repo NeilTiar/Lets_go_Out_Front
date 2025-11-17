@@ -118,8 +118,10 @@ export default {
       event.stopPropagation();
       const accessToken = localStorage.getItem('accessToken');
 
+      const api = import.meta.env.VITE_API_URL;
+
       const response = await fetch(
-        `https://localhost:5001/review/handle-favorites`,
+        `${api}/review/handle-favorites`,
         {
           method: 'POST',
           headers: {

@@ -142,8 +142,11 @@ export default {
   methods: {
     async fetchPictures() {
       try {
+
+        const api = import.meta.env.VITE_API_URL;
+
         const response = await fetch(
-          `https://lets-go-out-back.onrender.com/review/pictures?review_id=${this.review_id}`
+          `${api}/review/pictures?review_id=${this.review_id}`
         );
 
         if (!response.ok) {

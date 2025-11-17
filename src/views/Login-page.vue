@@ -104,9 +104,11 @@ export default {
       // test console.log('Identifiant:', this.email);
       // test console.log('Mot de passe:', this.password);
 
+    const api = import.meta.env.VITE_API_URL;
+
       try {
         // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
-        const response = await fetch(`https://lets-go-out-back.onrender.com/user/login`, {
+        const response = await fetch(`${api}/user/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

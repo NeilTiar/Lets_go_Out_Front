@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "test": "vitest",
-    "dev": " vite --open --host localhost --port 8079",
-    "serve": "vite --open --host localhost --port 8080 ",
+    "dev": " vite --open --host localhost --mode development --port 8079",
+    "serve": "vite --open --host localhost --mode production --port 8080 ",
     "build": "vite build",
     "lint": "eslint .",
     "prettier:check": "prettier --check .",

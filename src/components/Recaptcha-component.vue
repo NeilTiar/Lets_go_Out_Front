@@ -37,7 +37,10 @@ export default {
   methods: {
     async fetchRecaptchaSiteKey() {
       try {
-        const response = await fetch('https://localhost:5001/user/siteKey', {
+ 
+        const api = import.meta.env.VITE_API_URL;
+
+        const response = await fetch(`${api}/user/siteKey`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -61,7 +64,9 @@ export default {
 
         this.$emit('captcha-verification', true);
 
-        const result = await fetch('https://localhost:5001/captcha', {
+        const api = import.meta.env.VITE_API_URL;
+
+        const result = await fetch(`${api}/captcha`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -1,5 +1,4 @@
 export async function checkTokensBeforeSubmit() {
-  
   const accessToken: string | null = localStorage.getItem('accessToken');
 
   if (!accessToken) {
@@ -7,16 +6,15 @@ export async function checkTokensBeforeSubmit() {
   }
 
   try {
-    const response: Response = await fetch(
-      'https://localhost:5001/isValidTokens',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const api = import.meta.env.VITE_API_URL;
+
+    const response: Response = await fetch(`${api}/isValidTokens`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
     if (response.ok) {
       const data: { accessToken: string } = await response.json();
@@ -38,14 +36,11 @@ export async function refreshAccessToken(): Promise<boolean> {
   }
 
   try {
-    const response: Response = await fetch(
-      'https://localhost:5001/api/refresh-token',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ refreshToken }),
-      }
-    );
+    const response: Response = await fetch('${api}/api/refresh-token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refreshToken }),
+    });
 
     if (response.ok) {
       const data: { accessToken: string } = await response.json();

@@ -213,11 +213,15 @@ export default {
     },
 
     async fetchData() {
+
+    const api = import.meta.env.VITE_API_URL;
+
+    console.log('API URL from env: ', api);
       
       try {
         // perte de temps enorme ( une aprés midi ) a cause de l'url qui indiqué localhost
 
-        const response = await fetch(`https://lets-go-out-back.onrender.com/review/home`);
+        const response = await fetch(`${api}/review/home`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

@@ -246,8 +246,12 @@ useHead({
     console.log('submitForm called');
 
       try {
+
+
+        const api = import.meta.env.VITE_API_URL;
+
         // Utilisation de la fonction fetch pour envoyer une requête POST à votre API
-        const response = await fetch(`https://localhost:5001/user/signup`, {
+        const response = await fetch(`${api}/user/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

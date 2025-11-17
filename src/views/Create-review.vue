@@ -616,11 +616,13 @@ resetForm() {
 
       try {
 
+        const api = import.meta.env.VITE_API_URL;
+
         const token = localStorage.getItem('accessToken');
 
        // const csrfToken = this.csrfToken; // ✅ utilise celui récupéré au mounted
         const accessToken = localStorage.getItem('accessToken');
-        const url = 'https://lets-go-out-back.onrender.com/review/create';
+        const url = `${api}/review/create`;
 
         const response = await fetch(url, {
           method: 'POST',

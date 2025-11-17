@@ -42,8 +42,10 @@ export default {
       try {
         // perte de temps enorme ( une aprés midi ) a cause de l'url qui indiqué localhost
 
+        const api = import.meta.env.VITE_API_URL;
+
         const response = await fetch(
-          `https://localhost:5001/admin/disable-reviews`
+          `${api}/admin/disable-reviews`
         );
         if (!response.ok) {
           throw new Error('Network response was not ok');

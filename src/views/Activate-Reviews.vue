@@ -147,12 +147,15 @@ export default {
     },
 
     async handleValidatedSelection() {
+      
+        const api = import.meta.env.VITE_API_URL;
+
       try {
         const rawValidateReviews = this.validatedReviews.slice();
 
         // console.log('test this.validateReviews avant fetch un ou plusieurs review_id =>', this.validatedReviews);
 
-        const url = 'https://localhost:5001/review/activateReviews';
+        const url = `${api}/review/activateReviews`;
 
         const response = await fetch(url, {
           method: 'PATCH',
@@ -179,7 +182,9 @@ export default {
         const rawDeletedReviews = this.deletedReviews.slice();
         console.log('rawDeletedReviews: ', rawDeletedReviews);
 
-        const url = 'https://localhost:5001/review/deleteReviews';
+        const api = import.meta.env.VITE_API_URL;
+
+        const url = `${api}/review/deleteReviews`;
 
         const response = await fetch(url, {
           method: 'DELETE',
@@ -320,12 +325,14 @@ export default {
       try {
         // perte de temps enorme ( une aprés midi ) a cause de l'url qui indiqué localhost au lieu de localhost
 
-        const response = await fetch(
-          `https://localhost:5001/admin/disable-reviews`
-        );
+        const api = import.meta.env.VITE_API_URL;
+
+        const response = await fetch( `${api}/admin/disable-reviews` );
+
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+        
         const data = await response.json();
         // console.log('data: ', data);
 
