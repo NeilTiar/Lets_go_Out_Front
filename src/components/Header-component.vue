@@ -393,7 +393,7 @@ margin-left: 2rem;
 
 .title-description {
 margin-left: 2rem;
-text-shadow:  5px 4px 1px #402e4d, 4px 5px 1px #eeeeee, 6px 5px 1px #cccccc, 5px 6px 1px #ffffff, 7px 6px 1px #c7bdbd;
+text-shadow: 5px 4px 1px #402e4d, 4px 5px 1px #1d0329, 6px 5px 1px #000000;
 
 }
 

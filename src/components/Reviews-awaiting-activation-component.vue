@@ -50,6 +50,7 @@
       </div>
 
       <div class="container-activation-buttons">
+
         <button-component
           button-name="Valider"
           class="button-validation"
@@ -128,7 +129,8 @@ props: {
     },
 
     toggleValidationButton() {
-      this.$emit('validation-button'); // Émet l'événement
+       console.log("VALIDATE CLICK CHILD");
+      this.$emit('validation-button',this.reviewId); // Émet l'événement
     },
 
     toggleDeleteButton() {

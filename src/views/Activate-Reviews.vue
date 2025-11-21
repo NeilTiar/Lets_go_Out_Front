@@ -34,6 +34,7 @@
         :address-place="review.address_place"
         :status="review.status"
         :review-id="review.review_id"
+        
         @validation-button="
           handleValidationAndDeleteButtons(review.review_id, [
             'validated',
@@ -70,6 +71,7 @@
 import HeaderComponent from '@/components/Header-component.vue';
 import FooterComponent from '@/components/Footer-component.vue';
 import ReviewsAwaitingActivationComponent from '@/components/Reviews-awaiting-activation-component.vue';
+//import { checkTokensBeforeSubmit } from "@/utils/auth.js";
 
 // GESTION DU COMPORTEMENT A L'AJOUT ET A LA SUPPRESSION DES CARTE VIA BOUTTON A CORIGER !!!!
 
@@ -98,6 +100,7 @@ export default {
 
   onMounted() {
     console.log('reviews from Activate Reviews :', this.reviews);
+    
   },
 
   beforeMount() {
@@ -105,24 +108,35 @@ export default {
   },
 
   mounted() {
+
     this.fetchData();
     // console.log('log REVIEWS:', JSON.stringify(this.reviews));
   },
 
   methods: {
-    modalValidation() {
-      if (this.validatedReviews.length > 0) {
-        this.handleValidatedSelection();
-      }
 
-      if (this.deletedReviews.length > 0) {
-        this.handleDeletedSelection();
-      }
+modalValidation: async function() {
+  try {
+    // Valider en premier
+    if (this.validatedReviews.length > 0) {
+      await this.handleValidatedSelection();
+    }
 
-      this.isModal = false;
-      document.body.style.filter = 'blur(0px)';
+    // Supprimer ensuite
+    if (this.deletedReviews.length > 0) {
+      await this.handleDeletedSelection();
+    }
+
+    // Recharge APRÈS les deux opérations
+  
       window.location.reload();
-    },
+   
+
+  } catch (err) {
+    console.error("Erreur dans modalValidation :", err);
+  }
+},
+
 
     modalCancel() {
       document
@@ -134,6 +148,8 @@ export default {
     },
 
     handleReviewsBtnActivateOrDelete() {
+
+     
       window.scrollTo({
         top: 0,
         behavior: 'smooth', // Ajoute une animation de défilement fluide
@@ -143,24 +159,39 @@ export default {
         .querySelectorAll('.reviews-grid, .container-selection-validation')
         .forEach((el) => {
           el.style.filter = 'blur(5px)';
+
+
+
         });
+
     },
 
-    async handleValidatedSelection() {
-      
-        const api = import.meta.env.VITE_API_URL;
+    async handleValidatedSelection() {      
 
       try {
+
+
+        /*
+          const ok = await checkTokensBeforeSubmit();
+          if (!ok) return; // Le token est invalide → stop*/
+
+
+        const token = localStorage.getItem("accessToken"); 
+
+        console.log("TOKEN AVANT VALIDATION ===========>>>=",token);
+
+
+        const api = import.meta.env.VITE_API_URL;
         const rawValidateReviews = this.validatedReviews.slice();
-
-        // console.log('test this.validateReviews avant fetch un ou plusieurs review_id =>', this.validatedReviews);
-
+        
         const url = `${api}/review/activateReviews`;
+
 
         const response = await fetch(url, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json', // Spécifie que le corps de la requête est en JSON
+            "Authorization": `Bearer ${token}` 
           },
           body: JSON.stringify({
             arrayWithReviewIdToActivate: rawValidateReviews,
@@ -169,16 +200,26 @@ export default {
 
         if (response.ok) {
           const result = await response.json();
-
           console.log(`${result.validated},Reviews ont été validées`);
-        }
+        } else {
+          console.log('Erreur lors de la validation des reviews');
+        } 
+ 
+
       } catch (error) {
         console.log(error);
       }
     },
 
+
     async handleDeletedSelection() {
+
       try {
+
+
+         /* const ok = await checkTokensBeforeSubmit();
+         if (!ok) return; // Le token est invalide → stop*/
+
         const rawDeletedReviews = this.deletedReviews.slice();
         console.log('rawDeletedReviews: ', rawDeletedReviews);
 
@@ -205,10 +246,15 @@ export default {
       }
     },
 
+
+
     handleValidationAndDeleteButtons(currentReviewId, buttonFunction) {
+
+          
       // Construire les noms de tableaux à partir des valeurs passées dans buttonFunction
       let targetArrayName = `${buttonFunction[0]}Reviews`;
       let otherArrayName = `${buttonFunction[1]}Reviews`;
+
 
       // Vérifier si les tableaux existent et sont bien des tableaux
       if (!Array.isArray(this[targetArrayName])) {
@@ -226,8 +272,7 @@ export default {
       }
 
       // Trouver l'index en indiquant l'identifiant courant dans le tableau cible
-      const indexInCurrentArray =
-        this[targetArrayName].indexOf(currentReviewId);
+      const indexInCurrentArray = this[targetArrayName].indexOf(currentReviewId);
 
       // Trouver l'index en indiquant l'identifiant dans l'autre tableau
       const indexInOtherArray = this[otherArrayName].indexOf(currentReviewId);
@@ -235,12 +280,23 @@ export default {
       // Rechercher  la review actuelle par ID dans la collection de toutes les reviews
       const currentReview = this.reviews.find(
         (review) => review.review_id === currentReviewId
+
       );
 
+      
+
       if (currentReview) {
+
+        console.log("REVIEW OBJECT =", JSON.stringify(currentReview, null, 2));
+
         // Basculer le statut de la review actuelle
-        currentReview.status =
-          currentReview.status === buttonFunction[0] ? null : buttonFunction[0]; // buttonFonction[0] renvoi 'validated' et buttonFonction[1] => 'deleted'
+        currentReview.status = currentReview.status === buttonFunction[0] ? null : buttonFunction[0]; // buttonFonction[0] renvoi 'validated' et buttonFonction[1] => 'deleted'
+        
+        console.log("STATUS IMMEDIAT :", currentReview.status);
+
+        setTimeout(() => {
+  console.log("STATUS 50ms PLUS TARD :", currentReview.status);
+}, 50);
       } else {
         console.error('Review not found for ID:', currentReviewId);
         return; // Arrêter l'exécution si la revue n'est pas trouvée
@@ -254,7 +310,8 @@ export default {
 
       // Vérifier si l'identifiant actuel est déjà présent dans l'un des tableaux
       const isAlreadyOnArray = combinedArrayValidateDelete.has(currentReviewId);
-      console.log('isAlreadyOnArray:', isAlreadyOnArray);
+      console.log('isAlreadyOnArray =========>>>:', isAlreadyOnArray);
+
 
       // Si l'identifiant est déjà dans un tableau et que le statut est correct, effectuer les opérations
       if (isAlreadyOnArray && currentReview.status === buttonFunction[0]) {
@@ -263,16 +320,17 @@ export default {
           this[otherArrayName].splice(indexInOtherArray, 1);
         }
 
+
         // Ajouter l'ID au tableau cible
         this[targetArrayName] = [...this[targetArrayName], currentReviewId];
         // test console.log('currentReviewId ===============>>:', currentReviewId);
         console.log(
-          'After pushing, trying access to array with IDs ===>:',
-          this[targetArrayName]
+          'After pushing, trying access to array with IDs ===>:', this[targetArrayName]
         );
+
+
       } else if (
-        !isAlreadyOnArray &&
-        currentReview.status === buttonFunction[0]
+        !isAlreadyOnArray && currentReview.status === buttonFunction[0]
       ) {
         // Ajouter l'ID au tableau cible si ce n'est pas déjà là et le statut est correct
         this[targetArrayName] = [...this[targetArrayName], currentReviewId];
@@ -289,34 +347,16 @@ export default {
         }
         console.log('After removing in Else If ====>:', this[targetArrayName]);
       }
+
+      console.log(' validated review : ',  this.validatedReviews.length );
+      console.log(' deleted review : ',  this.deletedReviews.length );
     },
 
-    handleDeleteButon(currentReviewId) {
-      const currentReview = this.reviews.find(
-        (review) => review.review_id === currentReviewId
-      );
-
-      if (currentReview) {
-        currentReviewId;
-        // test console.log("currentReview.status:", currentReview.review_id);
-
-        // Toggle status if necessary
-        currentReview.status =
-          currentReview.status === 'deleted' ? null : 'deleted';
-        // test console.log("Updated Status:", currentReview.status);
-      } else {
-        console.error('Review not found for ID:', currentReviewId);
-      }
-
-      console.log(
-        'CurrentReview.status from delete Button:',
-        currentReview.status
-      );
-    },
+  
 
     displayReviews() {
-      const stratIndex =
-        this.currentPage * this.itemsPerPage - this.itemsPerPage;
+
+      const stratIndex = this.currentPage * this.itemsPerPage - this.itemsPerPage;
       const endIndex = stratIndex + this.itemsPerPage;
       return this.reviews.slice(stratIndex, endIndex);
     },
@@ -327,7 +367,7 @@ export default {
 
         const api = import.meta.env.VITE_API_URL;
 
-        const response = await fetch( `${api}/admin/disable-reviews` );
+        const response = await fetch( `${api}/admin/disable-reviews`);
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -356,7 +396,7 @@ export default {
               author: item.creator_name,
               theme: item.theme,
               address_place: item.adress_place,
-              status: null, // status permet de determiner le style de la carte suivant son etat validate ou delete.
+             status: acc[item.review_id]?.status || null,   // ← important // status permet de determiner le style de la carte suivant son etat validate ou delete.
               pictures: [],
             };
           }
@@ -478,6 +518,21 @@ export default {
   margin-left: 2rem;
   border: 1px solid purple;
   cursor: pointer;
+}
+
+:deep(.card-theme) {
+  width: 90%;
+  writing-mode:horizontal-tb;
+  position:absolute;
+  display: flex;
+  align-items: end;
+  justify-content: flex-end;
+}
+
+:deep(.theme) {
+ color: #c2b7d1;
+text-shadow: inset 10px 10px 10px 5px rgba(0, 0, 0, 0.5);
+
 }
 
 .container-selection-validation:hover {
