@@ -64,7 +64,7 @@ npm install
 npm run dev
 ```
 
-Application disponible sur http://localhost:5173
+Application disponible sur http://localhost:8079
 
 ---
 
