@@ -1,12 +1,17 @@
 <template>
-  <div v-if="isUserMenu" class="mobile-user-menu">
-    <div class="disableUserMenu" @click="HandleDisableUserMenu">X</div>
-  </div>
 
-  <HeaderComponent
-    v-model:is-user-menu-from-header="isUserMenu"
-    @is-user-menu-from-header="activateUserMenu"
-  />
+<transition name="fade-menu">
+  <MobileMenuComponent 
+    v-if="isMobile && userMenu"
+    :is-user-menu="userMenu" 
+    @close="userMenu = false" 
+    ></MobileMenuComponent>
+</transition> 
+
+<HeaderComponent
+  v-model:is-user-menu-from-header="userMenu"
+/>
+
 
   <div class="container-main-reviews" :class="{ 'dark-body': isDarkMode }">
     <button v-if="isScrolledY" class="create-review-after-scrollY">
@@ -15,6 +20,8 @@
 
     <main class="cards-container">
       <loadingComponent :loading="loading" />
+
+
 
       <ReviewCard
         v-for="review in displayReviews()"
@@ -68,6 +75,7 @@ import ReviewCard from '../components/Review-card-component.vue';
 import Pagination from '../components/pagination-component.vue';
 import PaginationMobileComponent from '../components/pagination-mobile-component.vue';
 import loadingComponent from '../components/loading-component.vue';
+import MobileMenuComponent from '@/components/mobile-menu-component.vue';
 
 export default {
   name: 'ViewHome',
@@ -78,6 +86,7 @@ export default {
     Pagination,
     PaginationMobileComponent,
     loadingComponent,
+    MobileMenuComponent
   },
 
   data() {
@@ -99,10 +108,14 @@ export default {
       currentId: null,
       isDarkmodeActive: this.$store.state.isDarkMode,
       loading: false,
-      isUserMenu: false,
+      userMenu: false, 
       reviewId: Number,
     };
   },
+
+  props: {
+  isMobile: Boolean
+},
 
   computed: {
     isDarkMode() {
@@ -159,11 +172,7 @@ export default {
 
   methods: {
     
-    activateUserMenu() {
-      this.isUserMenu = true;
-      document.body.style.overflowY = 'hidden';
-      console.log('From Activate User menu Func ', this.isUserMenu);
-    },
+ 
 
     HandleDisableUserMenu() {
       this.isUserMenu = false;
@@ -338,17 +347,20 @@ body {
   background: none;
 }
 
-.mobile-user-menu {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
-  /* Couleur de fond semi-transparente */
-  backdrop-filter: blur(4.5px);
-  /* Applique un flou */
-  overflow-y: hidden;
-  z-index: 4;
+
+.fade-menu-enter-active,
+.fade-menu-leave-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
+.fade-menu-enter-from,
+.fade-menu-leave-to {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+
+
 
 .disableUserMenu {
   margin: 0.5rem;

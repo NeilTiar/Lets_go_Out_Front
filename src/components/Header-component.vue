@@ -8,6 +8,7 @@
     }"
     @scroll-up="handleScroll"
   >
+  
     <div class="header">
       <div class="container-logo-title">
         <div class="container-title">
@@ -59,7 +60,7 @@
           Bonjour, {{ pseudo }}
         </div>
         <div
-          v-if="isUserMenu && isUserConnected"
+          v-if="userMenu && isUserConnected"
           class="user-menu"
           @mouseenter="showMenu"
           @mouseleave="hideMenu"
@@ -75,13 +76,13 @@
         </div>
 
         <div
-          v-if="isUserMenu && !isUserConnected"
+          v-if="userMenu && !isUserConnected"
           class="visitor-menu"
           @mouseenter="showMenu"
           @mouseleave="hideMenu"
         >
           <a
-            v-if="isUserMenu && !isUserConnected"
+            v-if="userMenu && !isUserConnected"
             class="user-menu-list"
             href="/login"
           >
@@ -212,6 +213,7 @@
             src="../assets/menu.png"
             alt="menu-button"
             class="buttons menu-button"
+            @click="mobileUserMenu"
           />
         </div>
       </div>
@@ -234,7 +236,7 @@ export default {
     darkThemeComponent,
   },
 
-  emits: ['returnButtonClicked', 'isUserMenuFromHeader'],
+  emits: ['returnButtonClicked','update:isUserMenuFromHeader'],
 
   data() {
     return {
@@ -246,10 +248,14 @@ export default {
       isScrollingUpX: false,
       pseudo: this.$store.state.pseudo,
       isAdmin: this.$store.state.isAdmin,
-      isUserMenu: false,
       isUserConnected: localStorage.getItem('accessToken') !== null,
     };
   }, // Déclarer explicitement l'événement ici
+
+  props: {
+  isUserMenuFromHeader: Boolean
+},
+
 
   computed: {
     ...mapState(['isDarkMode']),
@@ -259,10 +265,21 @@ export default {
       return this.windowWidth > 1000;
     },
 
+     userMenu: {
+    get() {
+      return this.isUserMenuFromHeader;
+    },
+    set(val) {
+      this.$emit("update:isUserMenuFromHeader", val);
+    }
+  },
+
    
   },
 
   mounted() {
+
+    
     window.addEventListener('scroll', this.handleScroll);
 
     window.addEventListener('resize', this.handleResize);
@@ -272,6 +289,8 @@ export default {
     // test console.log('isAdmin from header by sore', this.isAdmin);
 
     console.log('isUserConected ', this.isUserConected);
+
+    
   },
 
   beforeUnmount() {
@@ -290,11 +309,11 @@ export default {
       window.location.reload();
     },
 
-    mobileUserMenu() {
-      const newState = !this.isUserMenu; // Inverser l'état actuel du menu utilisateur
-      this.$emit('isUserMenuFromHeader', newState); // Émettre l'événement pour mettre à jour la prop
-      console.log('newState from header: ', newState);
-    },
+mobileUserMenu() {
+  this.userMenu = !this.userMenu;   // ← utilise le computed
+  console.log("userMenu new state:", this.userMenu);
+},
+
 
     redirectToFavorites() {
       router.push({ path: '/favorites' });
@@ -302,14 +321,14 @@ export default {
 
     // Fonction pour afficher la div
     showMenu() {
-      this.isUserMenu = true;
-      console.log('Enter', 'this.isUserMenu :', this.isUserMenu);
+      this.userMenu = true;
+      console.log('Enter', 'this.isUserMenu :', this.userMenu);
     },
 
     // Fonction pour masquer la div
     hideMenu() {
-      this.isUserMenu = false;
-      console.log('Out', 'this.isUserMenu :', this.isUserMenu);
+      this.userMenu = false;
+      console.log('Out', 'this.isUserMenu :', this.userMenu);
     },
 
     isDarkmodeActive() {
