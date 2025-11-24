@@ -108,7 +108,7 @@ export default {
   },
 
   mounted() {
-
+    console.log('Mounted Activate Reviews');
     this.fetchData();
     // console.log('log REVIEWS:', JSON.stringify(this.reviews));
   },
@@ -128,8 +128,11 @@ modalValidation: async function() {
     }
 
     // Recharge APRÈS les deux opérations
-  
-      window.location.reload();
+      
+   
+  window.location.reload();
+
+
    
 
   } catch (err) {

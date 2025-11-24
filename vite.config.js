@@ -12,11 +12,15 @@ export default defineConfig({
 
 
   },
-  server: {
-    host: 'localhost',
-    port: 8080,
-    open: true,
-  },
+server: {
+  host: 'localhost',
+  port: 8080,
+  open: true,
+  watch: {
+    usePolling: true,
+    interval: 100
+  }
+},
       test: {
     environment: 'jsdom' // ⬅️ essentiel pour les tests de composants Vue
   }

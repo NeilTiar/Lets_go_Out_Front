@@ -91,7 +91,8 @@ export default {
 
     resetCaptcha() {
       // Réinitialiser le captcha en cas d'expiration ou d'échec
-      this.$refs.vueRecaptcha.reset();
+      this.$refs.recaptcha.reset();
+
     },
 
     handleCaptchaError(error) {
