@@ -44,7 +44,7 @@ img.sun {
 
 .create-review-banner {
   margin-top: 0.5rem;
-  background-color: var(--theme-header);
+  background-color: #9958ce;
   font-family: 'Kalam', sans-serif;
   border-radius: 9px;
   color: #ffffff;

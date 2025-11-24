@@ -1,5 +1,18 @@
 <template>
-  <HeaderComponent />
+
+ 
+<transition name="fade-menu">
+  <MobileMenuComponent 
+     v-if="isMobile && userMenu"
+    :is-user-menu="userMenu" 
+    @close="userMenu = false" 
+    ></MobileMenuComponent>
+</transition>    
+
+<HeaderComponent 
+  v-model:is-user-menu-from-header="userMenu"
+/>
+
 
   <div
     class="main-container-create-review"
@@ -287,6 +300,7 @@
 <script>
 import HeaderComponent from '@/components/Header-component.vue';
 import FooterComponent from '@/components/Footer-component.vue';
+import MobileMenuComponent from '@/components/mobile-menu-component.vue';
 import { onBeforeUnmount } from 'vue';
 import store from '@/store/store';
 
@@ -295,6 +309,7 @@ export default {
   components: {
     HeaderComponent,
     FooterComponent,
+    MobileMenuComponent,
   },
 
   data() {
@@ -336,8 +351,13 @@ export default {
       isUserConnected: true,
       errors: {},
       csrfToken : '',
+       userMenu: false,
+      
     };
   },
+  props: {
+  isMobile: Boolean
+},
 
   watch: {
     isUserConnected(newValue) {
@@ -350,6 +370,14 @@ export default {
         this.redirectToLogin(); // Appeler la méthode si false
       }
     },
+
+     userMenu(newValue) {
+    if (newValue) {
+      document.body.style.overflow = "hidden"; // 🔒 bloque le scroll
+    } else {
+      document.body.style.overflow = "auto"; // 🔓 réactive
+    }
+  },
   },
 
 async mounted() {
@@ -361,6 +389,14 @@ async mounted() {
 
 
   methods: {
+
+
+    
+    HandleDisableUserMenu() {
+      
+    document.body.style.overflowY = 'auto'; // Réactive le défilement vertical du corps
+     
+    },
 
     handleErrorsBeforeSubmit() {
       this.errors = {}; // Reset errors
@@ -766,6 +802,20 @@ resetForm() {
   transform: translate(-50%, -50%);
   border-radius: 20px;
 }
+
+
+.fade-menu-enter-active,
+.fade-menu-leave-active {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-menu-enter-from,
+.fade-menu-leave-to {
+  opacity: 0;
+  transform: translateZ(45px);
+}
+
+
 
 .modal-expired-message {
   display: flex;
