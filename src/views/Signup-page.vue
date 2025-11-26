@@ -192,13 +192,32 @@ import ModalSignup from '../components/Modal-Signup.vue';
 
 export default {
 
- components: {
+  name: 'SignupView',
+
+   components: {
     recaptchaComponent,
     ModalSignup,
     FooterComponent
   },
 
-  name: 'SignupView',
+  setup() {
+useHead({
+  title: "Inscription - Let's Go Out in Paris",
+  meta: [
+    {
+      name: 'description',
+      content:
+        "Créez un compte sur Let's Go Out in Paris pour découvrir, partager et organiser vos sorties dans la Ville Lumière."
+    },
+    // Open Graph pour un partage optimisé
+    { property: 'og:title', content: "Inscription - Let's Go Out in Paris" },
+    { property: 'og:description', content: "Rejoignez notre communauté et explorez Paris autrement grâce à Let's Go Out in Paris." },
+    { property: 'og:type', content: 'website' }
+  ]
+})
+},
+
+
   data() {
     return {
       pseudo: '',
@@ -221,23 +240,8 @@ export default {
     }
   },
 
-  
-setup() {
-useHead({
-  title: "Inscription - Let's Go Out in Paris",
-  meta: [
-    {
-      name: 'description',
-      content:
-        "Créez un compte sur Let's Go Out in Paris pour découvrir, partager et organiser vos sorties dans la Ville Lumière."
-    },
-    // Open Graph pour un partage optimisé
-    { property: 'og:title', content: "Inscription - Let's Go Out in Paris" },
-    { property: 'og:description', content: "Rejoignez notre communauté et explorez Paris autrement grâce à Let's Go Out in Paris." },
-    { property: 'og:type', content: 'website' }
-  ]
-})
-},
+
+
 
   methods: {
 

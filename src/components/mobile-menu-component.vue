@@ -1,5 +1,5 @@
 <template>
-  <div class="mobile-user-menu" v-if="isUserMenu ">
+  <div v-if="isUserMenu" class="mobile-user-menu" >
       <button class="close-button" @click="$emit('close')">X</button>
         <div class="mobile-user-menu-content">
         <nav class="mobile-nav-links">
@@ -18,7 +18,7 @@
 
 <script>
 
-///////////////////////component call exemple with transition //////////////////////////////
+ /// //////////////////// component call exemple with transition //////////////////////////////
 
 /*
 
@@ -31,7 +31,7 @@
 
 */
 
-//////////////////////// animation Style need to be in the parent component ///////////////////////
+ /// ///////////////////// animation Style need to be in the parent component ///////////////////////
 
 /* 
 
@@ -47,10 +47,11 @@
 }
 
 
-*///////////////////////////////////////////////////////////////////////////////////////////////
+*/ //////////////////////////////////////////////////////////////////////////////////////////////
 
 
 export default {
+ 
   name: "MobileMenuComponent",
   props: {
     isUserMenu: {
@@ -58,6 +59,8 @@ export default {
       required: true,
     },
   },
+
+   emits: ['close'],
 };      
 
 </script>

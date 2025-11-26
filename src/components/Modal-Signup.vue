@@ -1,19 +1,30 @@
+<script setup>
+const emit = defineEmits(['close'])
+
+const props = defineProps({
+  show: {
+    type: Boolean,
+    default: false
+  },
+  message: {
+    type: String,
+    default: ''
+  }
+})
+
+</script>
+
 <template>
-  <div v-if="show" class="modal-overlay" @click.self="$emit('close')">
-    <div class="modal-box">
-      <button class="close-btn" @click="$emit('close')">&times;</button>
+  <div v-if="show" class="modal">
+    <div class="modal-content">
       <p>{{ message }}</p>
-      <slot></slot> <!-- Contenu passé par le parent -->
+
+      <button @click="emit('close')">
+        Close
+      </button>
     </div>
   </div>
 </template>
-
-<script setup>
-defineProps({
-  show: Boolean,
-  message: String
-})
-</script>
 
 <style scoped>
 .modal-overlay {

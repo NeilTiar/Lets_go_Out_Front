@@ -10,6 +10,8 @@
 <script>
 export default {
 
+   name: 'App',
+
    data() {
     return {
       isMobile: window.innerWidth <= 768,
@@ -30,7 +32,7 @@ export default {
     }
   },
 
-  name: 'App',
+ 
 
 };
 </script>

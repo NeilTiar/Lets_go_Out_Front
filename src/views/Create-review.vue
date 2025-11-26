@@ -312,6 +312,11 @@ export default {
     MobileMenuComponent,
   },
 
+    props: {
+  isMobile: Boolean
+},
+
+
   data() {
     return {
       token: store.state.accessToken,
@@ -355,9 +360,6 @@ export default {
       
     };
   },
-  props: {
-  isMobile: Boolean
-},
 
   watch: {
     isUserConnected(newValue) {

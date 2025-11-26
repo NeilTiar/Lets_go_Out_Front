@@ -1,4 +1,4 @@
-/*import { defineConfig } from 'vite';
+/* import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 
@@ -14,7 +14,7 @@ export default defineConfig({
     port: 8080, // on garde ton ancien port
     open: true, // ouvre le navigateur automatiquement
   },
-});*/
+}); */
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
