@@ -236,7 +236,11 @@ export default {
     darkThemeComponent,
   },
 
-  emits: ['returnButtonClicked','update:isUserMenuFromHeader'],
+    props: {
+  isUserMenuFromHeader: Boolean
+},
+ 
+ emits: ['returnButtonClicked','update:isUserMenuFromHeader'],
 
   data() {
     return {
@@ -252,9 +256,8 @@ export default {
     };
   }, // Déclarer explicitement l'événement ici
 
-  props: {
-  isUserMenuFromHeader: Boolean
-},
+
+
 
 
   computed: {

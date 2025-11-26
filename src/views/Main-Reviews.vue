@@ -88,6 +88,10 @@ export default {
     loadingComponent,
     MobileMenuComponent
   },
+  
+  props: {
+  isMobile: Boolean
+},
 
   data() {
 
@@ -113,9 +117,6 @@ export default {
     };
   },
 
-  props: {
-  isMobile: Boolean
-},
 
   computed: {
     isDarkMode() {

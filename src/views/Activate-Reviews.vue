@@ -71,7 +71,7 @@
 import HeaderComponent from '@/components/Header-component.vue';
 import FooterComponent from '@/components/Footer-component.vue';
 import ReviewsAwaitingActivationComponent from '@/components/Reviews-awaiting-activation-component.vue';
-//import { checkTokensBeforeSubmit } from "@/utils/auth.js";
+// import { checkTokensBeforeSubmit } from "@/utils/auth.js";
 
 // GESTION DU COMPORTEMENT A L'AJOUT ET A LA SUPPRESSION DES CARTE VIA BOUTTON A CORIGER !!!!
 
@@ -176,7 +176,7 @@ modalValidation: async function() {
 
         /*
           const ok = await checkTokensBeforeSubmit();
-          if (!ok) return; // Le token est invalide → stop*/
+          if (!ok) return; // Le token est invalide → stop */
 
 
         const token = localStorage.getItem("accessToken"); 
@@ -221,7 +221,7 @@ modalValidation: async function() {
 
 
          /* const ok = await checkTokensBeforeSubmit();
-         if (!ok) return; // Le token est invalide → stop*/
+         if (!ok) return; // Le token est invalide → stop */
 
         const rawDeletedReviews = this.deletedReviews.slice();
         console.log('rawDeletedReviews: ', rawDeletedReviews);

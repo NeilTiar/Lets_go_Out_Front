@@ -8,9 +8,13 @@
   
   
 
-  <p class="empty-favori-msg" v-if="reviews.length == 0 && !loading"> Vous n'avez pas d'annonce en favoris </p>
+  <p  v-if="reviews.length == 0 && !loading" class="empty-favori-msg"> Vous n'avez pas d'annonce en favoris </p>
 
-  <main v-if="!reviews.length == 0 && !loading" class="cards-container">
+<main
+  v-if="reviews.length !== 0 && !loading"
+  class="cards-container"
+>
+
   
 
     <ReviewCard
