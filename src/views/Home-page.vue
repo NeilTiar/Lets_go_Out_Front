@@ -91,8 +91,12 @@ export default {
 <style scoped>
 @media screen and (min-width: 600px) {
   .access-reviews {
-    margin: 12rem 0 0 11rem;
+     display: flex;
+    justify-content: center;
     height: max-content;
+    width: 25%;
+    margin-top: 4rem;
+
   }
 
   .title {
@@ -142,6 +146,7 @@ export default {
     font-weight: bold;
     text-shadow: 1px 0.5px 0.6px rgb(193, 187, 204);
     z-index: 1;
+    width: 50%;
   }
 
   .home-title {
@@ -157,6 +162,7 @@ export default {
     font-family: var(--font-title);
     margin-top: 2rem;
     width: 85%;
+    text-align: center;
    
   }
 
@@ -164,7 +170,7 @@ export default {
     justify-content: start;
     align-items: center;
     margin: 15rem 0 0 1rem;
-    width: 40%;
+    width: 60%;
     color: #010703;
     font-size: 2.3rem;
     font-weight: 350;
@@ -187,6 +193,9 @@ export default {
     text-shadow: none;
     transition: all 0.2s ease-in-out;
     text-decoration: none;
+    text-align: center;
+   
+   
   }
 
   .home-link:hover {
@@ -267,7 +276,8 @@ export default {
 
 @media screen and (max-width: 1300px) {
   .access-reviews {
-    margin: 1rem auto;
+    display:flex;
+    justify-content: center;
     font-size: 0.7rem;
   }
 }
@@ -333,9 +343,8 @@ export default {
 
   .access-reviews {
     margin-top: 2rem;
-    display: flex;
-    justify-content: center;
     font-size: 1.7rem;
+    width:50%;
   }
 
   .reviews-access {
