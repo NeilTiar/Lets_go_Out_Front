@@ -20,7 +20,8 @@
 
     <main class="cards-container">
       
-<div v-if="loading">
+
+<div v-if="loading" class="skeleton-grid">
   <SkeletonCard
     v-for="n in itemsPerPage"
     :key="n"
@@ -29,19 +30,19 @@
 
 
 
-<ReviewCard
-  v-for="review in displayReviews()"
-  v-else
-  :key="review.review_id"
-  :loading="loading"
-  :review-id="review.review_id"
-  :theme="review.theme"
-  :arrondissement="review.district_num"
-  :place-name="review.place_name"
-  :image-url="review.secure_url"
-  @click="getDetailsReviewOnClick(review)"
-/>
-
+     
+<ReviewCard 
+        v-for="review in displayReviews()"
+        v-else
+        :key="review.review_id"
+        :loading="loading"
+        :review-id="review.review_id"
+        :theme="review.theme"
+        :arrondissement="review.district_num"
+        :place-name="review.place_name"
+        :image-url="review.secure_url"
+        @click="getDetailsReviewOnClick(review)"
+      />
 
       <button
         v-show="showButton"
@@ -359,6 +360,23 @@ body {
   height: 100%;
   background: none;
 }
+
+.skeleton-grid {
+    
+     /* 
+    display: contents :
+    - supprime l'élément du rendu de mise en page (pas de box, pas de marge, pas de padding)
+    - mais garde ses enfants visibles
+    - permet aux SkeletonCard d'être traitées comme si elles étaient directement
+      dans .cards-container (qui utilise une grille)
+    - évite que le wrapper <div> casse la grille ou force une seule colonne
+    - nécessaire car Vue interdit v-if + v-for sur le même élément, donc on utilise un wrapper
+      sans qu'il n'affecte la mise en page
+  */
+  
+  display: contents;
+}
+
 
 
 .fade-menu-enter-active,
