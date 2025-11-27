@@ -1,11 +1,12 @@
 <template>
   <div>
-    <VueRecaptcha
-      ref="recaptcha"
-      :sitekey="recaptchaSiteKey"
-      @verify="onRecaptchaVerify"
-    />
-   
+ <VueRecaptcha
+  v-if="recaptchaSiteKey"
+  ref="recaptcha"
+  :sitekey="recaptchaSiteKey"
+  @verify="onRecaptchaVerify"
+/>
+
   </div>
 </template>
 
