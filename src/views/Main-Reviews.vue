@@ -19,13 +19,23 @@
     </button>
 
     <main class="cards-container">
-      <loadingComponent :loading="loading" />
+      
+
+<div v-if="loading" class="skeleton-grid">
+  <SkeletonCard
+    v-for="n in itemsPerPage"
+    :key="n"
+  />
+</div>
 
 
 
-      <ReviewCard
+     
+<ReviewCard 
         v-for="review in displayReviews()"
+        v-else
         :key="review.review_id"
+        :loading="loading"
         :review-id="review.review_id"
         :theme="review.theme"
         :arrondissement="review.district_num"
@@ -74,8 +84,8 @@ import FooterComponent from '@/components/Footer-component.vue';
 import ReviewCard from '../components/Review-card-component.vue';
 import Pagination from '../components/pagination-component.vue';
 import PaginationMobileComponent from '../components/pagination-mobile-component.vue';
-import loadingComponent from '../components/loading-component.vue';
 import MobileMenuComponent from '@/components/mobile-menu-component.vue';
+import SkeletonCard from '../components/skeleton-compenent.vue';
 
 export default {
   name: 'ViewHome',
@@ -85,8 +95,8 @@ export default {
     ReviewCard,
     Pagination,
     PaginationMobileComponent,
-    loadingComponent,
-    MobileMenuComponent
+    MobileMenuComponent,
+    SkeletonCard,
   },
   
   props: {
@@ -139,6 +149,9 @@ export default {
   },
 
   async mounted() {
+
+   this.loading = true;
+
     const token = localStorage.getItem('accessToken');
 
     console.log(
@@ -173,8 +186,6 @@ export default {
 
   methods: {
     
- 
-
     HandleDisableUserMenu() {
       this.isUserMenu = false;
       document.body.style.overflowY = 'auto';
@@ -224,6 +235,7 @@ export default {
 
     async fetchData() {
 
+
     const api = import.meta.env.VITE_API_URL;
 
     console.log('API URL from env: ', api);
@@ -237,6 +249,7 @@ export default {
         }
         const data = await response.json();
 
+        setTimeout(() => {this.loading = false}, 800);
         // Filtrer les avis pour supprimer les doublons basés sur review_id
         this.reviews =  data.filter(
   (r, i, self) => i === self.findIndex(t => t.review_id === r.review_id)
@@ -347,6 +360,23 @@ body {
   height: 100%;
   background: none;
 }
+
+.skeleton-grid {
+    
+     /* 
+    display: contents :
+    - supprime l'élément du rendu de mise en page (pas de box, pas de marge, pas de padding)
+    - mais garde ses enfants visibles
+    - permet aux SkeletonCard d'être traitées comme si elles étaient directement
+      dans .cards-container (qui utilise une grille)
+    - évite que le wrapper <div> casse la grille ou force une seule colonne
+    - nécessaire car Vue interdit v-if + v-for sur le même élément, donc on utilise un wrapper
+      sans qu'il n'affecte la mise en page
+  */
+  
+  display: contents;
+}
+
 
 
 .fade-menu-enter-active,

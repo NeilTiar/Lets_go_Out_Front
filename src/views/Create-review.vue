@@ -18,7 +18,7 @@
     class="main-container-create-review"
     :class="{ 'dark-container-create-form': isDarkMode }"
   >
-    <h2 class="title">Créer votre nouvelle review :</h2>
+    <h2 class="title">Créer votre nouvelle review </h2>
 
     <div class="container-create-review-form">
       <div v-if="isModalVisible" class="modal">
@@ -34,6 +34,9 @@
         </div>
       </div>
       <form class="create-form" @submit.prevent>
+
+
+    <div class="test ">   
         <div class="select-theme">
           <span v-if="errors.theme" class="error">{{ errors.theme }}</span>
           <select v-model="formData.theme" class="theme-select">
@@ -45,6 +48,7 @@
             <option value="loisir">loisir</option>
           </select>
         </div>
+        
 
         <input
           v-model="formData.place_name"
@@ -66,7 +70,7 @@
           type="number"
           placeholder="numero de l'arrondissement"
         />
-
+</div>
         <div v-if="isDesktop" class="container-pictures">
           <div class="container-main-picture">
             <input
@@ -859,7 +863,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0;
-  margin: 0;
+  margin: auto;
 }
 
 .create-review-mobile {
@@ -881,7 +885,7 @@ body {
 .container-create-review-form {
   display: flex;
   flex-direction: column;
-  margin-left: 5rem;
+  margin: auto;
 }
 
 .theme-select,
@@ -897,7 +901,7 @@ body {
 }
 
 .theme-select {
-  width: 15%;
+  width: 100%;
   height: 1.9rem;
   border-radius: 25px;
   margin-top: 0.5rem;
@@ -907,6 +911,9 @@ body {
 .create-form {
   display: flex;
   flex-direction: column;
+width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .container-main-picture {
@@ -961,6 +968,14 @@ img {
   z-index: 2;
   font-family: 'Courgette';
   font-size: 1.3rem;
+  padding:1rem;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+    background: rgba(255, 255, 255, 0.15); /* transparent */
+  backdrop-filter: blur(8px);            /* flou */
+  -webkit-backdrop-filter: blur(8px);    /* Safari */
+  
 }
 
 .button-gallery {
@@ -971,6 +986,9 @@ img {
   margin: 0 1rem 1rem 0;
   font-family: 'Courgette';
   font-size: 1.3rem;
+    background: rgba(255, 255, 255, 0.15); /* transparent */
+  backdrop-filter: blur(8px);            /* flou */
+  -webkit-backdrop-filter: blur(8px);    /* Safari */
 }
 
 .container-pictures {
@@ -1128,10 +1146,27 @@ img {
   cursor: pointer;
 }
 
+.title {
+  margin: 5rem 0;
+  font-family: var(--font-title);
+  text-align: center;
+  color:#9b71a5;
+  font-size: 4rem;
+}
+
+.test {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  margin-left: 7rem;
+}
+
 @media screen and (max-width: 1000px) {
   .title {
     font-size: 1.6rem;
     margin: 2rem 1.5rem 2rem 1.5rem;
+    font-family: var(--font-title);
   }
 
   .top-main {
