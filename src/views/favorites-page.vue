@@ -7,25 +7,27 @@
   
   <div class="main-container">
 
-    <!-- ✨ 1 - message quand pas de favoris ET pas loading -->
+    <!--  1 - message quand pas de favoris ET pas loading -->
     <p v-if="!loading && reviews.length === 0" class="empty-favori-msg">
       Vous n'avez pas d'annonce en favoris
     </p>
 
-    <!-- ✨ 2 - toujours afficher le main -->
+    <!--  2 - toujours afficher le main -->
     <main class="cards-container">
 
-      <!-- ✨ 2A - skeleton pendant le loading -->
-      <SkeletonCard
-        v-if="loading"
-        v-for="n in itemsPerPage"
-        :key="n"
-      />
+      <!--  2A - skeleton pendant le loading -->
+<div v-if="loading">
+  <SkeletonCard
+    v-for="n in itemsPerPage"
+    :key="n"
+  />
+</div>
 
-      <!-- ✨ 2B - vraies cartes une fois chargé -->
+
+      <!--  2B - vraies cartes une fois chargé -->
       <ReviewCard
-        v-else
         v-for="review in reviews"
+        v-else
         :key="review.review_id"
         :review-id="review.review_id"
         :theme="review.theme"

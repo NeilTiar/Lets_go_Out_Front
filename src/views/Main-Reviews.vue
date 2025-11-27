@@ -20,26 +20,28 @@
 
     <main class="cards-container">
       
+<div v-if="loading">
+  <SkeletonCard
+    v-for="n in itemsPerPage"
+    :key="n"
+  />
+</div>
 
-<SkeletonCard
-  v-if="loading"
-  v-for="n in itemsPerPage"
-  :key="n"
+
+
+<ReviewCard
+  v-for="review in displayReviews()"
+  v-else
+  :key="review.review_id"
+  :loading="loading"
+  :review-id="review.review_id"
+  :theme="review.theme"
+  :arrondissement="review.district_num"
+  :place-name="review.place_name"
+  :image-url="review.secure_url"
+  @click="getDetailsReviewOnClick(review)"
 />
 
-
-     
-<ReviewCard v-else
-        v-for="review in displayReviews()"
-        :key="review.review_id"
-        :loading="loading"
-        :review-id="review.review_id"
-        :theme="review.theme"
-        :arrondissement="review.district_num"
-        :place-name="review.place_name"
-        :image-url="review.secure_url"
-        @click="getDetailsReviewOnClick(review)"
-      />
 
       <button
         v-show="showButton"
