@@ -19,13 +19,20 @@
     </button>
 
     <main class="cards-container">
-      <loadingComponent :loading="loading" />
+      
+
+<SkeletonCard
+  v-if="loading"
+  v-for="n in itemsPerPage"
+  :key="n"
+/>
 
 
-
-      <ReviewCard
+     
+<ReviewCard v-else
         v-for="review in displayReviews()"
         :key="review.review_id"
+        :loading="loading"
         :review-id="review.review_id"
         :theme="review.theme"
         :arrondissement="review.district_num"
@@ -74,8 +81,8 @@ import FooterComponent from '@/components/Footer-component.vue';
 import ReviewCard from '../components/Review-card-component.vue';
 import Pagination from '../components/pagination-component.vue';
 import PaginationMobileComponent from '../components/pagination-mobile-component.vue';
-import loadingComponent from '../components/loading-component.vue';
 import MobileMenuComponent from '@/components/mobile-menu-component.vue';
+import SkeletonCard from '../components/skeleton-compenent.vue';
 
 export default {
   name: 'ViewHome',
@@ -85,8 +92,8 @@ export default {
     ReviewCard,
     Pagination,
     PaginationMobileComponent,
-    loadingComponent,
-    MobileMenuComponent
+    MobileMenuComponent,
+    SkeletonCard,
   },
   
   props: {
@@ -139,6 +146,9 @@ export default {
   },
 
   async mounted() {
+
+   this.loading = true;
+
     const token = localStorage.getItem('accessToken');
 
     console.log(
@@ -173,8 +183,6 @@ export default {
 
   methods: {
     
- 
-
     HandleDisableUserMenu() {
       this.isUserMenu = false;
       document.body.style.overflowY = 'auto';
@@ -224,6 +232,7 @@ export default {
 
     async fetchData() {
 
+
     const api = import.meta.env.VITE_API_URL;
 
     console.log('API URL from env: ', api);
@@ -237,6 +246,7 @@ export default {
         }
         const data = await response.json();
 
+        setTimeout(() => {this.loading = false}, 800);
         // Filtrer les avis pour supprimer les doublons basés sur review_id
         this.reviews =  data.filter(
   (r, i, self) => i === self.findIndex(t => t.review_id === r.review_id)

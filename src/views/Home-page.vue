@@ -339,16 +339,21 @@ export default {
     color: rgb(88, 71, 88);
     font-weight: bolder;
     text-decoration: none;
+    width: 100%;
   }
 
   .access-reviews {
     margin-top: 2rem;
     font-size: 1.7rem;
-    width:50%;
+  
   }
 
   .reviews-access {
     color: rgb(59, 170, 114);
+    font-family: var(--font-title);
+    margin: auto;
+    display: flex;
+    justify-content: center;
   }
 
   @-webkit-keyframes AnimationName {

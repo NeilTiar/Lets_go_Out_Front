@@ -4,35 +4,43 @@
 
 <template>
   <HeaderComponent />
+  
   <div class="main-container">
-  
-  
 
-  <p  v-if="reviews.length == 0 && !loading" class="empty-favori-msg"> Vous n'avez pas d'annonce en favoris </p>
+    <!-- ✨ 1 - message quand pas de favoris ET pas loading -->
+    <p v-if="!loading && reviews.length === 0" class="empty-favori-msg">
+      Vous n'avez pas d'annonce en favoris
+    </p>
 
-<main
-  v-if="reviews.length !== 0 && !loading"
-  class="cards-container"
->
+    <!-- ✨ 2 - toujours afficher le main -->
+    <main class="cards-container">
 
-  
+      <!-- ✨ 2A - skeleton pendant le loading -->
+      <SkeletonCard
+        v-if="loading"
+        v-for="n in itemsPerPage"
+        :key="n"
+      />
 
-    <ReviewCard
-      v-for="review in reviews"
-      :key="review.id"
-      :review-id="review.review_id"
-      :theme="review.theme"
-      :arrondissement="review.district_num"
-      :place-name="review.place_name"
-      :image-url="review.secure_url[0]"
-      @favorites-need-reload="displayFavoritesReviews"
-       @click="getDetailsReviewOnClick(review)"
-    />
-  </main>
- </div>
+      <!-- ✨ 2B - vraies cartes une fois chargé -->
+      <ReviewCard
+        v-else
+        v-for="review in reviews"
+        :key="review.review_id"
+        :review-id="review.review_id"
+        :theme="review.theme"
+        :arrondissement="review.district_num"
+        :place-name="review.place_name"
+        :image-url="review.secure_url[0]"
+        @favorites-need-reload="displayFavoritesReviews"
+        @click="getDetailsReviewOnClick(review)"
+      />
+    </main>
+
+  </div>
+
   <div class="footer-container">
     <FooterComponent />
- 
   </div>
 </template>
 
@@ -40,6 +48,7 @@
 import HeaderComponent from '@/components/Header-component.vue';
 import FooterComponent from '@/components/Footer-component.vue';
 import ReviewCard from '@/components/Review-card-component.vue';
+import SkeletonCard from '@/components/skeleton-compenent.vue';  
 
 export default {
   name: 'FavoritesPage',
@@ -47,11 +56,15 @@ export default {
     HeaderComponent,
     FooterComponent,
     ReviewCard,
+    SkeletonCard,
   },
 
   data() {
     return {
       reviews: [],
+      loading: false,
+      itemsPerPage : 6,
+
     };
   },
 
@@ -92,6 +105,11 @@ export default {
         }
 
         const responseData = await response.json();
+
+         setTimeout(() => {this.loading = false}, 4800);
+         
+
+        this.loading = false;
 
         const result = responseData.results;
         console.log(

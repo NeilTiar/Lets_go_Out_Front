@@ -619,6 +619,10 @@ text-shadow: 5px 4px 1px #402e4d, 4px 5px 1px #1d0329, 6px 5px 1px #000000;
   .submit-form {
     margin: auto;
   }
+
+  .top-main {
+    z-index: 10;
+  }
 }
 
 

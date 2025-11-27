@@ -1,5 +1,10 @@
 <template>
-  <div class="card-container" :class="{ 'dark-mode-class': isDarkMode }">
+
+<div v-if="loading" v-for="n in 10" :key="n" class="loader-container">
+  <div class="spinner"></div>
+</div>
+
+  <div v-else class="card-container" :class="{ 'dark-mode-class': isDarkMode }">
     <div class="card-review">
       <img :src="imageUrl" :alt="generateAltText()" class="card-image" loading="lazy" />
       <h3
@@ -55,6 +60,7 @@ export default {
     placeName: {type: String, default: ''},
     imageUrl: {type: String, default:''},
     reviewId: {type: Number, default: null},
+    loading: {type: Boolean, default: false},
   },
 
   emits: ['favorites-need-reload'],
