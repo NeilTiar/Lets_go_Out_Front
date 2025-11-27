@@ -19,7 +19,7 @@ const props = defineProps({
     <div class="modal-content">
       <p>{{ message }}</p>
 
-      <button @click="emit('close')">
+      <button class="close-btn" @click="emit('close')">
         Close
       </button>
     </div>

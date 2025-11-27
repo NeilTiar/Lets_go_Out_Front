@@ -9,7 +9,7 @@ describe('ModalComponent', () => {
       props: { show: true, message: 'Hello Modal' }
     })
 
-    expect(wrapper.find('.modal-box').exists()).toBe(true)
+    expect(wrapper.find('.modal').exists()).toBe(true)
 
     expect(wrapper.text()).toContain('Hello Modal')
   })
@@ -21,20 +21,19 @@ describe('ModalComponent', () => {
       props: { show: false, message: 'Hidden Modal' }
     })
 
-    expect(wrapper.find('.modal-box').exists()).toBe(false)
+    expect(wrapper.find('.modal').exists()).toBe(false)
   })
 
 
 
-  test('emits close event when overlay is clicked', async () => {
-    
-    const wrapper = mount(ModalComponent, {
-      props: { show: true, message: 'Close me' }
-    })
-
-    await wrapper.find('.modal-overlay').trigger('click')
-    expect(wrapper.emitted().close).toBeTruthy()
+test('emits close event when close button is clicked', async () => {
+  const wrapper = mount(ModalComponent, {
+    props: { show: true, message: 'Close me' }
   })
+
+  await wrapper.find('.close-btn').trigger('click')
+  expect(wrapper.emitted().close).toBeTruthy()
+})
 
 
 
