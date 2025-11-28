@@ -3,9 +3,18 @@
 <!-- App.vue -->
 <template>
   <div id="app">
-    <router-view :is-mobile="isMobile" />
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <component
+          :is="Component"
+          :key="$route.fullPath"
+         
+        />
+      </transition>
+    </router-view>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -38,6 +47,17 @@ export default {
 </script>
 
 <style>
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 body {
   margin: 0;
   padding: 0;

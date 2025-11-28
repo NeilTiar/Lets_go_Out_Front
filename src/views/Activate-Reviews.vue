@@ -1,4 +1,6 @@
 <template>
+
+    <div class="activate-reviews-root">
   <HeaderComponent />
 
   <div v-if="isModal" id="modal-container" class="modal-container">
@@ -65,6 +67,7 @@
 
     <FooterComponent class="FooterComponent" />
   </div>
+</div>
 </template>
 
 <script>

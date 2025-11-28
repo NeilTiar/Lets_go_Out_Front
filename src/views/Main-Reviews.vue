@@ -1,16 +1,18 @@
 <template>
 
-<transition name="fade-menu">
-  <MobileMenuComponent 
-    v-if="isMobile && userMenu"
-    :is-user-menu="userMenu" 
-    @close="userMenu = false" 
-    ></MobileMenuComponent>
-</transition> 
+  <div class="main-reviews-root">
 
-<HeaderComponent
-  v-model:is-user-menu-from-header="userMenu"
-/>
+    <transition name="fade-menu">
+      <MobileMenuComponent 
+        v-if="isMobile && userMenu"
+        :is-user-menu="userMenu"
+        @close="userMenu = false"
+      />
+    </transition>
+
+    <HeaderComponent
+      v-model:is-user-menu-from-header="userMenu"
+    />
 
 
   <div class="container-main-reviews" :class="{ 'dark-body': isDarkMode }">
@@ -75,6 +77,8 @@
   </div>
 
   <FooterComponent />
+
+   </div>
 </template>
 
 <script>
