@@ -3,6 +3,8 @@
 2- il faudrait ajouter la gestion des token ( verification au clique de l'icon coeur)-->
 
 <template>
+ 
+<div class="favorites-page-root">
   <HeaderComponent />
   
   <div class="main-container">
@@ -21,8 +23,8 @@
     v-for="n in itemsPerPage"
     :key="n"
   />
-</div>
 
+</div>
 
       <!--  2B - vraies cartes une fois chargé -->
       <ReviewCard
@@ -44,6 +46,8 @@
   <div class="footer-container">
     <FooterComponent />
   </div>
+
+</div>
 </template>
 
 <script>

@@ -1,4 +1,7 @@
 <template>
+
+<div class="signup-view-root">
+
   <h1 class="title">Let's go out in Paris</h1>
 
 
@@ -180,6 +183,8 @@
   </form>
 
   <FooterComponent />
+
+</div>
 </template>
 
 <script >

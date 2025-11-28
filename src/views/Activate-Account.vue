@@ -1,4 +1,6 @@
 <template>
+
+  <div class="activate-account-root">
   <HeaderComponent />
 
   <div class="activation-container">
@@ -15,6 +17,7 @@
   </div>
 
   <FooterComponent />
+  </div>
 </template>
 
 <script setup>

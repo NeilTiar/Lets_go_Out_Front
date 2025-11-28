@@ -1,4 +1,7 @@
 <template>
+
+<div class="admin-page-root">
+
   <HeaderComponent />
 
   <div class="number-reviews-to-activate">
@@ -14,6 +17,7 @@
     </div>
     <!-- Your template content goes here -->
   </div>
+</div>
 </template>
 
 <script>

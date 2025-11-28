@@ -1,50 +1,54 @@
 <template>
-  <div class="main">
-    <div class="top-title-login-connexion">
-      <h1 class="title">Let's go out in Paris</h1>
+  <div class="home-root">
 
-      <div class="right-link">
-        <a href="signup" class="home-link registration">Inscription</a>
-        <a href="login" class="home-link connexion">S'identifier</a>
+    <div class="main">
+      <div class="top-title-login-connexion">
+        <h1 class="title">Let's go out in Paris</h1>
+
+        <div class="right-link">
+          <a href="signup" class="home-link registration">Inscription</a>
+          <a href="login" class="home-link connexion">S'identifier</a>
+        </div>
+      </div>
+
+      <div class="container-img">
+        <video
+          preload="auto"
+          class="home-background-img"
+          src="https://res.cloudinary.com/cloudinary-lets-go-out-paris/video/upload/v1760693464/Paris_LGOP_wocalu.mp4"
+          autoplay
+          loop
+          muted
+        >
+          Votre navigateur ne supporte pas la vidéo.
+        </video>
+
+        <div class="home-title-description">
+          <article>
+            <p class="home-description">
+              Explorez la Ville Lumière grâce à votre plateforme interactive qui
+              vous propose de préparer vos prochaines sorties plus simplement.
+            </p>
+          </article>
+        </div>
       </div>
     </div>
 
-    <div class="container-img">
-      <video
-        preload="auto"
-        class="home-background-img"
-        src="https://res.cloudinary.com/cloudinary-lets-go-out-paris/video/upload/v1760693464/Paris_LGOP_wocalu.mp4" 
-        autoplay
-        loop
-        muted
+    <div class="access-reviews">
+      <a
+        href="main"
+        class="home-link reviews-access"
+        @click="checkTokensBeforeSubmit"
       >
-        Votre navigateur ne supporte pas la vidéo.  
-        Vidéo description : par une journée ensoleillée, des cyclistes circulent sur un pont avec la tour Eiffel en arrière-plan.
-      </video>
-
-      <div class="home-title-description">
-        <article>
-          <p class="home-description">
-            Explorez la Ville Lumière grâce à votre plateforme interactive qui
-            vous propose de préparer vos prochaines sorties plus simplement.
-          </p>
-        </article>
-      </div>
+        accéder aux reviews
+      </a>
     </div>
-  </div>
 
-  <div class="access-reviews">
-    <a
-      href="main"
-      class="home-link reviews-access"
-      @click="checkTokensBeforeSubmit"
-    >
-      accéder aux reviews
-    </a>
-  </div>
+    <CookieConsent />
 
-  <CookieConsent />
+  </div>
 </template>
+
 
 <script setup>
 // Import du composant cookies
@@ -79,6 +83,7 @@ useHead({
 <script>
 export default {
   name: 'HomeView',
+  props: ['isMobile'],
   components: {
     CookieConsent
   },

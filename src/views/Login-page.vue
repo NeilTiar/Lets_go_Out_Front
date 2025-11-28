@@ -1,5 +1,7 @@
 <template>
-  <body>
+
+<div class="login-view-root">
+
     <h1 class="title">Let's go out in paris</h1>
 
     <div
@@ -72,7 +74,9 @@
     </div>
 
     <FooterComponent />
-  </body>
+  
+
+</div>
 </template>
 
 <script>
@@ -242,7 +246,7 @@ html, body {
   margin: 0;
 }
 
-body {
+.login-view-root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;

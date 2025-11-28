@@ -1,9 +1,14 @@
 <template>
+
+   <div class="review-details-root">
   <HeaderComponent />
 
   <ReviewDetailsComponent />
 
   <FooterComponent />
+
+  </div>
+
 </template>
 
 <script>

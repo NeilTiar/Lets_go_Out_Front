@@ -1,5 +1,6 @@
 <template>
 
+<div class="create-review-view-root">
  
 <transition name="fade-menu">
   <MobileMenuComponent 
@@ -299,6 +300,8 @@
     </div>
   </div>
   <FooterComponent />
+
+</div>
 </template>
 
 <script>
